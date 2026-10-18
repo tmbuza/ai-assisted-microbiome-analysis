@@ -1,0 +1,19 @@
+# See the result
+
+## Your task
+
+Open the [finished example report](example-report.qmd). Examine the sample composition and Shannon diversity figures before looking at the code.
+
+## Run or inspect
+
+- Which features dominate each sample?
+- Which samples have more even feature distributions?
+- What does each axis measure?
+
+## Expected output
+
+A report containing the question, two figures, methods, and limitations.
+
+## Check before continuing
+
+Write one observation and one claim these data cannot support.

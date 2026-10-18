@@ -1,0 +1,19 @@
+# Upgrade R 
+
+## In an existing renv project
+
+1. Back up your project and renv.lock.
+2. Install R using the installer appropriate for your operating system and processor.
+3. Restart VS Code and verify both commands:
+   R --version
+   Rscript --version
+4. Open R from the project directory. Keep the existing renv setup.
+5. Restore the recorded packages with renv::restore(). If older packages fail to build, investigate the error before updating dependencies.
+6. Run the project’s scripts and inspect the outputs.
+7. Record the validated environment:
+   renv::snapshot()
+   renv::status()
+8. Commit the updated lockfile.
+9. 
+Include a brief troubleshooting note based on your Matrix error, with the binary-package approach clearly labelled as updating the project’s dependencies, since it changes the recorded package versions.
+The central checkpoint should be: “The upgrade is complete when the analysis runs, the outputs have been checked, and renv::status() reports no issues.”

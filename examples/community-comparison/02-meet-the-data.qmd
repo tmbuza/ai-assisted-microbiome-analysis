@@ -1,0 +1,21 @@
+# Meet the data
+
+## Your task
+
+Inspect the three tidy input tables.
+
+| File | Rows | Columns |
+|---|---|---|
+| `feature-counts.tsv` | One per feature | `feature_id`, then one count column per sample |
+| `sample-metadata.tsv` | One per sample | `sample_id`, `group`; optional study variables |
+| `taxonomy.tsv` | One per feature | `feature_id`, `taxon` |
+
+Inputs live in `data/example/`. Taxon labels are fictional. Match sample A01 and feature F01 across the files.
+
+## Use your own data
+
+Create the same three filenames in `data/my-study/`. Use unique matching identifiers and untransformed integer counts, not percentages. Additional metadata are retained, but the scripts do not adjust for them.
+
+## Check before continuing
+
+Explain what a row and column represent in each file. The workflow supports different sample names, feature counts, and two or more group labels.

@@ -1,0 +1,32 @@
+# Verify and explain
+
+## Your task
+
+Verify sample A01 from the count table.
+
+- Feature total: **6006**.
+- Observed features: **15**.
+- Shannon diversity: **2.423797**.
+
+```r
+x <- read.delim("data/example/feature-counts.tsv", check.names = FALSE)
+p <- x$A01 / sum(x$A01)
+-sum(p[p > 0] * log(p[p > 0]))
+```
+
+## Expected output
+
+The calculation agrees with `alpha-diversity.tsv`. Repeat with a sample from your own study using its actual column name.
+
+## Explain the figures
+
+1. What varies within and between groups?
+2. Do diversity values overlap?
+3. Could count totals, filtering, or study design affect interpretation?
+4. Which claims cannot be supported?
+
+Ask AI to review your draft against the tables. Verify each suggested claim yourself and record the check in `results/decision-log.md`.
+
+::: {.callout-note}
+Higher diversity does not automatically mean a healthier community. Visual differences do not establish significance or causation.
+:::

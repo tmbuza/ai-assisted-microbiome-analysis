@@ -1,0 +1,23 @@
+# Export the report
+
+## Your task
+
+Copy the blank template to the repository root:
+
+```bash
+cp templates/learner-report.qmd my-study-report.qmd
+```
+
+Fill the prompts with your own results. For outputs in `results/my-study/`, update figure paths in the copied report accordingly.
+
+```bash
+quarto render my-study-report.qmd --to html
+```
+
+## Expected output
+
+An HTML report with question, inputs, methods, figures, verification, limitations, and AI assistance. Use browser Print → Save as PDF if needed.
+
+## Check before continuing
+
+Check that every figure loads and every statement matches your generated tables. Include the generated `session-info.txt` for reproducibility.

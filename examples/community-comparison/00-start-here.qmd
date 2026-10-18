@@ -1,0 +1,106 @@
+# Start here
+
+**Question:** How do community composition and diversity vary between two groups?
+
+**Inputs:** 24 synthetic samples, 12 per group, and 15 fictional features.
+
+**Finish with:** composition, diversity, and count-total figures; checked tables; a short report.
+
+## 1. Choose how to begin
+
+To explore without installing software, open the [finished example report](example-report.qmd).
+
+To reproduce the analysis or use your own data, complete the setup below. You need R, Quarto, and a text editor such as VS Code or RStudio.
+
+## 2. Open the project root
+
+Download and extract the repository, then open `ai-assisted-microbiome-analysis/` in your editor. This is the folder containing `_quarto.yml`, `renv.lock`, `data/`, and `scripts/`.
+
+Open a terminal in that folder. Run every command in this guide from this root, including commands for chapters stored inside `examples/`.
+
+## 3. Restore the R environment
+
+In the terminal, start R:
+
+```bash
+R
+```
+
+At the R prompt (`>`), run:
+
+```r
+options(repos = c(CRAN = "https://cloud.r-project.org"))
+if (!requireNamespace("renv", quietly = TRUE)) {
+  install.packages("renv")
+}
+renv::restore()
+renv::status()
+```
+
+If asked to proceed, enter `Y` and wait for the `>` prompt before entering another command. The supplied lockfile records the project's packages; learners restore it rather than initialize a new environment.
+
+Check that the analysis packages load:
+
+```r
+library(tidyverse)
+library(vegan)
+q(save = "no")
+```
+
+::: {.callout-note}
+**If setup fails:** stop and copy the error message. Resolve it before continuing. Ask AI to explain the error, then check its advice against your R version and operating system. Do not overwrite the lockfile to bypass an installation failure.
+:::
+
+## 4. Run and inspect the example
+
+Back in the terminal, run:
+
+```bash
+Rscript scripts/R/01-check-inputs.R
+Rscript scripts/R/02-analyse-example.R
+```
+
+The first command should report **Input checks passed**. The second saves tables in `results/tables/` and three figures in `results/figures/`.
+
+To view your local book:
+
+```bash
+quarto render
+quarto preview
+```
+
+Rendering displays the results; it does not run the analysis scripts.
+
+## 5. Apply the workflow to your data
+
+Keep the synthetic example intact. Create `data/my-study/` containing:
+
+- `feature-counts.tsv`: feature IDs and sample count columns.
+- `sample-metadata.tsv`: sample IDs and group labels.
+- `taxonomy.tsv`: feature IDs and taxon labels.
+
+Follow [Meet the data](02-meet-the-data.qmd) for the required structure, then run:
+
+```bash
+Rscript scripts/R/02-analyse-example.R data/my-study results/my-study
+```
+
+This command validates your inputs before analysis and saves your outputs separately. Use [Check the inputs](03-check-the-inputs.qmd) to understand what validation covers.
+
+::: {.cdi-message}
+**Human → AI → Human**
+
+You define the comparison. AI helps explain code, investigate errors, and review drafts. You check the figures and calculations, decide what the evidence supports, and write the conclusion.
+:::
+
+::: {.callout-note}
+**Teaching scope:** the example is synthetic and descriptive. Reusing the scripts requires checking that the methods suit your study design. Visual differences alone do not establish significance or causation.
+:::
+
+## Check before continuing
+
+- Your R environment reports no synchronization issues and both packages load.
+- Input validation passes and the expected figures and tables are present.
+- You can distinguish the synthetic example from your own study inputs and outputs.
+
+Continue to [See the result](01-see-the-result.qmd).

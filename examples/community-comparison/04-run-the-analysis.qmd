@@ -1,0 +1,35 @@
+# Run the analysis
+
+## Your task
+
+Generate descriptive summaries and figures.
+
+```bash
+Rscript scripts/R/02-analyse-example.R
+```
+
+| Output | File under `results/` |
+|---|---|
+| Counts, richness, Shannon diversity | `tables/alpha-diversity.tsv` |
+| Full feature proportions | `tables/relative-abundance.tsv` |
+| Plotting categories | `tables/composition-display.tsv` |
+| Group summaries | `tables/group-summary.tsv` |
+| Composition | `figures/composition.png` |
+| Diversity | `figures/shannon-diversity.png` |
+| Count totals versus diversity | `figures/depth-diversity.png` |
+
+## Use your own data
+
+```bash
+Rscript scripts/R/02-analyse-example.R data/my-study results/my-study
+```
+
+The same script uses your identifiers and group labels, with no example-specific numeric values.
+
+::: {.cdi-message}
+**Full data for calculations; simplified data for display.** The composition plot shows the top eight features by mean sample proportion and combines the rest as Other. Diversity uses every feature.
+:::
+
+## Check before continuing
+
+Check sample counts, proportions summing to one, count totals, and labels. These are descriptive results; no significance tests are performed. For very large studies, review plot readability and computing resources.

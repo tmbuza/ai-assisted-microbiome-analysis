@@ -1,0 +1,42 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "AI-Assisted Microbiome Analysis"
+  subtitle: "From microbiome data to an output you understand and can defend"
+  author: "Teresia Mrema Buza | Complex Data Insights"
+
+  chapters:
+    - index.qmd
+    - examples/community-comparison/00-start-here.qmd
+
+    - part: "Explore the example"
+      chapters:
+        - examples/community-comparison/01-see-the-result.qmd
+        - examples/community-comparison/example-report.qmd
+        - examples/community-comparison/02-meet-the-data.qmd
+
+    - part: "Prepare and analyse"
+      chapters:
+        - examples/community-comparison/03-check-the-inputs.qmd
+        - examples/community-comparison/04-run-the-analysis.qmd
+
+    - part: "Verify and share"
+      chapters:
+        - examples/community-comparison/05-verify-and-explain.qmd
+        - examples/community-comparison/06-export-the-report.qmd
+
+  appendices:
+    - examples/community-comparison/99-appendix.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: assets/css/cdi.css
+    toc: true
+    code-copy: true
+    number-sections: false
+
+execute:
+  eval: false

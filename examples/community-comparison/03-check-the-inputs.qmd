@@ -1,0 +1,27 @@
+# Check the inputs
+
+## Your task
+
+Validate your inputs before analysis.
+
+```bash
+Rscript scripts/R/01-check-inputs.R
+```
+
+**Expected output:** `results/tables/input-checks.tsv` with 24 samples, 15 features, two groups, and PASS.
+
+Checks cover required columns, unique identifiers, exact matches, valid counts, groups, and positive totals. Failures stop the analysis.
+
+## Use your own data
+
+```bash
+Rscript scripts/R/01-check-inputs.R data/my-study results/my-study
+```
+
+::: {.callout-note}
+A PASS confirms table structure, not scientific readiness. Review contamination, controls, pairing, batch, sampling effort, and study design separately.
+:::
+
+## Check before continuing
+
+Resolve errors and record corrections in your decision log. Ask AI to explain an error, then verify its suggestion before editing data.

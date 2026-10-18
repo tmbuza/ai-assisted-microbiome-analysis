@@ -1,0 +1,38 @@
+---
+title: "My microbiome analysis report"
+format: html
+---
+
+## Question
+
+[State your comparison.]
+
+## Inputs and checks
+
+[Describe source, sample and feature counts, groups, totals, exclusions, and validation.]
+
+## Methods
+
+[Describe scripts, full-table Shannon calculation, and top-eight composition display.]
+
+## Results
+
+![Composition](results/my-study/figures/composition.png)
+
+![Shannon diversity](results/my-study/figures/shannon-diversity.png)
+
+![Count totals and diversity](results/my-study/figures/depth-diversity.png)
+
+[Use your generated tables to describe patterns and overlap.]
+
+## Verification
+
+[Record a sample calculation, identifier checks, and figure review.]
+
+## Limitations and conclusion
+
+[State supported findings and study-specific limitations.]
+
+## AI assistance
+
+[State assistance received and how you verified it.]

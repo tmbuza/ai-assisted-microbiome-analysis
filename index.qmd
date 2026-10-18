@@ -1,0 +1,25 @@
+---
+toc: false
+---
+
+# {-}
+
+## Start with your question
+
+“How can I turn my microbiome dataset into an output I understand and can defend?”
+
+Explore a worked example using 24 synthetic samples, then apply the workflow to your own data.
+
+| Choose your starting point | Start here |
+|---|---|
+| **Show me an example** | [See the result](examples/community-comparison/01-see-the-result.qmd) |
+| **Help me prepare my data** | [Check the inputs](examples/community-comparison/03-check-the-inputs.qmd) |
+| **Guide me through my analysis** | [Run the analysis](examples/community-comparison/04-run-the-analysis.qmd) |
+
+::: {.cdi-message}
+**Human → AI → Human**
+
+You define the question. AI assists the work. You verify and explain the result.
+:::
+
+New to the project? [Start here](examples/community-comparison/00-start-here.qmd).
