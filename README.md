@@ -141,3 +141,9 @@ Rscript scripts/R/02-analyse-example.R data/my-study results/my-study
 Use `templates/learner-report.qmd` for a blank report; `learner-report.qmd` at the root is the filled synthetic example. On systems without compatible binaries, omit `type = "binary"`; source installation may require compilers.
 
 Included preview outputs were computed with Python; rerun the R scripts locally. The supplied lockfile is preserved unchanged. No new R dependencies were added.
+
+## Taxon-comparison example
+
+Nine chapters in `examples/taxon-comparison/` scaffold the question “Which taxa differ between groups, and how strong is the evidence?” They include an AI-assisted workflow diagram, analysis decisions, verification checkpoints, and a report scaffold. Navigation is included in `_quarto.yml` and `index.qmd`.
+
+This example is in development: its dedicated synthetic dataset, R scripts, numerical findings, and figures are not included yet. ANCOM-BC2 is a candidate to validate, not an installed or tested dependency. The community-comparison workflow and `renv.lock` are unchanged.

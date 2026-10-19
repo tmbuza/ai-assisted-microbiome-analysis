@@ -1,0 +1,38 @@
+---
+title: "How to use this guide"
+toc: false
+numbered: false
+---
+
+Learn through worked examples, then adapt the workflow to your own study. Follow each example in order or enter at the step you need.
+
+## Your role and AI's role
+
+::: {.cdi-message}
+**Human → AI → Human**
+
+You define the question. AI assists the work. You verify and explain the result.
+:::
+
+Use AI to explain code, investigate errors, and review your reasoning. Check its suggestions against your inputs, calculations, and outputs before accepting them. Share only information you are permitted to disclose.
+
+## Choose a worked example
+
+| Your question | Worked example |
+|---|---|
+| How do community composition and diversity vary between groups? | [Community comparison](examples/community-comparison/00-start-here.qmd) |
+
+## Choose your starting point
+
+Each example follows six steps. Use the table to enter the community-comparison example where it helps you most.
+
+| What you need | Start here |
+|---|---|
+| See the finished output | [1. See the result](examples/community-comparison/01-see-the-result.qmd) |
+| Understand the input tables | [2. Meet the data](examples/community-comparison/02-meet-the-data.qmd) |
+| Check whether your inputs are suitable | [3. Check the inputs](examples/community-comparison/03-check-the-inputs.qmd) |
+| Generate tables and figures | [4. Run the analysis](examples/community-comparison/04-run-the-analysis.qmd) |
+| Check calculations and interpretation | [5. Verify and explain](examples/community-comparison/05-verify-and-explain.qmd) |
+| Produce a report | [6. Export the report](examples/community-comparison/06-export-the-report.qmd) |
+
+To reproduce the analysis for the first time, [prepare your environment](examples/community-comparison/00-start-here.qmd#prepare-your-environment).

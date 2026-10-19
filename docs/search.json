@@ -1,72 +1,82 @@
 [
   {
-    "objectID": "index.html#start-with-your-question",
-    "href": "index.html#start-with-your-question",
+    "objectID": "index.html",
+    "href": "index.html",
     "title": "AI-Assisted Microbiome Analysis",
-    "section": "Start with your question",
-    "text": "Start with your question\n“How can I turn my microbiome dataset into an output I understand and can defend?”\nExplore a worked example using 24 synthetic samples, then apply the workflow to your own data.\n\n\n\nChoose your starting point\nStart here\n\n\n\n\nShow me an example\nSee the result\n\n\nHelp me prepare my data\nCheck the inputs\n\n\nGuide me through my analysis\nRun the analysis\n\n\n\n\nHuman → AI → Human\nYou define the question. AI assists the work. You verify and explain the result.\n\nNew to the project? Start here.",
+    "section": "",
+    "text": "Illustration generated with AI.\nFree Guide · Updated Oct 2026\n\nTurn your microbiome data into an output you understand and can defend.\nLearn through worked examples. Start at the step you need, use AI to assist your work, and verify the evidence behind your conclusions.\nStart here\nExplore the community-comparison example",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Start with your question</span>"
+      "index.html"
+    ]
+  },
+  {
+    "objectID": "00-preface.html",
+    "href": "00-preface.html",
+    "title": "How to use this guide",
+    "section": "",
+    "text": "Your role and AI’s role\nLearn through worked examples, then adapt the workflow to your own study. Follow each example in order or enter at the step you need.\nUse AI to explain code, investigate errors, and review your reasoning. Check its suggestions against your inputs, calculations, and outputs before accepting them. Share only information you are permitted to disclose.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>How to use this guide</span>"
+    ]
+  },
+  {
+    "objectID": "00-preface.html#your-role-and-ais-role",
+    "href": "00-preface.html#your-role-and-ais-role",
+    "title": "How to use this guide",
+    "section": "",
+    "text": "Human → AI → Human\nYou define the question. AI assists the work. You verify and explain the result.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>How to use this guide</span>"
+    ]
+  },
+  {
+    "objectID": "00-preface.html#choose-a-worked-example",
+    "href": "00-preface.html#choose-a-worked-example",
+    "title": "How to use this guide",
+    "section": "Choose a worked example",
+    "text": "Choose a worked example\n\n\n\nYour question\nWorked example\n\n\n\n\nHow do community composition and diversity vary between groups?\nCommunity comparison",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>How to use this guide</span>"
+    ]
+  },
+  {
+    "objectID": "00-preface.html#choose-your-starting-point",
+    "href": "00-preface.html#choose-your-starting-point",
+    "title": "How to use this guide",
+    "section": "Choose your starting point",
+    "text": "Choose your starting point\nEach example follows six steps. Use the table to enter the community-comparison example where it helps you most.\n\n\n\nWhat you need\nStart here\n\n\n\n\nSee the finished output\n1. See the result\n\n\nUnderstand the input tables\n2. Meet the data\n\n\nCheck whether your inputs are suitable\n3. Check the inputs\n\n\nGenerate tables and figures\n4. Run the analysis\n\n\nCheck calculations and interpretation\n5. Verify and explain\n\n\nProduce a report\n6. Export the report\n\n\n\nTo reproduce the analysis for the first time, prepare your environment.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>How to use this guide</span>"
     ]
   },
   {
     "objectID": "examples/community-comparison/00-start-here.html",
     "href": "examples/community-comparison/00-start-here.html",
-    "title": "Start here",
+    "title": "Community comparison: get ready",
     "section": "",
-    "text": "1. Choose how to begin\nQuestion: How do community composition and diversity vary between two groups?\nInputs: 24 synthetic samples, 12 per group, and 15 fictional features.\nFinish with: composition, diversity, and count-total figures; checked tables; a short report.\nTo explore without installing software, open the finished example report.\nTo reproduce the analysis or use your own data, complete the setup below. You need R, Quarto, and a text editor such as VS Code or RStudio.",
+    "text": "Prepare your environment\nQuestion: How do community composition and diversity vary between two groups?\nInputs: 24 synthetic samples, 12 per group, and 15 fictional features.\nFinish with: composition, diversity, and count-total figures; checked tables; a short report.\nThis is a descriptive teaching example. Visual differences alone do not establish statistical significance or causation. When adapting it, check that the methods suit your study design.\nTo explore without installing software, open See the result. To reproduce the analysis, complete the setup below once.\nYou need R, Quarto, and a text editor such as VS Code or RStudio.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Start here</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Community comparison: get ready</span>"
     ]
   },
   {
-    "objectID": "examples/community-comparison/00-start-here.html#open-the-project-root",
-    "href": "examples/community-comparison/00-start-here.html#open-the-project-root",
-    "title": "Start here",
-    "section": "2. Open the project root",
-    "text": "2. Open the project root\nDownload and extract the repository, then open ai-assisted-microbiome-analysis/ in your editor. This is the folder containing _quarto.yml, renv.lock, data/, and scripts/.\nOpen a terminal in that folder. Run every command in this guide from this root, including commands for chapters stored inside examples/.",
+    "objectID": "examples/community-comparison/00-start-here.html#prepare-your-environment",
+    "href": "examples/community-comparison/00-start-here.html#prepare-your-environment",
+    "title": "Community comparison: get ready",
+    "section": "",
+    "text": "Open the project root\nDownload and extract the repository, then open the folder containing _quarto.yml, renv.lock, data/, and scripts/ in your editor.\nOpen a terminal in that folder. Run every command in this example from this project root, including commands shown on pages stored inside examples/.\n\n\nRestore the R environment\nIn the terminal, start R:\nR\nAt the R prompt (&gt;), run:\noptions(repos = c(CRAN = \"https://cloud.r-project.org\"))\n\nif (!requireNamespace(\"renv\", quietly = TRUE)) {\n  install.packages(\"renv\")\n}\n\nrenv::restore()\nrenv::status()\nIf asked to proceed, enter Y and wait for the &gt; prompt before entering another command. Restore the supplied lockfile rather than initializing a new environment.\nCheck that the analysis packages load, then return to the terminal:\nlibrary(tidyverse)\nlibrary(vegan)\n\nq(save = \"no\")\n\n\n\n\n\n\nNote\n\n\n\nIf setup fails: copy the error message. Ask AI to explain it using your R version, operating system, and the command you ran. Check the proposed fix before applying it. Keep the supplied lockfile intact while investigating.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Start here</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Community comparison: get ready</span>"
     ]
   },
   {
-    "objectID": "examples/community-comparison/00-start-here.html#restore-the-r-environment",
-    "href": "examples/community-comparison/00-start-here.html#restore-the-r-environment",
-    "title": "Start here",
-    "section": "3. Restore the R environment",
-    "text": "3. Restore the R environment\nIn the terminal, start R:\nR\nAt the R prompt (&gt;), run:\noptions(repos = c(CRAN = \"https://cloud.r-project.org\"))\nif (!requireNamespace(\"renv\", quietly = TRUE)) {\n  install.packages(\"renv\")\n}\nrenv::restore()\nrenv::status()\nIf asked to proceed, enter Y and wait for the &gt; prompt before entering another command. The supplied lockfile records the project’s packages; learners restore it rather than initialize a new environment.\nCheck that the analysis packages load:\nlibrary(tidyverse)\nlibrary(vegan)\nq(save = \"no\")\n\n\n\n\n\n\nNote\n\n\n\nIf setup fails: stop and copy the error message. Resolve it before continuing. Ask AI to explain the error, then check its advice against your R version and operating system. Do not overwrite the lockfile to bypass an installation failure.",
+    "objectID": "examples/community-comparison/00-start-here.html#ready-to-begin",
+    "href": "examples/community-comparison/00-start-here.html#ready-to-begin",
+    "title": "Community comparison: get ready",
+    "section": "Ready to begin?",
+    "text": "Ready to begin?\n\nYour terminal is open at the project root.\nrenv::status() reports no synchronization issues.\nBoth analysis packages load successfully.\n\nContinue to 1. See the result.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Start here</span>"
-    ]
-  },
-  {
-    "objectID": "examples/community-comparison/00-start-here.html#run-and-inspect-the-example",
-    "href": "examples/community-comparison/00-start-here.html#run-and-inspect-the-example",
-    "title": "Start here",
-    "section": "4. Run and inspect the example",
-    "text": "4. Run and inspect the example\nBack in the terminal, run:\nRscript scripts/R/01-check-inputs.R\nRscript scripts/R/02-analyse-example.R\nThe first command should report Input checks passed. The second saves tables in results/tables/ and three figures in results/figures/.\nTo view your local book:\nquarto render\nquarto preview\nRendering displays the results; it does not run the analysis scripts.",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Start here</span>"
-    ]
-  },
-  {
-    "objectID": "examples/community-comparison/00-start-here.html#apply-the-workflow-to-your-data",
-    "href": "examples/community-comparison/00-start-here.html#apply-the-workflow-to-your-data",
-    "title": "Start here",
-    "section": "5. Apply the workflow to your data",
-    "text": "5. Apply the workflow to your data\nKeep the synthetic example intact. Create data/my-study/ containing:\n\nfeature-counts.tsv: feature IDs and sample count columns.\nsample-metadata.tsv: sample IDs and group labels.\ntaxonomy.tsv: feature IDs and taxon labels.\n\nFollow Meet the data for the required structure, then run:\nRscript scripts/R/02-analyse-example.R data/my-study results/my-study\nThis command validates your inputs before analysis and saves your outputs separately. Use Check the inputs to understand what validation covers.\n\nHuman → AI → Human\nYou define the comparison. AI helps explain code, investigate errors, and review drafts. You check the figures and calculations, decide what the evidence supports, and write the conclusion.\n\n\n\n\n\n\n\nNote\n\n\n\nTeaching scope: the example is synthetic and descriptive. Reusing the scripts requires checking that the methods suit your study design. Visual differences alone do not establish significance or causation.",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Start here</span>"
-    ]
-  },
-  {
-    "objectID": "examples/community-comparison/00-start-here.html#check-before-continuing",
-    "href": "examples/community-comparison/00-start-here.html#check-before-continuing",
-    "title": "Start here",
-    "section": "Check before continuing",
-    "text": "Check before continuing\n\nYour R environment reports no synchronization issues and both packages load.\nInput validation passes and the expected figures and tables are present.\nYou can distinguish the synthetic example from your own study inputs and outputs.\n\nContinue to See the result.",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Start here</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Community comparison: get ready</span>"
     ]
   },
   {
@@ -272,7 +282,7 @@
     "href": "examples/community-comparison/04-run-the-analysis.html",
     "title": "Run the analysis",
     "section": "",
-    "text": "Your task\nGenerate descriptive summaries and figures.",
+    "text": "Your task\nRun these commands from the project root to validate the inputs and generate descriptive summaries and figures.\nThe first command should report Input checks passed. The second saves the outputs listed below.",
     "crumbs": [
       "Prepare and analyse",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Run the analysis</span>"
@@ -283,7 +293,7 @@
     "href": "examples/community-comparison/04-run-the-analysis.html#your-task",
     "title": "Run the analysis",
     "section": "",
-    "text": "Rscript scripts/R/02-analyse-example.R\n\n\n\nOutput\nFile under results/\n\n\n\n\nCounts, richness, Shannon diversity\ntables/alpha-diversity.tsv\n\n\nFull feature proportions\ntables/relative-abundance.tsv\n\n\nPlotting categories\ntables/composition-display.tsv\n\n\nGroup summaries\ntables/group-summary.tsv\n\n\nComposition\nfigures/composition.png\n\n\nDiversity\nfigures/shannon-diversity.png\n\n\nCount totals versus diversity\nfigures/depth-diversity.png",
+    "text": "Rscript scripts/R/01-check-inputs.R\nRscript scripts/R/02-analyse-example.R\n\n\n\n\nOutput\nFile under results/\n\n\n\n\nCounts, richness, Shannon diversity\ntables/alpha-diversity.tsv\n\n\nFull feature proportions\ntables/relative-abundance.tsv\n\n\nPlotting categories\ntables/composition-display.tsv\n\n\nGroup summaries\ntables/group-summary.tsv\n\n\nComposition\nfigures/composition.png\n\n\nDiversity\nfigures/shannon-diversity.png\n\n\nCount totals versus diversity\nfigures/depth-diversity.png",
     "crumbs": [
       "Prepare and analyse",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Run the analysis</span>"
@@ -294,7 +304,7 @@
     "href": "examples/community-comparison/04-run-the-analysis.html#use-your-own-data",
     "title": "Run the analysis",
     "section": "Use your own data",
-    "text": "Use your own data\nRscript scripts/R/02-analyse-example.R data/my-study results/my-study\nThe same script uses your identifiers and group labels, with no example-specific numeric values.\n\nFull data for calculations; simplified data for display. The composition plot shows the top eight features by mean sample proportion and combines the rest as Other. Diversity uses every feature.",
+    "text": "Use your own data\nRscript scripts/R/02-analyse-example.R data/my-study results/my-study\nPrepare the three input tables as described in Meet the data. Keep the synthetic example intact. This command validates your study inputs before analysis and saves the outputs separately. The script uses your identifiers and group labels.\n\nFull data for calculations; simplified data for display. The composition plot shows the top eight features by mean sample proportion and combines the rest as Other. Diversity uses every feature.",
     "crumbs": [
       "Prepare and analyse",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Run the analysis</span>"
@@ -306,6 +316,17 @@
     "title": "Run the analysis",
     "section": "Check before continuing",
     "text": "Check before continuing\nCheck sample counts, proportions summing to one, count totals, and labels. These are descriptive results; no significance tests are performed. For very large studies, review plot readability and computing resources.",
+    "crumbs": [
+      "Prepare and analyse",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Run the analysis</span>"
+    ]
+  },
+  {
+    "objectID": "examples/community-comparison/04-run-the-analysis.html#view-the-results-in-the-guide",
+    "href": "examples/community-comparison/04-run-the-analysis.html#view-the-results-in-the-guide",
+    "title": "Run the analysis",
+    "section": "View the results in the guide",
+    "text": "View the results in the guide\nquarto render\nquarto preview\nRendering displays the results; it does not run the analysis scripts.\nContinue to 5. Verify and explain.",
     "crumbs": [
       "Prepare and analyse",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Run the analysis</span>"
@@ -349,7 +370,18 @@
     "href": "examples/community-comparison/05-verify-and-explain.html#explain-the-figures",
     "title": "Verify and explain",
     "section": "Explain the figures",
-    "text": "Explain the figures\n\nWhat varies within and between groups?\nDo diversity values overlap?\nCould count totals, filtering, or study design affect interpretation?\nWhich claims cannot be supported?\n\nAsk AI to review your draft against the tables. Verify each suggested claim yourself and record the check in results/decision-log.md.\n\n\n\n\n\n\nNote\n\n\n\nHigher diversity does not automatically mean a healthier community. Visual differences do not establish significance or causation.",
+    "text": "Explain the figures\n\nWhat varies within and between groups?\nDo diversity values overlap?\nCould count totals, filtering, or study design affect interpretation?\nWhich claims cannot be supported?",
+    "crumbs": [
+      "Verify and share",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Verify and explain</span>"
+    ]
+  },
+  {
+    "objectID": "examples/community-comparison/05-verify-and-explain.html#use-ai-to-review-your-interpretation",
+    "href": "examples/community-comparison/05-verify-and-explain.html#use-ai-to-review-your-interpretation",
+    "title": "Verify and explain",
+    "section": "Use AI to review your interpretation",
+    "text": "Use AI to review your interpretation\nInspect the figures and tables first. Then supply the relevant outputs to your AI assistant with this prompt:\n\nI am comparing community composition and diversity between two groups using 24 synthetic samples and 15 fictional features. Using only the figures and tables I supply, help me describe the patterns in composition, diversity, and count totals. Check whether your descriptions agree with the numerical values. Identify limitations and questions I should investigate. Do not invent results or claim statistical significance or causation from visual differences alone.\n\nFor your own study, replace the sample and feature details with your actual study information.\nCompare the response with the outputs. Check group labels, numerical values, and figure axes. Count totals describe the supplied counts; they do not by themselves measure absolute microbial abundance.\nIn results/decision-log.md, record briefly:\n\nAI suggested: the explanation or change proposed.\nI verified: the output, calculation, or code you checked.\nI decided: what you accepted, revised, or rejected, and why.\n\nFor your own study, save this record beside its outputs, for example in results/my-study/decision-log.md.\n\n\n\n\n\n\nNote\n\n\n\nHigher diversity does not automatically mean a healthier community. Visual differences do not establish significance or causation.\n\n\nContinue to 6. Export the report.",
     "crumbs": [
       "Verify and share",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Verify and explain</span>"

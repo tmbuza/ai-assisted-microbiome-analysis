@@ -2,11 +2,14 @@
 
 ## Your task
 
-Generate descriptive summaries and figures.
+Run these commands from the project root to validate the inputs and generate descriptive summaries and figures.
 
 ```bash
+Rscript scripts/R/01-check-inputs.R
 Rscript scripts/R/02-analyse-example.R
 ```
+
+The first command should report **Input checks passed**. The second saves the outputs listed below.
 
 | Output | File under `results/` |
 |---|---|
@@ -24,7 +27,7 @@ Rscript scripts/R/02-analyse-example.R
 Rscript scripts/R/02-analyse-example.R data/my-study results/my-study
 ```
 
-The same script uses your identifiers and group labels, with no example-specific numeric values.
+Prepare the three input tables as described in [Meet the data](02-meet-the-data.qmd). Keep the synthetic example intact. This command validates your study inputs before analysis and saves the outputs separately. The script uses your identifiers and group labels.
 
 ::: {.cdi-message}
 **Full data for calculations; simplified data for display.** The composition plot shows the top eight features by mean sample proportion and combines the rest as Other. Diversity uses every feature.
@@ -33,3 +36,14 @@ The same script uses your identifiers and group labels, with no example-specific
 ## Check before continuing
 
 Check sample counts, proportions summing to one, count totals, and labels. These are descriptive results; no significance tests are performed. For very large studies, review plot readability and computing resources.
+
+## View the results in the guide
+
+```bash
+quarto render
+quarto preview
+```
+
+Rendering displays the results; it does not run the analysis scripts.
+
+Continue to [5. Verify and explain](05-verify-and-explain.qmd).

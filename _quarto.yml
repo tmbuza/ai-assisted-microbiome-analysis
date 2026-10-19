@@ -2,6 +2,9 @@ project:
   type: book
   output-dir: docs
 
+date: 2026-10-14
+date-format: "MMM YYYY"
+
 book:
   title: "AI-Assisted Microbiome Analysis"
   subtitle: "From microbiome data to an output you understand and can defend"
@@ -9,6 +12,7 @@ book:
 
   chapters:
     - index.qmd
+    - 00-preface.qmd
     - examples/community-comparison/00-start-here.qmd
 
     - part: "Explore the example"
@@ -30,13 +34,28 @@ book:
   appendices:
     - examples/community-comparison/99-appendix.qmd
 
+
 format:
   html:
     theme: cosmo
-    css: assets/css/cdi.css
     toc: true
-    code-copy: true
+    toc-depth: 3
     number-sections: false
+    number-depth: 2
+    anchor-sections: true
+    link-external-icon: true
+    css: assets/css/cdi.css
+    code-fold: true
+    code-summary: "Show code"
+    code-tools: true
+    smooth-scroll: true
+    mermaid:
+      theme: forest
 
 execute:
+  echo: true
   eval: false
+  warning: false
+  message: false
+  freeze: auto
+  working-dir: .

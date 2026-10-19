@@ -9,3 +9,7 @@ The blank template is restored in templates/learner-report.qmd. Root learner-rep
 Extract this folder and copy its contents into your existing repository, allowing replacement of matching files. Preserve your .Rprofile and renv directory. Run the analysis before rendering. Existing docs may contain obsolete pages from earlier layouts; check the newly rendered navigation.
 
 Verification: table matching, integer counts, positive totals, proportion sums, Shannon values, group overlap, YAML parsing, and document links checked independently. R and Quarto execution were unavailable. Included preview figures were generated with Python; R regenerates them with its plotting style.
+
+## Taxon-comparison teaching scaffold
+
+Added nine taxon-comparison chapters and connected book navigation and homepage links. Includes AI prompts, verification checkpoints, proposed analysis decisions, and explicit development status. No taxon findings, data, or runnable analysis scripts are claimed; existing community content and package lockfile are preserved.

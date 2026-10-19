@@ -25,8 +25,26 @@ The calculation agrees with `alpha-diversity.tsv`. Repeat with a sample from you
 3. Could count totals, filtering, or study design affect interpretation?
 4. Which claims cannot be supported?
 
-Ask AI to review your draft against the tables. Verify each suggested claim yourself and record the check in `results/decision-log.md`.
+## Use AI to review your interpretation
+
+Inspect the figures and tables first. Then supply the relevant outputs to your AI assistant with this prompt:
+
+> I am comparing community composition and diversity between two groups using 24 synthetic samples and 15 fictional features. Using only the figures and tables I supply, help me describe the patterns in composition, diversity, and count totals. Check whether your descriptions agree with the numerical values. Identify limitations and questions I should investigate. Do not invent results or claim statistical significance or causation from visual differences alone.
+
+For your own study, replace the sample and feature details with your actual study information.
+
+Compare the response with the outputs. Check group labels, numerical values, and figure axes. Count totals describe the supplied counts; they do not by themselves measure absolute microbial abundance.
+
+In `results/decision-log.md`, record briefly:
+
+- **AI suggested:** the explanation or change proposed.
+- **I verified:** the output, calculation, or code you checked.
+- **I decided:** what you accepted, revised, or rejected, and why.
+
+For your own study, save this record beside its outputs, for example in `results/my-study/decision-log.md`.
 
 ::: {.callout-note}
 Higher diversity does not automatically mean a healthier community. Visual differences do not establish significance or causation.
 :::
+
+Continue to [6. Export the report](06-export-the-report.qmd).

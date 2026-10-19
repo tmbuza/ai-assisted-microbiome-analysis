@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9b98f18118eee809be1c051eb5cc78e4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -104,6 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 
 
 <link rel="stylesheet" href="../../assets/css/cdi.css">
@@ -145,12 +146,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Start with your question</span></a>
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">index.html</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Start here</span></a>
+  <a href="../../00-preface.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">How to use this guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/community-comparison/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Community comparison: get ready</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -250,6 +257,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#your-task" id="toc-your-task" class="nav-link active" data-scroll-target="#your-task">Your task</a></li>
   <li><a href="#expected-output" id="toc-expected-output" class="nav-link" data-scroll-target="#expected-output">Expected output</a></li>
   <li><a href="#explain-the-figures" id="toc-explain-the-figures" class="nav-link" data-scroll-target="#explain-the-figures">Explain the figures</a></li>
+  <li><a href="#use-ai-to-review-your-interpretation" id="toc-use-ai-to-review-your-interpretation" class="nav-link" data-scroll-target="#use-ai-to-review-your-interpretation">Use AI to review your interpretation</a></li>
   </ul>
 </nav>
     </div>
@@ -258,7 +266,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../examples/community-comparison/05-verify-and-explain.html">Verify and share</a></li><li class="breadcrumb-item"><a href="../../examples/community-comparison/05-verify-and-explain.html"><span class="chapter-title">Verify and explain</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Verify and explain</span></h1>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-title">Verify and explain</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -266,6 +274,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">Oct 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -299,7 +313,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Could count totals, filtering, or study design affect interpretation?</li>
 <li>Which claims cannot be supported?</li>
 </ol>
-<p>Ask AI to review your draft against the tables. Verify each suggested claim yourself and record the check in <code>results/decision-log.md</code>.</p>
+</section>
+<section id="use-ai-to-review-your-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="use-ai-to-review-your-interpretation">Use AI to review your interpretation</h2>
+<p>Inspect the figures and tables first. Then supply the relevant outputs to your AI assistant with this prompt:</p>
+<blockquote class="blockquote">
+<p>I am comparing community composition and diversity between two groups using 24 synthetic samples and 15 fictional features. Using only the figures and tables I supply, help me describe the patterns in composition, diversity, and count totals. Check whether your descriptions agree with the numerical values. Identify limitations and questions I should investigate. Do not invent results or claim statistical significance or causation from visual differences alone.</p>
+</blockquote>
+<p>For your own study, replace the sample and feature details with your actual study information.</p>
+<p>Compare the response with the outputs. Check group labels, numerical values, and figure axes. Count totals describe the supplied counts; they do not by themselves measure absolute microbial abundance.</p>
+<p>In <code>results/decision-log.md</code>, record briefly:</p>
+<ul>
+<li><strong>AI suggested:</strong> the explanation or change proposed.</li>
+<li><strong>I verified:</strong> the output, calculation, or code you checked.</li>
+<li><strong>I decided:</strong> what you accepted, revised, or rejected, and why.</li>
+</ul>
+<p>For your own study, save this record beside its outputs, for example in <code>results/my-study/decision-log.md</code>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -313,7 +342,10 @@ Note
 <p>Higher diversity does not automatically mean a healthier community. Visual differences do not establish significance or causation.</p>
 </div>
 </div>
+<p>Continue to <a href="../../examples/community-comparison/06-export-the-report.html">6. Export the report</a>.</p>
 
+
+<!-- -->
 
 </section>
 
@@ -388,6 +420,57 @@ Note
       });
       clipboardModal.on('success', onCopySuccess);
     }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
         var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -404,6 +487,8 @@ Note
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // default icon
+            link.classList.add("external");
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -728,10 +813,62 @@ Note
         <span class="nav-page-text"><span class="chapter-title">Export the report</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Verify and explain</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Your task</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>Verify sample A01 from the count table.</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Feature total: **6006**.</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Observed features: **15**.</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Shannon diversity: **2.423797**.</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">"data/example/feature-counts.tsv"</span>, <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> x<span class="sc">$</span>A01 <span class="sc">/</span> <span class="fu">sum</span>(x<span class="sc">$</span>A01)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="fu">sum</span>(p[p <span class="sc">&gt;</span> <span class="dv">0</span>] <span class="sc">*</span> <span class="fu">log</span>(p[p <span class="sc">&gt;</span> <span class="dv">0</span>]))</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Expected output</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>The calculation agrees with <span class="in">`alpha-diversity.tsv`</span>. Repeat with a sample from your own study using its actual column name.</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## Explain the figures</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>What varies within and between groups?</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Do diversity values overlap?</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Could count totals, filtering, or study design affect interpretation?</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Which claims cannot be supported?</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Use AI to review your interpretation</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>Inspect the figures and tables first. Then supply the relevant outputs to your AI assistant with this prompt:</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; I am comparing community composition and diversity between two groups using 24 synthetic samples and 15 fictional features. Using only the figures and tables I supply, help me describe the patterns in composition, diversity, and count totals. Check whether your descriptions agree with the numerical values. Identify limitations and questions I should investigate. Do not invent results or claim statistical significance or causation from visual differences alone.</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>For your own study, replace the sample and feature details with your actual study information.</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>Compare the response with the outputs. Check group labels, numerical values, and figure axes. Count totals describe the supplied counts; they do not by themselves measure absolute microbial abundance.</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>In <span class="in">`results/decision-log.md`</span>, record briefly:</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**AI suggested:** the explanation or change proposed.</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**I verified:** the output, calculation, or code you checked.</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**I decided:** what you accepted, revised, or rejected, and why.</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>For your own study, save this record beside its outputs, for example in <span class="in">`results/my-study/decision-log.md`</span>.</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>Higher diversity does not automatically mean a healthier community. Visual differences do not establish significance or causation.</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>Continue to <span class="co">[</span><span class="ot">6. Export the report</span><span class="co">](06-export-the-report.qmd)</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 
 
 
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

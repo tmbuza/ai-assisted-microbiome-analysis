@@ -1,25 +1,30 @@
 ---
 toc: false
+format:
+  html:
+    body-classes: front-page
 ---
 
 # {-}
 
-## Start with your question
+<div style="text-align: center; margin-top: 1.5em;">
+  <img
+    src="assets/images/cover/ai-assisted-microbiome-analysis-cover.png"
+    alt="A researcher and an AI assistant exploring microbiome results."
+    style="width: 75%; max-width: 720px; height: auto;"
+  />
+</div>
 
-“How can I turn my microbiome dataset into an output I understand and can defend?”
+::: {.text-center}
+[Illustration generated with AI.]{.small .text-muted}
 
-Explore a worked example using 24 synthetic samples, then apply the workflow to your own data.
-
-| Choose your starting point | Start here |
-|---|---|
-| **Show me an example** | [See the result](examples/community-comparison/01-see-the-result.qmd) |
-| **Help me prepare my data** | [Check the inputs](examples/community-comparison/03-check-the-inputs.qmd) |
-| **Guide me through my analysis** | [Run the analysis](examples/community-comparison/04-run-the-analysis.qmd) |
-
-::: {.cdi-message}
-**Human → AI → Human**
-
-You define the question. AI assists the work. You verify and explain the result.
+Free Guide · Updated {{< meta date >}}
 :::
 
-New to the project? [Start here](examples/community-comparison/00-start-here.qmd).
+**Turn your microbiome data into an output you understand and can defend.**
+
+Learn through worked examples. Start at the step you need, use AI to assist your work, and verify the evidence behind your conclusions.
+
+[Start here](00-preface.qmd){.btn .btn-primary}
+
+[Explore the community-comparison example](examples/community-comparison/00-start-here.qmd)
