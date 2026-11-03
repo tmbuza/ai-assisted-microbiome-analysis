@@ -337,7 +337,7 @@
     "href": "examples/community-comparison/05-verify-and-explain.html",
     "title": "Verify and explain",
     "section": "",
-    "text": "Your task\nVerify sample A01 from the count table.",
+    "text": "Your task\nCheck that the saved results for A01 can be reproduced from its original counts. The analysis script uses vegan::diversity(); you will calculate Shannon diversity step by step and compare the answers.\nThese values describe the supplied synthetic example. Your own data will give different results.",
     "crumbs": [
       "Verify and share",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Verify and explain</span>"
@@ -348,7 +348,29 @@
     "href": "examples/community-comparison/05-verify-and-explain.html#your-task",
     "title": "Verify and explain",
     "section": "",
-    "text": "Feature total: 6006.\nObserved features: 15.\nShannon diversity: 2.423797.\n\nx &lt;- read.delim(\"data/example/feature-counts.tsv\", check.names = FALSE)\np &lt;- x$A01 / sum(x$A01)\n-sum(p[p &gt; 0] * log(p[p &gt; 0]))",
+    "text": "Output column\nMeaning\nExpected A01 value in the supplied example\n\n\n\n\nfeature_total\nSum of the feature counts\n6006\n\n\nobserved_features\nNumber of features with a count greater than zero\n15\n\n\nshannon\nDiversity reflecting richness and evenness, using natural logarithms\n2.423797",
+    "crumbs": [
+      "Verify and share",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Verify and explain</span>"
+    ]
+  },
+  {
+    "objectID": "examples/community-comparison/05-verify-and-explain.html#generate-the-results-first",
+    "href": "examples/community-comparison/05-verify-and-explain.html#generate-the-results-first",
+    "title": "Verify and explain",
+    "section": "Generate the results first",
+    "text": "Generate the results first\nRun this in the terminal, from the repository root:\nRscript scripts/R/02-analyse-example.R\nThe script validates the inputs and writes results/tables/alpha-diversity.tsv. It also checks that the direct Shannon formula agrees with vegan for every sample.",
+    "crumbs": [
+      "Verify and share",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Verify and explain</span>"
+    ]
+  },
+  {
+    "objectID": "examples/community-comparison/05-verify-and-explain.html#check-one-sample-yourself",
+    "href": "examples/community-comparison/05-verify-and-explain.html#check-one-sample-yourself",
+    "title": "Verify and explain",
+    "section": "Check one sample yourself",
+    "text": "Check one sample yourself\nRun the following code in R, with the repository root as your working directory. The directory settings match the analysis script’s default inputs and outputs.\n# Select the input, output, and sample to check.\ninput_dir &lt;- \"data/example\"\noutput_dir &lt;- \"results\"\nsample_id &lt;- \"A01\"\n\n# Read the original counts and the saved analysis results.\ncounts &lt;- read.delim(\n  file.path(input_dir, \"feature-counts.tsv\"),\n  check.names = FALSE\n)\n\nreported &lt;- read.delim(\n  file.path(output_dir, \"tables\", \"alpha-diversity.tsv\"),\n  check.names = FALSE\n)\n\n# Stop if the requested sample is missing or has multiple result rows.\nstopifnot(sample_id %in% names(counts))\nreported_sample &lt;- reported[reported$sample_id == sample_id, ]\nstopifnot(nrow(reported_sample) == 1)\n\n# Extract one sample's counts after the input-validation step.\nsample_counts &lt;- counts[[sample_id]]\nstopifnot(\n  is.numeric(sample_counts),\n  !anyNA(sample_counts),\n  all(is.finite(sample_counts)),\n  all(sample_counts &gt;= 0),\n  all(sample_counts == floor(sample_counts)),\n  sum(sample_counts) &gt; 0\n)\n\n# 1. Add all feature counts.\nfeature_total &lt;- sum(sample_counts)\n\n# 2. Count features present in this sample.\nobserved_features &lt;- sum(sample_counts &gt; 0)\n\n# 3. Express each count as a proportion of the sample total.\nproportions &lt;- sample_counts / feature_total\n\n# Check that the proportions sum to one.\nstopifnot(abs(sum(proportions) - 1) &lt; 1e-10)\n\n# 4. Exclude zeros before taking logarithms.\n# Zero-count features contribute zero to Shannon diversity.\npositive_proportions &lt;- proportions[proportions &gt; 0]\n\n# 5. Calculate Shannon diversity using natural logarithms.\nshannon &lt;- -sum(\n  positive_proportions * log(positive_proportions)\n)\n\n# Compare the manual values with the saved table.\nmanual &lt;- c(feature_total, observed_features, shannon)\nsaved &lt;- c(\n  reported_sample$feature_total,\n  reported_sample$observed_features,\n  reported_sample$shannon\n)\n\ncomparison &lt;- data.frame(\n  measure = c(\"feature_total\", \"observed_features\", \"shannon\"),\n  manual = manual,\n  saved = saved,\n  agrees = abs(manual - saved) &lt; 1e-6\n)\n\nprint(comparison, digits = 7, row.names = FALSE)\nstopifnot(all(comparison$agrees))",
     "crumbs": [
       "Verify and share",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Verify and explain</span>"
@@ -359,7 +381,18 @@
     "href": "examples/community-comparison/05-verify-and-explain.html#expected-output",
     "title": "Verify and explain",
     "section": "Expected output",
-    "text": "Expected output\nThe calculation agrees with alpha-diversity.tsv. Repeat with a sample from your own study using its actual column name.",
+    "text": "Expected output\nAll three rows should show TRUE in agrees. For the supplied example, Shannon diversity rounds to 2.423797. Compare the unrounded values in code; small rounding differences in displayed tables are normal.\nIf a check fails, confirm that you used the same input folder, output folder, and sample ID as the analysis. Rerun the analysis after changing an input table.\n\nFrom output to evidence\nYou have reproduced one sample’s summaries from its counts and compared them with the saved results. You can now explain how those numbers were obtained.",
+    "crumbs": [
+      "Verify and share",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Verify and explain</span>"
+    ]
+  },
+  {
+    "objectID": "examples/community-comparison/05-verify-and-explain.html#repeat-with-your-own-data",
+    "href": "examples/community-comparison/05-verify-and-explain.html#repeat-with-your-own-data",
+    "title": "Verify and explain",
+    "section": "Repeat with your own data",
+    "text": "Repeat with your own data\nFirst run the analysis with your study folders:\nRscript scripts/R/02-analyse-example.R data/my-study results/my-study\nIn the verification code, change input_dir to \"data/my-study\", output_dir to \"results/my-study\", and sample_id to an actual sample ID. Then rerun the whole verification block.\n\n\n\n\n\n\nNote\n\n\n\nShannon diversity uses all original features. The top-eight features and “Other” grouping simplify only the composition plot. Checking the arithmetic does not establish a biological difference between groups or validate the study design.",
     "crumbs": [
       "Verify and share",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Verify and explain</span>"

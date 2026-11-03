@@ -14,14 +14,32 @@ dir.create(figure_dir, recursive = TRUE, showWarnings = FALSE)
 # 3. Calculate within-sample diversity -------------------------------------
 
 # vegan expects samples in rows, so transpose the count matrix.
-# Shannon diversity uses all features and the natural logarithm.
+# Shannon diversity uses all features and the natural logarithm (base e).
+# The lesson independently checks these same three output columns for A01.
 alpha <- tibble(
   sample_id = names(x)[-1],
   feature_total = colSums(a),
   observed_features = colSums(a > 0),
-  shannon = as.numeric(diversity(t(a), index = "shannon"))
+  shannon = as.numeric(vegan::diversity(base::t(a), index = "shannon", base = exp(1)))
 ) |>
   left_join(m, by = "sample_id")
+
+# Independently verify all samples using the formula taught in the lesson.
+# Apply the formula to each sample column of the original count matrix.
+manual_shannon <- apply(a, 2, function(sample_counts) {
+  proportions <- sample_counts / sum(sample_counts)
+  positive_proportions <- proportions[proportions > 0]
+  -sum(positive_proportions * log(positive_proportions))
+})
+
+if (!isTRUE(all.equal(
+  alpha$shannon,
+  unname(manual_shannon),
+  tolerance = 1e-10,
+  check.attributes = FALSE
+))) {
+  stop("Shannon verification failed: formula and vegan results disagree.")
+}
 
 # 4. Calculate relative abundance ------------------------------------------
 
@@ -165,4 +183,6 @@ ggsave(
 
 # Record package and R versions alongside the outputs.
 capture.output(sessionInfo(), file = file.path(output_dir, "session-info.txt"))
+message("Shannon formula agrees with vegan for all samples.")
+message("Diversity table: ", file.path(output_dir, "tables", "alpha-diversity.tsv"))
 message("Outputs saved to ", output_dir)
