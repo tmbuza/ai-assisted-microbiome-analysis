@@ -1,30 +1,27 @@
 ---
 toc: false
-format:
-  html:
-    body-classes: front-page
 ---
 
-# {-}
+# Comparing two microbial communities {.unnumbered}
 
-<div style="text-align: center; margin-top: 1.5em;">
-  <img
-    src="assets/images/cover/ai-assisted-microbiome-analysis-cover.png"
-    alt="A researcher and an AI assistant exploring microbiome results."
-    style="width: 75%; max-width: 720px; height: auto;"
-  />
-</div>
-
-::: {.text-center}
-[Illustration generated with AI.]{.small .text-muted}
-
-Free Guide · Updated {{< meta date >}}
+::: {.callout-note title="Question" icon=false}
+**How do community composition and diversity differ between two groups?**
 :::
 
-**Turn your microbiome data into an output you understand and can defend.**
+Work through a free example with synthetic microbiome data. You’ll compare which features are present and how abundant they are relative to one another, then examine diversity within each sample.
 
-Learn through worked examples. Start at the step you need, use AI to assist your work, and verify the evidence behind your conclusions.
+[See the example results](examples/community-comparison/01-see-the-result.qmd){.btn .btn-primary}
 
-[Start here](00-preface.qmd){.btn .btn-primary}
+## Choose where to begin
 
-[Explore the community-comparison example](examples/community-comparison/00-start-here.qmd)
+| If you want to… | Go to… |
+|---|---|
+| Understand the count, taxonomy, and sample metadata tables | [Meet the data](examples/community-comparison/02-meet-the-data.qmd) |
+| Make sure the tables are ready for analysis | [Check the inputs](examples/community-comparison/03-check-the-inputs.qmd) |
+| Generate the figures and summary table | [Run the analysis](examples/community-comparison/04-run-the-analysis.qmd) |
+| Recalculate a result and explain what it means | [Verify and explain](examples/community-comparison/05-verify-and-explain.qmd) |
+| Share the results and their limitations | [Export the report](examples/community-comparison/06-export-the-report.qmd) |
+
+First time running the code? [Prepare your environment](examples/community-comparison/00-start-here.qmd#prepare-your-environment).
+
+You define the question. AI can help you work through the analysis. You check the evidence and explain the result. [How to use this guide](00-preface.qmd).

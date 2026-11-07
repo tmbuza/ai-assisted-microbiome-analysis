@@ -4,79 +4,19 @@
     "href": "index.html",
     "title": "AI-Assisted Microbiome Analysis",
     "section": "",
-    "text": "Illustration generated with AI.\nFree Guide · Updated Oct 2026\n\nTurn your microbiome data into an output you understand and can defend.\nLearn through worked examples. Start at the step you need, use AI to assist your work, and verify the evidence behind your conclusions.\nStart here\nExplore the community-comparison example",
+    "text": "Comparing two microbial communities\nWork through a free example with synthetic microbiome data. You’ll compare which features are present and how abundant they are relative to one another, then examine diversity within each sample.\nSee the example results",
     "crumbs": [
-      "index.html"
+      "Comparing two microbial communities"
     ]
   },
   {
-    "objectID": "00-preface.html",
-    "href": "00-preface.html",
-    "title": "How to use this guide",
-    "section": "",
-    "text": "Your role and AI’s role\nLearn through worked examples, then adapt the workflow to your own study. Follow each example in order or enter at the step you need.\nUse AI to explain code, investigate errors, and review your reasoning. Check its suggestions against your inputs, calculations, and outputs before accepting them. Share only information you are permitted to disclose.",
+    "objectID": "index.html#choose-where-to-begin",
+    "href": "index.html#choose-where-to-begin",
+    "title": "AI-Assisted Microbiome Analysis",
+    "section": "Choose where to begin",
+    "text": "Choose where to begin\n\n\n\nIf you want to…\nGo to…\n\n\n\n\nUnderstand the count, taxonomy, and sample metadata tables\nMeet the data\n\n\nMake sure the tables are ready for analysis\nCheck the inputs\n\n\nGenerate the figures and summary table\nRun the analysis\n\n\nRecalculate a result and explain what it means\nVerify and explain\n\n\nShare the results and their limitations\nExport the report\n\n\n\nFirst time running the code? Prepare your environment.\nYou define the question. AI can help you work through the analysis. You check the evidence and explain the result. How to use this guide.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>How to use this guide</span>"
-    ]
-  },
-  {
-    "objectID": "00-preface.html#your-role-and-ais-role",
-    "href": "00-preface.html#your-role-and-ais-role",
-    "title": "How to use this guide",
-    "section": "",
-    "text": "Human → AI → Human\nYou define the question. AI assists the work. You verify and explain the result.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>How to use this guide</span>"
-    ]
-  },
-  {
-    "objectID": "00-preface.html#choose-a-worked-example",
-    "href": "00-preface.html#choose-a-worked-example",
-    "title": "How to use this guide",
-    "section": "Choose a worked example",
-    "text": "Choose a worked example\n\n\n\nYour question\nWorked example\n\n\n\n\nHow do community composition and diversity vary between groups?\nCommunity comparison",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>How to use this guide</span>"
-    ]
-  },
-  {
-    "objectID": "00-preface.html#choose-your-starting-point",
-    "href": "00-preface.html#choose-your-starting-point",
-    "title": "How to use this guide",
-    "section": "Choose your starting point",
-    "text": "Choose your starting point\nEach example follows six steps. Use the table to enter the community-comparison example where it helps you most.\n\n\n\nWhat you need\nStart here\n\n\n\n\nSee the finished output\n1. See the result\n\n\nUnderstand the input tables\n2. Meet the data\n\n\nCheck whether your inputs are suitable\n3. Check the inputs\n\n\nGenerate tables and figures\n4. Run the analysis\n\n\nCheck calculations and interpretation\n5. Verify and explain\n\n\nProduce a report\n6. Export the report\n\n\n\nTo reproduce the analysis for the first time, prepare your environment.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>How to use this guide</span>"
-    ]
-  },
-  {
-    "objectID": "examples/community-comparison/00-start-here.html",
-    "href": "examples/community-comparison/00-start-here.html",
-    "title": "Community comparison: get ready",
-    "section": "",
-    "text": "Prepare your environment\nQuestion: How do community composition and diversity vary between two groups?\nInputs: 24 synthetic samples, 12 per group, and 15 fictional features.\nFinish with: composition, diversity, and count-total figures; checked tables; a short report.\nThis is a descriptive teaching example. Visual differences alone do not establish statistical significance or causation. When adapting it, check that the methods suit your study design.\nTo explore without installing software, open See the result. To reproduce the analysis, complete the setup below once.\nYou need R, Quarto, and a text editor such as VS Code or RStudio.",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Community comparison: get ready</span>"
-    ]
-  },
-  {
-    "objectID": "examples/community-comparison/00-start-here.html#prepare-your-environment",
-    "href": "examples/community-comparison/00-start-here.html#prepare-your-environment",
-    "title": "Community comparison: get ready",
-    "section": "",
-    "text": "Open the project root\nDownload and extract the repository, then open the folder containing _quarto.yml, renv.lock, data/, and scripts/ in your editor.\nOpen a terminal in that folder. Run every command in this example from this project root, including commands shown on pages stored inside examples/.\n\n\nRestore the R environment\nIn the terminal, start R:\nR\nAt the R prompt (&gt;), run:\noptions(repos = c(CRAN = \"https://cloud.r-project.org\"))\n\nif (!requireNamespace(\"renv\", quietly = TRUE)) {\n  install.packages(\"renv\")\n}\n\nrenv::restore()\nrenv::status()\nIf asked to proceed, enter Y and wait for the &gt; prompt before entering another command. Restore the supplied lockfile rather than initializing a new environment.\nCheck that the analysis packages load, then return to the terminal:\nlibrary(tidyverse)\nlibrary(vegan)\n\nq(save = \"no\")\n\n\n\n\n\n\nNote\n\n\n\nIf setup fails: copy the error message. Ask AI to explain it using your R version, operating system, and the command you ran. Check the proposed fix before applying it. Keep the supplied lockfile intact while investigating.",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Community comparison: get ready</span>"
-    ]
-  },
-  {
-    "objectID": "examples/community-comparison/00-start-here.html#ready-to-begin",
-    "href": "examples/community-comparison/00-start-here.html#ready-to-begin",
-    "title": "Community comparison: get ready",
-    "section": "Ready to begin?",
-    "text": "Ready to begin?\n\nYour terminal is open at the project root.\nrenv::status() reports no synchronization issues.\nBoth analysis packages load successfully.\n\nContinue to 1. See the result.",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Community comparison: get ready</span>"
+      "Comparing two microbial communities"
     ]
   },
   {
@@ -87,7 +27,7 @@
     "text": "Your task\nOpen the finished example report. Examine the sample composition and Shannon diversity figures before looking at the code.",
     "crumbs": [
       "Explore the example",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>See the result</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>See the result</span>"
     ]
   },
   {
@@ -98,7 +38,7 @@
     "text": "Run or inspect\n\nWhich features dominate each sample?\nWhich samples have more even feature distributions?\nWhat does each axis measure?",
     "crumbs": [
       "Explore the example",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>See the result</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>See the result</span>"
     ]
   },
   {
@@ -109,7 +49,7 @@
     "text": "Expected output\nA report containing the question, two figures, methods, and limitations.",
     "crumbs": [
       "Explore the example",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>See the result</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>See the result</span>"
     ]
   },
   {
@@ -120,7 +60,7 @@
     "text": "Check before continuing\nWrite one observation and one claim these data cannot support.",
     "crumbs": [
       "Explore the example",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>See the result</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>See the result</span>"
     ]
   },
   {
@@ -131,7 +71,7 @@
     "text": "Question and inputs\nHow do community composition and diversity differ between two groups? This synthetic dataset contains 24 samples, 12 per group, and 15 fictional features. Feature-table totals range from 3299 to 11964. These totals are not verified raw sequencing depth.",
     "crumbs": [
       "Explore the example",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Example report: two synthetic communities</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Example report: two synthetic communities</span>"
     ]
   },
   {
@@ -142,7 +82,7 @@
     "text": "Methods\nValidate identifiers and counts, calculate sample feature proportions, observed richness, and Shannon diversity using natural logarithms. The composition display retains the top eight features by mean sample proportion; all others become Other. Diversity uses all 15 features. No inferential tests are performed.",
     "crumbs": [
       "Explore the example",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Example report: two synthetic communities</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Example report: two synthetic communities</span>"
     ]
   },
   {
@@ -153,7 +93,7 @@
     "text": "Results\n\n\n\nComposition: top eight features and Other\n\n\n\n\n\nShannon diversity: each point is a sample\n\n\n\n\n\nGroup\nSamples\nMedian Shannon\nMinimum\nMaximum\n\n\n\n\nA\n12\n2.428\n2.238\n2.513\n\n\nB\n12\n2.560\n2.467\n2.605\n\n\n\nBoth groups show within-group variation and overlapping diversity ranges. The descriptive median is higher in Group B in this constructed example.\n\n\n\nCount totals versus Shannon diversity\n\n\nInspect totals alongside diversity. This plot alone cannot establish whether sampling effort affects the estimates.\n\nDefensible finding: The synthetic groups show variation in composition and diversity, with overlapping values. The figures summarize observations; they do not test a biological hypothesis.",
     "crumbs": [
       "Explore the example",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Example report: two synthetic communities</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Example report: two synthetic communities</span>"
     ]
   },
   {
@@ -164,7 +104,7 @@
     "text": "Verification\nA01 contains 6006 feature counts and 15 observed features. Dividing counts by the total and calculating \\(-\\sum p_i\\ln(p_i)\\) over positive proportions gives 2.423797. Every sample’s feature proportions sum to one.\nIncluded tables were independently calculated from the counts. R execution and Quarto rendering were unavailable during this update; rerun both locally and compare numerical outputs before accepting the report.",
     "crumbs": [
       "Explore the example",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Example report: two synthetic communities</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Example report: two synthetic communities</span>"
     ]
   },
   {
@@ -175,7 +115,7 @@
     "text": "Limits and conclusion\n\n\n\n\n\n\nNote\n\n\n\nThese are synthetic data. Higher diversity does not imply better health, and visual group differences do not establish significance or causation. Real studies require review of sampling effort, filtering, contamination, study design, and suitable statistical methods.",
     "crumbs": [
       "Explore the example",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Example report: two synthetic communities</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Example report: two synthetic communities</span>"
     ]
   },
   {
@@ -186,7 +126,7 @@
     "text": "AI assistance\nAI assisted in constructing the teaching dataset, drafting scripts, and explaining results. Calculations and input consistency were checked independently. The learner must rerun the workflow, review its figures, and verify the final interpretation.",
     "crumbs": [
       "Explore the example",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Example report: two synthetic communities</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Example report: two synthetic communities</span>"
     ]
   },
   {
@@ -197,7 +137,7 @@
     "text": "Your task\nInspect the three tidy input tables.\nInputs live in data/example/. Taxon labels are fictional. Match sample A01 and feature F01 across the files.",
     "crumbs": [
       "Explore the example",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Meet the data</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Meet the data</span>"
     ]
   },
   {
@@ -208,7 +148,7 @@
     "text": "File\nRows\nColumns\n\n\n\n\nfeature-counts.tsv\nOne per feature\nfeature_id, then one count column per sample\n\n\nsample-metadata.tsv\nOne per sample\nsample_id, group; optional study variables\n\n\ntaxonomy.tsv\nOne per feature\nfeature_id, taxon",
     "crumbs": [
       "Explore the example",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Meet the data</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Meet the data</span>"
     ]
   },
   {
@@ -219,7 +159,7 @@
     "text": "Use your own data\nCreate the same three filenames in data/my-study/. Use unique matching identifiers and untransformed integer counts, not percentages. Additional metadata are retained, but the scripts do not adjust for them.",
     "crumbs": [
       "Explore the example",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Meet the data</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Meet the data</span>"
     ]
   },
   {
@@ -230,7 +170,7 @@
     "text": "Check before continuing\nExplain what a row and column represent in each file. The workflow supports different sample names, feature counts, and two or more group labels.",
     "crumbs": [
       "Explore the example",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Meet the data</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Meet the data</span>"
     ]
   },
   {
@@ -241,7 +181,7 @@
     "text": "Your task\nValidate your inputs before analysis.\nExpected output: results/tables/input-checks.tsv with 24 samples, 15 features, two groups, and PASS.\nChecks cover required columns, unique identifiers, exact matches, valid counts, groups, and positive totals. Failures stop the analysis.",
     "crumbs": [
       "Prepare and analyse",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Check the inputs</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Check the inputs</span>"
     ]
   },
   {
@@ -252,7 +192,7 @@
     "text": "Rscript scripts/R/01-check-inputs.R",
     "crumbs": [
       "Prepare and analyse",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Check the inputs</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Check the inputs</span>"
     ]
   },
   {
@@ -263,7 +203,7 @@
     "text": "Use your own data\nRscript scripts/R/01-check-inputs.R data/my-study results/my-study\n\n\n\n\n\n\nNote\n\n\n\nA PASS confirms table structure, not scientific readiness. Review contamination, controls, pairing, batch, sampling effort, and study design separately.",
     "crumbs": [
       "Prepare and analyse",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Check the inputs</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Check the inputs</span>"
     ]
   },
   {
@@ -274,7 +214,7 @@
     "text": "Check before continuing\nResolve errors and record corrections in your decision log. Ask AI to explain an error, then verify its suggestion before editing data.",
     "crumbs": [
       "Prepare and analyse",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Check the inputs</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Check the inputs</span>"
     ]
   },
   {
@@ -285,7 +225,7 @@
     "text": "Your task\nRun these commands from the project root to validate the inputs and generate descriptive summaries and figures.\nThe first command should report Input checks passed. The second saves the outputs listed below.",
     "crumbs": [
       "Prepare and analyse",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Run the analysis</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Run the analysis</span>"
     ]
   },
   {
@@ -296,7 +236,7 @@
     "text": "Rscript scripts/R/01-check-inputs.R\nRscript scripts/R/02-analyse-example.R\n\n\n\n\nOutput\nFile under results/\n\n\n\n\nCounts, richness, Shannon diversity\ntables/alpha-diversity.tsv\n\n\nFull feature proportions\ntables/relative-abundance.tsv\n\n\nPlotting categories\ntables/composition-display.tsv\n\n\nGroup summaries\ntables/group-summary.tsv\n\n\nComposition\nfigures/composition.png\n\n\nDiversity\nfigures/shannon-diversity.png\n\n\nCount totals versus diversity\nfigures/depth-diversity.png",
     "crumbs": [
       "Prepare and analyse",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Run the analysis</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Run the analysis</span>"
     ]
   },
   {
@@ -307,7 +247,7 @@
     "text": "Use your own data\nRscript scripts/R/02-analyse-example.R data/my-study results/my-study\nPrepare the three input tables as described in Meet the data. Keep the synthetic example intact. This command validates your study inputs before analysis and saves the outputs separately. The script uses your identifiers and group labels.\n\nFull data for calculations; simplified data for display. The composition plot shows the top eight features by mean sample proportion and combines the rest as Other. Diversity uses every feature.",
     "crumbs": [
       "Prepare and analyse",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Run the analysis</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Run the analysis</span>"
     ]
   },
   {
@@ -318,7 +258,7 @@
     "text": "Check before continuing\nCheck sample counts, proportions summing to one, count totals, and labels. These are descriptive results; no significance tests are performed. For very large studies, review plot readability and computing resources.",
     "crumbs": [
       "Prepare and analyse",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Run the analysis</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Run the analysis</span>"
     ]
   },
   {
@@ -329,7 +269,7 @@
     "text": "View the results in the guide\nquarto render\nquarto preview\nRendering displays the results; it does not run the analysis scripts.\nContinue to 5. Verify and explain.",
     "crumbs": [
       "Prepare and analyse",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Run the analysis</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Run the analysis</span>"
     ]
   },
   {
@@ -340,7 +280,7 @@
     "text": "Your task\nCheck that the saved results for A01 can be reproduced from its original counts. The analysis script uses vegan::diversity(); you will calculate Shannon diversity step by step and compare the answers.\nThese values describe the supplied synthetic example. Your own data will give different results.",
     "crumbs": [
       "Verify and share",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Verify and explain</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Verify and explain</span>"
     ]
   },
   {
@@ -351,7 +291,7 @@
     "text": "Output column\nMeaning\nExpected A01 value in the supplied example\n\n\n\n\nfeature_total\nSum of the feature counts\n6006\n\n\nobserved_features\nNumber of features with a count greater than zero\n15\n\n\nshannon\nDiversity reflecting richness and evenness, using natural logarithms\n2.423797",
     "crumbs": [
       "Verify and share",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Verify and explain</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Verify and explain</span>"
     ]
   },
   {
@@ -362,7 +302,7 @@
     "text": "Generate the results first\nRun this in the terminal, from the repository root:\nRscript scripts/R/02-analyse-example.R\nThe script validates the inputs and writes results/tables/alpha-diversity.tsv. It also checks that the direct Shannon formula agrees with vegan for every sample.",
     "crumbs": [
       "Verify and share",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Verify and explain</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Verify and explain</span>"
     ]
   },
   {
@@ -373,7 +313,7 @@
     "text": "Check one sample yourself\nRun the following code in R, with the repository root as your working directory. The directory settings match the analysis script’s default inputs and outputs.\n# Select the input, output, and sample to check.\ninput_dir &lt;- \"data/example\"\noutput_dir &lt;- \"results\"\nsample_id &lt;- \"A01\"\n\n# Read the original counts and the saved analysis results.\ncounts &lt;- read.delim(\n  file.path(input_dir, \"feature-counts.tsv\"),\n  check.names = FALSE\n)\n\nreported &lt;- read.delim(\n  file.path(output_dir, \"tables\", \"alpha-diversity.tsv\"),\n  check.names = FALSE\n)\n\n# Stop if the requested sample is missing or has multiple result rows.\nstopifnot(sample_id %in% names(counts))\nreported_sample &lt;- reported[reported$sample_id == sample_id, ]\nstopifnot(nrow(reported_sample) == 1)\n\n# Extract one sample's counts after the input-validation step.\nsample_counts &lt;- counts[[sample_id]]\nstopifnot(\n  is.numeric(sample_counts),\n  !anyNA(sample_counts),\n  all(is.finite(sample_counts)),\n  all(sample_counts &gt;= 0),\n  all(sample_counts == floor(sample_counts)),\n  sum(sample_counts) &gt; 0\n)\n\n# 1. Add all feature counts.\nfeature_total &lt;- sum(sample_counts)\n\n# 2. Count features present in this sample.\nobserved_features &lt;- sum(sample_counts &gt; 0)\n\n# 3. Express each count as a proportion of the sample total.\nproportions &lt;- sample_counts / feature_total\n\n# Check that the proportions sum to one.\nstopifnot(abs(sum(proportions) - 1) &lt; 1e-10)\n\n# 4. Exclude zeros before taking logarithms.\n# Zero-count features contribute zero to Shannon diversity.\npositive_proportions &lt;- proportions[proportions &gt; 0]\n\n# 5. Calculate Shannon diversity using natural logarithms.\nshannon &lt;- -sum(\n  positive_proportions * log(positive_proportions)\n)\n\n# Compare the manual values with the saved table.\nmanual &lt;- c(feature_total, observed_features, shannon)\nsaved &lt;- c(\n  reported_sample$feature_total,\n  reported_sample$observed_features,\n  reported_sample$shannon\n)\n\ncomparison &lt;- data.frame(\n  measure = c(\"feature_total\", \"observed_features\", \"shannon\"),\n  manual = manual,\n  saved = saved,\n  agrees = abs(manual - saved) &lt; 1e-6\n)\n\nprint(comparison, digits = 7, row.names = FALSE)\nstopifnot(all(comparison$agrees))",
     "crumbs": [
       "Verify and share",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Verify and explain</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Verify and explain</span>"
     ]
   },
   {
@@ -384,7 +324,7 @@
     "text": "Expected output\nAll three rows should show TRUE in agrees. For the supplied example, Shannon diversity rounds to 2.423797. Compare the unrounded values in code; small rounding differences in displayed tables are normal.\nIf a check fails, confirm that you used the same input folder, output folder, and sample ID as the analysis. Rerun the analysis after changing an input table.\n\nFrom output to evidence\nYou have reproduced one sample’s summaries from its counts and compared them with the saved results. You can now explain how those numbers were obtained.",
     "crumbs": [
       "Verify and share",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Verify and explain</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Verify and explain</span>"
     ]
   },
   {
@@ -395,7 +335,7 @@
     "text": "Repeat with your own data\nFirst run the analysis with your study folders:\nRscript scripts/R/02-analyse-example.R data/my-study results/my-study\nIn the verification code, change input_dir to \"data/my-study\", output_dir to \"results/my-study\", and sample_id to an actual sample ID. Then rerun the whole verification block.\n\n\n\n\n\n\nNote\n\n\n\nShannon diversity uses all original features. The top-eight features and “Other” grouping simplify only the composition plot. Checking the arithmetic does not establish a biological difference between groups or validate the study design.",
     "crumbs": [
       "Verify and share",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Verify and explain</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Verify and explain</span>"
     ]
   },
   {
@@ -406,7 +346,7 @@
     "text": "Explain the figures\n\nWhat varies within and between groups?\nDo diversity values overlap?\nCould count totals, filtering, or study design affect interpretation?\nWhich claims cannot be supported?",
     "crumbs": [
       "Verify and share",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Verify and explain</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Verify and explain</span>"
     ]
   },
   {
@@ -417,7 +357,7 @@
     "text": "Use AI to review your interpretation\nInspect the figures and tables first. Then supply the relevant outputs to your AI assistant with this prompt:\n\nI am comparing community composition and diversity between two groups using 24 synthetic samples and 15 fictional features. Using only the figures and tables I supply, help me describe the patterns in composition, diversity, and count totals. Check whether your descriptions agree with the numerical values. Identify limitations and questions I should investigate. Do not invent results or claim statistical significance or causation from visual differences alone.\n\nFor your own study, replace the sample and feature details with your actual study information.\nCompare the response with the outputs. Check group labels, numerical values, and figure axes. Count totals describe the supplied counts; they do not by themselves measure absolute microbial abundance.\nIn results/decision-log.md, record briefly:\n\nAI suggested: the explanation or change proposed.\nI verified: the output, calculation, or code you checked.\nI decided: what you accepted, revised, or rejected, and why.\n\nFor your own study, save this record beside its outputs, for example in results/my-study/decision-log.md.\n\n\n\n\n\n\nNote\n\n\n\nHigher diversity does not automatically mean a healthier community. Visual differences do not establish significance or causation.\n\n\nContinue to 6. Export the report.",
     "crumbs": [
       "Verify and share",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Verify and explain</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Verify and explain</span>"
     ]
   },
   {
@@ -428,7 +368,7 @@
     "text": "Your task\nCopy the blank template to the repository root:\nFill the prompts with your own results. For outputs in results/my-study/, update figure paths in the copied report accordingly.",
     "crumbs": [
       "Verify and share",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Export the report</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Export the report</span>"
     ]
   },
   {
@@ -439,7 +379,7 @@
     "text": "cp templates/learner-report.qmd my-study-report.qmd\n\nquarto render my-study-report.qmd --to html",
     "crumbs": [
       "Verify and share",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Export the report</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Export the report</span>"
     ]
   },
   {
@@ -450,7 +390,7 @@
     "text": "Expected output\nAn HTML report with question, inputs, methods, figures, verification, limitations, and AI assistance. Use browser Print → Save as PDF if needed.",
     "crumbs": [
       "Verify and share",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Export the report</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Export the report</span>"
     ]
   },
   {
@@ -461,40 +401,106 @@
     "text": "Check before continuing\nCheck that every figure loads and every statement matches your generated tables. Include the generated session-info.txt for reproducibility.",
     "crumbs": [
       "Verify and share",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Export the report</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Export the report</span>"
+    ]
+  },
+  {
+    "objectID": "00-preface.html",
+    "href": "00-preface.html",
+    "title": "Appendix A — How to use this guide",
+    "section": "",
+    "text": "Your role and AI’s role\nLearn through worked examples, then adapt the workflow to your own study. Follow each example in order or enter at the step you need.\nUse AI to explain code, investigate errors, and review your reasoning. Check its suggestions against your inputs, calculations, and outputs before accepting them. Share only information you are permitted to disclose.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>How to use this guide</span>"
+    ]
+  },
+  {
+    "objectID": "00-preface.html#your-role-and-ais-role",
+    "href": "00-preface.html#your-role-and-ais-role",
+    "title": "Appendix A — How to use this guide",
+    "section": "",
+    "text": "Human → AI → Human\nYou define the question. AI assists the work. You verify and explain the result.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>How to use this guide</span>"
+    ]
+  },
+  {
+    "objectID": "00-preface.html#work-through-the-example",
+    "href": "00-preface.html#work-through-the-example",
+    "title": "Appendix A — How to use this guide",
+    "section": "Work through the example",
+    "text": "Work through the example\nStart with the question and the example results. Then work through the steps in order or choose the step where you need help.\nOpen the community comparison",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>How to use this guide</span>"
+    ]
+  },
+  {
+    "objectID": "examples/community-comparison/00-start-here.html",
+    "href": "examples/community-comparison/00-start-here.html",
+    "title": "Appendix B — Community comparison: get ready",
+    "section": "",
+    "text": "Prepare your environment\nQuestion: How do community composition and diversity vary between two groups?\nInputs: 24 synthetic samples, 12 per group, and 15 fictional features.\nFinish with: composition, diversity, and count-total figures; checked tables; a short report.\nThis is a descriptive teaching example. Visual differences alone do not establish statistical significance or causation. When adapting it, check that the methods suit your study design.\nTo explore without installing software, open See the result. To reproduce the analysis, complete the setup below once.\nYou need R, Quarto, and a text editor such as VS Code or RStudio.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Community comparison: get ready</span>"
+    ]
+  },
+  {
+    "objectID": "examples/community-comparison/00-start-here.html#prepare-your-environment",
+    "href": "examples/community-comparison/00-start-here.html#prepare-your-environment",
+    "title": "Appendix B — Community comparison: get ready",
+    "section": "",
+    "text": "Open the project root\nDownload and extract the repository, then open the folder containing _quarto.yml, renv.lock, data/, and scripts/ in your editor.\nOpen a terminal in that folder. Run every command in this example from this project root, including commands shown on pages stored inside examples/.\n\n\nRestore the R environment\nIn the terminal, start R:\nR\nAt the R prompt (&gt;), run:\noptions(repos = c(CRAN = \"https://cloud.r-project.org\"))\n\nif (!requireNamespace(\"renv\", quietly = TRUE)) {\n  install.packages(\"renv\")\n}\n\nrenv::restore()\nrenv::status()\nIf asked to proceed, enter Y and wait for the &gt; prompt before entering another command. Restore the supplied lockfile rather than initializing a new environment.\nCheck that the analysis packages load, then return to the terminal:\nlibrary(tidyverse)\nlibrary(vegan)\n\nq(save = \"no\")\n\n\n\n\n\n\nNote\n\n\n\nIf setup fails: copy the error message. Ask AI to explain it using your R version, operating system, and the command you ran. Check the proposed fix before applying it. Keep the supplied lockfile intact while investigating.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Community comparison: get ready</span>"
+    ]
+  },
+  {
+    "objectID": "examples/community-comparison/00-start-here.html#ready-to-begin",
+    "href": "examples/community-comparison/00-start-here.html#ready-to-begin",
+    "title": "Appendix B — Community comparison: get ready",
+    "section": "Ready to begin?",
+    "text": "Ready to begin?\n\nYour terminal is open at the project root.\nrenv::status() reports no synchronization issues.\nBoth analysis packages load successfully.\n\nContinue to 1. See the result.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Community comparison: get ready</span>"
     ]
   },
   {
     "objectID": "examples/community-comparison/99-appendix.html",
     "href": "examples/community-comparison/99-appendix.html",
-    "title": "Appendix A — Technical appendix",
+    "title": "Appendix C — Technical appendix",
     "section": "",
     "text": "Requirements\nR, Quarto, and the packages recorded in root renv.lock. Restore with renv::restore(). The domain uses one shared environment.",
     "crumbs": [
       "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Technical appendix</span>"
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Technical appendix</span>"
     ]
   },
   {
     "objectID": "examples/community-comparison/99-appendix.html#reuse",
     "href": "examples/community-comparison/99-appendix.html#reuse",
-    "title": "Appendix A — Technical appendix",
+    "title": "Appendix C — Technical appendix",
     "section": "Reuse",
     "text": "Reuse\nBoth scripts accept optional input and output directories. Run from the repository root. Keep original study data separate from data/example/.\nFeature tables must contain integer counts. Metadata must include sample_id and group; taxonomy must include matching feature_id and nonblank taxon. Zero-total samples fail validation.",
     "crumbs": [
       "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Technical appendix</span>"
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Technical appendix</span>"
     ]
   },
   {
     "objectID": "examples/community-comparison/99-appendix.html#scope",
     "href": "examples/community-comparison/99-appendix.html#scope",
-    "title": "Appendix A — Technical appendix",
+    "title": "Appendix C — Technical appendix",
     "section": "Scope",
     "text": "Scope\nThe workflow starts from a feature table. It does not process raw reads, assign taxonomy, test group significance, adjust for repeated measures or confounding, or perform differential abundance analysis.\nIncluded preview figures and tables were computed independently with Python. Run the supplied R scripts to regenerate equivalent numerical summaries and R-styled figures. Quarto code fences do not execute analysis.",
     "crumbs": [
       "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Technical appendix</span>"
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Technical appendix</span>"
     ]
   }
 ]

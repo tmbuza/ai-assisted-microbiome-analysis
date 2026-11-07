@@ -12,8 +12,6 @@ book:
 
   chapters:
     - index.qmd
-    - 00-preface.qmd
-    - examples/community-comparison/00-start-here.qmd
 
     - part: "Explore the example"
       chapters:
@@ -32,6 +30,8 @@ book:
         - examples/community-comparison/06-export-the-report.qmd
 
   appendices:
+    - 00-preface.qmd
+    - examples/community-comparison/00-start-here.qmd
     - examples/community-comparison/99-appendix.qmd
 
 
@@ -47,7 +47,7 @@ format:
     css: assets/css/cdi.css
     code-fold: true
     code-summary: "Show code"
-    code-tools: true
+    code-tools: false
     smooth-scroll: true
     mermaid:
       theme: forest
