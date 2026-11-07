@@ -2,11 +2,9 @@
 
 **Help me get from this dataset to an output I understand and can defend.**
 
-A CDI Quarto book with three starting points:
+Start with the [community-comparison worked example](index.qmd) and explore the finished results, then check the inputs, run the analysis, and verify a result yourself.
 
-- **Show me an example:** explore a finished report and how it was produced.
-- **Help me prepare my data:** use templates and input checks.
-- **Guide me through my analysis:** run, review, interpret, and export.
+> **How do community composition and diversity differ between two groups?**
 
 **Human → AI → Human:** the learner defines the question, AI assists the work, and the learner verifies and explains the result.
 
@@ -86,13 +84,13 @@ The rendered book is written to `docs/`. Code fences are non-executable; renderi
 Copy the report template to the repository root:
 
 ```bash
-cp templates/learner-report.qmd learner-report.qmd
+cp templates/learner-report.qmd my-learner-report.qmd
 ```
 
 Replace the prompts with your question, methods, observations, verification, and limitations. Then render:
 
 ```bash
-quarto render learner-report.qmd --to html
+quarto render my-learner-report.qmd --to html
 ```
 
 Open the generated HTML report. Use **Print → Save as PDF** in your browser if needed.
@@ -102,7 +100,7 @@ Open the generated HTML report. Use **Print → Save as PDF** in your browser if
 | Location | Purpose |
 |---|---|
 | `_quarto.yml` | Shared book configuration and navigation |
-| `index.qmd` | Domain opening page |
+| `index.qmd` | Worked example entry point with the question and links to results and analysis steps |
 | `examples/community-comparison/` | First example’s learner chapters and finished report |
 | `data/example/` | Synthetic counts, metadata, and taxonomy |
 | `scripts/R/` | Input checks and analysis scripts |
@@ -110,6 +108,10 @@ Open the generated HTML report. Use **Print → Save as PDF** in your browser if
 | `templates/` | Input, interpretation, and report templates |
 | `renv.lock` and `renv/` | Shared R environment |
 | `docs/` | Rendered book |
+
+## Publish updates
+
+Run `quarto render` from the repository root. Commit your source changes and the regenerated `docs/`, then push to `main`. The CDI GitHub Actions workflow copies the committed `docs/` to `gh-pages` for GitHub Pages. The configured custom domain is `ai-microbiome.complexdatainsights.com`.
 
 ## Working conventions
 
@@ -140,10 +142,10 @@ Rscript scripts/R/02-analyse-example.R data/my-study results/my-study
 
 Use `templates/learner-report.qmd` for a blank report; `learner-report.qmd` at the root is the filled synthetic example. On systems without compatible binaries, omit `type = "binary"`; source installation may require compilers.
 
-Included preview outputs were computed with Python; rerun the R scripts locally. The supplied lockfile is preserved unchanged. No new R dependencies were added.
+Included preview outputs were computed with Python; rerun the R scripts locally.
 
 ## Taxon-comparison example
 
-Nine chapters in `examples/taxon-comparison/` scaffold the question “Which taxa differ between groups, and how strong is the evidence?” They include an AI-assisted workflow diagram, analysis decisions, verification checkpoints, and a report scaffold. Navigation is included in `_quarto.yml` and `index.qmd`.
+Nine chapters in `examples/taxon-comparison/` scaffold the question “Which taxa differ between groups, and how strong is the evidence?” They include an AI-assisted workflow diagram, analysis decisions, verification checkpoints, and a report scaffold.
 
-This example is in development: its dedicated synthetic dataset, R scripts, numerical findings, and figures are not included yet. ANCOM-BC2 is a candidate to validate, not an installed or tested dependency. The community-comparison workflow and `renv.lock` are unchanged.
+This example is in development: its dedicated synthetic dataset, R scripts, numerical findings, and figures are not included yet. ANCOM-BC2 is a candidate to validate, not an installed or tested dependency.

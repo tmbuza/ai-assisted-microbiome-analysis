@@ -106,6 +106,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../assets/css/cdi.css">
 </head>
@@ -258,6 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#generate-the-results-first" id="toc-generate-the-results-first" class="nav-link" data-scroll-target="#generate-the-results-first">Generate the results first</a></li>
   <li><a href="#check-one-sample-yourself" id="toc-check-one-sample-yourself" class="nav-link" data-scroll-target="#check-one-sample-yourself">Check one sample yourself</a></li>
   <li><a href="#expected-output" id="toc-expected-output" class="nav-link" data-scroll-target="#expected-output">Expected output</a></li>
+  <li><a href="#practice-with-a-second-dataset" id="toc-practice-with-a-second-dataset" class="nav-link" data-scroll-target="#practice-with-a-second-dataset">Practice with a second dataset</a></li>
   <li><a href="#repeat-with-your-own-data" id="toc-repeat-with-your-own-data" class="nav-link" data-scroll-target="#repeat-with-your-own-data">Repeat with your own data</a></li>
   <li><a href="#explain-the-figures" id="toc-explain-the-figures" class="nav-link" data-scroll-target="#explain-the-figures">Explain the figures</a></li>
   <li><a href="#use-ai-to-review-your-interpretation" id="toc-use-ai-to-review-your-interpretation" class="nav-link" data-scroll-target="#use-ai-to-review-your-interpretation">Use AI to review your interpretation</a></li>
@@ -336,77 +366,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="check-one-sample-yourself" class="level2">
 <h2 class="anchored" data-anchor-id="check-one-sample-yourself">Check one sample yourself</h2>
-<p>Run the following code in <strong>R</strong>, with the repository root as your working directory. The directory settings match the analysis script’s default inputs and outputs.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the input, output, and sample to check.</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>input_dir <span class="ot">&lt;-</span> <span class="st">"data/example"</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>output_dir <span class="ot">&lt;-</span> <span class="st">"results"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>sample_id <span class="ot">&lt;-</span> <span class="st">"A01"</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the original counts and the saved analysis results.</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.path</span>(input_dir, <span class="st">"feature-counts.tsv"</span>),</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>reported <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.path</span>(output_dir, <span class="st">"tables"</span>, <span class="st">"alpha-diversity.tsv"</span>),</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Stop if the requested sample is missing or has multiple result rows.</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(sample_id <span class="sc">%in%</span> <span class="fu">names</span>(counts))</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>reported_sample <span class="ot">&lt;-</span> reported[reported<span class="sc">$</span>sample_id <span class="sc">==</span> sample_id, ]</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(reported_sample) <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract one sample's counts after the input-validation step.</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>sample_counts <span class="ot">&lt;-</span> counts[[sample_id]]</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">is.numeric</span>(sample_counts),</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="sc">!</span><span class="fu">anyNA</span>(sample_counts),</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">all</span>(<span class="fu">is.finite</span>(sample_counts)),</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">all</span>(sample_counts <span class="sc">&gt;=</span> <span class="dv">0</span>),</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">all</span>(sample_counts <span class="sc">==</span> <span class="fu">floor</span>(sample_counts)),</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(sample_counts) <span class="sc">&gt;</span> <span class="dv">0</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Add all feature counts.</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>feature_total <span class="ot">&lt;-</span> <span class="fu">sum</span>(sample_counts)</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Count features present in this sample.</span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>observed_features <span class="ot">&lt;-</span> <span class="fu">sum</span>(sample_counts <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Express each count as a proportion of the sample total.</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>proportions <span class="ot">&lt;-</span> sample_counts <span class="sc">/</span> feature_total</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Check that the proportions sum to one.</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">abs</span>(<span class="fu">sum</span>(proportions) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">&lt;</span> <span class="fl">1e-10</span>)</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Exclude zeros before taking logarithms.</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Zero-count features contribute zero to Shannon diversity.</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>positive_proportions <span class="ot">&lt;-</span> proportions[proportions <span class="sc">&gt;</span> <span class="dv">0</span>]</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Calculate Shannon diversity using natural logarithms.</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>shannon <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">sum</span>(</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>  positive_proportions <span class="sc">*</span> <span class="fu">log</span>(positive_proportions)</span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare the manual values with the saved table.</span></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>manual <span class="ot">&lt;-</span> <span class="fu">c</span>(feature_total, observed_features, shannon)</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>saved <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>  reported_sample<span class="sc">$</span>feature_total,</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>  reported_sample<span class="sc">$</span>observed_features,</span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>  reported_sample<span class="sc">$</span>shannon</span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>comparison <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>  <span class="at">measure =</span> <span class="fu">c</span>(<span class="st">"feature_total"</span>, <span class="st">"observed_features"</span>, <span class="st">"shannon"</span>),</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>  <span class="at">manual =</span> manual,</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>  <span class="at">saved =</span> saved,</span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>  <span class="at">agrees =</span> <span class="fu">abs</span>(manual <span class="sc">-</span> saved) <span class="sc">&lt;</span> <span class="fl">1e-6</span></span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(comparison, <span class="at">digits =</span> <span class="dv">7</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">all</span>(comparison<span class="sc">$</span>agrees))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>From the repository root, run this command in your <strong>terminal</strong> at the shell prompt:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/05-verify-sample.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The script checks <strong>A01</strong> by default. Open <code>scripts/R/05-verify-sample.R</code> in your editor to follow the calculation.</p>
+<ol type="1">
+<li>Add the counts for A01 and count how many features have a positive count.</li>
+<li>Divide each feature count by the sample total to get its proportion.</li>
+<li>Use the positive proportions to calculate Shannon diversity with natural logarithms.</li>
+<li>Compare all three results with the saved row for A01.</li>
+</ol>
 </section>
 <section id="expected-output" class="level2">
 <h2 class="anchored" data-anchor-id="expected-output">Expected output</h2>
@@ -417,11 +385,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>You have reproduced one sample’s summaries from its counts and compared them with the saved results. You can now explain how those numbers were obtained.</p>
 </div>
 </section>
+<section id="practice-with-a-second-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="practice-with-a-second-dataset">Practice with a second dataset</h2>
+<p>Use the synthetic practice tables in <code>data/my-study/</code>. This dataset has eight samples, two groups, and four fictional features. From the repository root, run the analysis and verify three samples:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/02-analyse-example.R data/my-study results/my-study</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/05-verify-sample.R data/my-study results/my-study S01</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/05-verify-sample.R data/my-study results/my-study S02</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/05-verify-sample.R data/my-study results/my-study S04</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol type="1">
+<li>Open <code>data/my-study/feature-counts.tsv</code> and find <strong>S01</strong>. Its counts are 50, 25, 25, and 0. Add them, count the features with positive counts, and divide each count by the total to get its proportion.</li>
+<li>Find <strong>S02</strong> and <strong>S04</strong>. How many features are present in each? Which sample has the more even distribution? Explain why that sample has the higher Shannon value.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Check your answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Sample</th>
+<th style="text-align: right;">Total counts</th>
+<th style="text-align: right;">Observed richness</th>
+<th style="text-align: right;">Shannon diversity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>S01</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1.039721</td>
+</tr>
+<tr class="even">
+<td>S02</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1.195863</td>
+</tr>
+<tr class="odd">
+<td>S04</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1.184124</td>
+</tr>
+</tbody>
+</table>
+<p>All three checks should show <code>TRUE</code> for each sample. For S01, the positive proportions are 0.50, 0.25, and 0.25. Apply <span class="math inline">\(H = -\sum_{i=1}^{S} p_i \ln(p_i)\)</span>, where <span class="math inline">\(S\)</span> is the number of observed features and <span class="math inline">\(p_i\)</span> is the proportion for feature <span class="math inline">\(i\)</span>.</p>
+<p>S02 and S04 each have four observed features and 100 total counts. Their counts are 46, 30, 18, 6 and 49, 26, 19, 6, respectively. S02 has a slightly more even distribution across the four features, which explains its higher Shannon value.</p>
+</div>
+</div>
+</div>
+</section>
 <section id="repeat-with-your-own-data" class="level2">
 <h2 class="anchored" data-anchor-id="repeat-with-your-own-data">Repeat with your own data</h2>
-<p>First run the analysis with your study folders:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/02-analyse-example.R data/my-study results/my-study</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In the verification code, change <code>input_dir</code> to <code>"data/my-study"</code>, <code>output_dir</code> to <code>"results/my-study"</code>, and <code>sample_id</code> to an actual sample ID. Then rerun the whole verification block.</p>
+<p>Use a separate folder for your input tables and a separate output folder. Run the analysis first, then use those same folders and a sample ID from your count table when you run the verification script.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

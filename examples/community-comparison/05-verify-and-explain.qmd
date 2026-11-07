@@ -27,81 +27,19 @@ It also checks that the direct Shannon formula agrees with vegan for every sampl
 
 ## Check one sample yourself
 
-Run the following code in **R**, with the repository root as your working directory.
-The directory settings match the analysis script's default inputs and outputs.
+From the repository root, run this command in your **terminal** at the shell prompt:
 
-```r
-# Select the input, output, and sample to check.
-input_dir <- "data/example"
-output_dir <- "results"
-sample_id <- "A01"
-
-# Read the original counts and the saved analysis results.
-counts <- read.delim(
-  file.path(input_dir, "feature-counts.tsv"),
-  check.names = FALSE
-)
-
-reported <- read.delim(
-  file.path(output_dir, "tables", "alpha-diversity.tsv"),
-  check.names = FALSE
-)
-
-# Stop if the requested sample is missing or has multiple result rows.
-stopifnot(sample_id %in% names(counts))
-reported_sample <- reported[reported$sample_id == sample_id, ]
-stopifnot(nrow(reported_sample) == 1)
-
-# Extract one sample's counts after the input-validation step.
-sample_counts <- counts[[sample_id]]
-stopifnot(
-  is.numeric(sample_counts),
-  !anyNA(sample_counts),
-  all(is.finite(sample_counts)),
-  all(sample_counts >= 0),
-  all(sample_counts == floor(sample_counts)),
-  sum(sample_counts) > 0
-)
-
-# 1. Add all feature counts.
-feature_total <- sum(sample_counts)
-
-# 2. Count features present in this sample.
-observed_features <- sum(sample_counts > 0)
-
-# 3. Express each count as a proportion of the sample total.
-proportions <- sample_counts / feature_total
-
-# Check that the proportions sum to one.
-stopifnot(abs(sum(proportions) - 1) < 1e-10)
-
-# 4. Exclude zeros before taking logarithms.
-# Zero-count features contribute zero to Shannon diversity.
-positive_proportions <- proportions[proportions > 0]
-
-# 5. Calculate Shannon diversity using natural logarithms.
-shannon <- -sum(
-  positive_proportions * log(positive_proportions)
-)
-
-# Compare the manual values with the saved table.
-manual <- c(feature_total, observed_features, shannon)
-saved <- c(
-  reported_sample$feature_total,
-  reported_sample$observed_features,
-  reported_sample$shannon
-)
-
-comparison <- data.frame(
-  measure = c("feature_total", "observed_features", "shannon"),
-  manual = manual,
-  saved = saved,
-  agrees = abs(manual - saved) < 1e-6
-)
-
-print(comparison, digits = 7, row.names = FALSE)
-stopifnot(all(comparison$agrees))
+```bash
+Rscript scripts/R/05-verify-sample.R
 ```
+
+The script checks **A01** by default. Open `scripts/R/05-verify-sample.R` in your
+editor to follow the calculation.
+
+1. Add the counts for A01 and count how many features have a positive count.
+2. Divide each feature count by the sample total to get its proportion.
+3. Use the positive proportions to calculate Shannon diversity with natural logarithms.
+4. Compare all three results with the saved row for A01.
 
 ## Expected output
 
@@ -119,17 +57,51 @@ You have reproduced one sample's summaries from its counts and compared them
 with the saved results. You can now explain how those numbers were obtained.
 :::
 
-## Repeat with your own data
+## Practice with a second dataset
 
-First run the analysis with your study folders:
+Use the synthetic practice tables in `data/my-study/`. This dataset has eight
+samples, two groups, and four fictional features. From the repository root,
+run the analysis and verify three samples:
 
 ```bash
 Rscript scripts/R/02-analyse-example.R data/my-study results/my-study
+Rscript scripts/R/05-verify-sample.R data/my-study results/my-study S01
+Rscript scripts/R/05-verify-sample.R data/my-study results/my-study S02
+Rscript scripts/R/05-verify-sample.R data/my-study results/my-study S04
 ```
 
-In the verification code, change `input_dir` to `"data/my-study"`,
-`output_dir` to `"results/my-study"`, and `sample_id` to an actual sample ID.
-Then rerun the whole verification block.
+1. Open `data/my-study/feature-counts.tsv` and find **S01**. Its counts are
+   50, 25, 25, and 0. Add them, count the features with positive counts, and
+   divide each count by the total to get its proportion.
+2. Find **S02** and **S04**. How many features are present in each? Which
+   sample has the more even distribution? Explain why that sample has the
+   higher Shannon value.
+
+::: {.callout-tip collapse="true"}
+## Check your answer
+
+| Sample | Total counts | Observed richness | Shannon diversity |
+|---|---:|---:|---:|
+| S01 | 100 | 3 | 1.039721 |
+| S02 | 100 | 4 | 1.195863 |
+| S04 | 100 | 4 | 1.184124 |
+
+All three checks should show `TRUE` for each sample. For S01, the positive
+proportions are 0.50, 0.25, and 0.25. Apply
+$H = -\sum_{i=1}^{S} p_i \ln(p_i)$, where $S$ is the number of observed features
+and $p_i$ is the proportion for feature $i$.
+
+S02 and S04 each have four observed features and 100 total counts. Their
+counts are 46, 30, 18, 6 and 49, 26, 19, 6, respectively. S02 has a
+slightly more even distribution across the four features, which explains
+its higher Shannon value.
+:::
+
+## Repeat with your own data
+
+Use a separate folder for your input tables and a separate output folder.
+Run the analysis first, then use those same folders and a sample ID from
+your count table when you run the verification script.
 
 ::: {.callout-note}
 Shannon diversity uses **all original features**. The top-eight features and
