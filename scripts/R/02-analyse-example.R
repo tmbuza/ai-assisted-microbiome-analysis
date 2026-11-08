@@ -63,8 +63,25 @@ top_ids <- relative |>
   slice_head(n = 8) |>
   pull(feature_id)
 
-# Include feature IDs in labels to distinguish features sharing a taxon name.
-labels <- paste(t$taxon, paste0("[", t$feature_id, "]"))
+# Use the deepest named rank in each QIIME lineage for the legend.
+label_taxon <- vapply(strsplit(t$taxon, ";", fixed = TRUE), function(lineage) {
+  ranks <- trimws(sub("^[dkpcofgs]__|^D_[0-9]+__", "", trimws(lineage)))
+  assigned <- ranks[nzchar(ranks)]
+  if (length(assigned)) tail(assigned, 1) else "Unclassified"
+}, character(1))
+
+# Prefer explicit short labels when supplied in the taxonomy table.
+if ("taxon_label" %in% names(t)) {
+  supplied <- trimws(t$taxon_label)
+  use_supplied <- !is.na(supplied) & nzchar(supplied)
+  label_taxon[use_supplied] <- supplied[use_supplied]
+}
+
+# Keep features distinguishable even when they share the same taxon name.
+short_ids <- substr(t$feature_id, 1, 8)
+shared_prefix <- duplicated(short_ids) | duplicated(short_ids, fromLast = TRUE)
+short_ids[shared_prefix] <- t$feature_id[shared_prefix]
+labels <- paste0(label_taxon, " [", short_ids, "]")
 names(labels) <- t$feature_id
 
 plot_data <- relative |>

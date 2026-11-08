@@ -1,0 +1,20 @@
+---
+title: "Run the analysis"
+---
+
+From the repo root, install Matplotlib in your Python environment and run the example.
+
+```bash
+python3 -m pip install "matplotlib>=3.7"
+python3 scripts/python/run_workflow.py data/metagenomics/example results/metagenomics/example
+```
+
+## Your task — Run your own study
+
+```bash
+python3 scripts/python/run_workflow.py data/metagenomics/my-study results/metagenomics/my-study
+```
+
+Choose a fresh output folder for each run. Open the five TSVs and the three PNGs in the run’s `figures/` subdirectory.
+
+[Next: Verify and explain](05-verify-and-explain.qmd).

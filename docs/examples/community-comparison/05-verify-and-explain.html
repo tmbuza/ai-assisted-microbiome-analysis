@@ -250,12 +250,58 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Shotgun metagenomics</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/shotgun-metagenomics/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Start here</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/shotgun-metagenomics/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">See the result</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/shotgun-metagenomics/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Meet the data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/shotgun-metagenomics/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Check the inputs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/shotgun-metagenomics/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Run the analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/shotgun-metagenomics/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Verify and explain</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/shotgun-metagenomics/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Export the report</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../00-preface.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">How to use this guide</span></a>
@@ -287,7 +333,7 @@ window.Quarto = {
   <li><a href="#generate-the-results-first" id="toc-generate-the-results-first" class="nav-link" data-scroll-target="#generate-the-results-first">Generate the results first</a></li>
   <li><a href="#check-one-sample-yourself" id="toc-check-one-sample-yourself" class="nav-link" data-scroll-target="#check-one-sample-yourself">Check one sample yourself</a></li>
   <li><a href="#expected-output" id="toc-expected-output" class="nav-link" data-scroll-target="#expected-output">Expected output</a></li>
-  <li><a href="#practice-with-a-second-dataset" id="toc-practice-with-a-second-dataset" class="nav-link" data-scroll-target="#practice-with-a-second-dataset">Practice with a second dataset</a></li>
+  <li><a href="#practice-with-the-study-dataset" id="toc-practice-with-the-study-dataset" class="nav-link" data-scroll-target="#practice-with-the-study-dataset">Practice with the study dataset</a></li>
   <li><a href="#repeat-with-your-own-data" id="toc-repeat-with-your-own-data" class="nav-link" data-scroll-target="#repeat-with-your-own-data">Repeat with your own data</a></li>
   <li><a href="#explain-the-figures" id="toc-explain-the-figures" class="nav-link" data-scroll-target="#explain-the-figures">Explain the figures</a></li>
   <li><a href="#use-ai-to-review-your-interpretation" id="toc-use-ai-to-review-your-interpretation" class="nav-link" data-scroll-target="#use-ai-to-review-your-interpretation">Use AI to review your interpretation</a></li>
@@ -385,17 +431,15 @@ window.Quarto = {
 <p>You have reproduced one sample’s summaries from its counts and compared them with the saved results. You can now explain how those numbers were obtained.</p>
 </div>
 </section>
-<section id="practice-with-a-second-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="practice-with-a-second-dataset">Practice with a second dataset</h2>
-<p>Use the synthetic practice tables in <code>data/my-study/</code>. This dataset has eight samples, two groups, and four fictional features. From the repository root, run the analysis and verify three samples:</p>
+<section id="practice-with-the-study-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="practice-with-the-study-dataset">Practice with the study dataset</h2>
+<p>Open <code>data/my-study/sample-metadata.tsv</code> and find the four IDs in the <code>sample_id</code> column. From the repository root, run the analysis and verify each sample.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/02-analyse-example.R data/my-study results/my-study</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/05-verify-sample.R data/my-study results/my-study S01</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/05-verify-sample.R data/my-study results/my-study S02</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/05-verify-sample.R data/my-study results/my-study S04</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol type="1">
-<li>Open <code>data/my-study/feature-counts.tsv</code> and find <strong>S01</strong>. Its counts are 50, 25, 25, and 0. Add them, count the features with positive counts, and divide each count by the total to get its proportion.</li>
-<li>Find <strong>S02</strong> and <strong>S04</strong>. How many features are present in each? Which sample has the more even distribution? Explain why that sample has the higher Shannon value.</li>
-</ol>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/05-verify-sample.R data/my-study results/my-study Sample-32</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/05-verify-sample.R data/my-study results/my-study Sample-181</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/05-verify-sample.R data/my-study results/my-study Sample-71</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/05-verify-sample.R data/my-study results/my-study Sample-214</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Find <strong>Sample-32</strong> in <code>feature-counts.tsv</code>. Sum its counts and count the positive entries. Divide each positive count by the total to obtain its proportion, then use those proportions to calculate Shannon diversity.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -409,37 +453,61 @@ Check your answer
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 19%">
+<col style="width: 19%">
+<col style="width: 19%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>Sample</th>
+<th>Sample ID</th>
+<th><code>group</code></th>
+<th><code>study_group</code></th>
 <th style="text-align: right;">Total counts</th>
-<th style="text-align: right;">Observed richness</th>
+<th style="text-align: right;">Observed features</th>
 <th style="text-align: right;">Shannon diversity</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>S01</td>
-<td style="text-align: right;">100</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1.039721</td>
+<td>Sample-32</td>
+<td>AAM</td>
+<td>ED</td>
+<td style="text-align: right;">10585</td>
+<td style="text-align: right;">103</td>
+<td style="text-align: right;">3.167035</td>
 </tr>
 <tr class="even">
-<td>S02</td>
+<td>Sample-181</td>
+<td>AAM</td>
+<td>ED</td>
+<td style="text-align: right;">17784</td>
 <td style="text-align: right;">100</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">1.195863</td>
+<td style="text-align: right;">2.352228</td>
 </tr>
 <tr class="odd">
-<td>S04</td>
-<td style="text-align: right;">100</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">1.184124</td>
+<td>Sample-71</td>
+<td>AAM</td>
+<td>ED</td>
+<td style="text-align: right;">10521</td>
+<td style="text-align: right;">102</td>
+<td style="text-align: right;">2.470335</td>
+</tr>
+<tr class="even">
+<td>Sample-214</td>
+<td>AFR</td>
+<td>ED</td>
+<td style="text-align: right;">19040</td>
+<td style="text-align: right;">103</td>
+<td style="text-align: right;">2.028307</td>
 </tr>
 </tbody>
 </table>
-<p>All three checks should show <code>TRUE</code> for each sample. For S01, the positive proportions are 0.50, 0.25, and 0.25. Apply <span class="math inline">\(H = -\sum_{i=1}^{S} p_i \ln(p_i)\)</span>, where <span class="math inline">\(S\)</span> is the number of observed features and <span class="math inline">\(p_i\)</span> is the proportion for feature <span class="math inline">\(i\)</span>.</p>
-<p>S02 and S04 each have four observed features and 100 total counts. Their counts are 46, 30, 18, 6 and 49, 26, 19, 6, respectively. S02 has a slightly more even distribution across the four features, which explains its higher Shannon value.</p>
+<p>All three checks should show <code>TRUE</code> in <code>agrees</code> for each sample. Calculate Shannon diversity as <span class="math inline">\(H = -\sum_{i=1}^{S} p_i \ln(p_i)\)</span>, where <span class="math inline">\(S\)</span> is the number of observed features and <span class="math inline">\(p_i\)</span> is the proportion for feature <span class="math inline">\(i\)</span>.</p>
+<p>Sample-32 and Sample-214 each have 103 observed features. Sample-32 has the higher Shannon value. With richness held equal, this reflects a more even distribution of counts across its observed features. Inspect the proportions to see how the samples differ.</p>
 </div>
 </div>
 </div>
@@ -463,6 +531,28 @@ Note
 </section>
 <section id="explain-the-figures" class="level2">
 <h2 class="anchored" data-anchor-id="explain-the-figures">Explain the figures</h2>
+<p>These figures are generated by the <code>data/my-study/</code> analysis above.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../results/my-study/figures/composition.png" class="img-fluid figure-img"></p>
+<figcaption>Relative taxonomic composition of the study samples.</figcaption>
+</figure>
+</div>
+<p>Compare the proportions of the same taxa across samples. The “Other” category pools taxa for display, so use the underlying table to see which taxa contribute to it.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../results/my-study/figures/depth-diversity.png" class="img-fluid figure-img"></p>
+<figcaption>Feature count totals and diversity for the study samples.</figcaption>
+</figure>
+</div>
+<p>Check whether samples with higher count totals also tend to have higher diversity. Sample-214 had more counts than Sample-32 (19,040 vs.&nbsp;10,585) but lower Shannon diversity. Use the full plot to judge whether there is an overall pattern.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../results/my-study/figures/shannon-diversity.png" class="img-fluid figure-img"></p>
+<figcaption>Shannon diversity across the study groups.</figcaption>
+</figure>
+</div>
+<p>Compare the spread and overlap of the values across groups. Sample-32 and Sample-214 both had 103 observed features, but Sample-32 had higher Shannon diversity (3.17 vs.&nbsp;2.03), reflecting greater evenness in its feature counts. This comparison describes two samples.</p>
 <ol type="1">
 <li>What varies within and between groups?</li>
 <li>Do diversity values overlap?</li>

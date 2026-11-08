@@ -29,6 +29,16 @@ book:
         - examples/community-comparison/05-verify-and-explain.qmd
         - examples/community-comparison/06-export-the-report.qmd
 
+    - part: "Shotgun metagenomics"
+      chapters:
+        - examples/shotgun-metagenomics/00-start-here.qmd
+        - examples/shotgun-metagenomics/01-see-the-result.qmd
+        - examples/shotgun-metagenomics/02-meet-the-data.qmd
+        - examples/shotgun-metagenomics/03-check-the-inputs.qmd
+        - examples/shotgun-metagenomics/04-run-the-analysis.qmd
+        - examples/shotgun-metagenomics/05-verify-and-explain.qmd
+        - examples/shotgun-metagenomics/06-export-the-report.qmd
+
   appendices:
     - 00-preface.qmd
     - examples/community-comparison/00-start-here.qmd

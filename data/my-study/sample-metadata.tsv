@@ -1,9 +1,39 @@
-sample_id	group
-S01	A
-S02	A
-S03	A
-S04	A
-S05	B
-S06	B
-S07	B
-S08	B
+sample_id	subject	sex	nationality	group	sample	timepoint	timepoint.within.group	bmi_group	study_group
+Sample-32	azh	female	AAM	AAM	Sample-32	1	1	overweight	ED
+Sample-33	lox	female	AAM	AAM	Sample-33	1	1	overweight	ED
+Sample-34	gty	male	AAM	AAM	Sample-34	1	1	overweight	ED
+Sample-35	kpp	male	AAM	AAM	Sample-35	1	1	lean	ED
+Sample-36	lot	female	AAM	AAM	Sample-36	1	1	obese	ED
+Sample-37	mni	female	AAM	AAM	Sample-37	1	1	overweight	ED
+Sample-38	nmz	male	AAM	AAM	Sample-38	1	1	obese	ED
+Sample-39	olg	male	AAM	AAM	Sample-39	1	1	lean	ED
+Sample-40	byn	male	AAM	AAM	Sample-40	1	1	obese	ED
+Sample-50	byu	male	AFR	AFR	Sample-50	1	1	lean	ED
+Sample-51	dwc	male	AFR	AFR	Sample-51	1	1	lean	ED
+Sample-52	fud	female	AFR	AFR	Sample-52	1	1	obese	ED
+Sample-56	vem	male	AFR	AFR	Sample-56	1	1	lean	ED
+Sample-57	wdf	male	AFR	AFR	Sample-57	1	1	lean	ED
+Sample-58	xcw	male	AFR	AFR	Sample-58	1	1	lean	ED
+Sample-59	ybg	female	AFR	AFR	Sample-59	1	1	obese	ED
+Sample-60	zaq	female	AFR	AFR	Sample-60	1	1	overweight	ED
+Sample-61	azl	female	AFR	AFR	Sample-61	1	1	obese	ED
+Sample-68	cxj	female	AAM	AAM	Sample-68	1	1	overweight	ED
+Sample-69	dwk	male	AAM	AAM	Sample-69	1	1	lean	ED
+Sample-71	eve	male	AAM	AAM	Sample-71	1	1	obese	ED
+Sample-73	fua	female	AAM	AAM	Sample-73	1	1	obese	ED
+Sample-178	gtd	male	AAM	AAM	Sample-178	1	1	obese	ED
+Sample-179	hsf	male	AAM	AAM	Sample-179	1	1	overweight	ED
+Sample-180	irq	female	AAM	AAM	Sample-180	1	1	overweight	ED
+Sample-181	jqr	male	AAM	AAM	Sample-181	1	1	overweight	ED
+Sample-182	kpb	male	AAM	AAM	Sample-182	1	1	obese	ED
+Sample-183	mnk	female	AAM	AAM	Sample-183	1	1	obese	ED
+Sample-203	irh	male	AAM	AAM	Sample-203	1	1	overweight	ED
+Sample-204	jql	female	AAM	AAM	Sample-204	1	1	obese	ED
+Sample-207	nms	male	AFR	AFR	Sample-207	1	1	lean	ED
+Sample-208	olt	male	AFR	AFR	Sample-208	1	1	overweight	ED
+Sample-209	pku	female	AFR	AFR	Sample-209	1	1	obese	ED
+Sample-210	qjy	female	AFR	AFR	Sample-210	1	1	overweight	ED
+Sample-211	riv	female	AFR	AFR	Sample-211	1	1	obese	ED
+Sample-212	shj	female	AFR	AFR	Sample-212	1	1	obese	ED
+Sample-213	tgx	male	AFR	AFR	Sample-213	1	1	overweight	ED
+Sample-214	ufm	male	AFR	AFR	Sample-214	1	1	lean	ED

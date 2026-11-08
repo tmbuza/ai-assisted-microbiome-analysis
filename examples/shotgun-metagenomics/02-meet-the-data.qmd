@@ -1,0 +1,23 @@
+---
+title: "Meet the data"
+---
+
+## Bundled example
+
+Use `data/metagenomics/example/` as the format reference for headers and table orientation.
+
+## Your task — Add your own three files
+
+Create or open `data/metagenomics/my-study/` from the repo root. Place these files directly inside it.
+
+| File | What to enter |
+|---|---|
+| `taxon-abundance.tsv` | One row per sample and one column per taxon at a single rank. |
+| `sample-metadata.tsv` | One row per sample with `sample_id` and `group`. |
+| `functional-features.tsv` | One row per sample and one column per selected functional feature. Record the units and normalization. |
+
+Use identical `sample_id` sets across all three files.
+
+[Check your files](03-check-the-inputs.qmd).
+
+[Next: Check the inputs](03-check-the-inputs.qmd).

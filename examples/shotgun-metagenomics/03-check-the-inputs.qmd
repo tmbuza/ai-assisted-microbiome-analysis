@@ -1,0 +1,19 @@
+---
+title: "Check the inputs"
+---
+
+From the repo root, check the example first.
+
+```bash
+python3 scripts/python/verify_inputs.py data/metagenomics/example
+```
+
+## Your task — Check your own files
+
+```bash
+python3 scripts/python/verify_inputs.py data/metagenomics/my-study
+```
+
+Resolve reported problems before continuing. The runner repeats these checks before writing results.
+
+[Next: Run the analysis](04-run-the-analysis.qmd).

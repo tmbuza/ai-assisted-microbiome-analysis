@@ -1,0 +1,7 @@
+---
+title: "See the result"
+---
+
+The synthetic example has six samples across three groups. Inspect the sample-level composition bars, Shannon points, and functional-feature panels. Black lines in the point plots mark group medians.
+
+[Next: Meet the data](02-meet-the-data.qmd).

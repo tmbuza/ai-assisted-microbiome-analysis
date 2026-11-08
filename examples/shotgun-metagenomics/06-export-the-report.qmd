@@ -1,0 +1,5 @@
+---
+title: "Export the report"
+---
+
+Record your question, input folder, verification result, command, and output folder. Include one figure with a caption, one numerical result, and one limitation. Explain what the comparison can support for your study.
