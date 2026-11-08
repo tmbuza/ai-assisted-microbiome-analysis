@@ -1,0 +1,7 @@
+group	feature	n_samples	median
+Control	BCAA_biosynthesis	2	2.0
+Control	LPS_biosynthesis	2	1.5
+HTN	BCAA_biosynthesis	2	1.0
+HTN	LPS_biosynthesis	2	5.5
+pHTN	BCAA_biosynthesis	2	1.5
+pHTN	LPS_biosynthesis	2	3.0
