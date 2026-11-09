@@ -14,15 +14,15 @@ Compare the output sample counts with the input metadata. The test includes 41 c
 The composition and Shannon figures use simulated taxon abundances. The functional figure uses the supplied CSV values, whose units and derivation still need verification.
 :::
 
-![Relative taxon abundances for the 195-sample workflow test.](../../results/metagenomics/my-study-complete/figures/composition.png)
+![Relative taxon abundances for the 195-sample workflow test.](../../results/metagenomics/my-study/figures/composition.png)
 
 Each bar represents one sample. Compare the proportions within a bar and trace one segment back to the corresponding input row. The profiles illustrate how the workflow displays composition.
 
-![Shannon diversity calculated from simulated taxon abundances.](../../results/metagenomics/my-study-complete/figures/shannon-diversity.png)
+![Shannon diversity calculated from simulated taxon abundances.](../../results/metagenomics/my-study/figures/shannon-diversity.png)
 
 Each dot represents a sample and the black line marks the group median. Compare the spread and overlap to practice reading the plot. Any apparent group differences here reflect the simulated inputs.
 
-![Selected functional features from the supplied hypertension CSV.](../../results/metagenomics/my-study-complete/figures/functional-features.png)
+![Selected functional features from the supplied hypertension CSV.](../../results/metagenomics/my-study/figures/functional-features.png)
 
 Choose one feature and compare the group medians and spread within its panel. Check the medians against the summary table. Each panel uses its own scale, and these comparisons are descriptive.
 

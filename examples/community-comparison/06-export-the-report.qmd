@@ -21,3 +21,11 @@ An HTML report with question, inputs, methods, figures, verification, limitation
 ## Check before continuing
 
 Check that every figure loads and every statement matches your generated tables. Include the generated `session-info.txt` for reproducibility.
+
+## Continue to shotgun metagenomics
+
+You’ve compared community composition and seen how the distribution of feature counts affects Shannon diversity. What can a functional profile tell you about the community?
+
+In the next example, you’ll compare LPS transport values across three blood pressure groups. Check whether a few high values reflect a shift in the typical sample by comparing the group medians and the overlap between samples.
+
+[Start the shotgun metagenomics example](../shotgun-metagenomics/00-start-here.qmd)

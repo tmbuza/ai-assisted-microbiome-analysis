@@ -416,14 +416,25 @@
     ]
   },
   {
+    "objectID": "examples/community-comparison/06-export-the-report.html#continue-to-shotgun-metagenomics",
+    "href": "examples/community-comparison/06-export-the-report.html#continue-to-shotgun-metagenomics",
+    "title": "Export the report",
+    "section": "Continue to shotgun metagenomics",
+    "text": "Continue to shotgun metagenomics\nYou’ve compared community composition and seen how the distribution of feature counts affects Shannon diversity. What can a functional profile tell you about the community?\nIn the next example, you’ll compare LPS transport values across three blood pressure groups. Check whether a few high values reflect a shift in the typical sample by comparing the group medians and the overlap between samples.\nStart the shotgun metagenomics example",
+    "crumbs": [
+      "Verify and share",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Export the report</span>"
+    ]
+  },
+  {
     "objectID": "examples/shotgun-metagenomics/00-start-here.html",
     "href": "examples/shotgun-metagenomics/00-start-here.html",
-    "title": "Start here",
+    "title": "From community composition to microbial function",
     "section": "",
     "text": "How do gut microbial composition, diversity, and selected functional features differ across blood pressure groups?\nYour task. Run the bundled example first. Then place your three TSV files in data/metagenomics/my-study/ and work through the same checks and analysis with your data.\n\nMeet the data\nCheck the inputs\nRun the analysis\n\nNext: See the result.",
     "crumbs": [
       "Shotgun metagenomics",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Start here</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>From community composition to microbial function</span>"
     ]
   },
   {

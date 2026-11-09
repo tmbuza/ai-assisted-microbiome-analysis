@@ -1,6 +1,9 @@
 project:
   type: book
   output-dir: docs
+  resources:
+  - "results/metagenomics/example/figures/*.png"
+  - "results/metagenomics/my-study/figures/*.png"
 
 date: 2026-10-14
 date-format: "MMM YYYY"

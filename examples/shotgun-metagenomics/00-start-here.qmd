@@ -1,5 +1,5 @@
 ---
-title: "Start here"
+title: "From community composition to microbial function"
 ---
 
 How do gut microbial composition, diversity, and selected functional features differ across blood pressure groups?
