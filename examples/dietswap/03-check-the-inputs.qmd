@@ -1,0 +1,9 @@
+---
+title: "Check the DietSwap selection"
+---
+
+Confirm that sample IDs match the count table, feature IDs match taxonomy, and the selected samples answer the question. Review repeated participant IDs and missing group labels.
+
+Use the [DietSwap command](../../01-run-the-workflow.qmd#dietswap). Its automatic checks validate the table structure. Confirm the participant and time-point selection yourself.
+
+[Next — Inspect the outputs](04-run-the-analysis.qmd)

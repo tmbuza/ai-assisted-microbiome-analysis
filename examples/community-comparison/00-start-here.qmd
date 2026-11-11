@@ -62,4 +62,4 @@ q(save = "no")
 - `renv::status()` reports no synchronization issues.
 - Both analysis packages load successfully.
 
-Continue to [1. See the result](01-see-the-result.qmd).
+Continue to [See the result](01-see-the-result.qmd).

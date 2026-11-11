@@ -2,51 +2,63 @@ project:
   type: book
   output-dir: docs
   resources:
-  - "results/metagenomics/example/figures/*.png"
-  - "results/metagenomics/my-study/figures/*.png"
+  - results/example/figures/*.png
+  - results/dietswap/figures/*.png
+  - results/mouse59/figures/*.png
+  - results/my-study/figures/*.png
 
 date: 2026-10-14
-date-format: "MMM YYYY"
+date-format: MMM YYYY
 
 book:
-  title: "AI-Assisted Microbiome Analysis"
-  subtitle: "From microbiome data to an output you understand and can defend"
-  author: "Teresia Mrema Buza | Complex Data Insights"
+  title: AI-Assisted Microbiome Analysis
+  subtitle: From microbiome data to an output you understand and can defend
+  author: Teresia Mrema Buza | Complex Data Insights
 
   chapters:
-    - index.qmd
+  - index.qmd
+  - part: Set up and run
 
-    - part: "Explore the example"
-      chapters:
-        - examples/community-comparison/01-see-the-result.qmd
-        - examples/community-comparison/example-report.qmd
-        - examples/community-comparison/02-meet-the-data.qmd
+    chapters:
+    - 01-run-the-workflow.qmd
 
-    - part: "Prepare and analyse"
-      chapters:
-        - examples/community-comparison/03-check-the-inputs.qmd
-        - examples/community-comparison/04-run-the-analysis.qmd
+  - part: Practice with synthetic data
+    chapters:
+    - examples/community-comparison/00-start-here.qmd
+    - examples/community-comparison/01-see-the-result.qmd
+    - examples/community-comparison/02-meet-the-data.qmd
+    - examples/community-comparison/03-check-the-inputs.qmd
+    - examples/community-comparison/04-run-the-analysis.qmd
+    - examples/community-comparison/05-verify-and-explain.qmd
+    - examples/community-comparison/06-export-the-report.qmd
 
-    - part: "Verify and share"
-      chapters:
-        - examples/community-comparison/05-verify-and-explain.qmd
-        - examples/community-comparison/06-export-the-report.qmd
+  - part: Follow the DietSwap study
+    chapters:
+    - examples/dietswap/00-start-here.qmd
+    - examples/dietswap/01-see-the-result.qmd
+    - examples/dietswap/02-meet-the-data.qmd
+    - examples/dietswap/03-check-the-inputs.qmd
+    - examples/dietswap/04-run-the-analysis.qmd
+    - examples/dietswap/05-verify-and-explain.qmd
+    - examples/dietswap/06-export-the-report.qmd
 
-    - part: "Shotgun metagenomics"
-      chapters:
-        - examples/shotgun-metagenomics/00-start-here.qmd
-        - examples/shotgun-metagenomics/01-see-the-result.qmd
-        - examples/shotgun-metagenomics/02-meet-the-data.qmd
-        - examples/shotgun-metagenomics/03-check-the-inputs.qmd
-        - examples/shotgun-metagenomics/04-run-the-analysis.qmd
-        - examples/shotgun-metagenomics/05-verify-and-explain.qmd
-        - examples/shotgun-metagenomics/06-export-the-report.qmd
+  - part: Explore Mouse59
+    chapters:
+    - examples/mouse59/00-start-here.qmd
+    - examples/mouse59/01-see-the-result.qmd
+    - examples/mouse59/02-meet-the-data.qmd
+    - examples/mouse59/03-check-the-inputs.qmd
+    - examples/mouse59/04-run-the-analysis.qmd
+    - examples/mouse59/05-verify-and-explain.qmd
+    - examples/mouse59/06-export-the-report.qmd
+
+  - part: "Analyse your own data"
+    chapters:
+      - examples/my-study/00-start-here.qmd
+      - 02-write-the-report.qmd
 
   appendices:
-    - 00-preface.qmd
-    - examples/community-comparison/00-start-here.qmd
     - examples/community-comparison/99-appendix.qmd
-
 
 format:
   html:
@@ -59,7 +71,7 @@ format:
     link-external-icon: true
     css: assets/css/cdi.css
     code-fold: true
-    code-summary: "Show code"
+    code-summary: Show code
     code-tools: false
     smooth-scroll: true
     mermaid:

@@ -1,7 +1,0 @@
-group	feature	n_samples	median
-Control	Taxon_A	2	0.45
-Control	Taxon_B	2	0.55
-HTN	Taxon_A	2	0.05
-HTN	Taxon_B	2	0.95
-pHTN	Taxon_A	2	0.25
-pHTN	Taxon_B	2	0.75

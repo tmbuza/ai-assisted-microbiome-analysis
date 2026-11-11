@@ -1,31 +1,10 @@
-# Export the report
+---
+title: "Write your practice report"
+---
 
-## Your task
 
-Copy the blank template to the repository root:
+Use the [shared report template](../../02-write-the-report.qmd). Include the question, dataset, one verified result, one figure, and one limitation.
 
-```bash
-cp templates/learner-report.qmd my-study-report.qmd
-```
+Describe the synthetic patterns in your own words and state the observations supporting them.
 
-Fill the prompts with your own results. For outputs in `results/my-study/`, update figure paths in the copied report accordingly.
-
-```bash
-quarto render my-study-report.qmd --to html
-```
-
-## Expected output
-
-An HTML report with question, inputs, methods, figures, verification, limitations, and AI assistance. Use browser Print → Save as PDF if needed.
-
-## Check before continuing
-
-Check that every figure loads and every statement matches your generated tables. Include the generated `session-info.txt` for reproducibility.
-
-## Continue to shotgun metagenomics
-
-You’ve compared community composition and seen how the distribution of feature counts affects Shannon diversity. What can a functional profile tell you about the community?
-
-In the next example, you’ll compare LPS transport values across three blood pressure groups. Check whether a few high values reflect a shift in the typical sample by comparing the group medians and the overlap between samples.
-
-[Start the shotgun metagenomics example](../shotgun-metagenomics/00-start-here.qmd)
+[Continue to the DietSwap walkthrough](../dietswap/00-start-here.qmd)

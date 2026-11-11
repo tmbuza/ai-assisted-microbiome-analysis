@@ -1,27 +1,34 @@
 ---
 toc: false
+title: "AI-Assisted Microbiome Analysis"
 ---
 
-# Comparing two microbial communities {.unnumbered}
+Follow one workflow from checked input tables to figures you can explain: practise, explore supplied datasets, then analyse your own data.
 
-::: {.callout-note title="Question" icon=false}
-**How do community composition and diversity differ between two groups?**
-:::
+## Practice with synthetic data
 
-Work through a free example with synthetic microbiome data. You’ll compare which features are present and how abundant they are relative to one another, then examine diversity within each sample.
+Begin with 24 synthetic samples and 15 fictional features. Learn to read composition and Shannon diversity plots, then reproduce one sample's values.
 
-[See the example results](examples/community-comparison/01-see-the-result.qmd){.btn .btn-primary}
+[Begin the practice example](examples/community-comparison/00-start-here.qmd)
 
-## Choose where to begin
+## Follow the DietSwap walkthrough
 
-| If you want to… | Go to… |
-|---|---|
-| Understand the count, taxonomy, and sample metadata tables | [Meet the data](examples/community-comparison/02-meet-the-data.qmd) |
-| Make sure the tables are ready for analysis | [Check the inputs](examples/community-comparison/03-check-the-inputs.qmd) |
-| Generate the figures and summary table | [Run the analysis](examples/community-comparison/04-run-the-analysis.qmd) |
-| Recalculate a result and explain what it means | [Verify and explain](examples/community-comparison/05-verify-and-explain.qmd) |
-| Share the results and their limitations | [Export the report](examples/community-comparison/06-export-the-report.qmd) |
+Use the supplied study tables to investigate composition and diversity. Check the participant and sampling information before deciding which comparison the data support.
 
-First time running the code? [Prepare your environment](examples/community-comparison/00-start-here.qmd#prepare-your-environment).
+[Follow the DietSwap walkthrough](examples/dietswap/00-start-here.qmd)
 
-You define the question. AI can help you work through the analysis. You check the evidence and explain the result. [How to use this guide](00-preface.qmd).
+## Apply the workflow to Mouse59
+
+Explore 59 samples and 2,027 OTUs in two supplied groups. Compare OTU composition and diversity, investigate low-count samples, and verify your observations against the tables.
+
+This demonstration uses OTU identifiers as labels because taxonomic assignments are unavailable.
+
+[Follow the Mouse59 demonstration](examples/mouse59/00-start-here.qmd)
+
+## Analyse your own data
+
+Prepare your three tidy TSV files in `data/my-study/`, check the identifiers, and apply the same workflow. Verify the results and write a conclusion supported by your evidence.
+
+[Prepare your own analysis](examples/my-study/00-start-here.qmd)
+
+Use [Run the workflow](01-run-the-workflow.qmd) whenever a page asks you to generate or refresh outputs.

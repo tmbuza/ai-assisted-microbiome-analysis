@@ -1,0 +1,54 @@
+---
+title: "Analyse your own microbiome data"
+---
+
+You have practised with synthetic data and explored the DietSwap and Mouse59 examples. Now apply the same workflow to your own dataset.
+
+## Define your question
+
+Write one question that your sample metadata can support:
+
+> How do community composition, Shannon diversity, and count totals differ between my sample groups?
+
+Replace “my sample groups” with your actual comparison.
+
+## Prepare your three input files
+
+Place these files in `data/my-study/`:
+
+| File | Required structure |
+|---|---|
+| `feature-counts.tsv` | `feature_id`, followed by sample columns containing nonnegative integer counts |
+| `sample-metadata.tsv` | One row per sample, including `sample_id` and `group` |
+| `taxonomy.tsv` | One row per feature, including `feature_id` and `taxon` |
+
+Sample IDs must match between counts and metadata. Feature IDs must match between counts and taxonomy.
+
+Use original counts for this workflow. If taxonomy is unavailable, use unique feature IDs as display labels and state that limitation in your report.
+
+## Check and run
+
+Follow [Run the workflow](../../01-run-the-workflow.qmd#your-analysis), using:
+
+- Input folder: `data/my-study/`
+- Output folder: `results/my-study/`
+
+The analysis checks the inputs before calculating results. Resolve any errors before interpreting outputs.
+
+## Inspect and verify
+
+Examine all three generated figures:
+
+1. **Composition:** Which displayed features vary between groups? How much is pooled as Other?
+2. **Shannon diversity:** How do the medians, spread, and overlap compare?
+3. **Count totals and diversity:** Are there low-count samples or patterns that need investigation?
+
+Check your descriptions against the saved tables. Independently verify one sample using the [sample verification instructions](../../01-run-the-workflow.qmd#independently-verify-one-sample).
+
+Record any filtering decisions and consider whether samples are paired, repeated, or affected by other variables.
+
+## Explain your findings
+
+Describe the patterns supported by your outputs. Distinguish observations from possible explanations. Visual differences alone do not establish statistical significance or causation.
+
+[Next: Write your report](../../02-write-the-report.qmd)

@@ -1,17 +1,10 @@
-# Technical appendix
+---
+title: "Workflow reference"
+---
 
-## Requirements
 
-R, Quarto, and the packages recorded in root `renv.lock`. Restore with `renv::restore()`. The domain uses one shared environment.
+The R workflow starts from integer feature counts, sample metadata, and supplied taxonomic labels. Shannon uses natural logarithms and all original features. Top-eight selection and Other apply to the composition display.
 
-## Reuse
+The supplied scripts produce descriptive summaries. Study design, pairing, confounding, and statistical inference require decisions beyond these plots.
 
-Both scripts accept optional input and output directories. Run from the repository root. Keep original study data separate from `data/example/`.
-
-Feature tables must contain integer counts. Metadata must include `sample_id` and `group`; taxonomy must include matching `feature_id` and nonblank `taxon`. Zero-total samples fail validation.
-
-## Scope
-
-The workflow starts from a feature table. It does not process raw reads, assign taxonomy, test group significance, adjust for repeated measures or confounding, or perform differential abundance analysis.
-
-Included preview figures and tables were computed independently with Python. Run the supplied R scripts to regenerate equivalent numerical summaries and R-styled figures. Quarto code fences do not execute analysis.
+Use [Run the workflow](../../01-run-the-workflow.qmd) for commands and [Write a report](../../02-write-the-report.qmd) for the report template.

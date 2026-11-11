@@ -1,0 +1,24 @@
+---
+title: "Inspect the Mouse59 outputs"
+---
+
+Use the Mouse59 command on the [Run the workflow page](../../01-run-the-workflow.qmd#mouse59). If you have already generated these results, continue with the checks below.
+
+Open `results/mouse59/tables/alpha-diversity.tsv`. Confirm it contains one row for each of the 59 samples and the expected group labels.
+
+Locate the three figures in `results/mouse59/figures/`:
+
+- `composition.png`
+- `shannon-diversity.png`
+- `depth-diversity.png`
+
+Use the saved tables to answer these questions:
+
+1. Which sample has the lowest Shannon value? What are its total counts and observed OTUs?
+2. Which sample has the highest Shannon value?
+3. Do the group medians agree with the values on the results page?
+4. Does OTU0440 have a higher mean sample proportion in HighFat20? Calculate its relative proportion within each sample before averaging by group.
+
+Use `tables/relative-abundance.tsv` to check composition. The display table groups features for plotting; Shannon uses the full feature table. Do not calculate Shannon from the eight displayed OTUs plus Other.
+
+[Next: Verify and explain](05-verify-and-explain.qmd)

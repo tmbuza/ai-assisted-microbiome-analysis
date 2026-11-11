@@ -1,38 +1,36 @@
 ---
-title: "My microbiome analysis report"
+title: "My microbiome analysis"
 format: html
+execute:
+  eval: false
 ---
 
-## Question
+## Question and study design
 
-[State your comparison.]
+Describe your question, groups, participants, and sampling stage.
 
-## Inputs and checks
+## Data and decisions
 
-[Describe source, sample and feature counts, groups, totals, exclusions, and validation.]
-
-## Methods
-
-[Describe scripts, full-table Shannon calculation, and top-eight composition display.]
+Record input paths, source, sample counts, selection rules, and exclusions.
 
 ## Results
 
-![Composition](results/my-study/figures/composition.png)
+Insert a figure using the appropriate output path. For example:
 
-![Shannon diversity](results/my-study/figures/shannon-diversity.png)
+```markdown
+![Composition in my study.](results/my-study/figures/composition.png)
+```
 
-![Count totals and diversity](results/my-study/figures/depth-diversity.png)
-
-[Use your generated tables to describe patterns and overlap.]
+Report one numerical comparison checked against its table.
 
 ## Verification
 
-[Record a sample calculation, identifier checks, and figure review.]
+Name the sample you checked and record its count total, observed features, and Shannon value.
 
-## Limitations and conclusion
+## Interpretation and limitations
 
-[State supported findings and study-specific limitations.]
+Explain what the result supports and the limits of your comparison.
 
-## AI assistance
+## Reproducibility and AI assistance
 
-[State assistance received and how you verified it.]
+Record the commands, output path, R session information, and suggestions you checked.

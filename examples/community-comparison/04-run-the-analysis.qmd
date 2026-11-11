@@ -1,49 +1,18 @@
-# Run the analysis
+---
+title: "Find your practice outputs"
+---
 
-## Your task
 
-Run these commands from the project root to validate the inputs and generate descriptive summaries and figures.
+After the practice command completes, open `results/example/`.
 
-```bash
-Rscript scripts/R/01-check-inputs.R
-Rscript scripts/R/02-analyse-example.R
-```
-
-The first command should report **Input checks passed**. The second saves the outputs listed below.
-
-| Output | File under `results/` |
+| File | What to check |
 |---|---|
-| Counts, richness, Shannon diversity | `tables/alpha-diversity.tsv` |
-| Full feature proportions | `tables/relative-abundance.tsv` |
-| Plotting categories | `tables/composition-display.tsv` |
-| Group summaries | `tables/group-summary.tsv` |
-| Composition | `figures/composition.png` |
-| Diversity | `figures/shannon-diversity.png` |
-| Count totals versus diversity | `figures/depth-diversity.png` |
+| `tables/alpha-diversity.tsv` | One row per sample with totals, observed features, and Shannon |
+| `tables/relative-abundance.tsv` | Original feature proportions for every sample |
+| `tables/composition-display.tsv` | Top eight features and pooled Other |
+| `tables/group-summary.tsv` | Group summaries |
+| `figures/` | Three PNGs for the guide and report |
 
-## Use your own data
+All 24 samples should appear in the diversity table. Select A01 for the independent check.
 
-```bash
-Rscript scripts/R/02-analyse-example.R data/my-study results/my-study
-```
-
-Prepare the three input tables as described in [Meet the data](02-meet-the-data.qmd). Keep the synthetic example intact. This command validates your study inputs before analysis and saves the outputs separately. The script uses your identifiers and group labels.
-
-::: {.cdi-message}
-**Full data for calculations; simplified data for display.** The composition plot shows the top eight features by mean sample proportion and combines the rest as Other. Diversity uses every feature.
-:::
-
-## Check before continuing
-
-Check sample counts, proportions summing to one, count totals, and labels. These are descriptive results; no significance tests are performed. For very large studies, review plot readability and computing resources.
-
-## View the results in the guide
-
-```bash
-quarto render
-quarto preview
-```
-
-Rendering displays the results; it does not run the analysis scripts.
-
-Continue to [5. Verify and explain](05-verify-and-explain.qmd).
+[Next — Verify and explain](05-verify-and-explain.qmd)

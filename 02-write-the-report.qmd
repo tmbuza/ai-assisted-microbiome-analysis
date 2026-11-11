@@ -1,0 +1,14 @@
+---
+title: "Write and export your report"
+---
+
+
+Copy `templates/learner-report.qmd` to the repository root as `my-study-report.qmd`. Fill in the prompts and select the output folder for your dataset.
+
+Update all image paths to that output folder. Render the report from the root:
+
+```bash
+quarto render my-study-report.qmd --to html
+```
+
+Check that images load and every numerical statement agrees with its table. Save `session-info.txt` alongside the report and record the input source, selection decisions, and AI assistance.

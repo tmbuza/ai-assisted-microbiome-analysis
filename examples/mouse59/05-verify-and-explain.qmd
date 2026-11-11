@@ -1,0 +1,34 @@
+---
+title: "Verify and explain Mouse59"
+---
+
+Use the [independent sample check](../../01-run-the-workflow.qmd#independently-verify-one-sample), replacing the input folder with `data/mouse59`, the output folder with `results/mouse59`, and the sample ID with one below.
+
+| Sample | Group | Total counts | Observed OTUs | Shannon |
+|---|---|---:|---:|---:|
+| SRR4125093 | HighFatCa | 26,849 | 578 | 4.250831 |
+| SRR4125107 | HighFatCa | 182 | 64 | 3.646867 |
+| SRR4125132 | HighFat20 | 99 | 44 | 3.460816 |
+
+These reference values were calculated directly from the supplied counts with natural logarithms. Confirm agreement with your saved results. If they differ, check input versions, sample selection, and any filtering.
+
+## Explain what the checks mean
+
+A matching Shannon value confirms the calculation for that sample. It does not establish that the sample has adequate coverage or that a group difference has a biological cause. For example, a sample with only 99 counts can still have a relatively high Shannon value if those counts are spread across many OTUs.
+
+Return to the [three figures](01-see-the-result.qmd). Write one observation per figure and support each with a table value. Separate what you observed from possible explanations.
+
+An appropriate diversity statement is:
+
+> In the supplied Mouse59 table, HighFatCa samples had a higher median Shannon diversity than HighFat20 samples (3.595117 versus 2.811773), with overlapping values between groups. This descriptive comparison does not establish statistical significance or explain the difference.
+
+## Questions to carry forward
+
+- How sensitive are the patterns to the two low-count samples?
+- Does observed richness show the same pattern as Shannon?
+- Which individual OTUs contribute to the pooled Other fraction?
+- What additional metadata would be needed to account for animals, cages, or repeated samples?
+
+Do not choose exclusions or analysis methods solely because they strengthen a preferred group difference.
+
+[Next: Write the report](06-export-the-report.qmd)

@@ -1,0 +1,9 @@
+---
+title: "Report your DietSwap walkthrough"
+---
+
+Use the [shared report template](../../02-write-the-report.qmd). Document the cohort labels, sampling selection, one checked result, one figure, and the principal limitation.
+
+Ask AI to review the draft against the exact outputs. Verify each number and explain why you accepted or revised its suggestions.
+
+[Continue — Explore Mouse Dataset](../mouse59/00-start-here.qmd)

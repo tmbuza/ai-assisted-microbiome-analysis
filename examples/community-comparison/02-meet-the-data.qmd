@@ -1,21 +1,16 @@
-# Meet the data
+---
+title: "Meet the practice data"
+---
 
-## Your task
 
-Inspect the three tidy input tables.
+The three supplied files are in `data/example/`.
 
-| File | Rows | Columns |
-|---|---|---|
-| `feature-counts.tsv` | One per feature | `feature_id`, then one count column per sample |
-| `sample-metadata.tsv` | One per sample | `sample_id`, `group`; optional study variables |
-| `taxonomy.tsv` | One per feature | `feature_id`, `taxon` |
+| File | Structure |
+|---|---|
+| `feature-counts.tsv` | `feature_id` followed by one integer count column per sample |
+| `sample-metadata.tsv` | `sample_id` and `group`, with one row per sample |
+| `taxonomy.tsv` | `feature_id` and `taxon`, with one row per feature |
 
-Inputs live in `data/example/`. Taxon labels are fictional. Match sample A01 and feature F01 across the files.
+Locate A01 in the count table and metadata. Match one feature ID to its taxonomic label. There are 12 samples per group and 15 fictional features.
 
-## Use your own data
-
-Create the same three filenames in `data/my-study/`. Use unique matching identifiers and untransformed integer counts, not percentages. Additional metadata are retained, but the scripts do not adjust for them.
-
-## Check before continuing
-
-Explain what a row and column represent in each file. The workflow supports different sample names, feature counts, and two or more group labels.
+[Next — Check the inputs](03-check-the-inputs.qmd)

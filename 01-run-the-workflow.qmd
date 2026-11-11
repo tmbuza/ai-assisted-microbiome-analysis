@@ -1,0 +1,59 @@
+---
+title: "Run the workflow"
+---
+
+
+Run commands from the repository root, the folder containing this file and `scripts/`. Complete the R environment setup in the practice opening page first.
+
+The analysis script checks the three input tables before calculating results. It also compares the direct Shannon formula with vegan for every sample.
+
+Choose the command for the dataset you are working with.
+
+| Stage | Input folder | Output folder |
+|---|---|---|
+| Practice | `data/example/` | `results/example/` |
+| DietSwap | `data/dietswap/` | `results/dietswap/` |
+| GlobalPatterns | `data/global-patterns/` | `results/global-patterns/` |
+| Your analysis | `data/my-study/` | `results/my-study/` |
+
+### Practice
+
+```bash
+Rscript scripts/R/02-analyse-example.R data/example results/example
+```
+
+### DietSwap
+
+Place all three prepared study tables in the input folder first.
+
+```bash
+Rscript scripts/R/02-analyse-example.R data/dietswap results/dietswap
+```
+
+### GlobalPatterns
+
+```bash
+Rscript scripts/R/02-analyse-example.R data/global-patterns results/global-patterns
+```
+
+### Your analysis
+
+```bash
+Rscript scripts/R/02-analyse-example.R data/my-study results/my-study
+```
+
+### Independently verify one sample
+
+For practice, run:
+
+```bash
+Rscript scripts/R/05-verify-sample.R data/example results/example A01
+```
+
+For DietSwap or your own analysis, replace both folder paths and A01 with your selected sample ID. All three rows should show TRUE under `agrees`.
+
+### Find the outputs
+
+Each output folder contains `figures/`, `tables/`, and `session-info.txt`. Open `tables/alpha-diversity.tsv` to check counts, observed features, and Shannon values.
+
+The analysis writes to the selected output folder on each run. Use a new output folder to preserve an earlier analysis. Stop after an error and resolve it before interpreting existing outputs.

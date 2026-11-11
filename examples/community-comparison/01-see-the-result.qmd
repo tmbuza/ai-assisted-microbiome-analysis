@@ -1,19 +1,20 @@
-# See the result
+---
+title: "Read the practice figures"
+---
 
-## Your task
 
-Open the [finished example report](example-report.qmd). Examine the sample composition and Shannon diversity figures before looking at the code.
+Use the [practice command](../../01-run-the-workflow.qmd#practice) to generate the outputs.
 
-## Run or inspect
+![Composition of the synthetic samples.](../../results/example/figures/composition.png)
 
-- Which features dominate each sample?
-- Which samples have more even feature distributions?
-- What does each axis measure?
+Each bar sums to 100%. Compare the same feature across samples. Other pools seven features, so inspect the unpooled table before attributing its difference to any one feature.
 
-## Expected output
+![Shannon diversity in the synthetic samples.](../../results/example/figures/shannon-diversity.png)
 
-A report containing the question, two figures, methods, and limitations.
+Each point is one sample. Compare the medians, spread, and overlap, then check the numerical values in the diversity table.
 
-## Check before continuing
+![Count totals and Shannon diversity in the synthetic samples.](../../results/example/figures/depth-diversity.png)
 
-Write one observation and one claim these data cannot support.
+Look for a relationship within each group. Record whether the count ranges overlap before explaining the diversity difference.
+
+[Next — Meet the data](02-meet-the-data.qmd)

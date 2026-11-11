@@ -1,0 +1,19 @@
+---
+title: "Meet the Mouse59 inputs"
+---
+
+The original `Mouse59GutOTUs.csv` contained samples in rows, a `Class` column, and OTUs in columns. Preparation transposed the count table and retained the original counts and labels.
+
+| File in `data/mouse59/` | Contents |
+|---|---|
+| `feature-counts.tsv` | `feature_id`, followed by 59 sample columns; 2,027 OTU rows |
+| `sample-metadata.tsv` | `sample_id` and `group`; 29 HighFat20 and 30 HighFatCa samples |
+| `taxonomy.tsv` | `feature_id`, an OTU ID in `taxon`, and a note marking the assignment as unavailable |
+
+The taxonomy file supplies display labels required by the workflow. It contains no biological taxonomic assignments. Describe the composition figure in terms of OTUs.
+
+All samples have positive totals. Counts range from **99 to 40,266** per sample, with an overall median of **22,150**. No OTU has a zero total across all samples. No filtering, normalization, or rarefaction was applied during input preparation.
+
+Do not infer the meaning of HighFat20 or HighFatCa from their names. For this exercise, treat them as supplied sample categories. Animal identity, cage membership, repeated sampling, and other covariates are unavailable in these inputs.
+
+[Next: Check the inputs](03-check-the-inputs.qmd)

@@ -1,0 +1,11 @@
+---
+title: "Follow the DietSwap study"
+---
+
+**Question.** How do community composition and diversity compare between the cohorts in the selected DietSwap samples?
+
+The supplied DietSwap tables in `data/dietswap/` contain 38 samples from 38 distinct participants, with 21 AAM and 17 AFR samples. They include 119 features.
+
+All supplied samples have `timepoint = 1`, `timepoint.within.group = 1`, and `study_group = ED`. This walkthrough compares the selected cohorts at that sampling stage. Confirm its baseline meaning against the source documentation when reporting the study.
+
+[Next — Define the comparison](01-see-the-result.qmd)

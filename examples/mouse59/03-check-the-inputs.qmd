@@ -1,0 +1,20 @@
+---
+title: "Check the Mouse59 inputs"
+---
+
+Confirm that all three TSV files are in `data/mouse59/`. Follow the [shared workflow instructions](../../01-run-the-workflow.qmd), using the Mouse59 input and output folders.
+
+The analysis script checks the inputs before calculating results. Resolve any error before interpreting outputs.
+
+Check that:
+
+- There are 59 unique sample IDs, matching exactly between counts and metadata.
+- There are 2,027 unique feature IDs, matching the taxonomy display-label file.
+- Counts are finite, nonnegative integers and every sample has a positive total.
+- Group sizes are HighFat20 = 29 and HighFatCa = 30.
+
+A valid file format does not guarantee adequate data for every question. Both low-count samples pass the positive-total requirement. Record **SRR4125132 (99 counts)** and **SRR4125107 (182 counts)** for further investigation.
+
+Keep all 59 samples in the initial demonstration. Any later exclusion should have a stated rationale and a separate output folder so you can compare results.
+
+[Next: Inspect the outputs](04-run-the-analysis.qmd)

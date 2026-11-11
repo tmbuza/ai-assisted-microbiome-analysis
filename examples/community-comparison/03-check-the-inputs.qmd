@@ -1,27 +1,10 @@
-# Check the inputs
+---
+title: "Check the practice inputs"
+---
 
-## Your task
 
-Validate your inputs before analysis.
+Check that the count-table sample names match metadata IDs and the feature IDs match taxonomy. Confirm that the group labels are Group A and Group B.
 
-```bash
-Rscript scripts/R/01-check-inputs.R
-```
+The analysis runs these checks automatically. Use the [practice command](../../01-run-the-workflow.qmd#practice) and resolve any reported error before inspecting results.
 
-**Expected output:** `results/tables/input-checks.tsv` with 24 samples, 15 features, two groups, and PASS.
-
-Checks cover required columns, unique identifiers, exact matches, valid counts, groups, and positive totals. Failures stop the analysis.
-
-## Use your own data
-
-```bash
-Rscript scripts/R/01-check-inputs.R data/my-study results/my-study
-```
-
-::: {.callout-note}
-A PASS confirms table structure, not scientific readiness. Review contamination, controls, pairing, batch, sampling effort, and study design separately.
-:::
-
-## Check before continuing
-
-Resolve errors and record corrections in your decision log. Ask AI to explain an error, then verify its suggestion before editing data.
+[Next — Find your outputs](04-run-the-analysis.qmd)

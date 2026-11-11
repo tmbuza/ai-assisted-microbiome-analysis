@@ -1,0 +1,15 @@
+---
+title: "Meet the DietSwap files"
+---
+
+Use the same three filenames and columns as the practice dataset, stored in `data/dietswap/`. Preserve the participant, nationality, sampling stage, and time-point columns in the metadata.
+
+Set `group` to the intended comparison and record how it was defined. Check the source study and data documentation before choosing a baseline label or interpreting a field. Record the source, selection rule, sample count, and exclusions.
+
+[Next — Check the selection](03-check-the-inputs.qmd)
+
+## Check the supplied selection
+
+The metadata use AAM and AFR for both nationality and the comparison group. There is one sample per subject. All 38 records have the same supplied sampling labels (time point 1, within-group time point 1, ED). The 119 feature IDs match taxonomy exactly.
+
+The taxonomy table contains rank labels that need review against the source annotation before reporting a particular taxonomic rank.

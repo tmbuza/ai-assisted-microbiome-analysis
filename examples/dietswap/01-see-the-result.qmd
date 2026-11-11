@@ -1,0 +1,11 @@
+---
+title: "Define the comparison"
+---
+
+Open the metadata and write one sentence naming the cohorts, sampling stage, and unit of analysis. Count unique participants as well as samples.
+
+For a baseline comparison, verify one selected baseline sample per participant. A table containing repeated visits needs an explicit sampling rule before this workflow's group summaries can be interpreted.
+
+After your run, return to the figures linked on the verification page. Record one observation before writing an explanation.
+
+[Next — Meet the study files](02-meet-the-data.qmd)
