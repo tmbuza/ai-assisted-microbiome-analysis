@@ -1,5 +1,8 @@
 ---
 toc: false
+format:
+  html:
+    body-classes: front-page
 title: "AI-Assisted Microbiome Analysis"
 ---
 
