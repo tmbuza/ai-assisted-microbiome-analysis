@@ -1,8 +1,46 @@
-.quarto/
+# R package libraries and caches; retain the reproducible environment setup.
+/renv/*
+!/renv/activate.R
+!/renv/settings.json
+!/renv/.gitignore
+
+# R session files
+.Rproj.user/
 .Rhistory
 .RData
-.DS_Store
+.Ruserdata
+.Renviron
 
+# Quarto caches and local previews
 /.quarto/
-*.zip
-# results/
+/_freeze/
+*_cache/
+
+# Local Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Operating system and editor temporary files
+.DS_Store
+__MACOSX/
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Learner inputs, outputs, and draft reports
+/data/my-study/
+/results/my-study/
+/docs/results/my-study/
+/my-study-report.qmd
+/my-study-report.html
+/my-study-report.pdf
+/my-study-report_files/
+
+# Downloaded update archives
+/*.zip
+
+# Keep renv.lock, .Rprofile, supplied data, named example results,
+# source QMD files, and the published docs/ site tracked.
