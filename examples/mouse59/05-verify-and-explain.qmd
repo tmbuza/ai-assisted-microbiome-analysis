@@ -2,7 +2,9 @@
 title: "Verify and explain Mouse59"
 ---
 
-Use the [independent sample check](../../01-run-the-workflow.qmd#independently-verify-one-sample), replacing the input folder with `data/mouse59`, the output folder with `results/mouse59`, and the sample ID with one below.
+Optionally use the [independent sample check](../../01-run-the-workflow.qmd#independently-verify-one-sample), replacing the input folder with `data/mouse59`, the output folder with `results/mouse59`, and the sample ID with one below.
+
+## Optional sample checks
 
 | Sample | Group | Total counts | Observed OTUs | Shannon |
 |---|---|---:|---:|---:|

@@ -3,7 +3,7 @@ title: "Read the practice figures"
 ---
 
 
-Use the [practice command](../../01-run-the-workflow.qmd#practice) to generate the outputs.
+Preview the supplied results first. You will reproduce them after checking the inputs; you do not need to run anything to read this page.
 
 ![Composition of the synthetic samples.](../../results/example/figures/composition.png)
 
@@ -17,4 +17,4 @@ Each point is one sample. Compare the medians, spread, and overlap, then check t
 
 Look for a relationship within each group. Record whether the count ranges overlap before explaining the diversity difference.
 
-[Next — Meet the data](02-meet-the-data.qmd)
+[Next: Meet the data](02-meet-the-data.qmd)

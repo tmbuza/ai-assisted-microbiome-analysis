@@ -7,4 +7,4 @@ Check that the count-table sample names match metadata IDs and the feature IDs m
 
 The analysis runs these checks automatically. Use the [practice command](../../01-run-the-workflow.qmd#practice) and resolve any reported error before inspecting results.
 
-[Next — Find your outputs](04-run-the-analysis.qmd)
+[Next: Find your outputs](04-run-the-analysis.qmd)

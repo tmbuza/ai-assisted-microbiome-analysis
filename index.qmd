@@ -8,9 +8,17 @@ title: "AI-Assisted Microbiome Analysis"
 
 Follow one workflow from checked input tables to figures you can explain: practise, explore supplied datasets, then analyse your own data.
 
+::: {.callout-note}
+### Choose how to begin
+
+**New to the workflow?** [Set up your workspace](00-setup.qmd), then follow the synthetic practice in order. **Just exploring?** Read the figures first. **Bringing your own data?** Use the checklist for your own study after setup.
+:::
+
+You will work from prepared feature tables. Raw sequencing processing and statistical hypothesis testing are outside this guide's workflow.
+
 ## Practice with synthetic data
 
-Begin with 24 synthetic samples and 15 fictional features. Learn to read composition and Shannon diversity plots, then reproduce one sample's values.
+Begin with 24 synthetic samples and 15 fictional features. Learn to read composition and Shannon diversity plots, then check the figures against the saved tables. An optional exercise reproduces one sample's values.
 
 [Begin the practice example](examples/community-comparison/00-start-here.qmd)
 
@@ -28,7 +36,7 @@ This demonstration uses OTU identifiers as labels because taxonomic assignments 
 
 [Follow the Mouse59 demonstration](examples/mouse59/00-start-here.qmd)
 
-## Analyse your own data
+## Analyse your own study
 
 Prepare your three tidy TSV files in `data/my-study/`, check the identifiers, and apply the same workflow. Verify the results and write a conclusion supported by your evidence.
 

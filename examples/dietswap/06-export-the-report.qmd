@@ -6,4 +6,4 @@ Use the [shared report template](../../02-write-the-report.qmd). Document the co
 
 Ask AI to review the draft against the exact outputs. Verify each number and explain why you accepted or revised its suggestions.
 
-[Continue — Explore Mouse Dataset](../mouse59/00-start-here.qmd)
+[Continue: Explore Mouse59](../mouse59/00-start-here.qmd)

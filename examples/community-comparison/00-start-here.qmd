@@ -1,65 +1,22 @@
-# Community comparison: get ready
+---
+title: "Begin the synthetic practice"
+---
 
 **Question:** How do community composition and diversity vary between two groups?
 
-**Inputs:** 24 synthetic samples, 12 per group, and 15 fictional features.
+Use 24 synthetic samples, 12 per group, and 15 fictional features to learn the workflow. You will produce three figures, inspect the tables, and write a short explanation.
 
-**Finish with:** composition, diversity, and count-total figures; checked tables; a short report.
+Complete [workspace setup](../../00-setup.qmd) once before running commands.
 
-This is a descriptive teaching example. Visual differences alone do not establish statistical significance or causation. When adapting it, check that the methods suit your study design.
+## How to follow along
 
-To explore without installing software, open [See the result](01-see-the-result.qmd). To reproduce the analysis, complete the setup below once.
-
-## Prepare your environment
-
-You need R, Quarto, and a text editor such as VS Code or RStudio.
-
-### Open the project root
-
-Download and extract the repository, then open the folder containing `_quarto.yml`, `renv.lock`, `data/`, and `scripts/` in your editor.
-
-Open a terminal in that folder. Run every command in this example from this project root, including commands shown on pages stored inside `examples/`.
-
-### Restore the R environment
-
-In the terminal, start R:
-
-```bash
-R
-```
-
-At the R prompt (`>`), run:
-
-```r
-options(repos = c(CRAN = "https://cloud.r-project.org"))
-
-if (!requireNamespace("renv", quietly = TRUE)) {
-  install.packages("renv")
-}
-
-renv::restore()
-renv::status()
-```
-
-If asked to proceed, enter `Y` and wait for the `>` prompt before entering another command. Restore the supplied lockfile rather than initializing a new environment.
-
-Check that the analysis packages load, then return to the terminal:
-
-```r
-library(tidyverse)
-library(vegan)
-
-q(save = "no")
-```
+1. Preview the supplied figures to see what you will produce.
+2. Meet the three input files and check their identifiers.
+3. Run the practice analysis using the shared command page.
+4. Compare your figures with the tables and write your explanation.
 
 ::: {.callout-note}
-**If setup fails:** copy the error message. Ask AI to explain it using your R version, operating system, and the command you ran. Check the proposed fix before applying it. Keep the supplied lockfile intact while investigating.
+The figures describe this teaching dataset. Your task is to explain the visible patterns and check the numbers. An optional sample calculation is available if you want to inspect how Shannon diversity is obtained.
 :::
 
-## Ready to begin?
-
-- Your terminal is open at the project root.
-- `renv::status()` reports no synchronization issues.
-- Both analysis packages load successfully.
-
-Continue to [See the result](01-see-the-result.qmd).
+[Next: Preview the practice figures](01-see-the-result.qmd)

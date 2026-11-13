@@ -2,7 +2,7 @@
 title: "See the Mouse59 results"
 ---
 
-These figures are generated from the supplied Mouse59 inputs. Run the workflow before rendering this page if the images are absent.
+The figures below show the supplied results. Preview them now; you will use the shared workflow instructions to reproduce them after checking the inputs.
 
 ## OTU composition
 
@@ -10,9 +10,11 @@ These figures are generated from the supplied Mouse59 inputs. Run the workflow b
 
 OTU0440 generally occupies a larger proportion in HighFat20. HighFatCa has variable contributions from other displayed OTUs, and many samples have a larger pooled Other fraction. Other represents many OTUs, not one organism. Every bar sums to 100%, regardless of the original count total.
 
+[Open the composition figure at full size](../../results/mouse59/figures/composition.png) to read the sample IDs and legend.
+
 ## Shannon diversity
 
-![Shannon diversity calculated using all 2,027 OTUs, including zeros as appropriate. Each point is one sample.](../../results/mouse59/figures/shannon-diversity.png)
+![Shannon diversity calculated using all 2,027 OTUs, using positive proportions in the Shannon formula. Each point is one sample.](../../results/mouse59/figures/shannon-diversity.png)
 
 The median Shannon value is higher in HighFatCa: **3.595117**, compared with **2.811773** in HighFat20. The distributions overlap. Shannon reflects both the number of observed OTUs and how evenly counts are distributed among them; higher values do not establish a healthier community.
 

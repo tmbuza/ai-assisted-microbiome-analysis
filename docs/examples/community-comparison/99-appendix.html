@@ -116,12 +116,17 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Set up and run</span></a>
+ <span class="menu-text">Set up your workspace</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../00-setup.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Set up your workspace</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../01-run-the-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Run the workflow</span></a>
@@ -140,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Community comparison: get ready</span></a>
+  <a href="../../examples/community-comparison/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Begin the synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -270,7 +275,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Analyse your own data</span></a>
+ <span class="menu-text">Analyse your own study</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -278,7 +283,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/my-study/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Analyse your own microbiome data</span></a>
+  <a href="../../examples/my-study/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Analyse your own study</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -309,8 +314,14 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#terms-used-in-the-figures" id="toc-terms-used-in-the-figures" class="nav-link active" data-scroll-target="#terms-used-in-the-figures">Terms used in the figures</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -325,12 +336,6 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">Oct 2026</p>
-    </div>
-  </div>
   
     
   </div>
@@ -343,8 +348,50 @@ ul.task-list li input[type="checkbox"] {
 <p>The R workflow starts from integer feature counts, sample metadata, and supplied taxonomic labels. Shannon uses natural logarithms and all original features. Top-eight selection and Other apply to the composition display.</p>
 <p>The supplied scripts produce descriptive summaries. Study design, pairing, confounding, and statistical inference require decisions beyond these plots.</p>
 <p>Use <a href="../../01-run-the-workflow.html">Run the workflow</a> for commands and <a href="../../02-write-the-report.html">Write a report</a> for the report template.</p>
+<section id="terms-used-in-the-figures" class="level2">
+<h2 class="anchored" data-anchor-id="terms-used-in-the-figures">Terms used in the figures</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Meaning in this workflow</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Feature</td>
+<td>A row in the count table, such as an OTU or another supplied microbial feature</td>
+</tr>
+<tr class="even">
+<td>Count total</td>
+<td>Sum of all feature counts in one sample; not a measure of total microbial biomass</td>
+</tr>
+<tr class="odd">
+<td>Relative proportion</td>
+<td>Feature count divided by that sample’s count total</td>
+</tr>
+<tr class="even">
+<td>Observed features</td>
+<td>Number of features with a positive count in one sample</td>
+</tr>
+<tr class="odd">
+<td>Shannon diversity</td>
+<td>Summary of richness and evenness, using natural logarithms</td>
+</tr>
+<tr class="even">
+<td>Other</td>
+<td>All features outside the top eight, pooled only for display</td>
+</tr>
+</tbody>
+</table>
+<p>Zero proportions contribute zero to Shannon and are omitted from the logarithm calculation. The same displayed feature can change proportion when other features change; proportions alone do not measure absolute abundance.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

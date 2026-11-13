@@ -2,10 +2,10 @@
 title: "Verify and explain DietSwap"
 ---
 
-Choose a sample from the study count table and apply the [independent sample check](../../01-run-the-workflow.qmd#independently-verify-one-sample), changing both paths to DietSwap. Confirm all three results agree.
+Optionally choose a sample from the study count table and apply the [independent sample check](../../01-run-the-workflow.qmd#independently-verify-one-sample), changing both paths to DietSwap. Confirm all three results agree.
 
 
-## Expected sample checks
+## Optional sample checks
 
 | Sample | Group | Total counts | Observed features | Shannon |
 |---|---|---:|---:|---:|
@@ -26,6 +26,6 @@ Compare the group medians, spread, and overlap. Check both observed richness and
 
 Describe the count ranges and any visible relationship with Shannon within each cohort.
 
-Write a conclusion restricted to the selected samples and sampling stage. A baseline cohort comparison does not estimate change after a diet swap.
+Write a conclusion restricted to the selected samples and sampling stage. A comparison at one sampling stage does not estimate change after a diet swap.
 
-[Next — Report the walkthrough](06-export-the-report.qmd)
+[Next: Report the walkthrough](06-export-the-report.qmd)

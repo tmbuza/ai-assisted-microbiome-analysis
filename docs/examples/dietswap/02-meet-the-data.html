@@ -117,12 +117,17 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Set up and run</span></a>
+ <span class="menu-text">Set up your workspace</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../00-setup.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Set up your workspace</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../01-run-the-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Run the workflow</span></a>
@@ -141,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Community comparison: get ready</span></a>
+  <a href="../../examples/community-comparison/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Begin the synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -271,7 +276,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Analyse your own data</span></a>
+ <span class="menu-text">Analyse your own study</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -279,7 +284,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/my-study/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Analyse your own microbiome data</span></a>
+  <a href="../../examples/my-study/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Analyse your own study</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -332,12 +337,6 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">Oct 2026</p>
-    </div>
-  </div>
   
     
   </div>
@@ -349,11 +348,11 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Use the same three filenames and columns as the practice dataset, stored in <code>data/dietswap/</code>. Preserve the participant, nationality, sampling stage, and time-point columns in the metadata.</p>
 <p>Set <code>group</code> to the intended comparison and record how it was defined. Check the source study and data documentation before choosing a baseline label or interpreting a field. Record the source, selection rule, sample count, and exclusions.</p>
-<p><a href="../../examples/dietswap/03-check-the-inputs.html">Next — Check the selection</a></p>
 <section id="check-the-supplied-selection" class="level2">
 <h2 class="anchored" data-anchor-id="check-the-supplied-selection">Check the supplied selection</h2>
 <p>The metadata use AAM and AFR for both nationality and the comparison group. There is one sample per subject. All 38 records have the same supplied sampling labels (time point 1, within-group time point 1, ED). The 119 feature IDs match taxonomy exactly.</p>
 <p>The taxonomy table contains rank labels that need review against the source annotation before reporting a particular taxonomic rank.</p>
+<p><a href="../../examples/dietswap/03-check-the-inputs.html">Next: Check the selection</a></p>
 
 
 </section>

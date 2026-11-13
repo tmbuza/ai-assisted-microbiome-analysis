@@ -16,4 +16,11 @@ All samples have positive totals. Counts range from **99 to 40,266** per sample,
 
 Do not infer the meaning of HighFat20 or HighFatCa from their names. For this exercise, treat them as supplied sample categories. Animal identity, cage membership, repeated sampling, and other covariates are unavailable in these inputs.
 
+
+::: {.callout-note}
+### What is an OTU?
+
+An operational taxonomic unit is a sequence-based feature. Here, OTU IDs are the available labels; they do not identify named species.
+:::
+
 [Next: Check the inputs](03-check-the-inputs.qmd)

@@ -117,12 +117,17 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Set up and run</span></a>
+ <span class="menu-text">Set up your workspace</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../00-setup.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Set up your workspace</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../01-run-the-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Run the workflow</span></a>
@@ -141,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Community comparison: get ready</span></a>
+  <a href="../../examples/community-comparison/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Begin the synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -271,7 +276,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Analyse your own data</span></a>
+ <span class="menu-text">Analyse your own study</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -279,7 +284,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/my-study/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Analyse your own microbiome data</span></a>
+  <a href="../../examples/my-study/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Analyse your own study</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -315,7 +320,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#explain-what-the-checks-mean" id="toc-explain-what-the-checks-mean" class="nav-link active" data-scroll-target="#explain-what-the-checks-mean">Explain what the checks mean</a></li>
+  <li><a href="#optional-sample-checks" id="toc-optional-sample-checks" class="nav-link active" data-scroll-target="#optional-sample-checks">Optional sample checks</a></li>
+  <li><a href="#explain-what-the-checks-mean" id="toc-explain-what-the-checks-mean" class="nav-link" data-scroll-target="#explain-what-the-checks-mean">Explain what the checks mean</a></li>
   <li><a href="#questions-to-carry-forward" id="toc-questions-to-carry-forward" class="nav-link" data-scroll-target="#questions-to-carry-forward">Questions to carry forward</a></li>
   </ul>
 </nav>
@@ -333,12 +339,6 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">Oct 2026</p>
-    </div>
-  </div>
   
     
   </div>
@@ -348,7 +348,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Use the <a href="../../01-run-the-workflow.html#independently-verify-one-sample">independent sample check</a>, replacing the input folder with <code>data/mouse59</code>, the output folder with <code>results/mouse59</code>, and the sample ID with one below.</p>
+<p>Optionally use the <a href="../../01-run-the-workflow.html#independently-verify-one-sample">independent sample check</a>, replacing the input folder with <code>data/mouse59</code>, the output folder with <code>results/mouse59</code>, and the sample ID with one below.</p>
+<section id="optional-sample-checks" class="level2">
+<h2 class="anchored" data-anchor-id="optional-sample-checks">Optional sample checks</h2>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -384,6 +386,7 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 <p>These reference values were calculated directly from the supplied counts with natural logarithms. Confirm agreement with your saved results. If they differ, check input versions, sample selection, and any filtering.</p>
+</section>
 <section id="explain-what-the-checks-mean" class="level2">
 <h2 class="anchored" data-anchor-id="explain-what-the-checks-mean">Explain what the checks mean</h2>
 <p>A matching Shannon value confirms the calculation for that sample. It does not establish that the sample has adequate coverage or that a group difference has a biological cause. For example, a sample with only 99 counts can still have a relatively high Shannon value if those counts are spread across many OTUs.</p>

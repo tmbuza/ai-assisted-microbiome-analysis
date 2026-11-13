@@ -8,4 +8,4 @@ The supplied DietSwap tables in `data/dietswap/` contain 38 samples from 38 dist
 
 All supplied samples have `timepoint = 1`, `timepoint.within.group = 1`, and `study_group = ED`. This walkthrough compares the selected cohorts at that sampling stage. Confirm its baseline meaning against the source documentation when reporting the study.
 
-[Next — Define the comparison](01-see-the-result.qmd)
+[Next: Define the comparison](01-see-the-result.qmd)

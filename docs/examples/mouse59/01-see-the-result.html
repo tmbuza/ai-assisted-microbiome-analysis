@@ -117,12 +117,17 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Set up and run</span></a>
+ <span class="menu-text">Set up your workspace</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../00-setup.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Set up your workspace</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../01-run-the-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Run the workflow</span></a>
@@ -141,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Community comparison: get ready</span></a>
+  <a href="../../examples/community-comparison/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Begin the synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -271,7 +276,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Analyse your own data</span></a>
+ <span class="menu-text">Analyse your own study</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -279,7 +284,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/my-study/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Analyse your own microbiome data</span></a>
+  <a href="../../examples/my-study/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Analyse your own study</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -334,12 +339,6 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">Oct 2026</p>
-    </div>
-  </div>
   
     
   </div>
@@ -349,7 +348,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>These figures are generated from the supplied Mouse59 inputs. Run the workflow before rendering this page if the images are absent.</p>
+<p>The figures below show the supplied results. Preview them now; you will use the shared workflow instructions to reproduce them after checking the inputs.</p>
 <section id="otu-composition" class="level2">
 <h2 class="anchored" data-anchor-id="otu-composition">OTU composition</h2>
 <div class="quarto-figure quarto-figure-center">
@@ -359,13 +358,14 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 <p>OTU0440 generally occupies a larger proportion in HighFat20. HighFatCa has variable contributions from other displayed OTUs, and many samples have a larger pooled Other fraction. Other represents many OTUs, not one organism. Every bar sums to 100%, regardless of the original count total.</p>
+<p><a href="../../results/mouse59/figures/composition.png">Open the composition figure at full size</a> to read the sample IDs and legend.</p>
 </section>
 <section id="shannon-diversity" class="level2">
 <h2 class="anchored" data-anchor-id="shannon-diversity">Shannon diversity</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../../results/mouse59/figures/shannon-diversity.png" class="img-fluid figure-img"></p>
-<figcaption>Shannon diversity calculated using all 2,027 OTUs, including zeros as appropriate. Each point is one sample.</figcaption>
+<figcaption>Shannon diversity calculated using all 2,027 OTUs, using positive proportions in the Shannon formula. Each point is one sample.</figcaption>
 </figure>
 </div>
 <p>The median Shannon value is higher in HighFatCa: <strong>3.595117</strong>, compared with <strong>2.811773</strong> in HighFat20. The distributions overlap. Shannon reflects both the number of observed OTUs and how evenly counts are distributed among them; higher values do not establish a healthier community.</p>

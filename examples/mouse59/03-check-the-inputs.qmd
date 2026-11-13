@@ -17,4 +17,11 @@ A valid file format does not guarantee adequate data for every question. Both lo
 
 Keep all 59 samples in the initial demonstration. Any later exclusion should have a stated rationale and a separate output folder so you can compare results.
 
+
+::: {.callout-note}
+### A useful quality check
+
+A nonzero total passes the structural check, but a very small total may give an incomplete view of the community. Record the two low-count samples before deciding whether a sensitivity analysis is useful.
+:::
+
 [Next: Inspect the outputs](04-run-the-analysis.qmd)

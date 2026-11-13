@@ -2,13 +2,43 @@
 title: "Write and export your report"
 ---
 
+Turn your checked outputs into a short explanation someone else can follow. Use this page for any of the supplied datasets or your own study.
 
-Copy `templates/learner-report.qmd` to the repository root as `my-study-report.qmd`. Fill in the prompts and select the output folder for your dataset.
+## Prepare the report
 
-Update all image paths to that output folder. Render the report from the root:
+Copy `templates/learner-report.qmd` to the repository root as `my-study-report.qmd`. Keeping it at the root makes the image paths below work as written.
+
+| Dataset | Image folder to use in the report |
+|---|---|
+| Synthetic practice | `results/example/figures/` |
+| DietSwap | `results/dietswap/figures/` |
+| Mouse59 | `results/mouse59/figures/` |
+| Your own study | `results/my-study/figures/` |
+
+Replace all three image paths in the template with the folder for your dataset. Update the title and replace each writing prompt with your own text.
+
+## What to include
+
+Describe the question, sample groups, input selection, and analysis choices. Under each figure, write one observation supported by a saved table value. Explain the main limitation and one next question.
+
+The independent sample calculation is optional. If you performed it, report the sample ID and agreement; otherwise state which table values you checked.
+
+::: {.callout-note}
+### Use AI, then check the evidence
+
+Give AI the actual figures, table values, and your question. Ask for a draft description, then check every number, group label, and claim. Record a suggestion you accepted or changed and why. Share only data you are permitted to share.
+:::
+
+## Render and review
+
+Run this command from the repository root:
 
 ```bash
 quarto render my-study-report.qmd --to html
 ```
 
-Check that images load and every numerical statement agrees with its table. Save `session-info.txt` alongside the report and record the input source, selection decisions, and AI assistance.
+Use the output location printed by Quarto to open the HTML report. Check all three images, captions, and numerical statements. Keep the dataset's `session-info.txt` with your report and retain the input files and analysis decisions needed to reproduce it.
+
+::: {.callout-note}
+Rendering creates the report from existing outputs. It does not rerun the analysis. If your inputs changed, rerun the appropriate command on [Run the workflow](01-run-the-workflow.qmd) first.
+:::

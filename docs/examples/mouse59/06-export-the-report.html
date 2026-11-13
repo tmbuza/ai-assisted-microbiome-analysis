@@ -117,12 +117,17 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Set up and run</span></a>
+ <span class="menu-text">Set up your workspace</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../00-setup.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Set up your workspace</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../01-run-the-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Run the workflow</span></a>
@@ -141,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Community comparison: get ready</span></a>
+  <a href="../../examples/community-comparison/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Begin the synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -271,7 +276,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Analyse your own data</span></a>
+ <span class="menu-text">Analyse your own study</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -279,7 +284,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/my-study/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Analyse your own microbiome data</span></a>
+  <a href="../../examples/my-study/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Analyse your own study</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -315,7 +320,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#apply-the-workflow-to-your-own-dataset" id="toc-apply-the-workflow-to-your-own-dataset" class="nav-link active" data-scroll-target="#apply-the-workflow-to-your-own-dataset">Apply the workflow to your own dataset</a></li>
+  <li><a href="#apply-the-workflow-to-your-own-study" id="toc-apply-the-workflow-to-your-own-study" class="nav-link active" data-scroll-target="#apply-the-workflow-to-your-own-study">Apply the workflow to your own study</a></li>
   </ul>
 </nav>
     </div>
@@ -332,12 +337,6 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">Oct 2026</p>
-    </div>
-  </div>
   
     
   </div>
@@ -348,13 +347,14 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Follow <a href="../../02-write-the-report.html">Write the report</a>, using <code>results/mouse59/</code> for figures and tables.</p>
-<p>Include the question, input dimensions, group sizes, analysis choices, three figures, a numerical verification, and a short conclusion. State that the supplied taxonomy file contains OTU display labels and that detailed study context is unavailable.</p>
+<p>Include the question, input dimensions, group sizes, analysis choices, three figures, a numerical result checked against its table, and a short conclusion. State that the supplied taxonomy file contains OTU display labels and that detailed study context is unavailable.</p>
 <p>Report the two low-count samples and describe whether you retained them. If you explored exclusions, distinguish the full-data results from that sensitivity analysis.</p>
 <p>Use AI to help draft an explanation only after supplying your actual figures and table values. Check every numerical claim against your outputs and remove unsupported claims of significance, causation, or treatment benefit.</p>
-<section id="apply-the-workflow-to-your-own-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="apply-the-workflow-to-your-own-dataset">Apply the workflow to your own dataset</h2>
+<section id="apply-the-workflow-to-your-own-study" class="level2">
+<h2 class="anchored" data-anchor-id="apply-the-workflow-to-your-own-study">Apply the workflow to your own study</h2>
 <p>Place your own <code>feature-counts.tsv</code>, <code>sample-metadata.tsv</code>, and <code>taxonomy.tsv</code> in <code>data/my-study/</code>. Use <code>results/my-study/</code> for your outputs. Keep Mouse59 files in their named folders so the demonstration remains reproducible.</p>
-<p>Begin with a question your metadata can support, then repeat the same input checks, analysis, independent verification, and reporting steps.</p>
+<p>Begin with a question your metadata can support, then repeat the same input checks, analysis, table checks, and reporting steps.</p>
+<p><a href="../../examples/my-study/00-start-here.html">Continue: Analyse your own study</a></p>
 
 
 </section>
@@ -768,8 +768,8 @@ ul.task-list li input[type="checkbox"] {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../examples/my-study/00-start-here.html" class="pagination-link" aria-label="Analyse your own microbiome data">
-        <span class="nav-page-text"><span class="chapter-title">Analyse your own microbiome data</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../examples/my-study/00-start-here.html" class="pagination-link" aria-label="Analyse your own study">
+        <span class="nav-page-text"><span class="chapter-title">Analyse your own study</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

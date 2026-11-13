@@ -6,4 +6,4 @@ Open `results/dietswap/tables/alpha-diversity.tsv` after the run. Reconcile its 
 
 Inspect all three figures and locate the table behind each. Record the sample with the lowest and highest Shannon values and check its count total and observed richness.
 
-[Next — Verify and explain](05-verify-and-explain.qmd)
+[Next: Verify and explain](05-verify-and-explain.qmd)

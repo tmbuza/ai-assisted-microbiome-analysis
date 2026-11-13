@@ -13,4 +13,11 @@ The three supplied files are in `data/example/`.
 
 Locate A01 in the count table and metadata. Match one feature ID to its taxonomic label. There are 12 samples per group and 15 fictional features.
 
-[Next — Check the inputs](03-check-the-inputs.qmd)
+
+::: {.callout-note}
+### Match identifiers exactly
+
+A sample ID is the link between its counts and metadata. Check spelling, punctuation, and accidental spaces. A feature ID links a count-table row to its display label.
+:::
+
+[Next: Check the inputs](03-check-the-inputs.qmd)

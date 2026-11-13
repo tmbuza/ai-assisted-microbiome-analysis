@@ -13,6 +13,6 @@ After the practice command completes, open `results/example/`.
 | `tables/group-summary.tsv` | Group summaries |
 | `figures/` | Three PNGs for the guide and report |
 
-All 24 samples should appear in the diversity table. Select A01 for the independent check.
+All 24 samples should appear in the diversity table. A01 is available for the optional independent check on the next page.
 
-[Next — Verify and explain](05-verify-and-explain.qmd)
+[Next: Verify and explain](05-verify-and-explain.qmd)

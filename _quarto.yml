@@ -6,22 +6,16 @@ project:
   - results/dietswap/figures/*.png
   - results/mouse59/figures/*.png
   - results/my-study/figures/*.png
-
-date: 2026-10-14
-date-format: MMM YYYY
-
 book:
   title: AI-Assisted Microbiome Analysis
   subtitle: From microbiome data to an output you understand and can defend
   author: Teresia Mrema Buza | Complex Data Insights
-
   chapters:
   - index.qmd
-  - part: Set up and run
-
+  - part: Set up your workspace
     chapters:
+    - 00-setup.qmd
     - 01-run-the-workflow.qmd
-
   - part: Practice with synthetic data
     chapters:
     - examples/community-comparison/00-start-here.qmd
@@ -31,7 +25,6 @@ book:
     - examples/community-comparison/04-run-the-analysis.qmd
     - examples/community-comparison/05-verify-and-explain.qmd
     - examples/community-comparison/06-export-the-report.qmd
-
   - part: Follow the DietSwap study
     chapters:
     - examples/dietswap/00-start-here.qmd
@@ -41,7 +34,6 @@ book:
     - examples/dietswap/04-run-the-analysis.qmd
     - examples/dietswap/05-verify-and-explain.qmd
     - examples/dietswap/06-export-the-report.qmd
-
   - part: Explore Mouse59
     chapters:
     - examples/mouse59/00-start-here.qmd
@@ -51,15 +43,12 @@ book:
     - examples/mouse59/04-run-the-analysis.qmd
     - examples/mouse59/05-verify-and-explain.qmd
     - examples/mouse59/06-export-the-report.qmd
-
-  - part: "Analyse your own data"
+  - part: Analyse your own study
     chapters:
-      - examples/my-study/00-start-here.qmd
-      - 02-write-the-report.qmd
-
+    - examples/my-study/00-start-here.qmd
+    - 02-write-the-report.qmd
   appendices:
-    - examples/community-comparison/99-appendix.qmd
-
+  - examples/community-comparison/99-appendix.qmd
 format:
   html:
     theme: cosmo
@@ -70,13 +59,12 @@ format:
     anchor-sections: true
     link-external-icon: true
     css: assets/css/cdi.css
-    code-fold: true
+    code-fold: false
     code-summary: Show code
     code-tools: false
     smooth-scroll: true
     mermaid:
       theme: forest
-
 execute:
   echo: true
   eval: false

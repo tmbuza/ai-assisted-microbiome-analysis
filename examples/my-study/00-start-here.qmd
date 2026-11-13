@@ -1,20 +1,22 @@
 ---
-title: "Analyse your own microbiome data"
+title: "Analyse your own study"
 ---
 
-You have practised with synthetic data and explored the DietSwap and Mouse59 examples. Now apply the same workflow to your own dataset.
+Apply the workflow to your dataset, from preparing the inputs to explaining the results.
 
-## Define your question
+## Start with a question
 
-Write one question that your sample metadata can support:
+::: {.callout-note}
+How do community composition, Shannon diversity, and count totals differ between my sample groups?
+:::
 
-> How do community composition, Shannon diversity, and count totals differ between my sample groups?
+Adapt this question to name the groups you want to compare. Check that your metadata identifies those groups.
 
 Replace “my sample groups” with your actual comparison.
 
 ## Prepare your three input files
 
-Place these files in `data/my-study/`:
+Create `data/my-study/` in the repository root if it is absent. Place these files there:
 
 | File | Required structure |
 |---|---|
@@ -25,6 +27,13 @@ Place these files in `data/my-study/`:
 Sample IDs must match between counts and metadata. Feature IDs must match between counts and taxonomy.
 
 Use original counts for this workflow. If taxonomy is unavailable, use unique feature IDs as display labels and state that limitation in your report.
+
+
+::: {.callout-note}
+### Before you run
+
+Each sample needs a positive total. Keep one consistent feature definition across samples, and record what a sample represents. Paired samples, repeated visits, and shared cages may require additional methods for statistical comparisons.
+:::
 
 ## Check and run
 
@@ -43,7 +52,7 @@ Examine all three generated figures:
 2. **Shannon diversity:** How do the medians, spread, and overlap compare?
 3. **Count totals and diversity:** Are there low-count samples or patterns that need investigation?
 
-Check your descriptions against the saved tables. Independently verify one sample using the [sample verification instructions](../../01-run-the-workflow.qmd#independently-verify-one-sample).
+Check your descriptions against the saved tables. Optionally verify one sample independently using the [sample verification instructions](../../01-run-the-workflow.qmd#independently-verify-one-sample).
 
 Record any filtering decisions and consider whether samples are paired, repeated, or affected by other variables.
 

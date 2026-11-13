@@ -3,7 +3,7 @@ title: "Verify and explain the practice result"
 ---
 
 
-Use the [sample verification step](../../01-run-the-workflow.qmd#independently-verify-one-sample) for A01.
+Optionally use the [sample verification step](../../01-run-the-workflow.qmd#independently-verify-one-sample) for A01.
 
 | Measure | Expected value |
 |---|---:|
@@ -19,4 +19,4 @@ Return to the [figures](01-see-the-result.qmd). Describe one composition pattern
 
 Ask AI to review your draft using the tables and figures you supply. Check its numbers, labels, and claims before accepting any sentence. Record one suggestion you accepted or revised and why.
 
-[Next — Write your practice report](06-export-the-report.qmd)
+[Next: Write your practice report](06-export-the-report.qmd)

@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./01-run-the-workflow.html" rel="next">
+<link href="./00-setup.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -117,12 +117,17 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Set up and run</span></a>
+ <span class="menu-text">Set up your workspace</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-setup.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Set up your workspace</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01-run-the-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Run the workflow</span></a>
@@ -141,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples/community-comparison/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Community comparison: get ready</span></a>
+  <a href="./examples/community-comparison/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Begin the synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -271,7 +276,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Analyse your own data</span></a>
+ <span class="menu-text">Analyse your own study</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -279,7 +284,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples/my-study/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Analyse your own microbiome data</span></a>
+  <a href="./examples/my-study/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Analyse your own study</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -331,12 +336,6 @@ ul.task-list li input[type="checkbox"] {
           </div>
   </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">Oct 2026</p>
-    </div>
-  </div>
   
     
   </div>
@@ -347,9 +346,23 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Follow one workflow from checked input tables to figures you can explain: practise, explore supplied datasets, then analyse your own data.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Choose how to begin
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>New to the workflow?</strong> <a href="./00-setup.html">Set up your workspace</a>, then follow the synthetic practice in order. <strong>Just exploring?</strong> Read the figures first. <strong>Bringing your own data?</strong> Use the checklist for your own study after setup.</p>
+</div>
+</div>
+<p>You will work from prepared feature tables. Raw sequencing processing and statistical hypothesis testing are outside this guide’s workflow.</p>
 <section id="practice-with-synthetic-data" class="level2">
 <h2 class="anchored" data-anchor-id="practice-with-synthetic-data">Practice with synthetic data</h2>
-<p>Begin with 24 synthetic samples and 15 fictional features. Learn to read composition and Shannon diversity plots, then reproduce one sample’s values.</p>
+<p>Begin with 24 synthetic samples and 15 fictional features. Learn to read composition and Shannon diversity plots, then check the figures against the saved tables. An optional exercise reproduces one sample’s values.</p>
 <p><a href="./examples/community-comparison/00-start-here.html">Begin the practice example</a></p>
 </section>
 <section id="follow-the-dietswap-walkthrough" class="level2">
@@ -363,8 +376,8 @@ ul.task-list li input[type="checkbox"] {
 <p>This demonstration uses OTU identifiers as labels because taxonomic assignments are unavailable.</p>
 <p><a href="./examples/mouse59/00-start-here.html">Follow the Mouse59 demonstration</a></p>
 </section>
-<section id="analyse-your-own-data" class="level2">
-<h2 class="anchored" data-anchor-id="analyse-your-own-data">Analyse your own data</h2>
+<section id="analyse-your-own-study" class="level2">
+<h2 class="anchored" data-anchor-id="analyse-your-own-study">Analyse your own study</h2>
 <p>Prepare your three tidy TSV files in <code>data/my-study/</code>, check the identifiers, and apply the same workflow. Verify the results and write a conclusion supported by your evidence.</p>
 <p><a href="./examples/my-study/00-start-here.html">Prepare your own analysis</a></p>
 <p>Use <a href="./01-run-the-workflow.html">Run the workflow</a> whenever a page asks you to generate or refresh outputs.</p>
@@ -778,8 +791,8 @@ ul.task-list li input[type="checkbox"] {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./01-run-the-workflow.html" class="pagination-link" aria-label="Run the workflow">
-        <span class="nav-page-text"><span class="chapter-title">Run the workflow</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./00-setup.html" class="pagination-link" aria-label="Set up your workspace">
+        <span class="nav-page-text"><span class="chapter-title">Set up your workspace</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

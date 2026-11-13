@@ -6,4 +6,11 @@ Confirm that sample IDs match the count table, feature IDs match taxonomy, and t
 
 Use the [DietSwap command](../../01-run-the-workflow.qmd#dietswap). Its automatic checks validate the table structure. Confirm the participant and time-point selection yourself.
 
-[Next — Inspect the outputs](04-run-the-analysis.qmd)
+
+::: {.callout-note}
+### Two kinds of checks
+
+The script checks file structure and matching IDs. You check whether the selected participants and sampling stage support your question.
+:::
+
+[Next: Inspect the outputs](04-run-the-analysis.qmd)

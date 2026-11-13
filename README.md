@@ -1,25 +1,36 @@
-# Mouse59 input preparation
+# AI-Assisted Microbiome Analysis
 
-Source: user-supplied Mouse59GutOTUs.csv. Publication, processing history, treatment definitions and sample independence have not been verified.
+Follow a consistent descriptive workflow from three tidy TSV inputs to composition and diversity figures, checked tables, and a short report.
 
-Extract data/my-study/ into the repository root. Back up existing my-study inputs before replacing them.
+## Learning path
 
-- feature-counts.tsv: transposed original counts, 2,027 OTUs by 59 samples. No filtering, normalization or rarefaction.
-- sample-metadata.tsv: SampleID renamed sample_id; Class renamed group. Labels retained verbatim: HighFatCa (30), HighFat20 (29). Do not infer treatment meanings from these labels alone.
-- taxonomy.tsv: structural placeholder. taxon repeats each OTU ID. No biological taxonomy was supplied or inferred. Composition plots describe OTUs, not named taxa. Replace with verified matching taxonomy when available.
+1. Set up the R environment: `00-setup.qmd`.
+2. Practise with synthetic data: `examples/community-comparison/`.
+3. Follow the selected DietSwap samples: `examples/dietswap/`.
+4. Apply the workflow to Mouse59 OTUs: `examples/mouse59/`.
+5. Prepare your own analysis: `examples/my-study/`.
 
-All samples have positive totals, all counts are nonnegative integers, sample and feature IDs are unique and aligned, and all features have positive totals. R workflow execution was not tested here.
+Commands are collected in `01-run-the-workflow.qmd`. Reporting instructions are in `02-write-the-report.qmd`.
 
-Lowest sample totals (count, sample, group):
-(99, 'SRR4125132', 'HighFat20')
-(182, 'SRR4125107', 'HighFatCa')
-(4420, 'SRR4125126', 'HighFat20')
-(4550, 'SRR4125145', 'HighFat20')
-(8991, 'SRR4125149', 'HighFat20')
+## Data and outputs
 
-Investigate the lowest count sample, sequencing depth differences, cage/animal IDs, repeated sampling and treatment definitions before making biological conclusions.
+| Dataset | Inputs | Outputs |
+|---|---|---|
+| Synthetic | `data/example/` | `results/example/` |
+| DietSwap | `data/dietswap/` | `results/dietswap/` |
+| Mouse59 | `data/mouse59/` | `results/mouse59/` |
+| Learner's study | `data/my-study/` | `results/my-study/` |
 
-Run from the repository root:
+Each input folder needs `feature-counts.tsv`, `sample-metadata.tsv`, and `taxonomy.tsv`. Keep learner folders empty until supplying your own inputs; create them when needed because Git does not retain empty directories.
 
-    Rscript scripts/R/01-check-inputs.R data/my-study results/my-study
-    Rscript scripts/R/02-analyse-example.R data/my-study results/my-study
+Mouse59 contains 59 samples and 2,027 OTUs. Its taxonomy file uses OTU IDs as display labels, and its original Class labels are preserved as groups. Counts were transposed from the supplied CSV without filtering or normalization. It is a workflow demonstration with limited study context.
+
+## Scripts
+
+The main entry point is `scripts/R/02-analyse-example.R`. It calls `01-check-inputs.R` and generates figures and tables. `05-verify-sample.R` is an optional learning exercise. Keep `renv.lock` for package restoration.
+
+This guide starts from prepared feature tables. Raw sequencing processing and statistical inference require additional workflows.
+
+## Render the guide
+
+Generate results for the three supplied datasets using the shared workflow page, then run `quarto render` from the repository root. The book uses existing outputs; rendering does not run the analysis. Generated pages are written to `docs/`.

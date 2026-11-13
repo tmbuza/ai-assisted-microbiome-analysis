@@ -4,14 +4,16 @@ title: "Report the Mouse59 demonstration"
 
 Follow [Write the report](../../02-write-the-report.qmd), using `results/mouse59/` for figures and tables.
 
-Include the question, input dimensions, group sizes, analysis choices, three figures, a numerical verification, and a short conclusion. State that the supplied taxonomy file contains OTU display labels and that detailed study context is unavailable.
+Include the question, input dimensions, group sizes, analysis choices, three figures, a numerical result checked against its table, and a short conclusion. State that the supplied taxonomy file contains OTU display labels and that detailed study context is unavailable.
 
 Report the two low-count samples and describe whether you retained them. If you explored exclusions, distinguish the full-data results from that sensitivity analysis.
 
 Use AI to help draft an explanation only after supplying your actual figures and table values. Check every numerical claim against your outputs and remove unsupported claims of significance, causation, or treatment benefit.
 
-## Apply the workflow to your own dataset
+## Apply the workflow to your own study
 
 Place your own `feature-counts.tsv`, `sample-metadata.tsv`, and `taxonomy.tsv` in `data/my-study/`. Use `results/my-study/` for your outputs. Keep Mouse59 files in their named folders so the demonstration remains reproducible.
 
-Begin with a question your metadata can support, then repeat the same input checks, analysis, independent verification, and reporting steps.
+Begin with a question your metadata can support, then repeat the same input checks, analysis, table checks, and reporting steps.
+
+[Continue: Analyse your own study](../my-study/00-start-here.qmd)

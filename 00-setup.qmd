@@ -1,0 +1,73 @@
+---
+title: "Set up your workspace"
+---
+
+Complete this setup before beginning the guide. You will download the project files, open your workspace, and restore the R packages needed for all three examples.
+
+Work through the sections in order. You only need to complete this setup once.
+
+## Before you begin
+
+Have R, Quarto, and an editor such as VS Code or RStudio installed on your computer.
+
+## Get the project files
+
+[Download the project ZIP](https://github.com/tmbuza/ai-assisted-microbiome-analysis/archive/refs/heads/main.zip)
+
+1. Extract the downloaded ZIP.
+2. Open the extracted `ai-assisted-microbiome-analysis-main` folder in VS Code or RStudio.
+3. Open a terminal in that folder.
+
+::: {.callout-note}
+This is your **project folder**, also called the **repository root**. It contains `_quarto.yml`, `renv.lock`, `data/`, `scripts/`, and `templates/`. Run the guide’s terminal commands from this folder.
+:::
+
+## Restore the R environment
+
+The project includes `renv.lock`, which records the R packages used for the supplied analyses.
+
+::: {.callout-note}
+### Where does code run?
+
+Run terminal commands such as `R`, `Rscript`, and `quarto` in your terminal. After starting R, run R expressions at the R prompt (`>`). Opening a guide page does not run its code.
+:::
+
+In the terminal, start R:
+
+```bash
+R
+```
+
+At the R prompt (`>`), run:
+
+```r
+options(repos = c(CRAN = "https://cloud.r-project.org"))
+
+if (!requireNamespace("renv", quietly = TRUE)) {
+  install.packages("renv")
+}
+
+renv::restore()
+renv::status()
+```
+
+If asked to proceed, enter `Y` and wait for the `>` prompt before entering another command. Restore the supplied lockfile rather than initializing a new environment.
+
+Check that the analysis packages load, then return to the terminal:
+
+```r
+library(tidyverse)
+library(vegan)
+
+q(save = "no")
+```
+
+::: {.callout-note}
+**If setup fails:** copy the error message. Ask AI to explain it using your R version, operating system, and the command you ran. Check the proposed fix before applying it. Keep the supplied lockfile intact while investigating.
+:::
+
+## Ready to begin?
+
+Your terminal should be open in the project root, `renv::status()` should report no synchronization issues, and both packages should load successfully.
+
+[Next: Begin the synthetic practice](examples/community-comparison/00-start-here.qmd)
