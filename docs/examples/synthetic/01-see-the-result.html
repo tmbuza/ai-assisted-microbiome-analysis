@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Write and export your report – AI-Assisted Microbiome Analysis</title>
+<title>2. Preview the results: Synthetic practice – AI-Assisted Microbiome Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,63 +20,28 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./examples/community-comparison/99-appendix.html" rel="next">
-<link href="./examples/my-study/00-start-here.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../examples/synthetic/02-meet-the-data.html" rel="next">
+<link href="../../examples/synthetic/00-start-here.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -107,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style>html{ scroll-behavior: smooth; }</style>
 
 
-<link rel="stylesheet" href="assets/css/cdi.css">
+<link rel="stylesheet" href="../../assets/css/cdi.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -119,7 +84,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./examples/my-study/00-start-here.html">Analyse your own study</a></li><li class="breadcrumb-item"><a href="./02-write-the-report.html"><span class="chapter-title">Write and export your report</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../examples/synthetic/00-start-here.html">Synthetic practice</a></li><li class="breadcrumb-item"><a href="../../examples/synthetic/01-see-the-result.html"><span class="chapter-title">2. Preview the results: Synthetic practice</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -134,7 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">AI-Assisted Microbiome Analysis</a> 
+      <a href="../../">AI-Assisted Microbiome Analysis</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -146,13 +111,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI-Assisted Microbiome Analysis</span></a>
+  <a href="../../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI-Assisted Microbiome Analysis</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Set up your workspace</span></a>
+ <span class="menu-text">Required setup</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -160,12 +125,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./00-setup.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Set up your workspace</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./01-run-the-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Run the workflow</span></a>
+  <a href="../../00-setup.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Set up your workspace</span></a>
   </div>
 </li>
       </ul>
@@ -173,7 +133,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Practice with synthetic data</span></a>
+ <span class="menu-text">Synthetic practice</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -181,37 +141,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples/community-comparison/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Begin the synthetic practice</span></a>
+  <a href="../../examples/synthetic/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1. Define the question: Synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples/community-comparison/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Read the practice figures</span></a>
+  <a href="../../examples/synthetic/01-see-the-result.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">2. Preview the results: Synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples/community-comparison/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Meet the practice data</span></a>
+  <a href="../../examples/synthetic/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3. Meet the inputs: Synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples/community-comparison/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Check the practice inputs</span></a>
+  <a href="../../examples/synthetic/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4. Check the inputs: Synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples/community-comparison/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Find your practice outputs</span></a>
+  <a href="../../examples/synthetic/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5. Run the analysis: Synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples/community-comparison/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Verify and explain the practice result</span></a>
+  <a href="../../examples/synthetic/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6. Verify and explain: Synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples/community-comparison/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Write your practice report</span></a>
+  <a href="../../examples/synthetic/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">7. Write the report: Synthetic practice</span></a>
   </div>
 </li>
       </ul>
@@ -219,7 +179,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Follow the DietSwap study</span></a>
+ <span class="menu-text">DietSwap</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -227,37 +187,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples/dietswap/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Follow the DietSwap study</span></a>
+  <a href="../../examples/dietswap/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1. Define the question: DietSwap</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples/dietswap/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Define the comparison</span></a>
+  <a href="../../examples/dietswap/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2. Preview the results: DietSwap</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples/dietswap/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Meet the DietSwap files</span></a>
+  <a href="../../examples/dietswap/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3. Meet the inputs: DietSwap</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples/dietswap/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Check the DietSwap selection</span></a>
+  <a href="../../examples/dietswap/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4. Check the inputs: DietSwap</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples/dietswap/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Inspect the DietSwap outputs</span></a>
+  <a href="../../examples/dietswap/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5. Run the analysis: DietSwap</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples/dietswap/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Verify and explain DietSwap</span></a>
+  <a href="../../examples/dietswap/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6. Verify and explain: DietSwap</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples/dietswap/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Report your DietSwap walkthrough</span></a>
+  <a href="../../examples/dietswap/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">7. Write the report: DietSwap</span></a>
   </div>
 </li>
       </ul>
@@ -265,7 +225,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Explore Mouse59</span></a>
+ <span class="menu-text">Mouse59</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -273,37 +233,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples/mouse59/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Apply the workflow to Mouse59</span></a>
+  <a href="../../examples/mouse59/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1. Define the question: Mouse59</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples/mouse59/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">See the Mouse59 results</span></a>
+  <a href="../../examples/mouse59/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2. Preview the results: Mouse59</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples/mouse59/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Meet the Mouse59 inputs</span></a>
+  <a href="../../examples/mouse59/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3. Meet the inputs: Mouse59</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples/mouse59/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Check the Mouse59 inputs</span></a>
+  <a href="../../examples/mouse59/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4. Check the inputs: Mouse59</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples/mouse59/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Inspect the Mouse59 outputs</span></a>
+  <a href="../../examples/mouse59/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5. Run the analysis: Mouse59</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples/mouse59/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Verify and explain Mouse59</span></a>
+  <a href="../../examples/mouse59/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6. Verify and explain: Mouse59</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples/mouse59/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Report the Mouse59 demonstration</span></a>
+  <a href="../../examples/mouse59/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">7. Write the report: Mouse59</span></a>
   </div>
 </li>
       </ul>
@@ -311,7 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Analyse your own study</span></a>
+ <span class="menu-text">Your own study</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -319,12 +279,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples/my-study/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Analyse your own study</span></a>
+  <a href="../../examples/my-study/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1. Define the question: Your own study</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-write-the-report.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Write and export your report</span></a>
+  <a href="../../examples/my-study/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2. Preview the results: Your own study</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/my-study/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3. Meet the inputs: Your own study</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/my-study/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4. Check the inputs: Your own study</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/my-study/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5. Run the analysis: Your own study</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/my-study/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6. Verify and explain: Your own study</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/my-study/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">7. Write the report: Your own study</span></a>
   </div>
 </li>
       </ul>
@@ -340,7 +325,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples/community-comparison/99-appendix.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Workflow reference</span></a>
+  <a href="../../99-appendix.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Workflow reference and glossary</span></a>
   </div>
 </li>
       </ul>
@@ -355,18 +340,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#prepare-the-report" id="toc-prepare-the-report" class="nav-link active" data-scroll-target="#prepare-the-report">Prepare the report</a></li>
-  <li><a href="#what-to-include" id="toc-what-to-include" class="nav-link" data-scroll-target="#what-to-include">What to include</a></li>
-  <li><a href="#render-and-review" id="toc-render-and-review" class="nav-link" data-scroll-target="#render-and-review">Render and review</a></li>
+  <li><a href="#your-task" id="toc-your-task" class="nav-link active" data-scroll-target="#your-task">Your task</a></li>
+  <li><a href="#composition" id="toc-composition" class="nav-link" data-scroll-target="#composition">Composition</a></li>
+  <li><a href="#shannon-diversity" id="toc-shannon-diversity" class="nav-link" data-scroll-target="#shannon-diversity">Shannon diversity</a></li>
+  <li><a href="#count-totals-and-diversity" id="toc-count-totals-and-diversity" class="nav-link" data-scroll-target="#count-totals-and-diversity">Count totals and diversity</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./examples/my-study/00-start-here.html">Analyse your own study</a></li><li class="breadcrumb-item"><a href="./02-write-the-report.html"><span class="chapter-title">Write and export your report</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../examples/synthetic/00-start-here.html">Synthetic practice</a></li><li class="breadcrumb-item"><a href="../../examples/synthetic/01-see-the-result.html"><span class="chapter-title">2. Preview the results: Synthetic practice</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Write and export your report</span></h1>
+<h1 class="title"><span class="chapter-title">2. Preview the results: Synthetic practice</span></h1>
 </div>
 
 
@@ -383,61 +369,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Turn your checked outputs into a short explanation someone else can follow. Use this page for any of the supplied datasets or your own study.</p>
-<section id="prepare-the-report" class="level2">
-<h2 class="anchored" data-anchor-id="prepare-the-report">Prepare the report</h2>
-<p>Copy <code>templates/learner-report.qmd</code> to the repository root as <code>my-study-report.qmd</code>. Keeping it at the root makes the image paths below work as written.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Dataset</th>
-<th>Image folder to use in the report</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Synthetic practice</td>
-<td><code>results/example/figures/</code></td>
-</tr>
-<tr class="even">
-<td>DietSwap</td>
-<td><code>results/dietswap/figures/</code></td>
-</tr>
-<tr class="odd">
-<td>Mouse59</td>
-<td><code>results/mouse59/figures/</code></td>
-</tr>
-<tr class="even">
-<td>Your own study</td>
-<td><code>results/my-study/figures/</code></td>
-</tr>
-</tbody>
-</table>
-<p>Replace all three image paths in the template with the folder for your dataset. Update the title and replace each writing prompt with your own text.</p>
+<section id="your-task" class="level2">
+<h2 class="anchored" data-anchor-id="your-task">Your task</h2>
+<p>Preview the supplied figures before running the workflow. Write one initial observation for each figure; you will check it against your own outputs after the run.</p>
 </section>
-<section id="what-to-include" class="level2">
-<h2 class="anchored" data-anchor-id="what-to-include">What to include</h2>
-<p>Describe the question, sample groups, input selection, and analysis choices. Under each figure, write one observation supported by a saved table value. Explain the main limitation and one next question.</p>
-<p>The independent sample calculation is optional. If you performed it, report the sample ID and agreement; otherwise state which table values you checked.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="composition" class="level2">
+<h2 class="anchored" data-anchor-id="composition">Composition</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../results/example/figures/composition.png" class="img-fluid figure-img"></p>
+<figcaption>Composition in Synthetic practice. Each bar shows relative feature proportions for one sample; remaining features are pooled as Other.</figcaption>
+</figure>
 </div>
-<div class="callout-title-container flex-fill">
-Use AI, then check the evidence
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Give AI the actual figures, table values, and your question. Ask for a draft description, then check every number, group label, and claim. Record a suggestion you accepted or changed and why. Share only data you are permitted to share.</p>
-</div>
-</div>
+<p>The supplied composition figure shows a generally larger pooled Other fraction in Group B. Other pools seven fictional features, so its size does not identify which individual features contribute to the pattern. Check their proportions in the unpooled table.</p>
+<p><a href="../../results/example/figures/composition.png">Open the composition image at full size</a> to read its labels.</p>
 </section>
-<section id="render-and-review" class="level2">
-<h2 class="anchored" data-anchor-id="render-and-review">Render and review</h2>
-<p>Run this command from the repository root:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render my-study-report.qmd <span class="at">--to</span> html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Use the output location printed by Quarto to open the HTML report. Check all three images, captions, and numerical statements. Keep the dataset’s <code>session-info.txt</code> with your report and retain the input files and analysis decisions needed to reproduce it.</p>
+<section id="shannon-diversity" class="level2">
+<h2 class="anchored" data-anchor-id="shannon-diversity">Shannon diversity</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../results/example/figures/shannon-diversity.png" class="img-fluid figure-img"></p>
+<figcaption>Shannon diversity in Synthetic practice. Each point is one sample; Shannon uses the full feature table.</figcaption>
+</figure>
+</div>
+<p>The supplied table has median Shannon values of about 2.428 in Group A and 2.560 in Group B. All samples have 15 observed features, so this difference reflects evenness in their feature proportions.</p>
+</section>
+<section id="count-totals-and-diversity" class="level2">
+<h2 class="anchored" data-anchor-id="count-totals-and-diversity">Count totals and diversity</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../results/example/figures/depth-diversity.png" class="img-fluid figure-img"></p>
+<figcaption>Count totals and diversity in Synthetic practice. Each point relates one sample’s feature-table count total to its Shannon diversity.</figcaption>
+</figure>
+</div>
+<p>Compare count ranges within and between groups. Samples with similar totals can have different feature proportions and Shannon values.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -448,9 +413,10 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Rendering creates the report from existing outputs. It does not rerun the analysis. If your inputs changed, rerun the appropriate command on <a href="./01-run-the-workflow.html">Run the workflow</a> first.</p>
+<p>These are descriptive plots. Composition bars sum to 100%; they do not show count totals. Visual differences alone do not establish statistical significance or causation.</p>
 </div>
 </div>
+<p><a href="../../examples/synthetic/02-meet-the-data.html">Next: Meet the inputs</a></p>
 
 
 </section>
@@ -859,13 +825,13 @@ Note
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./examples/my-study/00-start-here.html" class="pagination-link" aria-label="Analyse your own study">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Analyse your own study</span></span>
+      <a href="../../examples/synthetic/00-start-here.html" class="pagination-link" aria-label="1. Define the question: Synthetic practice">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">1. Define the question: Synthetic practice</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./examples/community-comparison/99-appendix.html" class="pagination-link" aria-label="Workflow reference">
-        <span class="nav-page-text"><span class="chapter-title">Workflow reference</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../examples/synthetic/02-meet-the-data.html" class="pagination-link" aria-label="3. Meet the inputs: Synthetic practice">
+        <span class="nav-page-text"><span class="chapter-title">3. Meet the inputs: Synthetic practice</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -874,5 +840,5 @@ Note
 
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

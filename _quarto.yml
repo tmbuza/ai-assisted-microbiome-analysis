@@ -6,26 +6,30 @@ project:
   - results/dietswap/figures/*.png
   - results/mouse59/figures/*.png
   - results/my-study/figures/*.png
+  
 book:
   title: AI-Assisted Microbiome Analysis
   subtitle: From microbiome data to an output you understand and can defend
   author: Teresia Mrema Buza | Complex Data Insights
+
   chapters:
   - index.qmd
-  - part: Set up your workspace
+
+  - part: Required setup
     chapters:
     - 00-setup.qmd
-    - 01-run-the-workflow.qmd
-  - part: Practice with synthetic data
+
+  - part: Synthetic practice
     chapters:
-    - examples/community-comparison/00-start-here.qmd
-    - examples/community-comparison/01-see-the-result.qmd
-    - examples/community-comparison/02-meet-the-data.qmd
-    - examples/community-comparison/03-check-the-inputs.qmd
-    - examples/community-comparison/04-run-the-analysis.qmd
-    - examples/community-comparison/05-verify-and-explain.qmd
-    - examples/community-comparison/06-export-the-report.qmd
-  - part: Follow the DietSwap study
+    - examples/synthetic/00-start-here.qmd
+    - examples/synthetic/01-see-the-result.qmd
+    - examples/synthetic/02-meet-the-data.qmd
+    - examples/synthetic/03-check-the-inputs.qmd
+    - examples/synthetic/04-run-the-analysis.qmd
+    - examples/synthetic/05-verify-and-explain.qmd
+    - examples/synthetic/06-export-the-report.qmd
+
+  - part: DietSwap
     chapters:
     - examples/dietswap/00-start-here.qmd
     - examples/dietswap/01-see-the-result.qmd
@@ -34,7 +38,8 @@ book:
     - examples/dietswap/04-run-the-analysis.qmd
     - examples/dietswap/05-verify-and-explain.qmd
     - examples/dietswap/06-export-the-report.qmd
-  - part: Explore Mouse59
+
+  - part: Mouse59
     chapters:
     - examples/mouse59/00-start-here.qmd
     - examples/mouse59/01-see-the-result.qmd
@@ -43,12 +48,20 @@ book:
     - examples/mouse59/04-run-the-analysis.qmd
     - examples/mouse59/05-verify-and-explain.qmd
     - examples/mouse59/06-export-the-report.qmd
-  - part: Analyse your own study
+
+  - part: Your own study
     chapters:
     - examples/my-study/00-start-here.qmd
-    - 02-write-the-report.qmd
+    - examples/my-study/01-see-the-result.qmd
+    - examples/my-study/02-meet-the-data.qmd
+    - examples/my-study/03-check-the-inputs.qmd
+    - examples/my-study/04-run-the-analysis.qmd
+    - examples/my-study/05-verify-and-explain.qmd
+    - examples/my-study/06-export-the-report.qmd
+
   appendices:
-  - examples/community-comparison/99-appendix.qmd
+  - 99-appendix.qmd
+
 format:
   html:
     theme: cosmo
@@ -65,6 +78,7 @@ format:
     smooth-scroll: true
     mermaid:
       theme: forest
+
 execute:
   echo: true
   eval: false

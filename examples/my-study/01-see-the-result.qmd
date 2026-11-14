@@ -1,0 +1,31 @@
+---
+title: "2. Preview the results: Your own study"
+---
+
+## Your task
+
+Before running your study, identify the three outputs you will inspect. No figures are shown here because you have not supplied or analysed your own inputs yet.
+
+## Composition
+
+After the run, open `results/my-study/figures/composition.png`.
+
+Identify the displayed features with different proportions across samples. Check the full relative-abundance table before explaining Other.
+
+## Shannon diversity
+
+After the run, open `results/my-study/figures/shannon-diversity.png`.
+
+Compare group medians, spread, and overlap. Check observed feature counts and evenness before explaining a difference.
+
+## Count totals and diversity
+
+After the run, open `results/my-study/figures/depth-diversity.png`.
+
+Record count ranges and investigate unusually low totals. Consider whether the pattern changes among samples with similar totals.
+
+::: {.callout-note}
+These are descriptive plots. Composition bars sum to 100%; they do not show count totals. Visual differences alone do not establish statistical significance or causation.
+:::
+
+[Next: Meet the inputs](02-meet-the-data.qmd)

@@ -1,11 +1,26 @@
 ---
-title: "Follow the DietSwap study"
+title: "1. Define the question: DietSwap"
 ---
 
-**Question.** How do community composition and diversity compare between the cohorts in the selected DietSwap samples?
+## Your question
 
-The supplied DietSwap tables in `data/dietswap/` contain 38 samples from 38 distinct participants, with 21 AAM and 17 AFR samples. They include 119 features.
+::: {.callout-note}
+How do community composition, Shannon diversity, and count totals differ between AAM and AFR in the selected DietSwap samples?
+:::
 
-All supplied samples have `timepoint = 1`, `timepoint.within.group = 1`, and `study_group = ED`. This walkthrough compares the selected cohorts at that sampling stage. Confirm its baseline meaning against the source documentation when reporting the study.
+DietSwap is a gut microbiome dataset. The supplied selection contains one sample from each of 38 participants, labelled AAM (African American) and AFR (African). This exercise compares the selected cohorts at the supplied sampling stage; it does not analyse changes over the full study.
 
-[Next: Define the comparison](01-see-the-result.qmd)
+## Your dataset
+
+Use **38 samples**, **119 features**, and the supplied groups **AAM (21) and AFR (17)**.
+
+| Location | Folder |
+|---|---|
+| Inputs | `data/dietswap/` |
+| Outputs | `results/dietswap/` |
+
+## Your task
+
+Follow the seven steps in order: define the question, preview results, meet the inputs, check them, run the analysis, explain the evidence, and write the report. Complete workspace setup before starting.
+
+[Next: Preview the results](01-see-the-result.qmd)

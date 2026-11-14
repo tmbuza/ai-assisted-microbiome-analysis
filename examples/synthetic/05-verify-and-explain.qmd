@@ -1,0 +1,43 @@
+---
+title: "6. Verify and explain: Synthetic practice"
+---
+
+## Your task
+
+Write one observation per figure and check each against the saved tables. Separate observations from possible explanations.
+
+## Check the evidence
+
+| Figure | Numerical check |
+|---|---|
+| Composition | Compare the relevant feature proportions within samples, then summarise by group |
+| Shannon diversity | Compare medians, ranges, and observed feature counts |
+| Count totals and diversity | Identify the smallest and largest totals and inspect unusual samples |
+
+The data are synthetic, so the patterns illustrate the workflow and do not support biological conclusions.
+
+## Optional: verify one sample
+
+From a terminal in the project root, run this optional check:
+
+```bash
+Rscript scripts/R/05-verify-sample.R data/example results/example A01
+```
+
+All three rows should show `TRUE` under `agrees`. To check another sample below, replace only the final sample ID.
+
+| Sample | Group | Count total | Observed features | Shannon |
+|---|---|---:|---:|---:|
+| A01 | Group A | 6,006 | 15 | 2.423797 |
+
+Compare the reference values with your saved outputs. Investigate any disagreement before using the result.
+
+::: {.callout-note}
+The independent sample calculation is optional. Checking your descriptions against the output tables remains part of the workflow. Agreement confirms a calculation; it does not establish sample quality or a biological cause.
+:::
+
+## Before continuing
+
+Write a short answer to your question, name the evidence supporting it, and state one limitation. If AI helps with the draft, check every number, label, and claim against your outputs.
+
+[Next: Write the report](06-export-the-report.qmd)

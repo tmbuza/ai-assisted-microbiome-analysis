@@ -5,12 +5,14 @@ Follow a consistent descriptive workflow from three tidy TSV inputs to compositi
 ## Learning path
 
 1. Set up the R environment: `00-setup.qmd`.
-2. Practise with synthetic data: `examples/community-comparison/`.
+2. Practise with synthetic data: `examples/synthetic/`.
 3. Follow the selected DietSwap samples: `examples/dietswap/`.
 4. Apply the workflow to Mouse59 OTUs: `examples/mouse59/`.
 5. Prepare your own analysis: `examples/my-study/`.
 
-Commands are collected in `01-run-the-workflow.qmd`. Reporting instructions are in `02-write-the-report.qmd`.
+Every dataset follows the same seven pages, from question to report. Your own study uses the same steps after you prepare its inputs.
+
+Each dataset contains its exact analysis and optional verification commands. Its final page includes a report outline with matching figure paths and a render command.
 
 ## Data and outputs
 
@@ -33,4 +35,4 @@ This guide starts from prepared feature tables. Raw sequencing processing and st
 
 ## Render the guide
 
-Generate results for the three supplied datasets using the shared workflow page, then run `quarto render` from the repository root. The book uses existing outputs; rendering does not run the analysis. Generated pages are written to `docs/`.
+Generate results for the three supplied datasets using their Run the analysis pages, then run `quarto render` from the repository root. The book uses existing outputs; rendering does not run the analysis. Generated pages are written to `docs/`.

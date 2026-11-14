@@ -1,0 +1,37 @@
+---
+title: "6. Verify and explain: Your own study"
+---
+
+## Your task
+
+Write one observation per figure and check each against the saved tables. Separate observations from possible explanations.
+
+## Check the evidence
+
+| Figure | Numerical check |
+|---|---|
+| Composition | Compare the relevant feature proportions within samples, then summarise by group |
+| Shannon diversity | Compare medians, ranges, and observed feature counts |
+| Count totals and diversity | Identify the smallest and largest totals and inspect unusual samples |
+
+State the limits of your sampling, grouping, feature labels, and available metadata. Specify which further checks would help answer your question.
+
+## Optional: verify one sample
+
+Choose an actual sample ID from your count table. In the command below, replace `SAMPLE_ID` with that ID, then run it from the project root:
+
+```bash
+Rscript scripts/R/05-verify-sample.R data/my-study results/my-study SAMPLE_ID
+```
+
+Record its total, observed features, Shannon value, and agreement. All three rows should show `TRUE` under `agrees`.
+
+::: {.callout-note}
+The independent sample calculation is optional. Checking your descriptions against the output tables remains part of the workflow. Agreement confirms a calculation; it does not establish sample quality or a biological cause.
+:::
+
+## Before continuing
+
+Write a short answer to your question, name the evidence supporting it, and state one limitation. If AI helps with the draft, check every number, label, and claim against your outputs.
+
+[Next: Write the report](06-export-the-report.qmd)

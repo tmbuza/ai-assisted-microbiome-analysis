@@ -44,3 +44,5 @@ Thumbs.db
 
 # Keep renv.lock, .Rprofile, supplied data, named example results,
 # source QMD files, and the published docs/ site tracked.
+
+UPDATE-*

@@ -1,0 +1,26 @@
+---
+title: "1. Define the question: Synthetic practice"
+---
+
+## Your question
+
+::: {.callout-note}
+How do community composition, Shannon diversity, and count totals differ between Group A and Group B?
+:::
+
+This teaching dataset contains fictional features and two supplied groups. Use it to learn how the workflow behaves before interpreting study data.
+
+## Your dataset
+
+Use **24 samples**, **15 features**, and the supplied groups **Group A (12) and Group B (12)**.
+
+| Location | Folder |
+|---|---|
+| Inputs | `data/example/` |
+| Outputs | `results/example/` |
+
+## Your task
+
+Follow the seven steps in order: define the question, preview results, meet the inputs, check them, run the analysis, explain the evidence, and write the report. Complete workspace setup before starting.
+
+[Next: Preview the results](01-see-the-result.qmd)

@@ -1,24 +1,36 @@
 ---
-title: "Inspect the Mouse59 outputs"
+title: "5. Run the analysis: Mouse59"
 ---
 
-Use the Mouse59 command on the [Run the workflow page](../../01-run-the-workflow.qmd#mouse59). If you have already generated these results, continue with the checks below.
+## Your task
 
-Open `results/mouse59/tables/alpha-diversity.tsv`. Confirm it contains one row for each of the 59 samples and the expected group labels.
+Open a terminal in your project folder, where `_quarto.yml` is located. Run:
 
-Locate the three figures in `results/mouse59/figures/`:
+```bash
+Rscript scripts/R/02-analyse-example.R data/mouse59 results/mouse59
+```
 
-- `composition.png`
-- `shannon-diversity.png`
-- `depth-diversity.png`
+The script checks the inputs first, then writes figures and tables to `results/mouse59/`.
 
-Use the saved tables to answer these questions:
+## Confirm the run
 
-1. Which sample has the lowest Shannon value? What are its total counts and observed OTUs?
-2. Which sample has the highest Shannon value?
-3. Do the group medians agree with the values on the results page?
-4. Does OTU0440 have a higher mean sample proportion in HighFat20? Calculate its relative proportion within each sample before averaging by group.
+The main script calls `01-check-inputs.R` before calculating results. It also compares its Shannon calculation with `vegan` for every sample. If an error occurs, resolve it before interpreting outputs from this or an earlier run.
 
-Use `tables/relative-abundance.tsv` to check composition. The display table groups features for plotting; Shannon uses the full feature table. Do not calculate Shannon from the eight displayed OTUs plus Other.
+Confirm the input folder is `data/mouse59/` and the output folder is `results/mouse59/`.
+
+## Inspect the outputs
+
+| File inside `results/mouse59/` | Check |
+|---|---|
+| `tables/alpha-diversity.tsv` | One row per sample; count total, observed features, Shannon |
+| `tables/relative-abundance.tsv` | Feature proportions for every sample |
+| `tables/composition-display.tsv` | Top eight features and pooled Other |
+| `tables/group-summary.tsv` | Group summaries |
+| `figures/` | All three PNG figures |
+| `session-info.txt` | R and package versions |
+
+## Before continuing
+
+Check that the sample count and group labels agree with your metadata. Open all three figures. Keep the full feature table for diversity calculations; Other is a plotting convenience.
 
 [Next: Verify and explain](05-verify-and-explain.qmd)

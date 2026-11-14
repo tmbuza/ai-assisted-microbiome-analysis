@@ -1,29 +1,33 @@
 ---
-title: "See the Mouse59 results"
+title: "2. Preview the results: Mouse59"
 ---
 
-The figures below show the supplied results. Preview them now; you will use the shared workflow instructions to reproduce them after checking the inputs.
+## Your task
 
-## OTU composition
+Preview the supplied figures before running the workflow. Write one initial observation for each figure; you will check it against your own outputs after the run.
 
-![Relative proportions of the eight OTUs with the highest mean sample proportions; all remaining OTUs are pooled as Other. Each bar is one sample.](../../results/mouse59/figures/composition.png)
+## Composition
 
-OTU0440 generally occupies a larger proportion in HighFat20. HighFatCa has variable contributions from other displayed OTUs, and many samples have a larger pooled Other fraction. Other represents many OTUs, not one organism. Every bar sums to 100%, regardless of the original count total.
+![Composition in Mouse59. Each bar shows relative feature proportions for one sample; remaining features are pooled as Other.](../../results/mouse59/figures/composition.png)
 
-[Open the composition figure at full size](../../results/mouse59/figures/composition.png) to read the sample IDs and legend.
+OTU0440 generally occupies a larger proportion in HighFat20. Many HighFatCa samples have a larger pooled Other fraction. Other contains many OTUs, so it does not identify one organism.
+
+[Open the composition image at full size](../../results/mouse59/figures/composition.png) to read its labels.
 
 ## Shannon diversity
 
-![Shannon diversity calculated using all 2,027 OTUs, using positive proportions in the Shannon formula. Each point is one sample.](../../results/mouse59/figures/shannon-diversity.png)
+![Shannon diversity in Mouse59. Each point is one sample; Shannon uses the full feature table.](../../results/mouse59/figures/shannon-diversity.png)
 
-The median Shannon value is higher in HighFatCa: **3.595117**, compared with **2.811773** in HighFat20. The distributions overlap. Shannon reflects both the number of observed OTUs and how evenly counts are distributed among them; higher values do not establish a healthier community.
+The supplied table has median Shannon values of 3.595117 in HighFatCa and 2.811773 in HighFat20, with overlapping values. Higher Shannon does not by itself indicate a healthier community.
 
 ## Count totals and diversity
 
-![Feature-table count totals and Shannon diversity for each Mouse59 sample.](../../results/mouse59/figures/depth-diversity.png)
+![Count totals and diversity in Mouse59. Each point relates one sample's feature-table count total to its Shannon diversity.](../../results/mouse59/figures/depth-diversity.png)
 
-Samples with similar count totals can have different Shannon values. Two samples have especially small totals, 99 and 182. The sample with the lowest Shannon value has a much larger total, so low counts alone do not explain every low diversity value. This scatterplot does not establish that count depth has no influence.
+Two samples have especially small totals, 99 and 182. The lowest Shannon value occurs at a much larger count total. The scatterplot alone does not establish that count depth has no influence.
 
-These observations describe the supplied data. The workflow does not test statistical significance or establish a treatment effect.
+::: {.callout-note}
+These are descriptive plots. Composition bars sum to 100%; they do not show count totals. Visual differences alone do not establish statistical significance or causation.
+:::
 
 [Next: Meet the inputs](02-meet-the-data.qmd)

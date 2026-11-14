@@ -1,31 +1,46 @@
 ---
-title: "Verify and explain DietSwap"
+title: "6. Verify and explain: DietSwap"
 ---
 
-Optionally choose a sample from the study count table and apply the [independent sample check](../../01-run-the-workflow.qmd#independently-verify-one-sample), changing both paths to DietSwap. Confirm all three results agree.
+## Your task
 
+Write one observation per figure and check each against the saved tables. Separate observations from possible explanations.
 
-## Optional sample checks
+## Check the evidence
 
-| Sample | Group | Total counts | Observed features | Shannon |
+| Figure | Numerical check |
+|---|---|
+| Composition | Compare the relevant feature proportions within samples, then summarise by group |
+| Shannon diversity | Compare medians, ranges, and observed feature counts |
+| Count totals and diversity | Identify the smallest and largest totals and inspect unusual samples |
+
+This selected sampling-stage comparison does not estimate change after a diet swap. Cohort differences may reflect variables beyond the supplied grouping.
+
+## Optional: verify one sample
+
+From a terminal in the project root, run this optional check:
+
+```bash
+Rscript scripts/R/05-verify-sample.R data/dietswap results/dietswap Sample-32
+```
+
+All three rows should show `TRUE` under `agrees`. To check another sample below, replace only the final sample ID.
+
+| Sample | Group | Count total | Observed features | Shannon |
 |---|---|---:|---:|---:|
-| Sample-32 | AAM | 10585 | 103 | 3.167035 |
-| Sample-181 | AAM | 17784 | 100 | 2.352228 |
-| Sample-71 | AAM | 10521 | 102 | 2.470335 |
-| Sample-214 | AFR | 19040 | 103 | 2.028307 |
+| Sample-32 | AAM | 10,585 | 103 | 3.167035 |
+| Sample-181 | AAM | 17,784 | 100 | 2.352228 |
+| Sample-71 | AAM | 10,521 | 102 | 2.470335 |
+| Sample-214 | AFR | 19,040 | 103 | 2.028307 |
 
-![Composition in the selected DietSwap samples.](../../results/dietswap/figures/composition.png)
+Compare the reference values with your saved outputs. Investigate any disagreement before using the result.
 
-Describe which displayed taxa vary, then check their proportions in the full table.
+::: {.callout-note}
+The independent sample calculation is optional. Checking your descriptions against the output tables remains part of the workflow. Agreement confirms a calculation; it does not establish sample quality or a biological cause.
+:::
 
-![Shannon diversity in the selected DietSwap samples.](../../results/dietswap/figures/shannon-diversity.png)
+## Before continuing
 
-Compare the group medians, spread, and overlap. Check both observed richness and feature proportions before explaining the diversity values.
+Write a short answer to your question, name the evidence supporting it, and state one limitation. If AI helps with the draft, check every number, label, and claim against your outputs.
 
-![Count totals and Shannon diversity in the selected DietSwap samples.](../../results/dietswap/figures/depth-diversity.png)
-
-Describe the count ranges and any visible relationship with Shannon within each cohort.
-
-Write a conclusion restricted to the selected samples and sampling stage. A comparison at one sampling stage does not estimate change after a diet swap.
-
-[Next: Report the walkthrough](06-export-the-report.qmd)
+[Next: Write the report](06-export-the-report.qmd)

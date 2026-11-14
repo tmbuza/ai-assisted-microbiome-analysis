@@ -19,7 +19,7 @@ Have R, Quarto, and an editor such as VS Code or RStudio installed on your compu
 3. Open a terminal in that folder.
 
 ::: {.callout-note}
-This is your **project folder**, also called the **repository root**. It contains `_quarto.yml`, `renv.lock`, `data/`, `scripts/`, and `templates/`. Run the guide’s terminal commands from this folder.
+This is your **project folder**, also called the **repository root**. It contains `_quarto.yml`, `renv.lock`, `data/`, `scripts/`. Run the guide’s terminal commands from this folder.
 :::
 
 ## Restore the R environment
@@ -70,4 +70,4 @@ q(save = "no")
 
 Your terminal should be open in the project root, `renv::status()` should report no synchronization issues, and both packages should load successfully.
 
-[Next: Begin the synthetic practice](examples/community-comparison/00-start-here.qmd)
+[Next: Begin the synthetic practice](examples/synthetic/00-start-here.qmd)

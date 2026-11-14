@@ -1,45 +1,36 @@
 ---
+title: "AI-Assisted Microbiome Analysis"
 toc: false
 format:
   html:
     body-classes: front-page
-title: "AI-Assisted Microbiome Analysis"
 ---
 
-Follow one workflow from checked input tables to figures you can explain: practise, explore supplied datasets, then analyse your own data.
+Learn one workflow, then repeat it with a different dataset. Start with the required workspace setup and follow the synthetic practice in order. Use the same seven steps for DietSwap, Mouse59, and your own study.
+
+## One workflow for every dataset
+
+1. Define the question.
+2. Preview the results.
+3. Meet the inputs.
+4. Check the inputs.
+5. Run the analysis.
+6. Verify and explain.
+7. Write the report.
+
+## The datasets
+
+| Dataset | What you will learn |
+|---|---|
+| Synthetic practice | Read and check results from 24 samples and 15 fictional features |
+| DietSwap | Describe a selected cohort comparison using 38 participant samples |
+| Mouse59 | Explore 59 samples and 2,027 OTUs, including low-count samples |
+| Your own study | Prepare three tidy TSV files and apply the same workflow |
 
 ::: {.callout-note}
-### Choose how to begin
-
-**New to the workflow?** [Set up your workspace](00-setup.qmd), then follow the synthetic practice in order. **Just exploring?** Read the figures first. **Bringing your own data?** Use the checklist for your own study after setup.
+Setup is required before running the workflow. Each dataset follows the same page structure. Its question, input/output folders, and dataset-specific details change; the analysis steps stay the same.
 :::
 
-You will work from prepared feature tables. Raw sequencing processing and statistical hypothesis testing are outside this guide's workflow.
+The guide starts from prepared feature tables and produces descriptive results. Raw sequencing processing and statistical hypothesis testing require additional workflows.
 
-## Practice with synthetic data
-
-Begin with 24 synthetic samples and 15 fictional features. Learn to read composition and Shannon diversity plots, then check the figures against the saved tables. An optional exercise reproduces one sample's values.
-
-[Begin the practice example](examples/community-comparison/00-start-here.qmd)
-
-## Follow the DietSwap walkthrough
-
-Use the supplied study tables to investigate composition and diversity. Check the participant and sampling information before deciding which comparison the data support.
-
-[Follow the DietSwap walkthrough](examples/dietswap/00-start-here.qmd)
-
-## Apply the workflow to Mouse59
-
-Explore 59 samples and 2,027 OTUs in two supplied groups. Compare OTU composition and diversity, investigate low-count samples, and verify your observations against the tables.
-
-This demonstration uses OTU identifiers as labels because taxonomic assignments are unavailable.
-
-[Follow the Mouse59 demonstration](examples/mouse59/00-start-here.qmd)
-
-## Analyse your own study
-
-Prepare your three tidy TSV files in `data/my-study/`, check the identifiers, and apply the same workflow. Verify the results and write a conclusion supported by your evidence.
-
-[Prepare your own analysis](examples/my-study/00-start-here.qmd)
-
-Use [Run the workflow](01-run-the-workflow.qmd) whenever a page asks you to generate or refresh outputs.
+[Next: Set up your workspace](00-setup.qmd)

@@ -1,36 +1,45 @@
 ---
-title: "Verify and explain Mouse59"
+title: "6. Verify and explain: Mouse59"
 ---
 
-Optionally use the [independent sample check](../../01-run-the-workflow.qmd#independently-verify-one-sample), replacing the input folder with `data/mouse59`, the output folder with `results/mouse59`, and the sample ID with one below.
+## Your task
 
-## Optional sample checks
+Write one observation per figure and check each against the saved tables. Separate observations from possible explanations.
 
-| Sample | Group | Total counts | Observed OTUs | Shannon |
+## Check the evidence
+
+| Figure | Numerical check |
+|---|---|
+| Composition | Compare the relevant feature proportions within samples, then summarise by group |
+| Shannon diversity | Compare medians, ranges, and observed feature counts |
+| Count totals and diversity | Identify the smallest and largest totals and inspect unusual samples |
+
+Interpret the supplied labels as sample categories. Treatment meanings, animal and cage structure, and taxonomic identities are unavailable in this demonstration.
+
+## Optional: verify one sample
+
+From a terminal in the project root, run this optional check:
+
+```bash
+Rscript scripts/R/05-verify-sample.R data/mouse59 results/mouse59 SRR4125093
+```
+
+All three rows should show `TRUE` under `agrees`. To check another sample below, replace only the final sample ID.
+
+| Sample | Group | Count total | Observed features | Shannon |
 |---|---|---:|---:|---:|
 | SRR4125093 | HighFatCa | 26,849 | 578 | 4.250831 |
 | SRR4125107 | HighFatCa | 182 | 64 | 3.646867 |
 | SRR4125132 | HighFat20 | 99 | 44 | 3.460816 |
 
-These reference values were calculated directly from the supplied counts with natural logarithms. Confirm agreement with your saved results. If they differ, check input versions, sample selection, and any filtering.
+Compare the reference values with your saved outputs. Investigate any disagreement before using the result.
 
-## Explain what the checks mean
+::: {.callout-note}
+The independent sample calculation is optional. Checking your descriptions against the output tables remains part of the workflow. Agreement confirms a calculation; it does not establish sample quality or a biological cause.
+:::
 
-A matching Shannon value confirms the calculation for that sample. It does not establish that the sample has adequate coverage or that a group difference has a biological cause. For example, a sample with only 99 counts can still have a relatively high Shannon value if those counts are spread across many OTUs.
+## Before continuing
 
-Return to the [three figures](01-see-the-result.qmd). Write one observation per figure and support each with a table value. Separate what you observed from possible explanations.
-
-An appropriate diversity statement is:
-
-> In the supplied Mouse59 table, HighFatCa samples had a higher median Shannon diversity than HighFat20 samples (3.595117 versus 2.811773), with overlapping values between groups. This descriptive comparison does not establish statistical significance or explain the difference.
-
-## Questions to carry forward
-
-- How sensitive are the patterns to the two low-count samples?
-- Does observed richness show the same pattern as Shannon?
-- Which individual OTUs contribute to the pooled Other fraction?
-- What additional metadata would be needed to account for animals, cages, or repeated samples?
-
-Do not choose exclusions or analysis methods solely because they strengthen a preferred group difference.
+Write a short answer to your question, name the evidence supporting it, and state one limitation. If AI helps with the draft, check every number, label, and claim against your outputs.
 
 [Next: Write the report](06-export-the-report.qmd)

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Find your practice outputs – AI-Assisted Microbiome Analysis</title>
+<title>Appendix A — Workflow reference and glossary – AI-Assisted Microbiome Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,25 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../examples/community-comparison/05-verify-and-explain.html" rel="next">
-<link href="../../examples/community-comparison/03-check-the-inputs.html" rel="prev">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./examples/my-study/06-export-the-report.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -71,8 +70,37 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="../../assets/css/cdi.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="assets/css/cdi.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -84,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../examples/community-comparison/00-start-here.html">Practice with synthetic data</a></li><li class="breadcrumb-item"><a href="../../examples/community-comparison/04-run-the-analysis.html"><span class="chapter-title">Find your practice outputs</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./99-appendix.html">Appendices</a></li><li class="breadcrumb-item"><a href="./99-appendix.html"><span class="chapter-title">Workflow reference and glossary</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -99,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../../">AI-Assisted Microbiome Analysis</a> 
+      <a href="./">AI-Assisted Microbiome Analysis</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -111,13 +139,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI-Assisted Microbiome Analysis</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AI-Assisted Microbiome Analysis</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Set up your workspace</span></a>
+ <span class="menu-text">Required setup</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -125,12 +153,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../00-setup.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Set up your workspace</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../01-run-the-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Run the workflow</span></a>
+  <a href="./00-setup.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Set up your workspace</span></a>
   </div>
 </li>
       </ul>
@@ -138,7 +161,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Practice with synthetic data</span></a>
+ <span class="menu-text">Synthetic practice</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -146,37 +169,37 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Begin the synthetic practice</span></a>
+  <a href="./examples/synthetic/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1. Define the question: Synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Read the practice figures</span></a>
+  <a href="./examples/synthetic/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2. Preview the results: Synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Meet the practice data</span></a>
+  <a href="./examples/synthetic/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3. Meet the inputs: Synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Check the practice inputs</span></a>
+  <a href="./examples/synthetic/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4. Check the inputs: Synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/04-run-the-analysis.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Find your practice outputs</span></a>
+  <a href="./examples/synthetic/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5. Run the analysis: Synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Verify and explain the practice result</span></a>
+  <a href="./examples/synthetic/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6. Verify and explain: Synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Write your practice report</span></a>
+  <a href="./examples/synthetic/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">7. Write the report: Synthetic practice</span></a>
   </div>
 </li>
       </ul>
@@ -184,7 +207,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Follow the DietSwap study</span></a>
+ <span class="menu-text">DietSwap</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -192,37 +215,37 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/dietswap/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Follow the DietSwap study</span></a>
+  <a href="./examples/dietswap/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1. Define the question: DietSwap</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/dietswap/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Define the comparison</span></a>
+  <a href="./examples/dietswap/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2. Preview the results: DietSwap</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/dietswap/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Meet the DietSwap files</span></a>
+  <a href="./examples/dietswap/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3. Meet the inputs: DietSwap</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/dietswap/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Check the DietSwap selection</span></a>
+  <a href="./examples/dietswap/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4. Check the inputs: DietSwap</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/dietswap/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Inspect the DietSwap outputs</span></a>
+  <a href="./examples/dietswap/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5. Run the analysis: DietSwap</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/dietswap/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Verify and explain DietSwap</span></a>
+  <a href="./examples/dietswap/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6. Verify and explain: DietSwap</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/dietswap/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Report your DietSwap walkthrough</span></a>
+  <a href="./examples/dietswap/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">7. Write the report: DietSwap</span></a>
   </div>
 </li>
       </ul>
@@ -230,7 +253,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Explore Mouse59</span></a>
+ <span class="menu-text">Mouse59</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -238,37 +261,37 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/mouse59/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Apply the workflow to Mouse59</span></a>
+  <a href="./examples/mouse59/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1. Define the question: Mouse59</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/mouse59/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">See the Mouse59 results</span></a>
+  <a href="./examples/mouse59/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2. Preview the results: Mouse59</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/mouse59/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Meet the Mouse59 inputs</span></a>
+  <a href="./examples/mouse59/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3. Meet the inputs: Mouse59</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/mouse59/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Check the Mouse59 inputs</span></a>
+  <a href="./examples/mouse59/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4. Check the inputs: Mouse59</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/mouse59/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Inspect the Mouse59 outputs</span></a>
+  <a href="./examples/mouse59/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5. Run the analysis: Mouse59</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/mouse59/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Verify and explain Mouse59</span></a>
+  <a href="./examples/mouse59/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6. Verify and explain: Mouse59</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/mouse59/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Report the Mouse59 demonstration</span></a>
+  <a href="./examples/mouse59/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">7. Write the report: Mouse59</span></a>
   </div>
 </li>
       </ul>
@@ -276,7 +299,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Analyse your own study</span></a>
+ <span class="menu-text">Your own study</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -284,12 +307,37 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/my-study/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Analyse your own study</span></a>
+  <a href="./examples/my-study/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1. Define the question: Your own study</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../02-write-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Write and export your report</span></a>
+  <a href="./examples/my-study/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2. Preview the results: Your own study</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./examples/my-study/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3. Meet the inputs: Your own study</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./examples/my-study/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4. Check the inputs: Your own study</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./examples/my-study/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5. Run the analysis: Your own study</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./examples/my-study/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6. Verify and explain: Your own study</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./examples/my-study/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">7. Write the report: Your own study</span></a>
   </div>
 </li>
       </ul>
@@ -305,7 +353,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/99-appendix.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Workflow reference</span></a>
+  <a href="./99-appendix.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Workflow reference and glossary</span></a>
   </div>
 </li>
       </ul>
@@ -315,15 +363,27 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-workflow" id="toc-the-workflow" class="nav-link active" data-scroll-target="#the-workflow">The workflow</a></li>
+  <li><a href="#input-and-output-folders" id="toc-input-and-output-folders" class="nav-link" data-scroll-target="#input-and-output-folders">Input and output folders</a></li>
+  <li><a href="#what-the-scripts-do" id="toc-what-the-scripts-do" class="nav-link" data-scroll-target="#what-the-scripts-do">What the scripts do</a></li>
+  <li><a href="#terms-used-in-the-figures" id="toc-terms-used-in-the-figures" class="nav-link" data-scroll-target="#terms-used-in-the-figures">Terms used in the figures</a></li>
+  <li><a href="#how-shannon-is-calculated" id="toc-how-shannon-is-calculated" class="nav-link" data-scroll-target="#how-shannon-is-calculated">How Shannon is calculated</a></li>
+  <li><a href="#reading-the-outputs" id="toc-reading-the-outputs" class="nav-link" data-scroll-target="#reading-the-outputs">Reading the outputs</a></li>
+  <li><a href="#reporting-and-interpretation" id="toc-reporting-and-interpretation" class="nav-link" data-scroll-target="#reporting-and-interpretation">Reporting and interpretation</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../examples/community-comparison/00-start-here.html">Practice with synthetic data</a></li><li class="breadcrumb-item"><a href="../../examples/community-comparison/04-run-the-analysis.html"><span class="chapter-title">Find your practice outputs</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./99-appendix.html">Appendices</a></li><li class="breadcrumb-item"><a href="./99-appendix.html"><span class="chapter-title">Workflow reference and glossary</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Find your practice outputs</span></h1>
+<h1 class="title">Appendix A — Workflow reference and glossary</h1>
 </div>
 
 
@@ -340,7 +400,49 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>After the practice command completes, open <code>results/example/</code>.</p>
+<p>This reference applies to all datasets in the guide. Each dataset section contains its own commands, figures, checks, and report instructions.</p>
+<section id="the-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="the-workflow">The workflow</h2>
+<p>After completing workspace setup, follow the same seven steps for each dataset: define the question, preview the results, meet the inputs, check the inputs, run the analysis, verify and explain, and write the report.</p>
+<p>The three supplied datasets have prepared inputs. For your own study, prepare the three tidy TSV files before running the analysis.</p>
+</section>
+<section id="input-and-output-folders" class="level2">
+<h2 class="anchored" data-anchor-id="input-and-output-folders">Input and output folders</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Dataset</th>
+<th>Input folder</th>
+<th>Output folder</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Synthetic practice</td>
+<td><code>data/example/</code></td>
+<td><code>results/example/</code></td>
+</tr>
+<tr class="even">
+<td>DietSwap</td>
+<td><code>data/dietswap/</code></td>
+<td><code>results/dietswap/</code></td>
+</tr>
+<tr class="odd">
+<td>Mouse59</td>
+<td><code>data/mouse59/</code></td>
+<td><code>results/mouse59/</code></td>
+</tr>
+<tr class="even">
+<td>Your own study</td>
+<td><code>data/my-study/</code></td>
+<td><code>results/my-study/</code></td>
+</tr>
+</tbody>
+</table>
+<p>Each input folder needs <code>feature-counts.tsv</code>, <code>sample-metadata.tsv</code>, and <code>taxonomy.tsv</code>. Sample identifiers connect counts to metadata; feature identifiers connect counts to display labels. If biological taxonomy is unavailable, use unique feature IDs as labels and state that limitation.</p>
+</section>
+<section id="what-the-scripts-do" class="level2">
+<h2 class="anchored" data-anchor-id="what-the-scripts-do">What the scripts do</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -348,37 +450,153 @@ ul.task-list li input[type="checkbox"] {
 </colgroup>
 <thead>
 <tr class="header">
-<th>File</th>
-<th>What to check</th>
+<th>Script in <code>scripts/R/</code></th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>01-check-inputs.R</code></td>
+<td>Validates input structure and identifiers; called by the analysis script</td>
+</tr>
+<tr class="even">
+<td><code>02-analyse-example.R</code></td>
+<td>Main entry point; generates descriptive tables and three figures</td>
+</tr>
+<tr class="odd">
+<td><code>05-verify-sample.R</code></td>
+<td>Optional independent check of one sample’s total, observed features, and Shannon</td>
+</tr>
+</tbody>
+</table>
+<p>Run the exact commands on the dataset’s analysis and verification pages from the project root, the folder containing <code>_quarto.yml</code>. The analysis also compares its Shannon calculation with <code>vegan</code> for every sample.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The independent sample calculation is optional. Checking descriptions and numerical claims against the saved tables remains part of every analysis. A passing input check confirms structural validity, not that the study design supports every biological question.</p>
+</div>
+</div>
+</section>
+<section id="terms-used-in-the-figures" class="level2">
+<h2 class="anchored" data-anchor-id="terms-used-in-the-figures">Terms used in the figures</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Meaning in this workflow</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Feature</td>
+<td>A row in the count table, such as an OTU or another supplied microbial feature</td>
+</tr>
+<tr class="even">
+<td>OTU</td>
+<td>Operational taxonomic unit; a sequence-based feature whose identifier alone does not name a species</td>
+</tr>
+<tr class="odd">
+<td>Count total</td>
+<td>Sum of all feature counts in one sample; not a measure of total microbial biomass</td>
+</tr>
+<tr class="even">
+<td>Relative proportion</td>
+<td>Feature count divided by that sample’s count total</td>
+</tr>
+<tr class="odd">
+<td>Observed features</td>
+<td>Number of features with a positive count in one sample</td>
+</tr>
+<tr class="even">
+<td>Richness</td>
+<td>Number of distinct features; observed richness counts those detected in the supplied sample</td>
+</tr>
+<tr class="odd">
+<td>Evenness</td>
+<td>How evenly a sample’s counts are distributed among its features</td>
+</tr>
+<tr class="even">
+<td>Shannon diversity</td>
+<td>A summary reflecting richness and evenness, using natural logarithms</td>
+</tr>
+<tr class="odd">
+<td>Other</td>
+<td>All features outside the top eight, pooled only for the composition display</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="how-shannon-is-calculated" class="level2">
+<h2 class="anchored" data-anchor-id="how-shannon-is-calculated">How Shannon is calculated</h2>
+<p>For a sample with feature counts <span class="math inline">\(x_i\)</span>, calculate each proportion as <span class="math inline">\(p_i=x_i/\sum_j x_j\)</span>. Then:</p>
+<p><span class="math display">\[
+H=-\sum_{i:p_i&gt;0} p_i\ln(p_i).
+\]</span></p>
+<p>Zero proportions contribute zero and are omitted from the logarithm calculation. Shannon uses all features in the supplied analysis table. The top-eight selection and pooled Other category are used only for composition plotting.</p>
+<p>If every feature count in a sample is multiplied by the same positive factor, its proportions and Shannon value remain unchanged. In observed sequencing data, however, low counts can limit detection of features; investigate unusually low totals before interpreting diversity.</p>
+</section>
+<section id="reading-the-outputs" class="level2">
+<h2 class="anchored" data-anchor-id="reading-the-outputs">Reading the outputs</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Output within the selected results folder</th>
+<th>Use</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><code>tables/alpha-diversity.tsv</code></td>
-<td>One row per sample with totals, observed features, and Shannon</td>
+<td>Check sample totals, observed features, and Shannon</td>
 </tr>
 <tr class="even">
 <td><code>tables/relative-abundance.tsv</code></td>
-<td>Original feature proportions for every sample</td>
+<td>Check individual feature proportions</td>
 </tr>
 <tr class="odd">
 <td><code>tables/composition-display.tsv</code></td>
-<td>Top eight features and pooled Other</td>
+<td>Inspect the features selected for display and pooled Other</td>
 </tr>
 <tr class="even">
 <td><code>tables/group-summary.tsv</code></td>
-<td>Group summaries</td>
+<td>Check group summaries</td>
 </tr>
 <tr class="odd">
 <td><code>figures/</code></td>
-<td>Three PNGs for the guide and report</td>
+<td>View composition, Shannon diversity, and count-total plots</td>
+</tr>
+<tr class="even">
+<td><code>session-info.txt</code></td>
+<td>Record R and package versions</td>
 </tr>
 </tbody>
 </table>
-<p>All 24 samples should appear in the diversity table. A01 is available for the optional independent check on the next page.</p>
-<p><a href="../../examples/community-comparison/05-verify-and-explain.html">Next: Verify and explain</a></p>
+<p>Composition bars sum to 100%. A feature’s proportion can change when other features change, so proportions alone do not measure absolute abundance. Compare variation within groups as well as differences between them.</p>
+</section>
+<section id="reporting-and-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="reporting-and-interpretation">Reporting and interpretation</h2>
+<p>Each dataset’s final page provides a copyable report outline, matching figure paths, a report filename, and the render command. Save the report QMD in the project root so its relative image paths resolve correctly.</p>
+<p>Rendering uses existing analysis outputs. If inputs change, rerun the dataset’s analysis before rendering the report. After an error, resolve the problem before interpreting files that may remain from an earlier run.</p>
+<p>The supplied workflow produces descriptive summaries. Visual differences alone do not establish statistical significance or causation. Paired observations, repeated visits, shared cages, confounding, and statistical inference need additional decisions and methods appropriate to the study.</p>
+<p>If AI helps draft an explanation, check its numbers, group labels, and claims against the supplied outputs. Record which suggestions you accepted or revised and why.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -784,14 +1002,11 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../examples/community-comparison/03-check-the-inputs.html" class="pagination-link" aria-label="Check the practice inputs">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Check the practice inputs</span></span>
+      <a href="./examples/my-study/06-export-the-report.html" class="pagination-link" aria-label="7. Write the report: Your own study">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">7. Write the report: Your own study</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../examples/community-comparison/05-verify-and-explain.html" class="pagination-link" aria-label="Verify and explain the practice result">
-        <span class="nav-page-text"><span class="chapter-title">Verify and explain the practice result</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -799,5 +1014,5 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

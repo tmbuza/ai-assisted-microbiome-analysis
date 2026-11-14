@@ -1,0 +1,25 @@
+---
+title: "4. Check the inputs: Your own study"
+---
+
+## Your task
+
+Review the input tables before starting the analysis. You will run the analysis on the next page; its first action is to check the files automatically.
+
+## Check the structure
+
+- All three files exist and use tab-separated columns.
+- Sample IDs are unique and match exactly between counts and metadata.
+- Feature IDs are unique and match between counts and taxonomy.
+- Counts are finite, nonnegative integers; every sample has a positive total.
+- Group labels are present and represent the intended comparison.
+
+## Check the dataset
+
+Check whether samples are paired, repeated, or clustered. Record missing metadata, low-count samples, and any exclusions. These descriptive summaries do not account automatically for study design or confounding.
+
+## Before continuing
+
+Record the sample count, feature count, and group sizes you expect. The script checks file structure; you decide whether the selected samples support your question.
+
+[Next: Run the analysis](04-run-the-analysis.qmd)

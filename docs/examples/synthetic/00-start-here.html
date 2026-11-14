@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Verify and explain the practice result – AI-Assisted Microbiome Analysis</title>
+<title>1. Define the question: Synthetic practice – AI-Assisted Microbiome Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../examples/community-comparison/06-export-the-report.html" rel="next">
-<link href="../../examples/community-comparison/04-run-the-analysis.html" rel="prev">
+<link href="../../examples/synthetic/01-see-the-result.html" rel="next">
+<link href="../../00-setup.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -71,35 +71,6 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../assets/css/cdi.css">
 </head>
@@ -113,7 +84,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../examples/community-comparison/00-start-here.html">Practice with synthetic data</a></li><li class="breadcrumb-item"><a href="../../examples/community-comparison/05-verify-and-explain.html"><span class="chapter-title">Verify and explain the practice result</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../examples/synthetic/00-start-here.html">Synthetic practice</a></li><li class="breadcrumb-item"><a href="../../examples/synthetic/00-start-here.html"><span class="chapter-title">1. Define the question: Synthetic practice</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -146,7 +117,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Set up your workspace</span></a>
+ <span class="menu-text">Required setup</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -157,17 +128,12 @@ window.Quarto = {
   <a href="../../00-setup.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Set up your workspace</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../01-run-the-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Run the workflow</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Practice with synthetic data</span></a>
+ <span class="menu-text">Synthetic practice</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -175,37 +141,37 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Begin the synthetic practice</span></a>
+  <a href="../../examples/synthetic/00-start-here.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">1. Define the question: Synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Read the practice figures</span></a>
+  <a href="../../examples/synthetic/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2. Preview the results: Synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Meet the practice data</span></a>
+  <a href="../../examples/synthetic/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3. Meet the inputs: Synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Check the practice inputs</span></a>
+  <a href="../../examples/synthetic/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4. Check the inputs: Synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Find your practice outputs</span></a>
+  <a href="../../examples/synthetic/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5. Run the analysis: Synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/05-verify-and-explain.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Verify and explain the practice result</span></a>
+  <a href="../../examples/synthetic/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6. Verify and explain: Synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Write your practice report</span></a>
+  <a href="../../examples/synthetic/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">7. Write the report: Synthetic practice</span></a>
   </div>
 </li>
       </ul>
@@ -213,7 +179,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Follow the DietSwap study</span></a>
+ <span class="menu-text">DietSwap</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -221,37 +187,37 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/dietswap/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Follow the DietSwap study</span></a>
+  <a href="../../examples/dietswap/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1. Define the question: DietSwap</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/dietswap/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Define the comparison</span></a>
+  <a href="../../examples/dietswap/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2. Preview the results: DietSwap</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/dietswap/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Meet the DietSwap files</span></a>
+  <a href="../../examples/dietswap/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3. Meet the inputs: DietSwap</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/dietswap/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Check the DietSwap selection</span></a>
+  <a href="../../examples/dietswap/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4. Check the inputs: DietSwap</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/dietswap/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Inspect the DietSwap outputs</span></a>
+  <a href="../../examples/dietswap/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5. Run the analysis: DietSwap</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/dietswap/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Verify and explain DietSwap</span></a>
+  <a href="../../examples/dietswap/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6. Verify and explain: DietSwap</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/dietswap/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Report your DietSwap walkthrough</span></a>
+  <a href="../../examples/dietswap/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">7. Write the report: DietSwap</span></a>
   </div>
 </li>
       </ul>
@@ -259,7 +225,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Explore Mouse59</span></a>
+ <span class="menu-text">Mouse59</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -267,37 +233,37 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/mouse59/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Apply the workflow to Mouse59</span></a>
+  <a href="../../examples/mouse59/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1. Define the question: Mouse59</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/mouse59/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">See the Mouse59 results</span></a>
+  <a href="../../examples/mouse59/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2. Preview the results: Mouse59</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/mouse59/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Meet the Mouse59 inputs</span></a>
+  <a href="../../examples/mouse59/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3. Meet the inputs: Mouse59</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/mouse59/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Check the Mouse59 inputs</span></a>
+  <a href="../../examples/mouse59/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4. Check the inputs: Mouse59</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/mouse59/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Inspect the Mouse59 outputs</span></a>
+  <a href="../../examples/mouse59/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5. Run the analysis: Mouse59</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/mouse59/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Verify and explain Mouse59</span></a>
+  <a href="../../examples/mouse59/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6. Verify and explain: Mouse59</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/mouse59/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Report the Mouse59 demonstration</span></a>
+  <a href="../../examples/mouse59/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">7. Write the report: Mouse59</span></a>
   </div>
 </li>
       </ul>
@@ -305,7 +271,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Analyse your own study</span></a>
+ <span class="menu-text">Your own study</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -313,12 +279,37 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/my-study/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Analyse your own study</span></a>
+  <a href="../../examples/my-study/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1. Define the question: Your own study</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../02-write-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Write and export your report</span></a>
+  <a href="../../examples/my-study/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2. Preview the results: Your own study</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/my-study/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3. Meet the inputs: Your own study</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/my-study/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4. Check the inputs: Your own study</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/my-study/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5. Run the analysis: Your own study</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/my-study/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6. Verify and explain: Your own study</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/my-study/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">7. Write the report: Your own study</span></a>
   </div>
 </li>
       </ul>
@@ -334,7 +325,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/99-appendix.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Workflow reference</span></a>
+  <a href="../../99-appendix.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Workflow reference and glossary</span></a>
   </div>
 </li>
       </ul>
@@ -344,15 +335,23 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#your-question" id="toc-your-question" class="nav-link active" data-scroll-target="#your-question">Your question</a></li>
+  <li><a href="#your-dataset" id="toc-your-dataset" class="nav-link" data-scroll-target="#your-dataset">Your dataset</a></li>
+  <li><a href="#your-task" id="toc-your-task" class="nav-link" data-scroll-target="#your-task">Your task</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../examples/community-comparison/00-start-here.html">Practice with synthetic data</a></li><li class="breadcrumb-item"><a href="../../examples/community-comparison/05-verify-and-explain.html"><span class="chapter-title">Verify and explain the practice result</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../examples/synthetic/00-start-here.html">Synthetic practice</a></li><li class="breadcrumb-item"><a href="../../examples/synthetic/00-start-here.html"><span class="chapter-title">1. Define the question: Synthetic practice</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Verify and explain the practice result</span></h1>
+<h1 class="title"><span class="chapter-title">1. Define the question: Synthetic practice</span></h1>
 </div>
 
 
@@ -369,36 +368,52 @@ window.Quarto = {
 </header>
 
 
-<p>Optionally use the <a href="../../01-run-the-workflow.html#independently-verify-one-sample">sample verification step</a> for A01.</p>
+<section id="your-question" class="level2">
+<h2 class="anchored" data-anchor-id="your-question">Your question</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>How do community composition, Shannon diversity, and count totals differ between Group A and Group B?</p>
+</div>
+</div>
+<p>This teaching dataset contains fictional features and two supplied groups. Use it to learn how the workflow behaves before interpreting study data.</p>
+</section>
+<section id="your-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="your-dataset">Your dataset</h2>
+<p>Use <strong>24 samples</strong>, <strong>15 features</strong>, and the supplied groups <strong>Group A (12) and Group B (12)</strong>.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>Measure</th>
-<th style="text-align: right;">Expected value</th>
+<th>Location</th>
+<th>Folder</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Feature total</td>
-<td style="text-align: right;">6006</td>
+<td>Inputs</td>
+<td><code>data/example/</code></td>
 </tr>
 <tr class="even">
-<td>Observed features</td>
-<td style="text-align: right;">15</td>
-</tr>
-<tr class="odd">
-<td>Shannon diversity</td>
-<td style="text-align: right;">2.423797</td>
+<td>Outputs</td>
+<td><code>results/example/</code></td>
 </tr>
 </tbody>
 </table>
-<p>For each feature, divide its count by the sample total to obtain its proportion. Calculate <span class="math inline">\(H=-\sum p_i\ln(p_i)\)</span> using positive proportions.</p>
-<p>The synthetic table gives median Shannon diversity of about 2.428 in Group A and 2.560 in Group B. All samples have 15 observed features, so this diversity difference reflects evenness in the supplied proportions.</p>
-<p>Return to the <a href="../../examples/community-comparison/01-see-the-result.html">figures</a>. Describe one composition pattern and one diversity pattern. Check each statement against a table. Explain how pooling seven features as Other affects what you can identify.</p>
-<p>Ask AI to review your draft using the tables and figures you supply. Check its numbers, labels, and claims before accepting any sentence. Record one suggestion you accepted or revised and why.</p>
-<p><a href="../../examples/community-comparison/06-export-the-report.html">Next: Write your practice report</a></p>
+</section>
+<section id="your-task" class="level2">
+<h2 class="anchored" data-anchor-id="your-task">Your task</h2>
+<p>Follow the seven steps in order: define the question, preview results, meet the inputs, check them, run the analysis, explain the evidence, and write the report. Complete workspace setup before starting.</p>
+<p><a href="../../examples/synthetic/01-see-the-result.html">Next: Preview the results</a></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -804,13 +819,13 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../examples/community-comparison/04-run-the-analysis.html" class="pagination-link" aria-label="Find your practice outputs">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Find your practice outputs</span></span>
+      <a href="../../00-setup.html" class="pagination-link" aria-label="Set up your workspace">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Set up your workspace</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../examples/community-comparison/06-export-the-report.html" class="pagination-link" aria-label="Write your practice report">
-        <span class="nav-page-text"><span class="chapter-title">Write your practice report</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../examples/synthetic/01-see-the-result.html" class="pagination-link" aria-label="2. Preview the results: Synthetic practice">
+        <span class="nav-page-text"><span class="chapter-title">2. Preview the results: Synthetic practice</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

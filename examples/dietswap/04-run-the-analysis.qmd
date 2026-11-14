@@ -1,9 +1,36 @@
 ---
-title: "Inspect the DietSwap outputs"
+title: "5. Run the analysis: DietSwap"
 ---
 
-Open `results/dietswap/tables/alpha-diversity.tsv` after the run. Reconcile its sample count and group labels with your selected metadata.
+## Your task
 
-Inspect all three figures and locate the table behind each. Record the sample with the lowest and highest Shannon values and check its count total and observed richness.
+Open a terminal in your project folder, where `_quarto.yml` is located. Run:
+
+```bash
+Rscript scripts/R/02-analyse-example.R data/dietswap results/dietswap
+```
+
+The script checks the inputs first, then writes figures and tables to `results/dietswap/`.
+
+## Confirm the run
+
+The main script calls `01-check-inputs.R` before calculating results. It also compares its Shannon calculation with `vegan` for every sample. If an error occurs, resolve it before interpreting outputs from this or an earlier run.
+
+Confirm the input folder is `data/dietswap/` and the output folder is `results/dietswap/`.
+
+## Inspect the outputs
+
+| File inside `results/dietswap/` | Check |
+|---|---|
+| `tables/alpha-diversity.tsv` | One row per sample; count total, observed features, Shannon |
+| `tables/relative-abundance.tsv` | Feature proportions for every sample |
+| `tables/composition-display.tsv` | Top eight features and pooled Other |
+| `tables/group-summary.tsv` | Group summaries |
+| `figures/` | All three PNG figures |
+| `session-info.txt` | R and package versions |
+
+## Before continuing
+
+Check that the sample count and group labels agree with your metadata. Open all three figures. Keep the full feature table for diversity calculations; Other is a plotting convenience.
 
 [Next: Verify and explain](05-verify-and-explain.qmd)

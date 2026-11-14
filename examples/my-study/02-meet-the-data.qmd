@@ -1,0 +1,25 @@
+---
+title: "3. Meet the inputs: Your own study"
+---
+
+## Your task
+
+Create the input folder if needed and prepare the three TSV files in `data/my-study/`.
+
+## The three files
+
+| File | Required structure |
+|---|---|
+| `feature-counts.tsv` | `feature_id`, followed by sample columns of nonnegative integer counts |
+| `sample-metadata.tsv` | `sample_id` and `group`, with one row per sample |
+| `taxonomy.tsv` | `feature_id` and `taxon`, with one row per feature |
+
+## Dataset details
+
+Record what each sample represents, how groups were defined, and any participant, visit, batch, or other relevant fields. Preserve those metadata. If taxonomy is unavailable, use unique feature IDs as display labels and record that limitation.
+
+## Before continuing
+
+Choose one sample ID and locate it in both counts and metadata. Choose one feature ID and locate it in both counts and taxonomy. These identifiers connect the files.
+
+[Next: Check the inputs](03-check-the-inputs.qmd)

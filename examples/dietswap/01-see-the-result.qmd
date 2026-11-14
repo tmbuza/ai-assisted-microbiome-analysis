@@ -1,11 +1,33 @@
 ---
-title: "Define the comparison"
+title: "2. Preview the results: DietSwap"
 ---
 
-Open the metadata and write one sentence naming the cohorts, sampling stage, and unit of analysis. Count unique participants as well as samples.
+## Your task
 
-The supplied selection contains one sample per participant. Compare the cohorts at the supplied sampling stage. Calling this a baseline comparison requires documentation of what the time-point labels mean.
+Preview the supplied figures before running the workflow. Write one initial observation for each figure; you will check it against your own outputs after the run.
 
-After your run, return to the figures linked on the verification page. Record one observation before writing an explanation.
+## Composition
 
-[Next: Meet the study files](02-meet-the-data.qmd)
+![Composition in DietSwap. Each bar shows relative feature proportions for one sample; remaining features are pooled as Other.](../../results/dietswap/figures/composition.png)
+
+Compare individual displayed features across AAM and AFR. Check the underlying proportions before naming a feature that appears different.
+
+[Open the composition image at full size](../../results/dietswap/figures/composition.png) to read its labels.
+
+## Shannon diversity
+
+![Shannon diversity in DietSwap. Each point is one sample; Shannon uses the full feature table.](../../results/dietswap/figures/shannon-diversity.png)
+
+Read the group medians, spread, and overlap from your generated figure, then check them in the tables. For scale, the supplied reference checks give Shannon = 3.167035 for AAM sample Sample-32 and 2.028307 for AFR sample Sample-214. Both have 103 observed features, so their difference reflects the distribution of feature proportions. These two samples do not establish the direction of a group-wide difference.
+
+## Count totals and diversity
+
+![Count totals and diversity in DietSwap. Each point relates one sample's feature-table count total to its Shannon diversity.](../../results/dietswap/figures/depth-diversity.png)
+
+Compare count ranges within each cohort and identify unusual samples. Check whether samples with similar count totals have different Shannon values.
+
+::: {.callout-note}
+These are descriptive plots. Composition bars sum to 100%; they do not show count totals. Visual differences alone do not establish statistical significance or causation.
+:::
+
+[Next: Meet the inputs](02-meet-the-data.qmd)

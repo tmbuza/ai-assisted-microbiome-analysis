@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Verify and explain DietSwap – AI-Assisted Microbiome Analysis</title>
+<title>6. Verify and explain: DietSwap – AI-Assisted Microbiome Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -84,7 +119,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../examples/dietswap/00-start-here.html">Follow the DietSwap study</a></li><li class="breadcrumb-item"><a href="../../examples/dietswap/05-verify-and-explain.html"><span class="chapter-title">Verify and explain DietSwap</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../examples/dietswap/00-start-here.html">DietSwap</a></li><li class="breadcrumb-item"><a href="../../examples/dietswap/05-verify-and-explain.html"><span class="chapter-title">6. Verify and explain: DietSwap</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -117,7 +152,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Set up your workspace</span></a>
+ <span class="menu-text">Required setup</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -128,17 +163,12 @@ ul.task-list li input[type="checkbox"] {
   <a href="../../00-setup.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Set up your workspace</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../01-run-the-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Run the workflow</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Practice with synthetic data</span></a>
+ <span class="menu-text">Synthetic practice</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -146,37 +176,37 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Begin the synthetic practice</span></a>
+  <a href="../../examples/synthetic/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1. Define the question: Synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Read the practice figures</span></a>
+  <a href="../../examples/synthetic/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2. Preview the results: Synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Meet the practice data</span></a>
+  <a href="../../examples/synthetic/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3. Meet the inputs: Synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Check the practice inputs</span></a>
+  <a href="../../examples/synthetic/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4. Check the inputs: Synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Find your practice outputs</span></a>
+  <a href="../../examples/synthetic/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5. Run the analysis: Synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Verify and explain the practice result</span></a>
+  <a href="../../examples/synthetic/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6. Verify and explain: Synthetic practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Write your practice report</span></a>
+  <a href="../../examples/synthetic/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">7. Write the report: Synthetic practice</span></a>
   </div>
 </li>
       </ul>
@@ -184,7 +214,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Follow the DietSwap study</span></a>
+ <span class="menu-text">DietSwap</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -192,37 +222,37 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/dietswap/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Follow the DietSwap study</span></a>
+  <a href="../../examples/dietswap/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1. Define the question: DietSwap</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/dietswap/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Define the comparison</span></a>
+  <a href="../../examples/dietswap/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2. Preview the results: DietSwap</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/dietswap/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Meet the DietSwap files</span></a>
+  <a href="../../examples/dietswap/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3. Meet the inputs: DietSwap</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/dietswap/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Check the DietSwap selection</span></a>
+  <a href="../../examples/dietswap/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4. Check the inputs: DietSwap</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/dietswap/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Inspect the DietSwap outputs</span></a>
+  <a href="../../examples/dietswap/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5. Run the analysis: DietSwap</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/dietswap/05-verify-and-explain.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Verify and explain DietSwap</span></a>
+  <a href="../../examples/dietswap/05-verify-and-explain.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">6. Verify and explain: DietSwap</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/dietswap/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Report your DietSwap walkthrough</span></a>
+  <a href="../../examples/dietswap/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">7. Write the report: DietSwap</span></a>
   </div>
 </li>
       </ul>
@@ -230,7 +260,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Explore Mouse59</span></a>
+ <span class="menu-text">Mouse59</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -238,37 +268,37 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/mouse59/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Apply the workflow to Mouse59</span></a>
+  <a href="../../examples/mouse59/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1. Define the question: Mouse59</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/mouse59/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">See the Mouse59 results</span></a>
+  <a href="../../examples/mouse59/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2. Preview the results: Mouse59</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/mouse59/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Meet the Mouse59 inputs</span></a>
+  <a href="../../examples/mouse59/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3. Meet the inputs: Mouse59</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/mouse59/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Check the Mouse59 inputs</span></a>
+  <a href="../../examples/mouse59/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4. Check the inputs: Mouse59</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/mouse59/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Inspect the Mouse59 outputs</span></a>
+  <a href="../../examples/mouse59/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5. Run the analysis: Mouse59</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/mouse59/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Verify and explain Mouse59</span></a>
+  <a href="../../examples/mouse59/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6. Verify and explain: Mouse59</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/mouse59/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Report the Mouse59 demonstration</span></a>
+  <a href="../../examples/mouse59/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">7. Write the report: Mouse59</span></a>
   </div>
 </li>
       </ul>
@@ -276,7 +306,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Analyse your own study</span></a>
+ <span class="menu-text">Your own study</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -284,12 +314,37 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/my-study/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Analyse your own study</span></a>
+  <a href="../../examples/my-study/00-start-here.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1. Define the question: Your own study</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../02-write-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Write and export your report</span></a>
+  <a href="../../examples/my-study/01-see-the-result.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2. Preview the results: Your own study</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/my-study/02-meet-the-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3. Meet the inputs: Your own study</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/my-study/03-check-the-inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4. Check the inputs: Your own study</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/my-study/04-run-the-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5. Run the analysis: Your own study</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/my-study/05-verify-and-explain.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6. Verify and explain: Your own study</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../examples/my-study/06-export-the-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">7. Write the report: Your own study</span></a>
   </div>
 </li>
       </ul>
@@ -305,7 +360,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../examples/community-comparison/99-appendix.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Workflow reference</span></a>
+  <a href="../../99-appendix.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Workflow reference and glossary</span></a>
   </div>
 </li>
       </ul>
@@ -320,16 +375,19 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#optional-sample-checks" id="toc-optional-sample-checks" class="nav-link active" data-scroll-target="#optional-sample-checks">Optional sample checks</a></li>
+  <li><a href="#your-task" id="toc-your-task" class="nav-link active" data-scroll-target="#your-task">Your task</a></li>
+  <li><a href="#check-the-evidence" id="toc-check-the-evidence" class="nav-link" data-scroll-target="#check-the-evidence">Check the evidence</a></li>
+  <li><a href="#optional-verify-one-sample" id="toc-optional-verify-one-sample" class="nav-link" data-scroll-target="#optional-verify-one-sample">Optional: verify one sample</a></li>
+  <li><a href="#before-continuing" id="toc-before-continuing" class="nav-link" data-scroll-target="#before-continuing">Before continuing</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../examples/dietswap/00-start-here.html">Follow the DietSwap study</a></li><li class="breadcrumb-item"><a href="../../examples/dietswap/05-verify-and-explain.html"><span class="chapter-title">Verify and explain DietSwap</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../examples/dietswap/00-start-here.html">DietSwap</a></li><li class="breadcrumb-item"><a href="../../examples/dietswap/05-verify-and-explain.html"><span class="chapter-title">6. Verify and explain: DietSwap</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Verify and explain DietSwap</span></h1>
+<h1 class="title"><span class="chapter-title">6. Verify and explain: DietSwap</span></h1>
 </div>
 
 
@@ -346,15 +404,51 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Optionally choose a sample from the study count table and apply the <a href="../../01-run-the-workflow.html#independently-verify-one-sample">independent sample check</a>, changing both paths to DietSwap. Confirm all three results agree.</p>
-<section id="optional-sample-checks" class="level2">
-<h2 class="anchored" data-anchor-id="optional-sample-checks">Optional sample checks</h2>
+<section id="your-task" class="level2">
+<h2 class="anchored" data-anchor-id="your-task">Your task</h2>
+<p>Write one observation per figure and check each against the saved tables. Separate observations from possible explanations.</p>
+</section>
+<section id="check-the-evidence" class="level2">
+<h2 class="anchored" data-anchor-id="check-the-evidence">Check the evidence</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Figure</th>
+<th>Numerical check</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Composition</td>
+<td>Compare the relevant feature proportions within samples, then summarise by group</td>
+</tr>
+<tr class="even">
+<td>Shannon diversity</td>
+<td>Compare medians, ranges, and observed feature counts</td>
+</tr>
+<tr class="odd">
+<td>Count totals and diversity</td>
+<td>Identify the smallest and largest totals and inspect unusual samples</td>
+</tr>
+</tbody>
+</table>
+<p>This selected sampling-stage comparison does not estimate change after a diet swap. Cohort differences may reflect variables beyond the supplied grouping.</p>
+</section>
+<section id="optional-verify-one-sample" class="level2">
+<h2 class="anchored" data-anchor-id="optional-verify-one-sample">Optional: verify one sample</h2>
+<p>From a terminal in the project root, run this optional check:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/05-verify-sample.R data/dietswap results/dietswap Sample-32</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>All three rows should show <code>TRUE</code> under <code>agrees</code>. To check another sample below, replace only the final sample ID.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Sample</th>
 <th>Group</th>
-<th style="text-align: right;">Total counts</th>
+<th style="text-align: right;">Count total</th>
 <th style="text-align: right;">Observed features</th>
 <th style="text-align: right;">Shannon</th>
 </tr>
@@ -363,56 +457,52 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td>Sample-32</td>
 <td>AAM</td>
-<td style="text-align: right;">10585</td>
+<td style="text-align: right;">10,585</td>
 <td style="text-align: right;">103</td>
 <td style="text-align: right;">3.167035</td>
 </tr>
 <tr class="even">
 <td>Sample-181</td>
 <td>AAM</td>
-<td style="text-align: right;">17784</td>
+<td style="text-align: right;">17,784</td>
 <td style="text-align: right;">100</td>
 <td style="text-align: right;">2.352228</td>
 </tr>
 <tr class="odd">
 <td>Sample-71</td>
 <td>AAM</td>
-<td style="text-align: right;">10521</td>
+<td style="text-align: right;">10,521</td>
 <td style="text-align: right;">102</td>
 <td style="text-align: right;">2.470335</td>
 </tr>
 <tr class="even">
 <td>Sample-214</td>
 <td>AFR</td>
-<td style="text-align: right;">19040</td>
+<td style="text-align: right;">19,040</td>
 <td style="text-align: right;">103</td>
 <td style="text-align: right;">2.028307</td>
 </tr>
 </tbody>
 </table>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../results/dietswap/figures/composition.png" class="img-fluid figure-img"></p>
-<figcaption>Composition in the selected DietSwap samples.</figcaption>
-</figure>
+<p>Compare the reference values with your saved outputs. Investigate any disagreement before using the result.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>Describe which displayed taxa vary, then check their proportions in the full table.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../results/dietswap/figures/shannon-diversity.png" class="img-fluid figure-img"></p>
-<figcaption>Shannon diversity in the selected DietSwap samples.</figcaption>
-</figure>
+<div class="callout-title-container flex-fill">
+Note
 </div>
-<p>Compare the group medians, spread, and overlap. Check both observed richness and feature proportions before explaining the diversity values.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../results/dietswap/figures/depth-diversity.png" class="img-fluid figure-img"></p>
-<figcaption>Count totals and Shannon diversity in the selected DietSwap samples.</figcaption>
-</figure>
 </div>
-<p>Describe the count ranges and any visible relationship with Shannon within each cohort.</p>
-<p>Write a conclusion restricted to the selected samples and sampling stage. A comparison at one sampling stage does not estimate change after a diet swap.</p>
-<p><a href="../../examples/dietswap/06-export-the-report.html">Next: Report the walkthrough</a></p>
+<div class="callout-body-container callout-body">
+<p>The independent sample calculation is optional. Checking your descriptions against the output tables remains part of the workflow. Agreement confirms a calculation; it does not establish sample quality or a biological cause.</p>
+</div>
+</div>
+</section>
+<section id="before-continuing" class="level2">
+<h2 class="anchored" data-anchor-id="before-continuing">Before continuing</h2>
+<p>Write a short answer to your question, name the evidence supporting it, and state one limitation. If AI helps with the draft, check every number, label, and claim against your outputs.</p>
+<p><a href="../../examples/dietswap/06-export-the-report.html">Next: Write the report</a></p>
 
 
 </section>
@@ -821,13 +911,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../examples/dietswap/04-run-the-analysis.html" class="pagination-link" aria-label="Inspect the DietSwap outputs">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Inspect the DietSwap outputs</span></span>
+      <a href="../../examples/dietswap/04-run-the-analysis.html" class="pagination-link" aria-label="5. Run the analysis: DietSwap">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">5. Run the analysis: DietSwap</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../examples/dietswap/06-export-the-report.html" class="pagination-link" aria-label="Report your DietSwap walkthrough">
-        <span class="nav-page-text"><span class="chapter-title">Report your DietSwap walkthrough</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../examples/dietswap/06-export-the-report.html" class="pagination-link" aria-label="7. Write the report: DietSwap">
+        <span class="nav-page-text"><span class="chapter-title">7. Write the report: DietSwap</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

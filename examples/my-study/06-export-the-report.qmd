@@ -1,0 +1,82 @@
+---
+title: "7. Write the report: Your own study"
+---
+
+## Create your report file
+
+In VS Code or RStudio, create a new plain-text file named **`my-study-report.qmd`**. Save it in the main project folder, alongside `_quarto.yml`. Use a different filename if you want to preserve an earlier report.
+
+Copy the outline below into that file. Copy only the contents of the code block, beginning with `---`; the outer code-block fences are not part of your report.
+
+## Copy this outline
+
+````markdown
+---
+title: "Your own study: microbiome analysis"
+format: html
+execute:
+  eval: false
+---
+
+## Question and dataset
+
+Replace this paragraph with your question, group labels, sample and feature counts, and what each sample represents. Record any unavailable study information.
+
+## Inputs and decisions
+
+Inputs: `data/my-study/`. Outputs: `results/my-study/`.
+
+Describe the selected samples, feature labels, and any exclusions or changes. State that the workflow produces descriptive summaries.
+
+## Composition
+
+![Feature composition by sample.](results/my-study/figures/composition.png)
+
+Describe one pattern and support it with feature proportions from the saved table. Explain what is pooled as Other.
+
+## Shannon diversity
+
+![Shannon diversity by group.](results/my-study/figures/shannon-diversity.png)
+
+Report group medians and describe spread and overlap. Check observed feature counts before explaining the pattern.
+
+## Count totals and diversity
+
+![Count totals and Shannon diversity.](results/my-study/figures/depth-diversity.png)
+
+Describe count ranges and unusual samples. Check the corresponding sample rows in the diversity table.
+
+## Checks
+
+Name the table values you checked. If you performed the optional sample verification, report the sample ID, total, observed features, Shannon, and agreement.
+
+## Conclusion and limitations
+
+Answer the question within the scope of these samples. State one limitation and a next question. Visual differences alone do not establish significance or causation.
+
+## Reproducibility and AI assistance
+
+Record the analysis command, input/output folders, decisions, and location of `session-info.txt`. State how AI was used and checked, or state that it was not used.
+````
+
+## Write your explanation
+
+Replace the prompts with your own observations and checked numbers. Keep the figure paths as supplied for this dataset. State the limits of the sampling, grouping, feature labels, and metadata available for your own study.
+
+If AI helps draft the explanation, supply the actual figures and table values, then check every number, group label, and claim. Share only data you are permitted to share.
+
+## Render the report
+
+Save the file. From a terminal in the project root, run:
+
+```bash
+quarto render my-study-report.qmd --to html
+```
+
+Open the HTML file at the output location printed by Quarto. Rendering uses existing figures and tables; it does not run the analysis again.
+
+## Check the finished report
+
+Confirm that all three images load, captions match the dataset, and every numerical statement agrees with its table. Keep the inputs, decisions, and `results/my-study/session-info.txt` with your report materials.
+
+You have completed the descriptive workflow for your own study. Record any further analysis needed to answer your question.

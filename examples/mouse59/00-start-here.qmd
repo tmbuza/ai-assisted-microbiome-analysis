@@ -1,15 +1,26 @@
 ---
-title: "Apply the workflow to Mouse59"
+title: "1. Define the question: Mouse59"
 ---
 
-You have practised with synthetic data and followed the DietSwap walkthrough. Now apply the same workflow to a larger OTU table.
+## Your question
 
-**Question:** How do OTU composition, Shannon diversity, and feature-table count totals differ between samples labelled HighFat20 and HighFatCa?
+::: {.callout-note}
+How do OTU composition, Shannon diversity, and count totals differ between HighFat20 and HighFatCa?
+:::
 
-This demonstration contains 59 samples and 2,027 OTUs. Keep the supplied group names throughout. The exercise describes patterns in these files; detailed study context is unavailable. Taxonomic assignments are unavailable, so figures display OTU identifiers.
+Mouse59 is a supplied mouse gut OTU count table with two sample categories. This workflow demonstration uses the original HighFat20 and HighFatCa group labels and OTU identifiers. Detailed study context and biological taxonomic assignments are unavailable.
 
-By the end, you will check the inputs, reproduce the figures, check the tables, and write a conclusion supported by numerical evidence.
+## Your dataset
 
-Use `data/mouse59/` for the supplied inputs and `results/mouse59/` for outputs. Keep `data/my-study/` for your own study.
+Use **59 samples**, **2,027 features**, and the supplied groups **HighFat20 (29) and HighFatCa (30)**.
 
-[Next: See the results](01-see-the-result.qmd)
+| Location | Folder |
+|---|---|
+| Inputs | `data/mouse59/` |
+| Outputs | `results/mouse59/` |
+
+## Your task
+
+Follow the seven steps in order: define the question, preview results, meet the inputs, check them, run the analysis, explain the evidence, and write the report. Complete workspace setup before starting.
+
+[Next: Preview the results](01-see-the-result.qmd)

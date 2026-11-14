@@ -1,0 +1,85 @@
+---
+title: "Workflow reference and glossary"
+---
+
+This reference applies to all datasets in the guide. Each dataset section contains its own commands, figures, checks, and report instructions.
+
+## The workflow
+
+After completing workspace setup, follow the same seven steps for each dataset: define the question, preview the results, meet the inputs, check the inputs, run the analysis, verify and explain, and write the report.
+
+The three supplied datasets have prepared inputs. For your own study, prepare the three tidy TSV files before running the analysis.
+
+## Input and output folders
+
+| Dataset | Input folder | Output folder |
+|---|---|---|
+| Synthetic practice | `data/example/` | `results/example/` |
+| DietSwap | `data/dietswap/` | `results/dietswap/` |
+| Mouse59 | `data/mouse59/` | `results/mouse59/` |
+| Your own study | `data/my-study/` | `results/my-study/` |
+
+Each input folder needs `feature-counts.tsv`, `sample-metadata.tsv`, and `taxonomy.tsv`. Sample identifiers connect counts to metadata; feature identifiers connect counts to display labels. If biological taxonomy is unavailable, use unique feature IDs as labels and state that limitation.
+
+## What the scripts do
+
+| Script in `scripts/R/` | Purpose |
+|---|---|
+| `01-check-inputs.R` | Validates input structure and identifiers; called by the analysis script |
+| `02-analyse-example.R` | Main entry point; generates descriptive tables and three figures |
+| `05-verify-sample.R` | Optional independent check of one sample's total, observed features, and Shannon |
+
+Run the exact commands on the dataset's analysis and verification pages from the project root, the folder containing `_quarto.yml`. The analysis also compares its Shannon calculation with `vegan` for every sample.
+
+::: {.callout-note}
+The independent sample calculation is optional. Checking descriptions and numerical claims against the saved tables remains part of every analysis. A passing input check confirms structural validity, not that the study design supports every biological question.
+:::
+
+## Terms used in the figures
+
+| Term | Meaning in this workflow |
+|---|---|
+| Feature | A row in the count table, such as an OTU or another supplied microbial feature |
+| OTU | Operational taxonomic unit; a sequence-based feature whose identifier alone does not name a species |
+| Count total | Sum of all feature counts in one sample; not a measure of total microbial biomass |
+| Relative proportion | Feature count divided by that sample's count total |
+| Observed features | Number of features with a positive count in one sample |
+| Richness | Number of distinct features; observed richness counts those detected in the supplied sample |
+| Evenness | How evenly a sample's counts are distributed among its features |
+| Shannon diversity | A summary reflecting richness and evenness, using natural logarithms |
+| Other | All features outside the top eight, pooled only for the composition display |
+
+## How Shannon is calculated
+
+For a sample with feature counts $x_i$, calculate each proportion as $p_i=x_i/\sum_j x_j$. Then:
+
+$$
+H=-\sum_{i:p_i>0} p_i\ln(p_i).
+$$
+
+Zero proportions contribute zero and are omitted from the logarithm calculation. Shannon uses all features in the supplied analysis table. The top-eight selection and pooled Other category are used only for composition plotting.
+
+If every feature count in a sample is multiplied by the same positive factor, its proportions and Shannon value remain unchanged. In observed sequencing data, however, low counts can limit detection of features; investigate unusually low totals before interpreting diversity.
+
+## Reading the outputs
+
+| Output within the selected results folder | Use |
+|---|---|
+| `tables/alpha-diversity.tsv` | Check sample totals, observed features, and Shannon |
+| `tables/relative-abundance.tsv` | Check individual feature proportions |
+| `tables/composition-display.tsv` | Inspect the features selected for display and pooled Other |
+| `tables/group-summary.tsv` | Check group summaries |
+| `figures/` | View composition, Shannon diversity, and count-total plots |
+| `session-info.txt` | Record R and package versions |
+
+Composition bars sum to 100%. A feature's proportion can change when other features change, so proportions alone do not measure absolute abundance. Compare variation within groups as well as differences between them.
+
+## Reporting and interpretation
+
+Each dataset's final page provides a copyable report outline, matching figure paths, a report filename, and the render command. Save the report QMD in the project root so its relative image paths resolve correctly.
+
+Rendering uses existing analysis outputs. If inputs change, rerun the dataset's analysis before rendering the report. After an error, resolve the problem before interpreting files that may remain from an earlier run.
+
+The supplied workflow produces descriptive summaries. Visual differences alone do not establish statistical significance or causation. Paired observations, repeated visits, shared cages, confounding, and statistical inference need additional decisions and methods appropriate to the study.
+
+If AI helps draft an explanation, check its numbers, group labels, and claims against the supplied outputs. Record which suggestions you accepted or revised and why.
