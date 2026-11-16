@@ -4,17 +4,7 @@
     "href": "index.html",
     "title": "AI-Assisted Microbiome Analysis",
     "section": "",
-    "text": "One workflow for every dataset\nLearn one workflow, then repeat it with a different dataset. Start with the required workspace setup and follow the synthetic practice in order. Use the same seven steps for DietSwap, Mouse59, and your own study.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>AI-Assisted Microbiome Analysis</span>"
-    ]
-  },
-  {
-    "objectID": "index.html#one-workflow-for-every-dataset",
-    "href": "index.html#one-workflow-for-every-dataset",
-    "title": "AI-Assisted Microbiome Analysis",
-    "section": "",
-    "text": "Define the question.\nPreview the results.\nMeet the inputs.\nCheck the inputs.\nRun the analysis.\nVerify and explain.\nWrite the report.",
+    "text": "The datasets\nLearn one workflow, then repeat it with a different dataset. Start with the required workspace setup and follow the synthetic practice in order. Use the same seven steps for DietSwap, Mouse59, and your own study.\nThe guide starts from prepared feature tables and produces descriptive results. Raw sequencing processing and statistical hypothesis testing require additional workflows.\nNext: Set up your workspace",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>AI-Assisted Microbiome Analysis</span>"
     ]
@@ -23,8 +13,8 @@
     "objectID": "index.html#the-datasets",
     "href": "index.html#the-datasets",
     "title": "AI-Assisted Microbiome Analysis",
-    "section": "The datasets",
-    "text": "The datasets\n\n\n\n\n\n\n\nDataset\nWhat you will learn\n\n\n\n\nSynthetic practice\nRead and check results from 24 samples and 15 fictional features\n\n\nDietSwap\nDescribe a selected cohort comparison using 38 participant samples\n\n\nMouse59\nExplore 59 samples and 2,027 OTUs, including low-count samples\n\n\nYour own study\nPrepare three tidy TSV files and apply the same workflow\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nSetup is required before running the workflow. Each dataset follows the same page structure. Its question, input/output folders, and dataset-specific details change; the analysis steps stay the same.\n\n\nThe guide starts from prepared feature tables and produces descriptive results. Raw sequencing processing and statistical hypothesis testing require additional workflows.\nNext: Set up your workspace",
+    "section": "",
+    "text": "Dataset\nWhat you will learn\n\n\n\n\nSynthetic practice\nRead and check results from 24 samples and 15 fictional features\n\n\nDietSwap\nDescribe a selected cohort comparison using 38 participant samples\n\n\nMouse59\nExplore 59 samples and 2,027 OTUs, including low-count samples\n\n\nYour own study\nPrepare three tidy TSV files and apply the same workflow\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nSetup is required before running the workflow. Each dataset follows the same page structure. Its question, input/output folders, and dataset-specific details change; the analysis steps stay the same.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>AI-Assisted Microbiome Analysis</span>"
     ]

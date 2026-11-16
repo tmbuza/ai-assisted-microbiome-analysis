@@ -8,15 +8,19 @@ format:
 
 Learn one workflow, then repeat it with a different dataset. Start with the required workspace setup and follow the synthetic practice in order. Use the same seven steps for DietSwap, Mouse59, and your own study.
 
+::: {.callout-note icon=false}
 ## One workflow for every dataset
 
-1. Define the question.
-2. Preview the results.
-3. Meet the inputs.
-4. Check the inputs.
-5. Run the analysis.
-6. Verify and explain.
-7. Write the report.
+Learn these seven steps once, then repeat them with each worked example and your own study.
+
+1. **Define the question** you want to answer.
+2. **Preview the results** you will produce.
+3. **Meet the inputs** and understand their structure.
+4. **Check the inputs** for completeness and consistency.
+5. **Run the analysis** using the supplied command.
+6. **Verify and explain** the patterns using figures and tables.
+7. **Write the report**, supporting your findings with figures and numbers and explaining what the analysis cannot establish.
+:::
 
 ## The datasets
 
