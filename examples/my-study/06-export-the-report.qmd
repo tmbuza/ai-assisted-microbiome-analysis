@@ -4,7 +4,7 @@ title: "7. Write the report: Your own study"
 
 ## Create your report file
 
-In VS Code or RStudio, create a new plain-text file named **`my-study-report.qmd`**. Save it in the main project folder, alongside `_quarto.yml`. Use a different filename if you want to preserve an earlier report.
+In VS Code or RStudio, create a new plain-text file named **`my-study-report.qmd`**. Save it in the main project folder. Use a different filename if you want to preserve an earlier report.
 
 Copy the outline below into that file. Copy only the contents of the code block, beginning with `---`; the outer code-block fences are not part of your report.
 
