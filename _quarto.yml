@@ -8,7 +8,7 @@ project:
   - results/my-study/figures/*.png
   
 book:
-  title: AI-Assisted Microbiome Analysis
+  title: AI-Assisted Microbiome Analysis with R
   subtitle: From microbiome data to an output you understand and can defend
   author: Teresia Mrema Buza | Complex Data Insights
 

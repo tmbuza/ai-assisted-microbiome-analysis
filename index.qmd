@@ -1,5 +1,5 @@
 ---
-title: "AI-Assisted Microbiome Analysis"
+title: "AI-Assisted Microbiome Analysis with R"
 toc: false
 format:
   html:

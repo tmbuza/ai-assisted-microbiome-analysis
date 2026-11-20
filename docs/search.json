@@ -2,21 +2,21 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "AI-Assisted Microbiome Analysis",
+    "title": "AI-Assisted Microbiome Analysis with R",
     "section": "",
     "text": "The datasets\nLearn one workflow, then repeat it with a different dataset. Start with the required workspace setup and follow the synthetic practice in order. Use the same seven steps for DietSwap, Mouse59, and your own study.\nThe guide starts from prepared feature tables and produces descriptive results. Raw sequencing processing and statistical hypothesis testing require additional workflows.\nNext: Set up your workspace",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>AI-Assisted Microbiome Analysis</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>AI-Assisted Microbiome Analysis with R</span>"
     ]
   },
   {
     "objectID": "index.html#the-datasets",
     "href": "index.html#the-datasets",
-    "title": "AI-Assisted Microbiome Analysis",
+    "title": "AI-Assisted Microbiome Analysis with R",
     "section": "",
     "text": "Dataset\nWhat you will learn\n\n\n\n\nSynthetic practice\nRead and check results from 24 samples and 15 fictional features\n\n\nDietSwap\nDescribe a selected cohort comparison using 38 participant samples\n\n\nMouse59\nExplore 59 samples and 2,027 OTUs, including low-count samples\n\n\nYour own study\nPrepare three tidy TSV files and apply the same workflow\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nSetup is required before running the workflow. Each dataset follows the same page structure. Its question, input/output folders, and dataset-specific details change; the analysis steps stay the same.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>AI-Assisted Microbiome Analysis</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>AI-Assisted Microbiome Analysis with R</span>"
     ]
   },
   {
@@ -343,7 +343,7 @@
     "href": "examples/synthetic/06-export-the-report.html",
     "title": "7. Write the report: Synthetic practice",
     "section": "",
-    "text": "Create your report file\nIn VS Code or RStudio, create a new plain-text file named synthetic-report.qmd. Save it in the main project folder, alongside _quarto.yml. Use a different filename if you want to preserve an earlier report.\nCopy the outline below into that file. Copy only the contents of the code block, beginning with ---; the outer code-block fences are not part of your report.",
+    "text": "Create your report file\nIn VS Code or RStudio, create a new plain-text file named synthetic-report.qmd. Save it in the main project folder. Use a different filename if you want to preserve an earlier report.\nCopy the outline below into that file. Copy only the contents of the code block, beginning with ---; the outer code-block fences are not part of your report.",
     "crumbs": [
       "Synthetic practice",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>7. Write the report: Synthetic practice</span>"
@@ -673,7 +673,7 @@
     "href": "examples/dietswap/06-export-the-report.html",
     "title": "7. Write the report: DietSwap",
     "section": "",
-    "text": "Create your report file\nIn VS Code or RStudio, create a new plain-text file named dietswap-report.qmd. Save it in the main project folder, alongside _quarto.yml. Use a different filename if you want to preserve an earlier report.\nCopy the outline below into that file. Copy only the contents of the code block, beginning with ---; the outer code-block fences are not part of your report.",
+    "text": "Create your report file\nIn VS Code or RStudio, create a new plain-text file named dietswap-report.qmd. Save it in the main project folder. Use a different filename if you want to preserve an earlier report.\nCopy the outline below into that file. Copy only the contents of the code block, beginning with ---; the outer code-block fences are not part of your report.",
     "crumbs": [
       "DietSwap",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>7. Write the report: DietSwap</span>"
@@ -1003,7 +1003,7 @@
     "href": "examples/mouse59/06-export-the-report.html",
     "title": "7. Write the report: Mouse59",
     "section": "",
-    "text": "Create your report file\nIn VS Code or RStudio, create a new plain-text file named mouse59-report.qmd. Save it in the main project folder, alongside _quarto.yml. Use a different filename if you want to preserve an earlier report.\nCopy the outline below into that file. Copy only the contents of the code block, beginning with ---; the outer code-block fences are not part of your report.",
+    "text": "Create your report file\nIn VS Code or RStudio, create a new plain-text file named mouse59-report.qmd. Save it in the main project folder. Use a different filename if you want to preserve an earlier report.\nCopy the outline below into that file. Copy only the contents of the code block, beginning with ---; the outer code-block fences are not part of your report.",
     "crumbs": [
       "Mouse59",
       "<span class='chapter-number'>23</span>  <span class='chapter-title'>7. Write the report: Mouse59</span>"
@@ -1333,7 +1333,7 @@
     "href": "examples/my-study/06-export-the-report.html",
     "title": "7. Write the report: Your own study",
     "section": "",
-    "text": "Create your report file\nIn VS Code or RStudio, create a new plain-text file named my-study-report.qmd. Save it in the main project folder, alongside _quarto.yml. Use a different filename if you want to preserve an earlier report.\nCopy the outline below into that file. Copy only the contents of the code block, beginning with ---; the outer code-block fences are not part of your report.",
+    "text": "Create your report file\nIn VS Code or RStudio, create a new plain-text file named my-study-report.qmd. Save it in the main project folder. Use a different filename if you want to preserve an earlier report.\nCopy the outline below into that file. Copy only the contents of the code block, beginning with ---; the outer code-block fences are not part of your report.",
     "crumbs": [
       "Your own study",
       "<span class='chapter-number'>30</span>  <span class='chapter-title'>7. Write the report: Your own study</span>"
