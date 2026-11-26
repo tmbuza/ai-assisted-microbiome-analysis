@@ -1,0 +1,1134 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "AI-Assisted Microbiome Analysis with R",
+    "section": "",
+    "text": "Turn prepared microbiome counts into results you can understand and defend. Start with synthetic practice, apply the workflow to a human stool dataset, then adapt it to your own study.\n\n\n\n\n\n\nOne workflow for every dataset\n\n\n\n\nDefine an answerable question and what each sample represents.\nPreview the figures and the questions they help answer.\nMeet the counts, sample metadata and feature annotations.\nCheck identifiers, count values, sample quality and study design.\nRun exploration, then appropriate statistical analyses.\nVerify and explain findings using figures, numbers and limitations.\nWrite a short report that another researcher can follow.\n\n\n\n\n\n\n\n\n\n\nExample\nYour learning goal\n\n\n\n\nSynthetic practice\nUnderstand composition, diversity, community distances and numerical checks\n\n\nZackular human stool study\nCompare healthy and carcinoma samples; evaluate community and OTU-level associations\n\n\nYour own study\nDefine groups, choose covariates and decide whether this workflow fits your design\n\n\n\nYou begin with prepared integer feature counts, not raw sequences. These pages do not perform read quality control, denoising or taxonomic assignment. Each coloured composition segment represents a feature, not necessarily a named species. All samples remain visible, including unusual observations.\nHuman → AI → Human: first write your question or interpretation; use AI for a specific explanation or review; then check its response against your files and make the final decision yourself.\nBegin: Set up your workspace",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>AI-Assisted Microbiome Analysis with R</span>"
+    ]
+  },
+  {
+    "objectID": "00-setup.html",
+    "href": "00-setup.html",
+    "title": "Set up your workspace",
+    "section": "",
+    "text": "Open the project\nHave R, Quarto and VS Code or RStudio installed. Use an R/Bioconductor combination that supplies ANCOMBC 2.16.0 or newer for the expanded inference stage. You may need to update R if your compatible Bioconductor release supplies an older ANCOMBC. Download the project, extract it and open its main folder. Apply this update there before using the new commands. Open a terminal in the folder containing _quarto.yml.\nYou should see data/, scripts/R/, config/, examples/ and templates/. Run all analysis commands from this folder.",
+    "crumbs": [
+      "Required setup and workflow",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Set up your workspace</span>"
+    ]
+  },
+  {
+    "objectID": "00-setup.html#restore-and-extend-the-r-environment",
+    "href": "00-setup.html#restore-and-extend-the-r-environment",
+    "title": "Set up your workspace",
+    "section": "Restore and extend the R environment",
+    "text": "Restore and extend the R environment\nStart R in the terminal:\nR\nAt the R prompt, restore the existing project lockfile if present, then add the packages needed for this expanded workflow:\noptions(repos = c(CRAN = \"https://cloud.r-project.org\"))\nif (!requireNamespace(\"renv\", quietly = TRUE)) install.packages(\"renv\")\nif (file.exists(\"renv.lock\")) renv::restore()\nrenv::install(c(\"ggplot2\", \"vegan\"))\nrenv::install(\"bioc::ANCOMBC\")\nrenv::snapshot()\nrenv::status()\nFollow installation prompts and resolve errors before continuing. ANCOMBC adds Bioconductor dependencies; installation can take longer than exploration packages. Use a Bioconductor release compatible with your R version. Do not force a development version or replace packages at random to bypass an error.\nsuppressPackageStartupMessages(library(ggplot2))\nsuppressPackageStartupMessages(library(vegan))\npackageVersion(\"ANCOMBC\")\nstopifnot(packageVersion(\"ANCOMBC\") &gt;= numeric_version(\"2.16.0\"))\nq(save = \"no\")\nCommands beginning Rscript or quarto run in the terminal. R expressions such as library() run at the R prompt. Reading a page runs no analysis.",
+    "crumbs": [
+      "Required setup and workflow",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Set up your workspace</span>"
+    ]
+  },
+  {
+    "objectID": "00-setup.html#keep-the-work-organised",
+    "href": "00-setup.html#keep-the-work-organised",
+    "title": "Set up your workspace",
+    "section": "Keep the work organised",
+    "text": "Keep the work organised\nInputs belong in data/; generated tables and figures in results/; learner writing in ignored reports/. Settings belong in config/. Reruns replace named outputs, so copy an output folder before comparing alternative settings. Do not reuse an incomplete run.\nIf an error occurs, record the exact command, message, R version and package versions. Ask AI to explain that evidence, then check the proposed remedy.\nNext: Synthetic practice",
+    "crumbs": [
+      "Required setup and workflow",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Set up your workspace</span>"
+    ]
+  },
+  {
+    "objectID": "01-run-the-workflow.html",
+    "href": "01-run-the-workflow.html",
+    "title": "Workflow and output map",
+    "section": "",
+    "text": "Three inputs, two analysis stages\nfeature-counts.tsv has feature_id followed by sample columns of finite, nonnegative integer counts. sample-metadata.tsv has unique sample_id and group, plus covariates. taxonomy.tsv has unique feature_id and taxon. Identifiers connect the files; their row order need not match.\nThe older numbered scripts can remain for previous examples; the new pages use the entry points above. They share common.R.",
+    "crumbs": [
+      "Required setup and workflow",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Workflow and output map</span>"
+    ]
+  },
+  {
+    "objectID": "01-run-the-workflow.html#three-inputs-two-analysis-stages",
+    "href": "01-run-the-workflow.html#three-inputs-two-analysis-stages",
+    "title": "Workflow and output map",
+    "section": "",
+    "text": "run_workflow.R checks inputs and produces exploration.\nrun_inference.R checks the completed exploration, unchanged inputs and settings, sample independence and model estimability before testing.",
+    "crumbs": [
+      "Required setup and workflow",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Workflow and output map</span>"
+    ]
+  },
+  {
+    "objectID": "01-run-the-workflow.html#find-the-evidence",
+    "href": "01-run-the-workflow.html#find-the-evidence",
+    "title": "Workflow and output map",
+    "section": "Find the evidence",
+    "text": "Find the evidence\nPaths below are inside results/DATASET/. Synthetic uses results/synthetic/.\n\n\n\n\n\n\n\nFigure\nTable or record\n\n\n\n\ncomposition.png\ntables/composition-display.tsv, tables/relative-abundance.tsv\n\n\nshannon-diversity.png\ntables/alpha-diversity.tsv, tables/group-summary.tsv\n\n\nrichness.png\ntables/richness-display.tsv\n\n\ndepth-diversity.png\ntables/alpha-diversity.tsv\n\n\nrarefaction.png\ntables/rarefaction.tsv\n\n\npcoa.png\ntables/pcoa-scores.tsv, tables/pcoa-variance.tsv, tables/distance.tsv\n\n\npcoa-depth-sensitivity.png\ncorresponding score/variance tables; tables/depth-sensitivity-alpha.tsv\n\n\nabundance-heatmap.png\ntables/heatmap-display.tsv\n\n\nprevalence.png\ntables/prevalence.tsv\n\n\ndispersion.png (after inference)\ntables/dispersion-distances.tsv, tables/dispersion-test.tsv\n\n\nda-volcano.png, da-effects.png (when DA enabled)\ntables/differential-abundance.tsv, tables/da-effect-display.tsv\n\n\n\nThe two run-status files must say COMPLETE for the stages you interpret. input-checksums.tsv records exact input/config bytes; parameters.tsv records settings; model-matrix.tsv records the inference design. Exploration and inference have separate session information files.",
+    "crumbs": [
+      "Required setup and workflow",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Workflow and output map</span>"
+    ]
+  },
+  {
+    "objectID": "01-run-the-workflow.html#what-changes-between-analyses",
+    "href": "01-run-the-workflow.html#what-changes-between-analyses",
+    "title": "Workflow and output map",
+    "section": "What changes between analyses?",
+    "text": "What changes between analyses?\n\nComposition shows up to 15 features, ranked by mean sample proportion. Other is light grey. Selection is for display, not differential testing.\nShannon and observed richness use all supplied features. Expected richness standardises sampling effort conditional on the supplied table.\nPCoA uses Bray–Curtis distances on sample proportions. It uses a Lingoes correction; its axis percentages describe the corrected geometry.\nA separate depth sensitivity repeats equal-depth subsampling 20 times and averages Bray–Curtis distances. It does not overwrite original counts.\nThe heatmap shows log10(proportion + 0.000001), without row scaling. Its offset is for display only. It is not supplied to ANCOM-BC2.\nDifferential abundance uses unrarefied counts, after a documented prevalence filter, with its own bias correction and sensitivity analysis.\n\nSimilar-looking plots can answer different questions. Never use a heatmap’s colours, a PCoA gap or a large composition segment as a significance test.\nWarnings are saved in exploration-warnings.txt or inference-warnings.txt when present. Read them before accepting results; model convergence or singularity warnings stop inference. Synthetic rarefaction warnings about the lack of count-one features reflect the supplied teaching table and limit biological interpretation.\ntables/feature-model-support.tsv records positive sample counts, positive-subset design rank and effect availability for each fitted OTU. Use it to investigate unestimable effects; a passing whole-study model check does not guarantee every sparse OTU supports every coefficient.",
+    "crumbs": [
+      "Required setup and workflow",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Workflow and output map</span>"
+    ]
+  },
+  {
+    "objectID": "02-write-the-report.html",
+    "href": "02-write-the-report.html",
+    "title": "Write a report you can defend",
+    "section": "",
+    "text": "Create a draft without overwriting your writing\nRun the dataset’s create_report.R command. It creates a draft in ignored reports/ and keeps an existing draft unchanged. The report is independent of the book; you do not add it to _quarto.yml.\nEdit the prompts into your own account of the question, inputs, decisions, results, checks, limitations and next scientific action. Keep your report short: use the most informative figures in the narrative and link the rest as supporting evidence.",
+    "crumbs": [
+      "Required setup and workflow",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Write a report you can defend</span>"
+    ]
+  },
+  {
+    "objectID": "02-write-the-report.html#every-claim-needs-a-location",
+    "href": "02-write-the-report.html#every-claim-needs-a-location",
+    "title": "Write a report you can defend",
+    "section": "Every claim needs a location",
+    "text": "Every claim needs a location\nFor a diversity claim, name the metric, groups, summary and source table. For a community test, record the distance, transformation, model, permutations, R-squared, p-value and dispersion result. For an OTU association, give its ID, tested contrast, natural-log effect, uncertainty, BH-adjusted p-value and pseudo-count sensitivity result. Do not silently substitute a genus name for an OTU-level finding.\nDistinguish a descriptive difference from an adjusted association and from a causal claim. Adjustment addresses only the measured variables in that model.",
+    "crumbs": [
+      "Required setup and workflow",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Write a report you can defend</span>"
+    ]
+  },
+  {
+    "objectID": "02-write-the-report.html#render-separately",
+    "href": "02-write-the-report.html#render-separately",
+    "title": "Write a report you can defend",
+    "section": "Render separately",
+    "text": "Render separately\nFrom the project root:\ncd reports\nquarto render zackular-report.qmd --to html\ncd ..\nUse synthetic-report.qmd or my-study-report.qmd for the other examples. Check that images load, numerical claims match the current complete run, and all placeholder text has been replaced. New outputs do not update your written interpretations automatically.",
+    "crumbs": [
+      "Required setup and workflow",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Write a report you can defend</span>"
+    ]
+  },
+  {
+    "objectID": "02-write-the-report.html#record-ais-contribution",
+    "href": "02-write-the-report.html#record-ais-contribution",
+    "title": "Write a report you can defend",
+    "section": "Record AI’s contribution",
+    "text": "Record AI’s contribution\nState the tool/model if known, date, task, what you supplied, what you adopted and how you checked it. First write your own observation; ask AI to challenge it using actual tables; make the final revision yourself. Do not share identifying or restricted participant information.",
+    "crumbs": [
+      "Required setup and workflow",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Write a report you can defend</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/00-start-here.html",
+    "href": "examples/synthetic/00-start-here.html",
+    "title": "1. Define the question: Synthetic practice",
+    "section": "",
+    "text": "Your question\nThese are 24 fictional samples, 12 per group, with 15 fictional features. Learn how a count table becomes evidence; these patterns are not biological discoveries.",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>1. Define the question: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/00-start-here.html#your-question",
+    "href": "examples/synthetic/00-start-here.html#your-question",
+    "title": "1. Define the question: Synthetic practice",
+    "section": "",
+    "text": "Note\n\n\n\nHow do composition and diversity differ between Group A and Group B?\n\n\n\n\n\n\nLocation\nFolder\n\n\n\n\nInputs\ndata/synthetic/\n\n\nOutputs\nresults/synthetic/\n\n\nSettings\nconfig/synthetic.tsv",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>1. Define the question: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/00-start-here.html#decide-before-running",
+    "href": "examples/synthetic/00-start-here.html#decide-before-running",
+    "title": "1. Define the question: Synthetic practice",
+    "section": "Decide before running",
+    "text": "Decide before running\nName the sample unit, reference group and comparison group. Explain whether you want a description, a community-level association or a feature-level association. Keep those questions distinct.\nThe same seven steps carry you from question to report. Complete setup first. Save one short note at each step; use these notes in your report.\nYour task: write your question in one sentence and one conclusion this design cannot establish. Ask AI to check whether the question matches the available sample units; you decide whether its proposed wording is justified. Next: Preview",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>1. Define the question: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/01-see-the-result.html",
+    "href": "examples/synthetic/01-see-the-result.html",
+    "title": "2. Preview the results: Synthetic practice",
+    "section": "",
+    "text": "Preview the questions before running\nWrite your own first observation before reading an AI explanation. The supplied exploration figures are previews; rerun them and compare your own outputs.\nAll samples contain 15 detected fictional features. Any Shannon differences therefore concern their abundance distribution, rather than a difference in observed feature count.",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/01-see-the-result.html#composition",
+    "href": "examples/synthetic/01-see-the-result.html#composition",
+    "title": "2. Preview the results: Synthetic practice",
+    "section": "Composition",
+    "text": "Composition\n\n\n\nComposition: Synthetic practice.\n\n\nWhich features contribute to each sample? This table has only 15 features, so all are displayed and there is no Other segment. In larger datasets, the remainder is pooled as light-grey Other.",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/01-see-the-result.html#shannon-diversity",
+    "href": "examples/synthetic/01-see-the-result.html#shannon-diversity",
+    "title": "2. Preview the results: Synthetic practice",
+    "section": "Shannon diversity",
+    "text": "Shannon diversity\n\n\n\nShannon diversity: Synthetic practice.\n\n\nThe supplied run gives median Shannon 2.428093 in Group A and 2.560208 in Group B. All samples contain 15 observed features, so the difference reflects their relative abundance distribution. These are fictional groups, not evidence about health.",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/01-see-the-result.html#observed-and-depth-standardised-richness",
+    "href": "examples/synthetic/01-see-the-result.html#observed-and-depth-standardised-richness",
+    "title": "2. Preview the results: Synthetic practice",
+    "section": "Observed and depth-standardised richness",
+    "text": "Observed and depth-standardised richness\n\n\n\nObserved and depth-standardised richness: Synthetic practice.\n\n\nCompare detected features with expected richness at the shared read depth.",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/01-see-the-result.html#read-totals-and-diversity",
+    "href": "examples/synthetic/01-see-the-result.html#read-totals-and-diversity",
+    "title": "2. Preview the results: Synthetic practice",
+    "section": "Read totals and diversity",
+    "text": "Read totals and diversity\n\n\n\nRead totals and diversity: Synthetic practice.\n\n\nLocate unusual samples; read total is not microbial biomass.",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/01-see-the-result.html#rarefaction-curves",
+    "href": "examples/synthetic/01-see-the-result.html#rarefaction-curves",
+    "title": "2. Preview the results: Synthetic practice",
+    "section": "Rarefaction curves",
+    "text": "Rarefaction curves\n\n\n\nRarefaction curves: Synthetic practice.\n\n\nCheck how detected-feature richness depends on subsample size within the supplied table.",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/01-see-the-result.html#community-similarity",
+    "href": "examples/synthetic/01-see-the-result.html#community-similarity",
+    "title": "2. Preview the results: Synthetic practice",
+    "section": "Community similarity",
+    "text": "Community similarity\n\n\n\nCommunity similarity: Synthetic practice.\n\n\nNearby samples have more similar profiles under the specified distance; a gap is not a significance test.",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/01-see-the-result.html#depth-sensitivity",
+    "href": "examples/synthetic/01-see-the-result.html#depth-sensitivity",
+    "title": "2. Preview the results: Synthetic practice",
+    "section": "Depth sensitivity",
+    "text": "Depth sensitivity\n\n\n\nDepth sensitivity: Synthetic practice.\n\n\nCompare the group pattern with repeated equal-depth subsampling.",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/01-see-the-result.html#feature-abundance-heatmap",
+    "href": "examples/synthetic/01-see-the-result.html#feature-abundance-heatmap",
+    "title": "2. Preview the results: Synthetic practice",
+    "section": "Feature abundance heatmap",
+    "text": "Feature abundance heatmap\n\n\n\nFeature abundance heatmap: Synthetic practice.\n\n\nRead the log-colour scale. Darker or brighter colours are not differential-abundance results.",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/01-see-the-result.html#feature-prevalence",
+    "href": "examples/synthetic/01-see-the-result.html#feature-prevalence",
+    "title": "2. Preview the results: Synthetic practice",
+    "section": "Feature prevalence",
+    "text": "Feature prevalence\n\n\n\nFeature prevalence: Synthetic practice.\n\n\nSeparate how often a feature is detected from its average relative abundance.",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/01-see-the-result.html#statistical-plots-come-after-inference",
+    "href": "examples/synthetic/01-see-the-result.html#statistical-plots-come-after-inference",
+    "title": "2. Preview the results: Synthetic practice",
+    "section": "Statistical plots come after inference",
+    "text": "Statistical plots come after inference\nInference creates a dispersion plot. For Zackular it also creates an ANCOM-BC2 volcano and effect-interval plot. Those results are introduced on Run and Verify; do not infer discoveries from an exploration preview.\nNext: Meet",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/02-meet-the-data.html",
+    "href": "examples/synthetic/02-meet-the-data.html",
+    "title": "3. Meet the inputs: Synthetic practice",
+    "section": "",
+    "text": "Locate the three files\nPick one sample and find it in counts and metadata. Pick one feature and find it in counts and taxonomy. Row order is not evidence of a match; IDs are.\nAll 15 feature labels are fictional. The full count table is retained for exploration. A01 has total 6,006, 15 detected features and Shannon 2.423797. You will independently verify those summaries later.\nThe original synthetic generating process is not reconstructed by this update. Treat it as an existing teaching input, not a validated differential-abundance benchmark. The default synthetic inference runs community tests only.\nYour task: record assay, sample unit, group definition and one missing piece of information that matters for interpretation.\nNext: Check",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>3. Meet the inputs: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/02-meet-the-data.html#locate-the-three-files",
+    "href": "examples/synthetic/02-meet-the-data.html#locate-the-three-files",
+    "title": "3. Meet the inputs: Synthetic practice",
+    "section": "",
+    "text": "File in data/synthetic/\nWhat to inspect\n\n\n\n\nfeature-counts.tsv\nFeature IDs in rows; sample IDs in columns; integer read counts\n\n\nsample-metadata.tsv\nOne row per sample, with sample ID, group and available covariates\n\n\ntaxonomy.tsv\nEach feature ID and its supplied lineage or display label",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>3. Meet the inputs: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/03-check-the-inputs.html",
+    "href": "examples/synthetic/03-check-the-inputs.html",
+    "title": "4. Check the inputs: Synthetic practice",
+    "section": "",
+    "text": "Check files and study design\nThe exploration script checks IDs, table alignment, nonnegative integer counts and positive totals. You must review biological suitability.",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>4. Check the inputs: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/03-check-the-inputs.html#check-files-and-study-design",
+    "href": "examples/synthetic/03-check-the-inputs.html#check-files-and-study-design",
+    "title": "4. Check the inputs: Synthetic practice",
+    "section": "",
+    "text": "Are group labels correct and sample units independent?\nAre there unusually small totals, missing covariates or processing issues?\nDoes an apparent group difference coincide with a site, batch or other variable?\nDo your feature labels match the level at which you intend to make claims?",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>4. Check the inputs: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/03-check-the-inputs.html#read-the-settings",
+    "href": "examples/synthetic/03-check-the-inputs.html#read-the-settings",
+    "title": "4. Check the inputs: Synthetic practice",
+    "section": "Read the settings",
+    "text": "Read the settings\nOpen config/synthetic.tsv. Parameters and values occupy separate TSV columns. Record reference, comparison, top_n, depth, repeats, seed, permutations, prevalence, alpha and covariates before running.\nExpected labels: Group A (reference) and Group B (comparison), with 12 samples each. Covariates are none; run_da is FALSE. Depth 0 uses the smallest sample total for the teaching sensitivity comparison. All features are fictional, and all groups are simulated.\nYour task: write your planned comparison and settings, then name one check the script cannot make for you.\nNext: Run",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>4. Check the inputs: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/04-run-the-analysis.html",
+    "href": "examples/synthetic/04-run-the-analysis.html",
+    "title": "5. Run the analysis: Synthetic practice",
+    "section": "",
+    "text": "Stage 1: exploration\nFrom the main project folder:\nConfirm exploration-status.txt says COMPLETE. Open all nine figures and match each to its table using the output map. Shannon uses all features; grey Other affects composition display only.\nPCoA uses Bray–Curtis on proportions with a Lingoes correction. The depth sensitivity uses 20 equal-depth random subsamples and mean distances. These are different distance definitions, not interchangeable results.",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>5. Run the analysis: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/04-run-the-analysis.html#stage-1-exploration",
+    "href": "examples/synthetic/04-run-the-analysis.html#stage-1-exploration",
+    "title": "5. Run the analysis: Synthetic practice",
+    "section": "",
+    "text": "Rscript scripts/R/run_workflow.R data/synthetic results/synthetic config/synthetic.tsv",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>5. Run the analysis: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/04-run-the-analysis.html#stage-2-inference",
+    "href": "examples/synthetic/04-run-the-analysis.html#stage-2-inference",
+    "title": "5. Run the analysis: Synthetic practice",
+    "section": "Stage 2: inference",
+    "text": "Stage 2: inference\nRscript scripts/R/run_inference.R data/synthetic results/synthetic config/synthetic.tsv\nThe script requires unchanged inputs/settings and a complete exploration. It runs marginal PERMANOVA and dispersion checks for both distance definitions. Read the group term’s R-squared and p-value alongside dispersion and sample structure. These tests do not turn an observational comparison into causation.\nSynthetic inference stops after community tests because DA is disabled. Use this to learn how test output relates to distances. Continue to Zackular for the OTU differential-abundance example; do not treat 15 fictional features as validation of ANCOM-BC2.\nIf any command fails, stop. An incomplete folder can contain files from an earlier run. Preserve the error; do not write conclusions from partial results.\nNext: Verify and explain",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>5. Run the analysis: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/05-verify-and-explain.html",
+    "href": "examples/synthetic/05-verify-and-explain.html",
+    "title": "6. Verify and explain: Synthetic practice",
+    "section": "",
+    "text": "Verify one sample\nRun from the main folder; use the supplied worked sample:\nAll three rows should show TRUE. The verifier checks current input bytes, count total, observed features and Shannon. Agreement checks arithmetic; it does not validate sequencing quality, sample identity or every model estimate.",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>6. Verify and explain: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/05-verify-and-explain.html#verify-one-sample",
+    "href": "examples/synthetic/05-verify-and-explain.html#verify-one-sample",
+    "title": "6. Verify and explain: Synthetic practice",
+    "section": "",
+    "text": "Rscript scripts/R/verify_sample.R data/synthetic results/synthetic config/synthetic.tsv A01",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>6. Verify and explain: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/05-verify-and-explain.html#explain-the-exploration",
+    "href": "examples/synthetic/05-verify-and-explain.html#explain-the-exploration",
+    "title": "6. Verify and explain: Synthetic practice",
+    "section": "Explain the exploration",
+    "text": "Explain the exploration\nWrite one sentence per figure. For composition, compare named OTUs and acknowledge the pooled remainder. For Shannon and richness, check sample values and group summaries. For PCoA, name the distance and axis percentages; check whether the pattern persists in the depth sensitivity. For the heatmap and prevalence plot, distinguish high abundance from frequent detection.",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>6. Verify and explain: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/05-verify-and-explain.html#explain-the-tests",
+    "href": "examples/synthetic/05-verify-and-explain.html#explain-the-tests",
+    "title": "6. Verify and explain: Synthetic practice",
+    "section": "Explain the tests",
+    "text": "Explain the tests\nRecord the group term’s R-squared and p-value in permanova.tsv, the covariates in model-matrix.tsv, and dispersion results. Compare the two distance definitions without choosing a favourite p-value. Dispersion is not adjusted for the covariates in the PERMANOVA model.\nHuman → AI → Human task: write your result paragraph first. Give AI the relevant figures, exact table rows, model and contrast. Ask it to identify unsupported numbers, reversed effects and causal wording. Accept changes only after checking them yourself. Finish with one limitation and a useful next scientific question.\nNext: Write",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>6. Verify and explain: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/06-export-the-report.html",
+    "href": "examples/synthetic/06-export-the-report.html",
+    "title": "7. Write the report: Synthetic practice",
+    "section": "",
+    "text": "Create your report\nFrom the main project folder:\nThis creates reports/synthetic-report.qmd if it does not already exist. Existing writing is kept. The draft includes exploration figures, with inference plots included only when the corresponding completed outputs exist at creation.",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>7. Write the report: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/06-export-the-report.html#create-your-report",
+    "href": "examples/synthetic/06-export-the-report.html#create-your-report",
+    "title": "7. Write the report: Synthetic practice",
+    "section": "",
+    "text": "Rscript scripts/R/create_report.R synthetic",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>7. Write the report: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/06-export-the-report.html#replace-prompts-with-evidence",
+    "href": "examples/synthetic/06-export-the-report.html#replace-prompts-with-evidence",
+    "title": "7. Write the report: Synthetic practice",
+    "section": "Replace prompts with evidence",
+    "text": "Replace prompts with evidence\nUse your notes from the preceding steps. State the question, sample unit, input source, group sizes, reference/comparison, settings and exclusions. Choose the most informative figures for the main result and retain the rest as supporting evidence. For tests, record model and uncertainty, not only which p-values passed a threshold.\nRead Write a report you can defend. Do not leave template instructions in the submitted report. State how AI helped and which checks you performed.",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>7. Write the report: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/06-export-the-report.html#render-and-inspect",
+    "href": "examples/synthetic/06-export-the-report.html#render-and-inspect",
+    "title": "7. Write the report: Synthetic practice",
+    "section": "Render and inspect",
+    "text": "Render and inspect\ncd reports\nquarto render synthetic-report.qmd --to html\ncd ..\nOpen the HTML file printed by Quarto. Confirm images load and every number, contrast and limitation matches your current complete run. Rendering uses existing results; it does not rerun analysis.\nYour report stays in ignored reports/, separate from the published guide.\nNext: Human stool study",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>7. Write the report: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/00-start-here.html",
+    "href": "examples/zackular/00-start-here.html",
+    "title": "1. Define the question: Human stool study",
+    "section": "",
+    "text": "Your question\nThis cross-sectional selection contains 60 human stools, 30 Healthy and 30 Carcinoma, with 2,078 OTUs from 16S V4 sequencing. Each selected study record contributes one stool. It compares different people, not change after treatment.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>1. Define the question: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/00-start-here.html#your-question",
+    "href": "examples/zackular/00-start-here.html#your-question",
+    "title": "1. Define the question: Human stool study",
+    "section": "",
+    "text": "Note\n\n\n\nHow do community composition, diversity and OTU abundances differ between healthy and carcinoma samples?\n\n\n\n\n\n\nLocation\nFolder\n\n\n\n\nInputs\ndata/zackular/\n\n\nOutputs\nresults/zackular/\n\n\nSettings\nconfig/zackular.tsv",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>1. Define the question: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/00-start-here.html#decide-before-running",
+    "href": "examples/zackular/00-start-here.html#decide-before-running",
+    "title": "1. Define the question: Human stool study",
+    "section": "Decide before running",
+    "text": "Decide before running\nName the sample unit, reference group and comparison group. Explain whether you want a description, a community-level association or a feature-level association. Keep those questions distinct.\nThe same seven steps carry you from question to report. Complete setup first. Save one short note at each step; use these notes in your report.\nYour task: write your question in one sentence and one conclusion this design cannot establish. Ask AI to check whether the question matches the available sample units; you decide whether its proposed wording is justified. Next: Preview",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>1. Define the question: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/01-see-the-result.html",
+    "href": "examples/zackular/01-see-the-result.html",
+    "title": "2. Preview the results: Human stool study",
+    "section": "",
+    "text": "Preview the questions before running\nWrite your own first observation before reading an AI explanation. The supplied exploration figures are previews; rerun them and compare your own outputs.\nThe supplied counts give median Shannon 3.790451 in Healthy and 3.570848 in Carcinoma, with broad overlap. Confirm these values in your run; they are descriptive summaries.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>2. Preview the results: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/01-see-the-result.html#composition",
+    "href": "examples/zackular/01-see-the-result.html#composition",
+    "title": "2. Preview the results: Human stool study",
+    "section": "Composition",
+    "text": "Composition\n\n\n\nComposition: Human stool study.\n\n\nWhich features contribute to each sample? Other is light grey; only display selection is reduced.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>2. Preview the results: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/01-see-the-result.html#shannon-diversity",
+    "href": "examples/zackular/01-see-the-result.html#shannon-diversity",
+    "title": "2. Preview the results: Human stool study",
+    "section": "Shannon diversity",
+    "text": "Shannon diversity\n\n\n\nShannon diversity: Human stool study.\n\n\nCompare medians, spread and overlap. A high value does not by itself mean better health.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>2. Preview the results: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/01-see-the-result.html#observed-and-depth-standardised-richness",
+    "href": "examples/zackular/01-see-the-result.html#observed-and-depth-standardised-richness",
+    "title": "2. Preview the results: Human stool study",
+    "section": "Observed and depth-standardised richness",
+    "text": "Observed and depth-standardised richness\n\n\n\nObserved and depth-standardised richness: Human stool study.\n\n\nMedian observed richness is 586.5 OTUs in Healthy and 546.5 in Carcinoma. At 15,000 reads, median expected richness is approximately 388.8 and 355.7, respectively. These are conditional processed-table summaries, not estimates of all species in the gut.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>2. Preview the results: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/01-see-the-result.html#read-totals-and-diversity",
+    "href": "examples/zackular/01-see-the-result.html#read-totals-and-diversity",
+    "title": "2. Preview the results: Human stool study",
+    "section": "Read totals and diversity",
+    "text": "Read totals and diversity\n\n\n\nRead totals and diversity: Human stool study.\n\n\nHealthy16-3251 has Shannon 2.291800 despite 60,335 retained reads. More reads do not guarantee greater evenness. Retained read total is not microbial biomass.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>2. Preview the results: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/01-see-the-result.html#rarefaction-curves",
+    "href": "examples/zackular/01-see-the-result.html#rarefaction-curves",
+    "title": "2. Preview the results: Human stool study",
+    "section": "Rarefaction curves",
+    "text": "Rarefaction curves\n\n\n\nRarefaction curves: Human stool study.\n\n\nCheck how detected-feature richness depends on subsample size within the supplied table.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>2. Preview the results: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/01-see-the-result.html#community-similarity",
+    "href": "examples/zackular/01-see-the-result.html#community-similarity",
+    "title": "2. Preview the results: Human stool study",
+    "section": "Community similarity",
+    "text": "Community similarity\n\n\n\nCommunity similarity: Human stool study.\n\n\nHealthy and carcinoma samples overlap in this two-axis view. The supplied run shows PCoA1 10.4% and PCoA2 7.2% of the corrected variation; most variation is outside these two axes. Check the full-distance test rather than treating overlap as proof of no association.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>2. Preview the results: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/01-see-the-result.html#depth-sensitivity",
+    "href": "examples/zackular/01-see-the-result.html#depth-sensitivity",
+    "title": "2. Preview the results: Human stool study",
+    "section": "Depth sensitivity",
+    "text": "Depth sensitivity\n\n\n\nDepth sensitivity: Human stool study.\n\n\nCompare the group pattern with repeated equal-depth subsampling.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>2. Preview the results: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/01-see-the-result.html#feature-abundance-heatmap",
+    "href": "examples/zackular/01-see-the-result.html#feature-abundance-heatmap",
+    "title": "2. Preview the results: Human stool study",
+    "section": "Feature abundance heatmap",
+    "text": "Feature abundance heatmap\n\n\n\nFeature abundance heatmap: Human stool study.\n\n\nRead the log-colour scale. Darker or brighter colours are not differential-abundance results.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>2. Preview the results: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/01-see-the-result.html#feature-prevalence",
+    "href": "examples/zackular/01-see-the-result.html#feature-prevalence",
+    "title": "2. Preview the results: Human stool study",
+    "section": "Feature prevalence",
+    "text": "Feature prevalence\n\n\n\nFeature prevalence: Human stool study.\n\n\nSeparate how often a feature is detected from its average relative abundance.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>2. Preview the results: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/01-see-the-result.html#statistical-plots-come-after-inference",
+    "href": "examples/zackular/01-see-the-result.html#statistical-plots-come-after-inference",
+    "title": "2. Preview the results: Human stool study",
+    "section": "Statistical plots come after inference",
+    "text": "Statistical plots come after inference\nInference creates a dispersion plot. For Zackular it also creates an ANCOM-BC2 volcano and effect-interval plot. Those results are introduced on Run and Verify; do not infer discoveries from an exploration preview.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>2. Preview the results: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/01-see-the-result.html#dispersion-and-differential-abundance",
+    "href": "examples/zackular/01-see-the-result.html#dispersion-and-differential-abundance",
+    "title": "2. Preview the results: Human stool study",
+    "section": "Dispersion and differential abundance",
+    "text": "Dispersion and differential abundance\n\n\n\nWithin-group dispersion in both distance definitions.\n\n\nThis checks variability around each group’s spatial median, separately from the adjusted community test. It does not adjust for age, sex or location.\n\n\n\nOTU differential-abundance volcano.\n\n\nThe supplied reference run has no sensitivity-supported discoveries. A point above the adjusted-p threshold is not highlighted unless it also passes the pseudo-count check. Missing model estimates are excluded from the plot.\n\n\n\nOTU effects with pointwise intervals.\n\n\nThese are up to 20 features ranked by adjusted p-value, not 20 validated biomarkers. Positive natural-log effects mean Carcinoma versus Healthy. Intervals are pointwise and do not replace multiple-testing correction.\nNext: Meet",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>2. Preview the results: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/02-meet-the-data.html",
+    "href": "examples/zackular/02-meet-the-data.html",
+    "title": "3. Meet the inputs: Human stool study",
+    "section": "",
+    "text": "Locate the three files\nPick one sample and find it in counts and metadata. Pick one feature and find it in counts and taxonomy. Row order is not evidence of a match; IDs are.\nRead the study and provenance notes. The input was exported from a packaged count object; the original human study had 90 samples in three groups. Our comparison retains all available healthy and carcinoma samples. Two absent adenoma records do not affect this selection.\nMetadata preserve age, sex, collection location and original labels. Sex whitespace was removed and f/m expanded; a location typo was harmonised before modelling. The participant-ID field in the original spreadsheet is empty; do not claim a separately verified participant crosswalk.\nTaxonomy identifies OTU annotations, sometimes only at family level. Several OTUs can share a genus name. Do not collapse them by copying legend labels.\nYour task: record assay, sample unit, group definition and one missing piece of information that matters for interpretation.\nNext: Check",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>3. Meet the inputs: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/02-meet-the-data.html#locate-the-three-files",
+    "href": "examples/zackular/02-meet-the-data.html#locate-the-three-files",
+    "title": "3. Meet the inputs: Human stool study",
+    "section": "",
+    "text": "File in data/zackular/\nWhat to inspect\n\n\n\n\nfeature-counts.tsv\nFeature IDs in rows; sample IDs in columns; integer read counts\n\n\nsample-metadata.tsv\nOne row per sample, with sample ID, group and available covariates\n\n\ntaxonomy.tsv\nEach feature ID and its supplied lineage or display label",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>3. Meet the inputs: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/03-check-the-inputs.html",
+    "href": "examples/zackular/03-check-the-inputs.html",
+    "title": "4. Check the inputs: Human stool study",
+    "section": "",
+    "text": "Check files and study design\nThe exploration script checks IDs, table alignment, nonnegative integer counts and positive totals. You must review biological suitability.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>4. Check the inputs: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/03-check-the-inputs.html#check-files-and-study-design",
+    "href": "examples/zackular/03-check-the-inputs.html#check-files-and-study-design",
+    "title": "4. Check the inputs: Human stool study",
+    "section": "",
+    "text": "Are group labels correct and sample units independent?\nAre there unusually small totals, missing covariates or processing issues?\nDoes an apparent group difference coincide with a site, batch or other variable?\nDo your feature labels match the level at which you intend to make claims?",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>4. Check the inputs: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/03-check-the-inputs.html#read-the-settings",
+    "href": "examples/zackular/03-check-the-inputs.html#read-the-settings",
+    "title": "4. Check the inputs: Human stool study",
+    "section": "Read the settings",
+    "text": "Read the settings\nOpen config/zackular.tsv. Parameters and values occupy separate TSV columns. Record reference, comparison, top_n, depth, repeats, seed, permutations, prevalence, alpha and covariates before running.\nExpected labels: Healthy (reference) and Carcinoma (comparison). The model includes age, sex and collection_location. This is a teaching adjustment, not a guarantee against confounding. Review the group-by-sex and group-by-location counts before fitting; age must be numeric. The supplied 15,000-read sensitivity depth retains all 60 samples.\nThe DA filter is 10% prevalence across all samples. It does not select only the top 15 plotted OTUs. Pseudo-count sensitivity is enabled in the model.\nYour task: write your planned comparison and settings, then name one check the script cannot make for you.\nNext: Run",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>4. Check the inputs: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/04-run-the-analysis.html",
+    "href": "examples/zackular/04-run-the-analysis.html",
+    "title": "5. Run the analysis: Human stool study",
+    "section": "",
+    "text": "Stage 1: exploration\nFrom the main project folder:\nConfirm exploration-status.txt says COMPLETE. Open all nine figures and match each to its table using the output map. Shannon uses all features; grey Other affects composition display only.\nPCoA uses Bray–Curtis on proportions with a Lingoes correction. The depth sensitivity uses 20 equal-depth random subsamples and mean distances. These are different distance definitions, not interchangeable results.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>5. Run the analysis: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/04-run-the-analysis.html#stage-1-exploration",
+    "href": "examples/zackular/04-run-the-analysis.html#stage-1-exploration",
+    "title": "5. Run the analysis: Human stool study",
+    "section": "",
+    "text": "Rscript scripts/R/run_workflow.R data/zackular results/zackular config/zackular.tsv",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>5. Run the analysis: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/04-run-the-analysis.html#stage-2-inference",
+    "href": "examples/zackular/04-run-the-analysis.html#stage-2-inference",
+    "title": "5. Run the analysis: Human stool study",
+    "section": "Stage 2: inference",
+    "text": "Stage 2: inference\nRscript scripts/R/run_inference.R data/zackular results/zackular config/zackular.tsv\nThe script requires unchanged inputs/settings and a complete exploration. It runs marginal PERMANOVA and dispersion checks for both distance definitions. Read the group term’s R-squared and p-value alongside dispersion and sample structure. These tests do not turn an observational comparison into causation.\nANCOM-BC2 then models unrarefied counts with age + sex + collection_location + group, after 10% prevalence filtering. Positive natural-log group effects mean higher estimated abundance in Carcinoma versus Healthy. BH-adjusted p &lt; 0.05 and pseudo-count sensitivity jointly define highlighted discoveries. Structural-zero calling is disabled; unavailable results are not discoveries.\nOpen da-volcano.png and da-effects.png only after inference-status.txt says COMPLETE. Up to 20 features appear in the effect plot even if none is significant. These intervals are pointwise, not multiple-testing-adjusted.\nIf any command fails, stop. An incomplete folder can contain files from an earlier run. Preserve the error; do not write conclusions from partial results.\nNext: Verify and explain",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>5. Run the analysis: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/05-verify-and-explain.html",
+    "href": "examples/zackular/05-verify-and-explain.html",
+    "title": "6. Verify and explain: Human stool study",
+    "section": "",
+    "text": "Verify one sample\nRun from the main folder; use the supplied worked sample:\nAll three rows should show TRUE. The verifier checks current input bytes, count total, observed features and Shannon. Agreement checks arithmetic; it does not validate sequencing quality, sample identity or every model estimate.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>6. Verify and explain: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/05-verify-and-explain.html#verify-one-sample",
+    "href": "examples/zackular/05-verify-and-explain.html#verify-one-sample",
+    "title": "6. Verify and explain: Human stool study",
+    "section": "",
+    "text": "Rscript scripts/R/verify_sample.R data/zackular results/zackular config/zackular.tsv Healthy1-2027",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>6. Verify and explain: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/05-verify-and-explain.html#reference-samples",
+    "href": "examples/zackular/05-verify-and-explain.html#reference-samples",
+    "title": "6. Verify and explain: Human stool study",
+    "section": "Reference samples",
+    "text": "Reference samples\n\n\n\nSample\nTable read total\nDetected OTUs\nShannon\n\n\n\n\nHealthy1-2027\n64,011\n509\n3.652471\n\n\nCancer1-2355\n54,233\n743\n3.909218\n\n\nHealthy16-3251\n60,335\n420\n2.291800\n\n\n\nCheck these against your own complete run. A carcinoma sample can have higher Shannon than a healthy sample even when its group’s median is lower.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>6. Verify and explain: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/05-verify-and-explain.html#explain-the-exploration",
+    "href": "examples/zackular/05-verify-and-explain.html#explain-the-exploration",
+    "title": "6. Verify and explain: Human stool study",
+    "section": "Explain the exploration",
+    "text": "Explain the exploration\nWrite one sentence per figure. For composition, compare named OTUs and acknowledge the pooled remainder. For Shannon and richness, check sample values and group summaries. For PCoA, name the distance and axis percentages; check whether the pattern persists in the depth sensitivity. For the heatmap and prevalence plot, distinguish high abundance from frequent detection.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>6. Verify and explain: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/05-verify-and-explain.html#explain-the-tests",
+    "href": "examples/zackular/05-verify-and-explain.html#explain-the-tests",
+    "title": "6. Verify and explain: Human stool study",
+    "section": "Explain the tests",
+    "text": "Explain the tests\nRecord the group term’s R-squared and p-value in permanova.tsv, the covariates in model-matrix.tsv, and dispersion results. Compare the two distance definitions without choosing a favourite p-value. Dispersion is not adjusted for the covariates in the PERMANOVA model.\nIf differential abundance was run, select an OTU in differential-abundance.tsv. Check its full ID, contrast direction, natural-log effect, standard error, adjusted p-value and sensitivity flag. Recalculate exp(effect) for its model-estimated fold change. Locate it in the full relative-abundance table to understand the unadjusted display; the two values answer different questions.\nAn empty discoveries table is a valid outcome. Explain insufficient evidence under the model, rather than claiming identical communities or changing the threshold to obtain hits.\nHuman → AI → Human task: write your result paragraph first. Give AI the relevant figures, exact table rows, model and contrast. Ask it to identify unsupported numbers, reversed effects and causal wording. Accept changes only after checking them yourself. Finish with one limitation and a useful next scientific question.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>6. Verify and explain: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/05-verify-and-explain.html#read-the-supplied-reference-run-critically",
+    "href": "examples/zackular/05-verify-and-explain.html#read-the-supplied-reference-run-critically",
+    "title": "6. Verify and explain: Human stool study",
+    "section": "Read the supplied reference run critically",
+    "text": "Read the supplied reference run critically\nWith 999 permutations and the configured age, sex and location adjustment, the group term explained about 1.99% of corrected distance variation: p = 0.165 for proportions and p = 0.172 for equal-depth sensitivity. The corresponding unadjusted dispersion p-values were 0.420 and 0.428. These results do not establish a group-wide community association at 0.05; they also do not prove that profiles are identical or dispersion equal.\nThe 10% prevalence filter retained 1,915 OTUs. In the supplied ANCOM-BC2 run, no OTU passed both adjusted-p and conservative pseudo-count sensitivity criteria. Several OTUs have small adjusted p-values but fail the sensitivity check. Do not describe those as robust biomarkers. The package warns during t-distribution p-value calculation. 100 OTUs lack finite group effects or standard errors; their positive-count subsets are rank deficient for the full model. Check feature-model-support.tsv and the raw coefficient table. The learner-facing summary leaves their p-values missing, rather than calling them evidence for no difference. This is a worked review example, not a validated screening test.\nNext: Write",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>6. Verify and explain: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/06-export-the-report.html",
+    "href": "examples/zackular/06-export-the-report.html",
+    "title": "7. Write the report: Human stool study",
+    "section": "",
+    "text": "Create your report\nFrom the main project folder:\nThis creates reports/zackular-report.qmd if it does not already exist. Existing writing is kept. The draft includes exploration figures, with inference plots included only when the corresponding completed outputs exist at creation.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>7. Write the report: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/06-export-the-report.html#create-your-report",
+    "href": "examples/zackular/06-export-the-report.html#create-your-report",
+    "title": "7. Write the report: Human stool study",
+    "section": "",
+    "text": "Rscript scripts/R/create_report.R zackular",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>7. Write the report: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/06-export-the-report.html#replace-prompts-with-evidence",
+    "href": "examples/zackular/06-export-the-report.html#replace-prompts-with-evidence",
+    "title": "7. Write the report: Human stool study",
+    "section": "Replace prompts with evidence",
+    "text": "Replace prompts with evidence\nUse your notes from the preceding steps. State the question, sample unit, input source, group sizes, reference/comparison, settings and exclusions. Choose the most informative figures for the main result and retain the rest as supporting evidence. For tests, record model and uncertainty, not only which p-values passed a threshold.\nRead Write a report you can defend. Do not leave template instructions in the submitted report. State how AI helped and which checks you performed.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>7. Write the report: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/06-export-the-report.html#render-and-inspect",
+    "href": "examples/zackular/06-export-the-report.html#render-and-inspect",
+    "title": "7. Write the report: Human stool study",
+    "section": "Render and inspect",
+    "text": "Render and inspect\ncd reports\nquarto render zackular-report.qmd --to html\ncd ..\nOpen the HTML file printed by Quarto. Confirm images load and every number, contrast and limitation matches your current complete run. Rendering uses existing results; it does not rerun analysis.\nYour report stays in ignored reports/, separate from the published guide.\nNext: Your own study",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>7. Write the report: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/my-study/00-start-here.html",
+    "href": "examples/my-study/00-start-here.html",
+    "title": "1. Define the question: Your own study",
+    "section": "",
+    "text": "Your question\nStart with prepared integer counts and a documented study design. This workflow supports an independent two-group comparison; paired, repeated or clustered samples need adaptation before inference.",
+    "crumbs": [
+      "Your own study",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>1. Define the question: Your own study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/my-study/00-start-here.html#your-question",
+    "href": "examples/my-study/00-start-here.html#your-question",
+    "title": "1. Define the question: Your own study",
+    "section": "",
+    "text": "Note\n\n\n\nWhich differences between my two sample groups can this dataset support?\n\n\n\n\n\n\nLocation\nFolder\n\n\n\n\nInputs\ndata/my-study/\n\n\nOutputs\nresults/my-study/\n\n\nSettings\nconfig/my-study.tsv",
+    "crumbs": [
+      "Your own study",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>1. Define the question: Your own study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/my-study/00-start-here.html#decide-before-running",
+    "href": "examples/my-study/00-start-here.html#decide-before-running",
+    "title": "1. Define the question: Your own study",
+    "section": "Decide before running",
+    "text": "Decide before running\nName the sample unit, reference group and comparison group. Explain whether you want a description, a community-level association or a feature-level association. Keep those questions distinct.\nThe same seven steps carry you from question to report. Complete setup first. Save one short note at each step; use these notes in your report.\nYour task: write your question in one sentence and one conclusion this design cannot establish. Ask AI to check whether the question matches the available sample units; you decide whether its proposed wording is justified. Next: Preview",
+    "crumbs": [
+      "Your own study",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>1. Define the question: Your own study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/my-study/01-see-the-result.html",
+    "href": "examples/my-study/01-see-the-result.html",
+    "title": "2. Preview the results: Your own study",
+    "section": "",
+    "text": "Plan what you will inspect\nThere are no preview figures for your study until you provide inputs and run it. Use the synthetic and human examples to understand the nine exploration figures. See the output map.",
+    "crumbs": [
+      "Your own study",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>2. Preview the results: Your own study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/my-study/01-see-the-result.html#three-questions",
+    "href": "examples/my-study/01-see-the-result.html#three-questions",
+    "title": "2. Preview the results: Your own study",
+    "section": "Three questions",
+    "text": "Three questions\n\nWithin samples: what do read totals, richness and Shannon reveal?\nBetween samples: do Bray–Curtis PCoA patterns persist in the depth check?\nAcross features: how do abundance and prevalence differ, and is an inferential model justified?\n\nChoose a useful depth after examining totals. Preserve uncertainty about confounding, repeated sampling and processing quality. Do not promise that your dataset will show separation or yield significant features.\nYour task: predict which metadata variable might explain variation, then name the figure and numerical check that could challenge that prediction.\nNext: Meet",
+    "crumbs": [
+      "Your own study",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>2. Preview the results: Your own study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/my-study/02-meet-the-data.html",
+    "href": "examples/my-study/02-meet-the-data.html",
+    "title": "3. Meet the inputs: Your own study",
+    "section": "",
+    "text": "Locate the three files\nPick one sample and find it in counts and metadata. Pick one feature and find it in counts and taxonomy. Row order is not evidence of a match; IDs are.\nCreate the folder and files if absent. Start with actual read counts; do not round proportions, microarray intensities or normalized abundance into counts. If biological taxonomy is unavailable, repeat unique feature IDs as labels and record that limitation.\nPreserve participant, visit, site, batch, medication and other design fields where available. Document source, assay, preprocessing and exclusions. Use nonidentifying IDs. A valid file format cannot establish independent samples.\nYour task: record assay, sample unit, group definition and one missing piece of information that matters for interpretation.\nNext: Check",
+    "crumbs": [
+      "Your own study",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>3. Meet the inputs: Your own study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/my-study/02-meet-the-data.html#locate-the-three-files",
+    "href": "examples/my-study/02-meet-the-data.html#locate-the-three-files",
+    "title": "3. Meet the inputs: Your own study",
+    "section": "",
+    "text": "File in data/my-study/\nWhat to inspect\n\n\n\n\nfeature-counts.tsv\nFeature IDs in rows; sample IDs in columns; integer read counts\n\n\nsample-metadata.tsv\nOne row per sample, with sample ID, group and available covariates\n\n\ntaxonomy.tsv\nEach feature ID and its supplied lineage or display label",
+    "crumbs": [
+      "Your own study",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>3. Meet the inputs: Your own study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/my-study/03-check-the-inputs.html",
+    "href": "examples/my-study/03-check-the-inputs.html",
+    "title": "4. Check the inputs: Your own study",
+    "section": "",
+    "text": "Check files and study design\nThe exploration script checks IDs, table alignment, nonnegative integer counts and positive totals. You must review biological suitability.",
+    "crumbs": [
+      "Your own study",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>4. Check the inputs: Your own study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/my-study/03-check-the-inputs.html#check-files-and-study-design",
+    "href": "examples/my-study/03-check-the-inputs.html#check-files-and-study-design",
+    "title": "4. Check the inputs: Your own study",
+    "section": "",
+    "text": "Are group labels correct and sample units independent?\nAre there unusually small totals, missing covariates or processing issues?\nDoes an apparent group difference coincide with a site, batch or other variable?\nDo your feature labels match the level at which you intend to make claims?",
+    "crumbs": [
+      "Your own study",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>4. Check the inputs: Your own study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/my-study/03-check-the-inputs.html#read-the-settings",
+    "href": "examples/my-study/03-check-the-inputs.html#read-the-settings",
+    "title": "4. Check the inputs: Your own study",
+    "section": "Read the settings",
+    "text": "Read the settings\nOpen config/my-study.tsv. Parameters and values occupy separate TSV columns. Record reference, comparison, top_n, depth, repeats, seed, permutations, prevalence, alpha and covariates before running.\nChange the placeholder Control/Case labels to your actual labels. Keep design_confirmed FALSE until you have justified sample independence and model suitability. Start with exploration; do not switch that flag merely to get a command to run. Use comma-separated metadata column names for covariates, or none. Missing or confounded covariates stop inference.\nEnable run_da only when a count-based OTU model and its assumptions fit the question. Shared households, cages, repeated visits or matched pairs require adaptation beyond this script. Get help with the design before testing.\nYour task: write your planned comparison and settings, then name one check the script cannot make for you.\nNext: Run",
+    "crumbs": [
+      "Your own study",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>4. Check the inputs: Your own study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/my-study/04-run-the-analysis.html",
+    "href": "examples/my-study/04-run-the-analysis.html",
+    "title": "5. Run the analysis: Your own study",
+    "section": "",
+    "text": "Stage 1: exploration\nFrom the main project folder:\nConfirm exploration-status.txt says COMPLETE. Open all nine figures and match each to its table using the output map. Shannon uses all features; grey Other affects composition display only.\nPCoA uses Bray–Curtis on proportions with a Lingoes correction. The depth sensitivity uses 20 equal-depth random subsamples and mean distances. These are different distance definitions, not interchangeable results.",
+    "crumbs": [
+      "Your own study",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>5. Run the analysis: Your own study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/my-study/04-run-the-analysis.html#stage-1-exploration",
+    "href": "examples/my-study/04-run-the-analysis.html#stage-1-exploration",
+    "title": "5. Run the analysis: Your own study",
+    "section": "",
+    "text": "Rscript scripts/R/run_workflow.R data/my-study results/my-study config/my-study.tsv",
+    "crumbs": [
+      "Your own study",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>5. Run the analysis: Your own study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/my-study/04-run-the-analysis.html#stage-2-inference",
+    "href": "examples/my-study/04-run-the-analysis.html#stage-2-inference",
+    "title": "5. Run the analysis: Your own study",
+    "section": "Stage 2: inference",
+    "text": "Stage 2: inference\nOnly after the design and settings are justified, set design_confirmed TRUE. Otherwise stop at exploration.\nRscript scripts/R/run_inference.R data/my-study results/my-study config/my-study.tsv\nThe script requires unchanged inputs/settings and a complete exploration. It runs marginal PERMANOVA and dispersion checks for both distance definitions. Read the group term’s R-squared and p-value alongside dispersion and sample structure. These tests do not turn an observational comparison into causation.\nWhen enabled, ANCOM-BC2 uses original integer counts and configured covariates. Positive effects mean comparison versus reference. The first model should follow your scientific question, not whichever formula produces more discoveries. Save alternative analyses in separate output folders.\nIf any command fails, stop. An incomplete folder can contain files from an earlier run. Preserve the error; do not write conclusions from partial results.\nNext: Verify and explain",
+    "crumbs": [
+      "Your own study",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>5. Run the analysis: Your own study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/my-study/05-verify-and-explain.html",
+    "href": "examples/my-study/05-verify-and-explain.html",
+    "title": "6. Verify and explain: Your own study",
+    "section": "",
+    "text": "Verify one sample\nRun from the main folder; replace SAMPLE_ID with an actual ID:\nAll three rows should show TRUE. The verifier checks current input bytes, count total, observed features and Shannon. Agreement checks arithmetic; it does not validate sequencing quality, sample identity or every model estimate.",
+    "crumbs": [
+      "Your own study",
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>6. Verify and explain: Your own study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/my-study/05-verify-and-explain.html#verify-one-sample",
+    "href": "examples/my-study/05-verify-and-explain.html#verify-one-sample",
+    "title": "6. Verify and explain: Your own study",
+    "section": "",
+    "text": "Rscript scripts/R/verify_sample.R data/my-study results/my-study config/my-study.tsv SAMPLE_ID",
+    "crumbs": [
+      "Your own study",
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>6. Verify and explain: Your own study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/my-study/05-verify-and-explain.html#explain-the-exploration",
+    "href": "examples/my-study/05-verify-and-explain.html#explain-the-exploration",
+    "title": "6. Verify and explain: Your own study",
+    "section": "Explain the exploration",
+    "text": "Explain the exploration\nWrite one sentence per figure. For composition, compare named OTUs and acknowledge the pooled remainder. For Shannon and richness, check sample values and group summaries. For PCoA, name the distance and axis percentages; check whether the pattern persists in the depth sensitivity. For the heatmap and prevalence plot, distinguish high abundance from frequent detection.",
+    "crumbs": [
+      "Your own study",
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>6. Verify and explain: Your own study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/my-study/05-verify-and-explain.html#explain-the-tests",
+    "href": "examples/my-study/05-verify-and-explain.html#explain-the-tests",
+    "title": "6. Verify and explain: Your own study",
+    "section": "Explain the tests",
+    "text": "Explain the tests\nRecord the group term’s R-squared and p-value in permanova.tsv, the covariates in model-matrix.tsv, and dispersion results. Compare the two distance definitions without choosing a favourite p-value. Dispersion is not adjusted for the covariates in the PERMANOVA model.\nIf differential abundance was run, select an OTU in differential-abundance.tsv. Check its full ID, contrast direction, natural-log effect, standard error, adjusted p-value and sensitivity flag. Recalculate exp(effect) for its model-estimated fold change. Locate it in the full relative-abundance table to understand the unadjusted display; the two values answer different questions.\nAn empty discoveries table is a valid outcome. Explain insufficient evidence under the model, rather than claiming identical communities or changing the threshold to obtain hits.\nHuman → AI → Human task: write your result paragraph first. Give AI the relevant figures, exact table rows, model and contrast. Ask it to identify unsupported numbers, reversed effects and causal wording. Accept changes only after checking them yourself. Finish with one limitation and a useful next scientific question.\nNext: Write",
+    "crumbs": [
+      "Your own study",
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>6. Verify and explain: Your own study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/my-study/06-export-the-report.html",
+    "href": "examples/my-study/06-export-the-report.html",
+    "title": "7. Write the report: Your own study",
+    "section": "",
+    "text": "Create your report\nFrom the main project folder:\nThis creates reports/my-study-report.qmd if it does not already exist. Existing writing is kept. The draft includes exploration figures, with inference plots included only when the corresponding completed outputs exist at creation.",
+    "crumbs": [
+      "Your own study",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>7. Write the report: Your own study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/my-study/06-export-the-report.html#create-your-report",
+    "href": "examples/my-study/06-export-the-report.html#create-your-report",
+    "title": "7. Write the report: Your own study",
+    "section": "",
+    "text": "Rscript scripts/R/create_report.R my-study",
+    "crumbs": [
+      "Your own study",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>7. Write the report: Your own study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/my-study/06-export-the-report.html#replace-prompts-with-evidence",
+    "href": "examples/my-study/06-export-the-report.html#replace-prompts-with-evidence",
+    "title": "7. Write the report: Your own study",
+    "section": "Replace prompts with evidence",
+    "text": "Replace prompts with evidence\nUse your notes from the preceding steps. State the question, sample unit, input source, group sizes, reference/comparison, settings and exclusions. Choose the most informative figures for the main result and retain the rest as supporting evidence. For tests, record model and uncertainty, not only which p-values passed a threshold.\nRead Write a report you can defend. Do not leave template instructions in the submitted report. State how AI helped and which checks you performed.",
+    "crumbs": [
+      "Your own study",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>7. Write the report: Your own study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/my-study/06-export-the-report.html#render-and-inspect",
+    "href": "examples/my-study/06-export-the-report.html#render-and-inspect",
+    "title": "7. Write the report: Your own study",
+    "section": "Render and inspect",
+    "text": "Render and inspect\ncd reports\nquarto render my-study-report.qmd --to html\ncd ..\nOpen the HTML file printed by Quarto. Confirm images load and every number, contrast and limitation matches your current complete run. Rendering uses existing results; it does not rerun analysis.\nYour report stays in ignored reports/, separate from the published guide.",
+    "crumbs": [
+      "Your own study",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>7. Write the report: Your own study</span>"
+    ]
+  },
+  {
+    "objectID": "99-appendix.html",
+    "href": "99-appendix.html",
+    "title": "Appendix A — Methods, decisions and references",
+    "section": "",
+    "text": "Within-sample diversity\nFor counts \\(x_i\\), \\(p_i=x_i/\\sum_j x_j\\) and \\(H=-\\sum_{i:p_i&gt;0}p_i\\ln(p_i)\\). Observed richness is the number of positive counts; evenness concerns how abundance is distributed. Shannon is not a health score, and its interpretation depends on the feature definition.\nDepth affects detection. Rarefaction curves show expected detected features in smaller samples drawn from the already processed table. They cannot recover discarded features or prove complete biological sampling. The Zackular object has undergone upstream processing; interpret its curves within that limitation. The initial synthetic example has only 15 fictional features, so rapid saturation is a property of the teaching data.\nDepth 0 in settings means the smallest supplied sample total. That is a convenience, not a universal recommendation. Inspect low-depth samples first. For Zackular, 15,000 retains every sample. Choose and justify a depth before looking for a favourable group result; record excluded samples if needed.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Methods, decisions and references</span>"
+    ]
+  },
+  {
+    "objectID": "99-appendix.html#community-composition-pcoa-permanova-and-dispersion",
+    "href": "99-appendix.html#community-composition-pcoa-permanova-and-dispersion",
+    "title": "Appendix A — Methods, decisions and references",
+    "section": "Community composition: PCoA, PERMANOVA and dispersion",
+    "text": "Community composition: PCoA, PERMANOVA and dispersion\nBray–Curtis quantifies compositional dissimilarity. PCoA places samples in a low-dimensional representation of that distance. Axes can reverse signs between implementations without changing relationships. No phylogenetic tree is supplied, so this workflow does not calculate UniFrac.\nPCoA uses Lingoes-corrected distances. PERMANOVA and dispersion use the same correction. PERMANOVA uses marginal tests (by = \"margin\"), so the group term is conditional on configured covariates. Its R-squared reports the fraction of total distance variation attributed to the term; it is not classification accuracy. A significant dispersion result can complicate a location-based interpretation. A nonsignificant result does not prove equal dispersion. The separate dispersion test does not adjust for covariates.\nBoth proportion-based and equal-depth sensitivity results are saved. A change in conclusion is evidence to investigate, not a reason to select the smaller p-value. The sensitivity averages distances across random subsamples; it is not a pooled meta-analysis of repeated tests. Do not compare PCoA axis positions numerically between different distance matrices.\nThese scripts assume independent observations. Paired samples, repeated visits, shared cages, households and clustered recruitment can require a different model and restricted permutations. Setting design_confirmed to TRUE does not make that assumption correct.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Methods, decisions and references</span>"
+    ]
+  },
+  {
+    "objectID": "99-appendix.html#otu-differential-abundance",
+    "href": "99-appendix.html#otu-differential-abundance",
+    "title": "Appendix A — Methods, decisions and references",
+    "section": "OTU differential abundance",
+    "text": "OTU differential abundance\nANCOM-BC2 estimates model-based abundance associations from supplied counts while correcting sampling biases under its assumptions. It does not measure absolute bacterial load. The guide tests OTUs; a genus label is an annotation, not genus-level aggregation.\nThe Zackular model is age + sex + collection_location + group. Group is internally coded Reference then Comparison. A positive group coefficient means higher estimated abundance in Carcinoma versus Healthy, conditional on those covariates. Effects use natural logarithms, so exp(effect) is a model-estimated fold change; ln(2) is approximately a twofold association. These are not DESeq2’s log2 effects.\nFeatures detected in at least 10% of the 60 samples enter the feature model. BH correction addresses multiple feature tests for each coefficient. A highlighted discovery must have adjusted p &lt; 0.05, the package’s DA indicator and passage through pseudo-count sensitivity (conservative = TRUE). Unavailable effects or standard errors are explicitly flagged with estimate_available = FALSE; their learner-facing p-values are left missing. The package’s original coefficient table is also retained. ANCOMBC may assign p = q = 1 to an unestimable test; that is not evidence for a null effect. Unavailable results are never discoveries. Structural-zero detection is disabled in this example; no manual pseudo-count is added to model inputs. The display offset is unrelated.\nApproximate pointwise 95% intervals are effect ± 1.96 standard errors. They are not simultaneous intervals and do not replace adjusted p-values. The forest display ranks up to 20 features by adjusted p-value even when none is a discovery. Do not interpret its ranking as validation of biomarkers.\nOnly 15 features exist in synthetic practice, and their generating truth is not a validated DA benchmark. Its default inference demonstrates community tests; ANCOM-BC2 is taught with the larger human table. Your own study starts with inference blocked and DA disabled until you justify the design.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Methods, decisions and references</span>"
+    ]
+  },
+  {
+    "objectID": "99-appendix.html#human-dataset-provenance",
+    "href": "99-appendix.html#human-dataset-provenance",
+    "title": "Appendix A — Methods, decisions and references",
+    "section": "Human dataset provenance",
+    "text": "Human dataset provenance\nZackular JP et al. (2014), The Human Gut Microbiome as a Screening Tool for Colorectal Cancer. Study. Original study: 90 stools, 30 per clinical group, 16S V4 MiSeq. Original metadata and sequences. The packaged microbiomeutilities::zackular2014 object contains 88 samples and 2,078 OTUs. All sample IDs, disease labels and ages were checked against the original spreadsheet. Two adenoma records are absent, reason unresolved. All 30 healthy and all 30 carcinoma records are retained here.\nIts package documentation cites a different 2013 mouse study; use the human citation above. Exact sources and checksums are in data/provenance/zackular/. The spreadsheet’s participant-ID field is empty. Sample-name tokens are unique and consistent with the study design, but are not a validated participant crosswalk. Do not claim a separate participant identity audit.\nThe exported sex labels were trimmed (including nonbreaking whitespace) and mapped f→Female, m→Male; Ann Arbor,. MI was harmonised to Ann Arbor, MI. Original labels are retained alongside cleaned labels in metadata. These changes were made before modelling, not chosen to improve test results. BMI, medications and other possible confounders are not included in this teaching model. Conclusions remain observational and sample-specific.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Methods, decisions and references</span>"
+    ]
+  },
+  {
+    "objectID": "99-appendix.html#method-documentation",
+    "href": "99-appendix.html#method-documentation",
+    "title": "Appendix A — Methods, decisions and references",
+    "section": "Method documentation",
+    "text": "Method documentation\n\nvegan rarefaction\nvegan PCoA\nvegan PERMANOVA\nvegan dispersion\nANCOM-BC2 tutorial\nANCOM-BC2 methodology",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Methods, decisions and references</span>"
+    ]
+  },
+  {
+    "objectID": "99-appendix.html#what-is-outside-this-practical",
+    "href": "99-appendix.html#what-is-outside-this-practical",
+    "title": "Appendix A — Methods, decisions and references",
+    "section": "What is outside this practical?",
+    "text": "What is outside this practical?\nRaw-read QC, denoising, contamination assessment, reference-based taxonomy, phylogenetic tree building, functional prediction, microbial networks and predictive-model validation each require additional evidence and workflows.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Methods, decisions and references</span>"
+    ]
+  },
+  {
+    "objectID": "99-appendix.html#numerical-limitations-in-the-supplied-human-run",
+    "href": "99-appendix.html#numerical-limitations-in-the-supplied-human-run",
+    "title": "Appendix A — Methods, decisions and references",
+    "section": "Numerical limitations in the supplied human run",
+    "text": "Numerical limitations in the supplied human run\nThe ANCOMBC t-distribution calculation emitted NaNs produced. The exported summary flags 100 OTUs without finite group estimates or standard errors; all 100 have rank-deficient design matrices when restricted to samples with positive counts. feature-model-support.tsv makes that support visible. Do not interpret the package’s replacement p-values of 1 for unavailable tests as evidence of equality. Other estimable results must still pass the pseudo-count sensitivity criterion. The two-group warning about deactivating multi-group tests is expected: no global or pairwise multi-group analysis was requested. Read both warnings rather than silencing them without explanation.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Methods, decisions and references</span>"
+    ]
+  }
+]
