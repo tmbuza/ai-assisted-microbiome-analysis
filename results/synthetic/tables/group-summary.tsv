@@ -1,0 +1,3 @@
+group	samples	median_shannon	min_shannon	max_shannon	min_total	max_total	median_observed	median_expected_richness
+Group A	12	2.42809329838057	2.23839699766021	2.51346134730671	3473	10484	15	15
+Group B	12	2.56020804920313	2.46680539530333	2.60521988477708	3299	11964	15	15

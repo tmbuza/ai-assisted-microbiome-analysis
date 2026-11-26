@@ -2,35 +2,40 @@
 title: "5. Run the analysis: Your own study"
 ---
 
-## Your task
+## Stage 1: exploration
 
-Open a terminal in your project folder, where `_quarto.yml` is located. Run:
+From the main project folder:
 
 ```bash
-Rscript scripts/R/02-analyse-example.R data/my-study results/my-study
+Rscript scripts/R/run_workflow.R data/my-study results/my-study config/my-study.tsv
 ```
 
-The script checks the inputs first, then writes figures and tables to `results/my-study/`.
+Confirm `exploration-status.txt` says `COMPLETE`. Open all nine figures and
+match each to its table using [the output map](../../01-run-the-workflow.qmd).
+Shannon uses all features; grey Other affects composition display only.
 
-## Confirm the run
+PCoA uses Bray–Curtis on proportions with a Lingoes correction. The depth
+sensitivity uses 20 equal-depth random subsamples and mean distances. These
+are different distance definitions, not interchangeable results.
 
-The main script calls `01-check-inputs.R` before calculating results. It also compares its Shannon calculation with `vegan` for every sample. If an error occurs, resolve it before interpreting outputs from this or an earlier run.
+## Stage 2: inference
 
-Confirm the input folder is `data/my-study/` and the output folder is `results/my-study/`.
+Only after the design and settings are justified, set `design_confirmed` TRUE. Otherwise stop at exploration.
 
-## Inspect the outputs
+```bash
+Rscript scripts/R/run_inference.R data/my-study results/my-study config/my-study.tsv
+```
 
-| File inside `results/my-study/` | Check |
-|---|---|
-| `tables/alpha-diversity.tsv` | One row per sample; count total, observed features, Shannon |
-| `tables/relative-abundance.tsv` | Feature proportions for every sample |
-| `tables/composition-display.tsv` | Top eight features and pooled Other |
-| `tables/group-summary.tsv` | Group summaries |
-| `figures/` | All three PNG figures |
-| `session-info.txt` | R and package versions |
+The script requires unchanged inputs/settings and a complete exploration.
+It runs marginal PERMANOVA and dispersion checks for both distance definitions.
+Read the group term's R-squared and p-value alongside dispersion and sample
+structure. These tests do not turn an observational comparison into causation.
 
-## Before continuing
+When enabled, ANCOM-BC2 uses original integer counts and configured
+covariates. Positive effects mean comparison versus reference. The first
+model should follow your scientific question, not whichever formula produces
+more discoveries. Save alternative analyses in separate output folders.
 
-Check that the sample count and group labels agree with your metadata. Open all three figures. Keep the full feature table for diversity calculations; Other is a plotting convenience.
+If any command fails, stop. An incomplete folder can contain files from an earlier run. Preserve the error; do not write conclusions from partial results.
 
 [Next: Verify and explain](05-verify-and-explain.qmd)

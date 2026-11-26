@@ -1,0 +1,13 @@
+parameter	value
+reference	Control
+comparison	Case
+covariates	none
+design_confirmed	FALSE
+top_n	15
+seed	20261126
+depth	0
+depth_repeats	20
+permutations	999
+prevalence	0.1
+alpha	0.05
+run_da	FALSE

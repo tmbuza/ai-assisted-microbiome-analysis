@@ -2,32 +2,71 @@
 title: "2. Preview the results: Synthetic practice"
 ---
 
-## Your task
+## Preview the questions before running
 
-Preview the supplied figures before running the workflow. Write one initial observation for each figure; you will check it against your own outputs after the run.
+Write your own first observation before reading an AI explanation. The supplied
+exploration figures are previews; rerun them and compare your own outputs.
+
+All samples contain 15 detected fictional features. Any Shannon differences therefore concern their abundance distribution, rather than a difference in observed feature count.
 
 ## Composition
 
-![Composition in Synthetic practice. Each bar shows relative feature proportions for one sample; remaining features are pooled as Other.](../../results/example/figures/composition.png)
+![Composition: Synthetic practice.](../../results/synthetic/figures/composition.png)
 
-The supplied composition figure shows a generally larger pooled Other fraction in Group B. Other pools seven fictional features, so its size does not identify which individual features contribute to the pattern. Check their proportions in the unpooled table.
-
-[Open the composition image at full size](../../results/example/figures/composition.png) to read its labels.
+Which features contribute to each sample? This table has only 15 features, so all are displayed and there is no Other segment. In larger datasets, the remainder is pooled as light-grey Other.
 
 ## Shannon diversity
 
-![Shannon diversity in Synthetic practice. Each point is one sample; Shannon uses the full feature table.](../../results/example/figures/shannon-diversity.png)
+![Shannon diversity: Synthetic practice.](../../results/synthetic/figures/shannon-diversity.png)
 
-The supplied table has median Shannon values of about 2.428 in Group A and 2.560 in Group B. All samples have 15 observed features, so this difference reflects evenness in their feature proportions.
+The supplied run gives median Shannon **2.428093** in Group A and **2.560208** in Group B. All samples contain 15 observed features, so the difference reflects their relative abundance distribution. These are fictional groups, not evidence about health.
 
-## Count totals and diversity
+## Observed and depth-standardised richness
 
-![Count totals and diversity in Synthetic practice. Each point relates one sample's feature-table count total to its Shannon diversity.](../../results/example/figures/depth-diversity.png)
+![Observed and depth-standardised richness: Synthetic practice.](../../results/synthetic/figures/richness.png)
 
-Compare count ranges within and between groups. Samples with similar totals can have different feature proportions and Shannon values.
+Compare detected features with expected richness at the shared read depth.
 
-::: {.callout-note}
-These are descriptive plots. Composition bars sum to 100%; they do not show count totals. Visual differences alone do not establish statistical significance or causation.
-:::
+## Read totals and diversity
 
-[Next: Meet the inputs](02-meet-the-data.qmd)
+![Read totals and diversity: Synthetic practice.](../../results/synthetic/figures/depth-diversity.png)
+
+Locate unusual samples; read total is not microbial biomass.
+
+## Rarefaction curves
+
+![Rarefaction curves: Synthetic practice.](../../results/synthetic/figures/rarefaction.png)
+
+Check how detected-feature richness depends on subsample size within the supplied table.
+
+## Community similarity
+
+![Community similarity: Synthetic practice.](../../results/synthetic/figures/pcoa.png)
+
+Nearby samples have more similar profiles under the specified distance; a gap is not a significance test.
+
+## Depth sensitivity
+
+![Depth sensitivity: Synthetic practice.](../../results/synthetic/figures/pcoa-depth-sensitivity.png)
+
+Compare the group pattern with repeated equal-depth subsampling.
+
+## Feature abundance heatmap
+
+![Feature abundance heatmap: Synthetic practice.](../../results/synthetic/figures/abundance-heatmap.png)
+
+Read the log-colour scale. Darker or brighter colours are not differential-abundance results.
+
+## Feature prevalence
+
+![Feature prevalence: Synthetic practice.](../../results/synthetic/figures/prevalence.png)
+
+Separate how often a feature is detected from its average relative abundance.
+
+## Statistical plots come after inference
+
+Inference creates a dispersion plot. For Zackular it also creates an ANCOM-BC2
+volcano and effect-interval plot. Those results are introduced on Run and
+Verify; do not infer discoveries from an exploration preview.
+
+[Next: Meet](02-meet-the-data.qmd)

@@ -5,22 +5,27 @@ title: "1. Define the question: Your own study"
 ## Your question
 
 ::: {.callout-note}
-How do community composition, Shannon diversity, and count totals differ between my sample groups?
+Which differences between my two sample groups can this dataset support?
 :::
 
-Use the same steps with your prepared study tables. Adapt the question to name a comparison supported by your metadata.
-
-## Your dataset
-
-Prepare your three tidy TSV files in `data/my-study/`. This folder is reserved for your inputs and may be empty or absent until you create it.
+Start with prepared integer counts and a documented study design. This workflow supports an independent two-group comparison; paired, repeated or clustered samples need adaptation before inference.
 
 | Location | Folder |
 |---|---|
 | Inputs | `data/my-study/` |
 | Outputs | `results/my-study/` |
+| Settings | `config/my-study.tsv` |
 
-## Your task
+## Decide before running
 
-Follow the seven steps in order: define the question, preview results, meet the inputs, check them, run the analysis, explain the evidence, and write the report. Complete workspace setup before starting.
+Name the sample unit, reference group and comparison group. Explain whether
+you want a description, a community-level association or a feature-level
+association. Keep those questions distinct.
 
-[Next: Preview the results](01-see-the-result.qmd)
+The same seven steps carry you from question to report. Complete [setup](../../00-setup.qmd)
+first. Save one short note at each step; use these notes in your report.
+
+**Your task:** write your question in one sentence and one conclusion this
+design cannot establish. Ask AI to check whether the question matches the
+available sample units; you decide whether its proposed wording is justified.
+[Next: Preview](01-see-the-result.qmd)

@@ -46,3 +46,6 @@ Thumbs.db
 # source QMD files, and the published docs/ site tracked.
 
 UPDATE-*
+reports/
+data/my-study/
+results/my-study/

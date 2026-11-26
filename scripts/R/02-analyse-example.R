@@ -55,12 +55,14 @@ relative <- x |>
 # 5. Prepare the composition display ---------------------------------------
 
 # Rank features by mean sample proportion, with feature ID breaking ties.
-# Retain eight features and combine the remainder as Other for display only.
+# Change top_n to 10 or 15 to control the number of displayed features.
+# This affects composition plotting only; diversity uses all features.
+top_n <- 15L
 top_ids <- relative |>
   group_by(feature_id) |>
   summarise(mean_proportion = mean(proportion), .groups = "drop") |>
   arrange(desc(mean_proportion), feature_id) |>
-  slice_head(n = 8) |>
+  slice_head(n = top_n) |>
   pull(feature_id)
 
 # Use the deepest named rank in each QIIME lineage for the legend.
@@ -129,15 +131,23 @@ write_tsv(summary, file.path(output_dir, "tables", "group-summary.tsv"))
 # 7. Plot community composition --------------------------------------------
 
 # Each bar shows one sample; displayed proportions sum to one.
+# Give each named feature a colour and reserve light grey for Other.
+feature_colours <- setNames(
+  grDevices::hcl.colors(length(top_ids), palette = "Dark 3"),
+  unname(labels[top_ids])
+)
+composition_colours <- c(feature_colours, Other = "#D9D9D9")
 p1 <- ggplot(plot_data, aes(sample_id, proportion, fill = display_feature)) +
   geom_col(width = .85) +
+  scale_fill_manual(values = composition_colours, drop = TRUE) +
   facet_wrap(~group, scales = "free_x") +
   scale_y_continuous(labels = function(z) paste0(round(z * 100), "%")) +
   labs(
     x = "Sample",
     y = "Feature proportion",
     fill = "Feature",
-    subtitle = "Top eight features by mean sample proportion; remainder grouped as Other"
+    subtitle = paste0("Top ", length(top_ids),
+                      " features by mean sample proportion; remainder grouped as Other")
   ) +
   theme_minimal(base_size = 12) +
   theme(axis.text.x = element_text(angle = 60, hjust = 1))
@@ -180,7 +190,7 @@ ggsave(
   file.path(figure_dir, "composition.png"),
   p1,
   width = max(10, min(24, nrow(m) * .35)),
-  height = 5.5,
+  height = 7,
   dpi = 180
 )
 ggsave(

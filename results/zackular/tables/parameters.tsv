@@ -1,0 +1,13 @@
+parameter	value
+reference	Healthy
+comparison	Carcinoma
+covariates	age,sex,collection_location
+design_confirmed	TRUE
+top_n	15
+seed	20261126
+depth	15000
+depth_repeats	20
+permutations	999
+prevalence	0.1
+alpha	0.05
+run_da	TRUE

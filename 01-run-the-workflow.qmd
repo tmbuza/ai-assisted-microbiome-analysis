@@ -1,0 +1,62 @@
+---
+title: "Workflow and output map"
+---
+
+## Three inputs, two analysis stages
+
+`feature-counts.tsv` has `feature_id` followed by sample columns of finite,
+nonnegative integer counts. `sample-metadata.tsv` has unique `sample_id` and
+`group`, plus covariates. `taxonomy.tsv` has unique `feature_id` and `taxon`.
+Identifiers connect the files; their row order need not match.
+
+1. `run_workflow.R` checks inputs and produces **exploration**.
+2. `run_inference.R` checks the completed exploration, unchanged inputs and
+   settings, sample independence and model estimability before testing.
+
+The older numbered scripts can remain for previous examples; the new pages
+use the entry points above. They share `common.R`.
+
+## Find the evidence
+
+Paths below are inside `results/DATASET/`. Synthetic uses `results/synthetic/`.
+
+| Figure | Table or record |
+|---|---|
+| `composition.png` | `tables/composition-display.tsv`, `tables/relative-abundance.tsv` |
+| `shannon-diversity.png` | `tables/alpha-diversity.tsv`, `tables/group-summary.tsv` |
+| `richness.png` | `tables/richness-display.tsv` |
+| `depth-diversity.png` | `tables/alpha-diversity.tsv` |
+| `rarefaction.png` | `tables/rarefaction.tsv` |
+| `pcoa.png` | `tables/pcoa-scores.tsv`, `tables/pcoa-variance.tsv`, `tables/distance.tsv` |
+| `pcoa-depth-sensitivity.png` | corresponding score/variance tables; `tables/depth-sensitivity-alpha.tsv` |
+| `abundance-heatmap.png` | `tables/heatmap-display.tsv` |
+| `prevalence.png` | `tables/prevalence.tsv` |
+| `dispersion.png` (after inference) | `tables/dispersion-distances.tsv`, `tables/dispersion-test.tsv` |
+| `da-volcano.png`, `da-effects.png` (when DA enabled) | `tables/differential-abundance.tsv`, `tables/da-effect-display.tsv` |
+
+The two run-status files must say `COMPLETE` for the stages you interpret.
+`input-checksums.tsv` records exact input/config bytes; `parameters.tsv`
+records settings; `model-matrix.tsv` records the inference design.
+Exploration and inference have separate session information files.
+
+## What changes between analyses?
+
+- Composition shows up to **15 features**, ranked by mean sample proportion.
+  Other is light grey. Selection is for display, not differential testing.
+- Shannon and observed richness use **all supplied features**. Expected
+  richness standardises sampling effort conditional on the supplied table.
+- PCoA uses Bray–Curtis distances on sample proportions. It uses a Lingoes
+  correction; its axis percentages describe the corrected geometry.
+- A separate depth sensitivity repeats equal-depth subsampling 20 times and
+  averages Bray–Curtis distances. It does not overwrite original counts.
+- The heatmap shows log10(proportion + 0.000001), without row scaling.
+  Its offset is for display only. It is not supplied to ANCOM-BC2.
+- Differential abundance uses **unrarefied counts**, after a documented
+  prevalence filter, with its own bias correction and sensitivity analysis.
+
+Similar-looking plots can answer different questions. Never use a heatmap's
+colours, a PCoA gap or a large composition segment as a significance test.
+
+Warnings are saved in `exploration-warnings.txt` or `inference-warnings.txt` when present. Read them before accepting results; model convergence or singularity warnings stop inference. Synthetic rarefaction warnings about the lack of count-one features reflect the supplied teaching table and limit biological interpretation.
+
+`tables/feature-model-support.tsv` records positive sample counts, positive-subset design rank and effect availability for each fitted OTU. Use it to investigate unestimable effects; a passing whole-study model check does not guarantee every sparse OTU supports every coefficient.

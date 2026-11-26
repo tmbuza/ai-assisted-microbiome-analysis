@@ -2,36 +2,48 @@
 title: "6. Verify and explain: Your own study"
 ---
 
-## Your task
+## Verify one sample
 
-Write one observation per figure and check each against the saved tables. Separate observations from possible explanations.
-
-## Check the evidence
-
-| Figure | Numerical check |
-|---|---|
-| Composition | Compare the relevant feature proportions within samples, then summarise by group |
-| Shannon diversity | Compare medians, ranges, and observed feature counts |
-| Count totals and diversity | Identify the smallest and largest totals and inspect unusual samples |
-
-State the limits of your sampling, grouping, feature labels, and available metadata. Specify which further checks would help answer your question.
-
-## Optional: verify one sample
-
-Choose an actual sample ID from your count table. In the command below, replace `SAMPLE_ID` with that ID, then run it from the project root:
+Run from the main folder; replace SAMPLE_ID with an actual ID:
 
 ```bash
-Rscript scripts/R/05-verify-sample.R data/my-study results/my-study SAMPLE_ID
+Rscript scripts/R/verify_sample.R data/my-study results/my-study config/my-study.tsv SAMPLE_ID
 ```
 
-Record its total, observed features, Shannon value, and agreement. All three rows should show `TRUE` under `agrees`.
+All three rows should show TRUE. The verifier checks current input bytes,
+count total, observed features and Shannon. Agreement checks arithmetic; it
+does not validate sequencing quality, sample identity or every model estimate.
 
-::: {.callout-note}
-The independent sample calculation is optional. Checking your descriptions against the output tables remains part of the workflow. Agreement confirms a calculation; it does not establish sample quality or a biological cause.
-:::
+## Explain the exploration
 
-## Before continuing
+Write one sentence per figure. For composition, compare named OTUs and
+acknowledge the pooled remainder. For Shannon and richness, check sample
+values and group summaries. For PCoA, name the distance and axis percentages;
+check whether the pattern persists in the depth sensitivity. For the heatmap
+and prevalence plot, distinguish high abundance from frequent detection.
 
-Write a short answer to your question, name the evidence supporting it, and state one limitation. If AI helps with the draft, check every number, label, and claim against your outputs.
+## Explain the tests
 
-[Next: Write the report](06-export-the-report.qmd)
+Record the group term's R-squared and p-value in `permanova.tsv`, the
+covariates in `model-matrix.tsv`, and dispersion results. Compare the two
+distance definitions without choosing a favourite p-value. Dispersion is not
+adjusted for the covariates in the PERMANOVA model.
+
+If differential abundance was run, select an OTU in
+`differential-abundance.tsv`. Check its full ID, contrast direction, natural-log
+effect, standard error, adjusted p-value and sensitivity flag. Recalculate
+exp(effect) for its model-estimated fold change. Locate it in the full
+relative-abundance table to understand the unadjusted display; the two values
+answer different questions.
+
+An empty discoveries table is a valid outcome. Explain insufficient evidence
+under the model, rather than claiming identical communities or changing the
+threshold to obtain hits.
+
+**Human → AI → Human task:** write your result paragraph first. Give AI the
+relevant figures, exact table rows, model and contrast. Ask it to identify
+unsupported numbers, reversed effects and causal wording. Accept changes
+only after checking them yourself. Finish with one limitation and a useful
+next scientific question.
+
+[Next: Write](06-export-the-report.qmd)

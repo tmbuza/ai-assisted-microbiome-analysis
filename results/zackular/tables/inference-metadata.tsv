@@ -1,0 +1,61 @@
+sample_id	group	original_disease_state	age	sex	collection_location	fobt_result	sex_original	collection_location_original
+Cancer1-2355	Comparison	CRC	70	Male	Houston, TX	negative	m  	Houston, TX
+Cancer10-2567	Comparison	CRC	69	Male	Boston, MA	negative	m  	Boston, MA
+Cancer11-2573	Comparison	CRC	47	Female	Boston, MA	negative	f  	Boston, MA
+Cancer12-2575	Comparison	CRC	67	Female	Boston, MA	negative	f  	Boston, MA
+Cancer13-2579	Comparison	CRC	55	Male	Boston, MA	negative	m  	Boston, MA
+Cancer14-2611	Comparison	CRC	49	Male	Ann Arbor, MI	positive	m  	Ann Arbor,. MI
+Cancer15-2613	Comparison	CRC	61	Male	Ann Arbor, MI	positive	m  	Ann Arbor,. MI
+Cancer16-2619	Comparison	CRC	63	Male	Houston, TX	positive	m  	Houston, TX
+Cancer17-2625	Comparison	CRC	43	Male	Houston, TX	negative	m  	Houston, TX
+Cancer18-2629	Comparison	CRC	52	Male	Ann Arbor, MI	negative	m  	Ann Arbor, MI
+Cancer19-2633	Comparison	CRC	71	Male	Ann Arbor, MI	positive	m  	Ann Arbor,. MI
+Cancer2-2455	Comparison	CRC	59	Male	Boston, MA	negative	m  	Boston, MA
+Cancer20-2667	Comparison	CRC	58	Male	Houston, TX	negative	m  	Houston, TX
+Cancer21-2671	Comparison	CRC	60	Male	Houston, TX	positive	m  	Houston, TX
+Cancer22-2703	Comparison	CRC	51	Female	Boston, MA	negative	f  	Boston, MA
+Cancer23-2705	Comparison	CRC	64	Female	Houston, TX	negative	f  	Houston, TX
+Cancer24-2727	Comparison	CRC	48	Male	Boston, MA	positive	m  	Boston, MA
+Cancer25-2735	Comparison	CRC	60	Female	Houston, TX	negative	f  	Houston, TX
+Cancer26-2763	Comparison	CRC	43	Male	Ann Arbor, MI	negative	m  	Ann Arbor, MI
+Cancer27-2771	Comparison	CRC	59	Female	Boston, MA	positive	f  	Boston, MA
+Cancer28-2777	Comparison	CRC	73	Female	Toronto, ON CANADA	negative	f  	Toronto, ON CANADA
+Cancer29-2801	Comparison	CRC	59	Male	Boston, MA	positive	m  	Boston, MA
+Cancer3-2513	Comparison	CRC	69	Male	Houston, TX	negative	m  	Houston, TX
+Cancer30-2863	Comparison	CRC	57	Male	Toronto, ON CANADA	positive	m  	Toronto, ON CANADA
+Cancer4-2521	Comparison	CRC	88	Male	Houston, TX	negative	m  	Houston, TX
+Cancer5-2523	Comparison	CRC	37	Male	Houston, TX	positive	m  	Houston, TX
+Cancer6-2535	Comparison	CRC	69	Male	Houston, TX	negative	m  	Houston, TX
+Cancer7-2537	Comparison	CRC	74	Female	Boston, MA	negative	f  	Boston, MA
+Cancer8-2543	Comparison	CRC	56	Male	Houston, TX	positive	m  	Houston, TX
+Cancer9-2547	Comparison	CRC	51	Female	Houston, TX	negative	f  	Houston, TX
+Healthy1-2027	Reference	H	65	Female	Toronto, ON CANADA	negative	f  	Toronto, ON CANADA
+Healthy10-3087	Reference	H	51	Male	Houston, TX	negative	m  	Houston, TX
+Healthy11-3123	Reference	H	55	Female	Houston, TX	negative	f  	Houston, TX
+Healthy12-3211	Reference	H	51	Female	Ann Arbor, MI	negative	f  	Ann Arbor, MI
+Healthy13-3241	Reference	H	45	Female	Ann Arbor, MI	negative	f  	Ann Arbor, MI
+Healthy14-3245	Reference	H	61	Female	Boston, MA	negative	f  	Boston, MA
+Healthy15-3247	Reference	H	51	Female	Ann Arbor, MI	negative	f  	Ann Arbor, MI
+Healthy16-3251	Reference	H	57	Female	Houston, TX	negative	f  	Houston, TX
+Healthy17-3257	Reference	H	65	Male	Ann Arbor, MI	negative	m  	Ann Arbor, MI
+Healthy18-3293	Reference	H	52	Female	Houston, TX	negative	f  	Houston, TX
+Healthy19-3339	Reference	H	54	Female	Ann Arbor, MI	negative	f  	Ann Arbor, MI
+Healthy2-2779	Reference	H	69	Female	Toronto, ON CANADA	negative	f  	Toronto, ON CANADA
+Healthy20-3341	Reference	H	75	Female	Ann Arbor, MI	negative	f  	Ann Arbor, MI
+Healthy21-3347	Reference	H	61	Male	Houston, TX	negative	m  	Houston, TX
+Healthy22-3363	Reference	H	58	Male	Houston, TX	negative	m  	Houston, TX
+Healthy23-3367	Reference	H	56	Female	Houston, TX	negative	f  	Houston, TX
+Healthy24-3403	Reference	H	51	Male	Houston, TX	negative	m  	Houston, TX
+Healthy25-3405	Reference	H	42	Male	Houston, TX	negative	m  	Houston, TX
+Healthy26-3407	Reference	H	49	Male	Houston, TX	negative	m  	Houston, TX
+Healthy27-3439	Reference	H	53	Female	Boston, MA	negative	f  	Boston, MA
+Healthy28-3499	Reference	H	46	Female	Boston, MA	negative	f  	Boston, MA
+Healthy29-3529	Reference	H	51	Female	Boston, MA	negative	f  	Boston, MA
+Healthy3-3021	Reference	H	54	Male	Houston, TX	negative	m  	Houston, TX
+Healthy30-3291-66	Reference	H	63	Female	Boston, MA	negative	f  	Boston, MA
+Healthy4-3023	Reference	H	44	Female	Houston, TX	negative	f  	Houston, TX
+Healthy5-3043	Reference	H	52	Female	Houston, TX	negative	f  	Houston, TX
+Healthy6-3061	Reference	H	75	Male	Houston, TX	negative	m  	Houston, TX
+Healthy7-3063	Reference	H	52	Male	Houston, TX	negative	m  	Houston, TX
+Healthy8-3073	Reference	H	65	Male	Toronto, ON CANADA	negative	m  	Toronto, ON CANADA
+Healthy9-3075	Reference	H	35	Female	Houston, TX	negative	f  	Houston, TX

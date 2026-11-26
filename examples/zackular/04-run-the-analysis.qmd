@@ -1,0 +1,44 @@
+---
+title: "5. Run the analysis: Human stool study"
+---
+
+## Stage 1: exploration
+
+From the main project folder:
+
+```bash
+Rscript scripts/R/run_workflow.R data/zackular results/zackular config/zackular.tsv
+```
+
+Confirm `exploration-status.txt` says `COMPLETE`. Open all nine figures and
+match each to its table using [the output map](../../01-run-the-workflow.qmd).
+Shannon uses all features; grey Other affects composition display only.
+
+PCoA uses Bray–Curtis on proportions with a Lingoes correction. The depth
+sensitivity uses 20 equal-depth random subsamples and mean distances. These
+are different distance definitions, not interchangeable results.
+
+## Stage 2: inference
+
+```bash
+Rscript scripts/R/run_inference.R data/zackular results/zackular config/zackular.tsv
+```
+
+The script requires unchanged inputs/settings and a complete exploration.
+It runs marginal PERMANOVA and dispersion checks for both distance definitions.
+Read the group term's R-squared and p-value alongside dispersion and sample
+structure. These tests do not turn an observational comparison into causation.
+
+ANCOM-BC2 then models unrarefied counts with `age + sex + collection_location
++ group`, after 10% prevalence filtering. Positive natural-log group effects
+mean higher estimated abundance in Carcinoma versus Healthy. BH-adjusted
+p < 0.05 and pseudo-count sensitivity jointly define highlighted discoveries.
+Structural-zero calling is disabled; unavailable results are not discoveries.
+
+Open `da-volcano.png` and `da-effects.png` only after `inference-status.txt`
+says `COMPLETE`. Up to 20 features appear in the effect plot even if none is
+significant. These intervals are pointwise, not multiple-testing-adjusted.
+
+If any command fails, stop. An incomplete folder can contain files from an earlier run. Preserve the error; do not write conclusions from partial results.
+
+[Next: Verify and explain](05-verify-and-explain.qmd)

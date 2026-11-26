@@ -2,24 +2,25 @@
 title: "3. Meet the inputs: Synthetic practice"
 ---
 
-## Your task
+## Locate the three files
 
-Locate the three TSV files in `data/example/`.
-
-## The three files
-
-| File | Required structure |
+| File in `data/synthetic/` | What to inspect |
 |---|---|
-| `feature-counts.tsv` | `feature_id`, followed by sample columns of nonnegative integer counts |
-| `sample-metadata.tsv` | `sample_id` and `group`, with one row per sample |
-| `taxonomy.tsv` | `feature_id` and `taxon`, with one row per feature |
+| `feature-counts.tsv` | Feature IDs in rows; sample IDs in columns; integer read counts |
+| `sample-metadata.tsv` | One row per sample, with sample ID, group and available covariates |
+| `taxonomy.tsv` | Each feature ID and its supplied lineage or display label |
 
-## Dataset details
+Pick one sample and find it in counts and metadata. Pick one feature and find
+it in counts and taxonomy. Row order is not evidence of a match; IDs are.
 
-All features are fictional. A label identifies a teaching feature, not a real organism.
+All 15 feature labels are fictional. The full count table is retained for
+exploration. A01 has total **6,006**, **15** detected features and Shannon
+**2.423797**. You will independently verify those summaries later.
 
-## Before continuing
+The original synthetic generating process is not reconstructed by this update.
+Treat it as an existing teaching input, not a validated differential-abundance
+benchmark. The default synthetic inference runs community tests only.
 
-Choose one sample ID and locate it in both counts and metadata. Choose one feature ID and locate it in both counts and taxonomy. These identifiers connect the files.
+**Your task:** record assay, sample unit, group definition and one missing piece of information that matters for interpretation.
 
-[Next: Check the inputs](03-check-the-inputs.qmd)
+[Next: Check](03-check-the-inputs.qmd)

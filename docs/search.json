@@ -4,17 +4,7 @@
     "href": "index.html",
     "title": "AI-Assisted Microbiome Analysis with R",
     "section": "",
-    "text": "The datasets\nLearn one workflow, then repeat it with a different dataset. Start with the required workspace setup and follow the synthetic practice in order. Use the same seven steps for DietSwap, Mouse59, and your own study.\nThe guide starts from prepared feature tables and produces descriptive results. Raw sequencing processing and statistical hypothesis testing require additional workflows.\nNext: Set up your workspace",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>AI-Assisted Microbiome Analysis with R</span>"
-    ]
-  },
-  {
-    "objectID": "index.html#the-datasets",
-    "href": "index.html#the-datasets",
-    "title": "AI-Assisted Microbiome Analysis with R",
-    "section": "",
-    "text": "Dataset\nWhat you will learn\n\n\n\n\nSynthetic practice\nRead and check results from 24 samples and 15 fictional features\n\n\nDietSwap\nDescribe a selected cohort comparison using 38 participant samples\n\n\nMouse59\nExplore 59 samples and 2,027 OTUs, including low-count samples\n\n\nYour own study\nPrepare three tidy TSV files and apply the same workflow\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nSetup is required before running the workflow. Each dataset follows the same page structure. Its question, input/output folders, and dataset-specific details change; the analysis steps stay the same.",
+    "text": "Turn prepared microbiome counts into results you can understand and defend. Start with synthetic practice, apply the workflow to a human stool dataset, then adapt it to your own study.\n\n\n\n\n\n\nOne workflow for every dataset\n\n\n\n\nDefine an answerable question and what each sample represents.\nPreview the figures and the questions they help answer.\nMeet the counts, sample metadata and feature annotations.\nCheck identifiers, count values, sample quality and study design.\nRun exploration, then appropriate statistical analyses.\nVerify and explain findings using figures, numbers and limitations.\nWrite a short report that another researcher can follow.\n\n\n\n\n\n\n\n\n\n\nExample\nYour learning goal\n\n\n\n\nSynthetic practice\nUnderstand composition, diversity, community distances and numerical checks\n\n\nZackular human stool study\nCompare healthy and carcinoma samples; evaluate community and OTU-level associations\n\n\nYour own study\nDefine groups, choose covariates and decide whether this workflow fits your design\n\n\n\nYou begin with prepared integer feature counts, not raw sequences. These pages do not perform read quality control, denoising or taxonomic assignment. Each coloured composition segment represents a feature, not necessarily a named species. All samples remain visible, including unusual observations.\nHuman → AI → Human: first write your question or interpretation; use AI for a specific explanation or review; then check its response against your files and make the final decision yourself.\nBegin: Set up your workspace",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>AI-Assisted Microbiome Analysis with R</span>"
     ]
@@ -24,43 +14,120 @@
     "href": "00-setup.html",
     "title": "Set up your workspace",
     "section": "",
-    "text": "Before you begin\nComplete this setup before beginning the guide. You will download the project files, open your workspace, and restore the R packages needed for all three examples.\nWork through the sections in order. You only need to complete this setup once.\nHave R, Quarto, and an editor such as VS Code or RStudio installed on your computer.",
+    "text": "Open the project\nHave R, Quarto and VS Code or RStudio installed. Use an R/Bioconductor combination that supplies ANCOMBC 2.16.0 or newer for the expanded inference stage. You may need to update R if your compatible Bioconductor release supplies an older ANCOMBC. Download the project, extract it and open its main folder. Apply this update there before using the new commands. Open a terminal in the folder containing _quarto.yml.\nYou should see data/, scripts/R/, config/, examples/ and templates/. Run all analysis commands from this folder.",
     "crumbs": [
-      "Required setup",
+      "Required setup and workflow",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Set up your workspace</span>"
     ]
   },
   {
-    "objectID": "00-setup.html#get-the-project-files",
-    "href": "00-setup.html#get-the-project-files",
+    "objectID": "00-setup.html#restore-and-extend-the-r-environment",
+    "href": "00-setup.html#restore-and-extend-the-r-environment",
     "title": "Set up your workspace",
-    "section": "Get the project files",
-    "text": "Get the project files\nDownload the project ZIP\n\nExtract the downloaded ZIP.\nOpen the extracted ai-assisted-microbiome-analysis-main folder in VS Code or RStudio.\nOpen a terminal in that folder.\n\n\n\n\n\n\n\nNote\n\n\n\nThis is your project folder, also called the repository root. It contains _quarto.yml, renv.lock, data/, scripts/. Run the guide’s terminal commands from this folder.",
+    "section": "Restore and extend the R environment",
+    "text": "Restore and extend the R environment\nStart R in the terminal:\nR\nAt the R prompt, restore the existing project lockfile if present, then add the packages needed for this expanded workflow:\noptions(repos = c(CRAN = \"https://cloud.r-project.org\"))\nif (!requireNamespace(\"renv\", quietly = TRUE)) install.packages(\"renv\")\nif (file.exists(\"renv.lock\")) renv::restore()\nrenv::install(c(\"ggplot2\", \"vegan\"))\nrenv::install(\"bioc::ANCOMBC\")\nrenv::snapshot()\nrenv::status()\nFollow installation prompts and resolve errors before continuing. ANCOMBC adds Bioconductor dependencies; installation can take longer than exploration packages. Use a Bioconductor release compatible with your R version. Do not force a development version or replace packages at random to bypass an error.\nsuppressPackageStartupMessages(library(ggplot2))\nsuppressPackageStartupMessages(library(vegan))\npackageVersion(\"ANCOMBC\")\nstopifnot(packageVersion(\"ANCOMBC\") &gt;= numeric_version(\"2.16.0\"))\nq(save = \"no\")\nCommands beginning Rscript or quarto run in the terminal. R expressions such as library() run at the R prompt. Reading a page runs no analysis.",
     "crumbs": [
-      "Required setup",
+      "Required setup and workflow",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Set up your workspace</span>"
     ]
   },
   {
-    "objectID": "00-setup.html#restore-the-r-environment",
-    "href": "00-setup.html#restore-the-r-environment",
+    "objectID": "00-setup.html#keep-the-work-organised",
+    "href": "00-setup.html#keep-the-work-organised",
     "title": "Set up your workspace",
-    "section": "Restore the R environment",
-    "text": "Restore the R environment\nThe project includes renv.lock, which records the R packages used for the supplied analyses.\n\n\n\n\n\n\nWhere does code run?\n\n\n\nRun terminal commands such as R, Rscript, and quarto in your terminal. After starting R, run R expressions at the R prompt (&gt;). Opening a guide page does not run its code.\n\n\nIn the terminal, start R:\nR\nAt the R prompt (&gt;), run:\noptions(repos = c(CRAN = \"https://cloud.r-project.org\"))\n\nif (!requireNamespace(\"renv\", quietly = TRUE)) {\n  install.packages(\"renv\")\n}\n\nrenv::restore()\nrenv::status()\nIf asked to proceed, enter Y and wait for the &gt; prompt before entering another command. Restore the supplied lockfile rather than initializing a new environment.\nCheck that the analysis packages load, then return to the terminal:\nlibrary(tidyverse)\nlibrary(vegan)\n\nq(save = \"no\")\n\n\n\n\n\n\nNote\n\n\n\nIf setup fails: copy the error message. Ask AI to explain it using your R version, operating system, and the command you ran. Check the proposed fix before applying it. Keep the supplied lockfile intact while investigating.",
+    "section": "Keep the work organised",
+    "text": "Keep the work organised\nInputs belong in data/; generated tables and figures in results/; learner writing in ignored reports/. Settings belong in config/. Reruns replace named outputs, so copy an output folder before comparing alternative settings. Do not reuse an incomplete run.\nIf an error occurs, record the exact command, message, R version and package versions. Ask AI to explain that evidence, then check the proposed remedy.\nNext: Synthetic practice",
     "crumbs": [
-      "Required setup",
+      "Required setup and workflow",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Set up your workspace</span>"
     ]
   },
   {
-    "objectID": "00-setup.html#ready-to-begin",
-    "href": "00-setup.html#ready-to-begin",
-    "title": "Set up your workspace",
-    "section": "Ready to begin?",
-    "text": "Ready to begin?\nYour terminal should be open in the project root, renv::status() should report no synchronization issues, and both packages should load successfully.\nNext: Begin the synthetic practice",
+    "objectID": "01-run-the-workflow.html",
+    "href": "01-run-the-workflow.html",
+    "title": "Workflow and output map",
+    "section": "",
+    "text": "Three inputs, two analysis stages\nfeature-counts.tsv has feature_id followed by sample columns of finite, nonnegative integer counts. sample-metadata.tsv has unique sample_id and group, plus covariates. taxonomy.tsv has unique feature_id and taxon. Identifiers connect the files; their row order need not match.\nThe older numbered scripts can remain for previous examples; the new pages use the entry points above. They share common.R.",
     "crumbs": [
-      "Required setup",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Set up your workspace</span>"
+      "Required setup and workflow",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Workflow and output map</span>"
+    ]
+  },
+  {
+    "objectID": "01-run-the-workflow.html#three-inputs-two-analysis-stages",
+    "href": "01-run-the-workflow.html#three-inputs-two-analysis-stages",
+    "title": "Workflow and output map",
+    "section": "",
+    "text": "run_workflow.R checks inputs and produces exploration.\nrun_inference.R checks the completed exploration, unchanged inputs and settings, sample independence and model estimability before testing.",
+    "crumbs": [
+      "Required setup and workflow",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Workflow and output map</span>"
+    ]
+  },
+  {
+    "objectID": "01-run-the-workflow.html#find-the-evidence",
+    "href": "01-run-the-workflow.html#find-the-evidence",
+    "title": "Workflow and output map",
+    "section": "Find the evidence",
+    "text": "Find the evidence\nPaths below are inside results/DATASET/. Synthetic uses results/synthetic/.\n\n\n\n\n\n\n\nFigure\nTable or record\n\n\n\n\ncomposition.png\ntables/composition-display.tsv, tables/relative-abundance.tsv\n\n\nshannon-diversity.png\ntables/alpha-diversity.tsv, tables/group-summary.tsv\n\n\nrichness.png\ntables/richness-display.tsv\n\n\ndepth-diversity.png\ntables/alpha-diversity.tsv\n\n\nrarefaction.png\ntables/rarefaction.tsv\n\n\npcoa.png\ntables/pcoa-scores.tsv, tables/pcoa-variance.tsv, tables/distance.tsv\n\n\npcoa-depth-sensitivity.png\ncorresponding score/variance tables; tables/depth-sensitivity-alpha.tsv\n\n\nabundance-heatmap.png\ntables/heatmap-display.tsv\n\n\nprevalence.png\ntables/prevalence.tsv\n\n\ndispersion.png (after inference)\ntables/dispersion-distances.tsv, tables/dispersion-test.tsv\n\n\nda-volcano.png, da-effects.png (when DA enabled)\ntables/differential-abundance.tsv, tables/da-effect-display.tsv\n\n\n\nThe two run-status files must say COMPLETE for the stages you interpret. input-checksums.tsv records exact input/config bytes; parameters.tsv records settings; model-matrix.tsv records the inference design. Exploration and inference have separate session information files.",
+    "crumbs": [
+      "Required setup and workflow",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Workflow and output map</span>"
+    ]
+  },
+  {
+    "objectID": "01-run-the-workflow.html#what-changes-between-analyses",
+    "href": "01-run-the-workflow.html#what-changes-between-analyses",
+    "title": "Workflow and output map",
+    "section": "What changes between analyses?",
+    "text": "What changes between analyses?\n\nComposition shows up to 15 features, ranked by mean sample proportion. Other is light grey. Selection is for display, not differential testing.\nShannon and observed richness use all supplied features. Expected richness standardises sampling effort conditional on the supplied table.\nPCoA uses Bray–Curtis distances on sample proportions. It uses a Lingoes correction; its axis percentages describe the corrected geometry.\nA separate depth sensitivity repeats equal-depth subsampling 20 times and averages Bray–Curtis distances. It does not overwrite original counts.\nThe heatmap shows log10(proportion + 0.000001), without row scaling. Its offset is for display only. It is not supplied to ANCOM-BC2.\nDifferential abundance uses unrarefied counts, after a documented prevalence filter, with its own bias correction and sensitivity analysis.\n\nSimilar-looking plots can answer different questions. Never use a heatmap’s colours, a PCoA gap or a large composition segment as a significance test.\nWarnings are saved in exploration-warnings.txt or inference-warnings.txt when present. Read them before accepting results; model convergence or singularity warnings stop inference. Synthetic rarefaction warnings about the lack of count-one features reflect the supplied teaching table and limit biological interpretation.\ntables/feature-model-support.tsv records positive sample counts, positive-subset design rank and effect availability for each fitted OTU. Use it to investigate unestimable effects; a passing whole-study model check does not guarantee every sparse OTU supports every coefficient.",
+    "crumbs": [
+      "Required setup and workflow",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Workflow and output map</span>"
+    ]
+  },
+  {
+    "objectID": "02-write-the-report.html",
+    "href": "02-write-the-report.html",
+    "title": "Write a report you can defend",
+    "section": "",
+    "text": "Create a draft without overwriting your writing\nRun the dataset’s create_report.R command. It creates a draft in ignored reports/ and keeps an existing draft unchanged. The report is independent of the book; you do not add it to _quarto.yml.\nEdit the prompts into your own account of the question, inputs, decisions, results, checks, limitations and next scientific action. Keep your report short: use the most informative figures in the narrative and link the rest as supporting evidence.",
+    "crumbs": [
+      "Required setup and workflow",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Write a report you can defend</span>"
+    ]
+  },
+  {
+    "objectID": "02-write-the-report.html#every-claim-needs-a-location",
+    "href": "02-write-the-report.html#every-claim-needs-a-location",
+    "title": "Write a report you can defend",
+    "section": "Every claim needs a location",
+    "text": "Every claim needs a location\nFor a diversity claim, name the metric, groups, summary and source table. For a community test, record the distance, transformation, model, permutations, R-squared, p-value and dispersion result. For an OTU association, give its ID, tested contrast, natural-log effect, uncertainty, BH-adjusted p-value and pseudo-count sensitivity result. Do not silently substitute a genus name for an OTU-level finding.\nDistinguish a descriptive difference from an adjusted association and from a causal claim. Adjustment addresses only the measured variables in that model.",
+    "crumbs": [
+      "Required setup and workflow",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Write a report you can defend</span>"
+    ]
+  },
+  {
+    "objectID": "02-write-the-report.html#render-separately",
+    "href": "02-write-the-report.html#render-separately",
+    "title": "Write a report you can defend",
+    "section": "Render separately",
+    "text": "Render separately\nFrom the project root:\ncd reports\nquarto render zackular-report.qmd --to html\ncd ..\nUse synthetic-report.qmd or my-study-report.qmd for the other examples. Check that images load, numerical claims match the current complete run, and all placeholder text has been replaced. New outputs do not update your written interpretations automatically.",
+    "crumbs": [
+      "Required setup and workflow",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Write a report you can defend</span>"
+    ]
+  },
+  {
+    "objectID": "02-write-the-report.html#record-ais-contribution",
+    "href": "02-write-the-report.html#record-ais-contribution",
+    "title": "Write a report you can defend",
+    "section": "Record AI’s contribution",
+    "text": "Record AI’s contribution\nState the tool/model if known, date, task, what you supplied, what you adopted and how you checked it. First write your own observation; ask AI to challenge it using actual tables; make the final revision yourself. Do not share identifying or restricted participant information.",
+    "crumbs": [
+      "Required setup and workflow",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Write a report you can defend</span>"
     ]
   },
   {
@@ -68,10 +135,10 @@
     "href": "examples/synthetic/00-start-here.html",
     "title": "1. Define the question: Synthetic practice",
     "section": "",
-    "text": "Your question\nThis teaching dataset contains fictional features and two supplied groups. Use it to learn how the workflow behaves before interpreting study data.",
+    "text": "Your question\nThese are 24 fictional samples, 12 per group, with 15 fictional features. Learn how a count table becomes evidence; these patterns are not biological discoveries.",
     "crumbs": [
       "Synthetic practice",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>1. Define the question: Synthetic practice</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>1. Define the question: Synthetic practice</span>"
     ]
   },
   {
@@ -79,32 +146,21 @@
     "href": "examples/synthetic/00-start-here.html#your-question",
     "title": "1. Define the question: Synthetic practice",
     "section": "",
-    "text": "Note\n\n\n\nHow do community composition, Shannon diversity, and count totals differ between Group A and Group B?",
+    "text": "Note\n\n\n\nHow do composition and diversity differ between Group A and Group B?\n\n\n\n\n\n\nLocation\nFolder\n\n\n\n\nInputs\ndata/synthetic/\n\n\nOutputs\nresults/synthetic/\n\n\nSettings\nconfig/synthetic.tsv",
     "crumbs": [
       "Synthetic practice",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>1. Define the question: Synthetic practice</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>1. Define the question: Synthetic practice</span>"
     ]
   },
   {
-    "objectID": "examples/synthetic/00-start-here.html#your-dataset",
-    "href": "examples/synthetic/00-start-here.html#your-dataset",
+    "objectID": "examples/synthetic/00-start-here.html#decide-before-running",
+    "href": "examples/synthetic/00-start-here.html#decide-before-running",
     "title": "1. Define the question: Synthetic practice",
-    "section": "Your dataset",
-    "text": "Your dataset\nUse 24 samples, 15 features, and the supplied groups Group A (12) and Group B (12).\n\n\n\nLocation\nFolder\n\n\n\n\nInputs\ndata/example/\n\n\nOutputs\nresults/example/",
+    "section": "Decide before running",
+    "text": "Decide before running\nName the sample unit, reference group and comparison group. Explain whether you want a description, a community-level association or a feature-level association. Keep those questions distinct.\nThe same seven steps carry you from question to report. Complete setup first. Save one short note at each step; use these notes in your report.\nYour task: write your question in one sentence and one conclusion this design cannot establish. Ask AI to check whether the question matches the available sample units; you decide whether its proposed wording is justified. Next: Preview",
     "crumbs": [
       "Synthetic practice",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>1. Define the question: Synthetic practice</span>"
-    ]
-  },
-  {
-    "objectID": "examples/synthetic/00-start-here.html#your-task",
-    "href": "examples/synthetic/00-start-here.html#your-task",
-    "title": "1. Define the question: Synthetic practice",
-    "section": "Your task",
-    "text": "Your task\nFollow the seven steps in order: define the question, preview results, meet the inputs, check them, run the analysis, explain the evidence, and write the report. Complete workspace setup before starting.\nNext: Preview the results",
-    "crumbs": [
-      "Synthetic practice",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>1. Define the question: Synthetic practice</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>1. Define the question: Synthetic practice</span>"
     ]
   },
   {
@@ -112,10 +168,10 @@
     "href": "examples/synthetic/01-see-the-result.html",
     "title": "2. Preview the results: Synthetic practice",
     "section": "",
-    "text": "Your task\nPreview the supplied figures before running the workflow. Write one initial observation for each figure; you will check it against your own outputs after the run.",
+    "text": "Preview the questions before running\nWrite your own first observation before reading an AI explanation. The supplied exploration figures are previews; rerun them and compare your own outputs.\nAll samples contain 15 detected fictional features. Any Shannon differences therefore concern their abundance distribution, rather than a difference in observed feature count.",
     "crumbs": [
       "Synthetic practice",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
     ]
   },
   {
@@ -123,10 +179,10 @@
     "href": "examples/synthetic/01-see-the-result.html#composition",
     "title": "2. Preview the results: Synthetic practice",
     "section": "Composition",
-    "text": "Composition\n\n\n\nComposition in Synthetic practice. Each bar shows relative feature proportions for one sample; remaining features are pooled as Other.\n\n\nThe supplied composition figure shows a generally larger pooled Other fraction in Group B. Other pools seven fictional features, so its size does not identify which individual features contribute to the pattern. Check their proportions in the unpooled table.\nOpen the composition image at full size to read its labels.",
+    "text": "Composition\n\n\n\nComposition: Synthetic practice.\n\n\nWhich features contribute to each sample? This table has only 15 features, so all are displayed and there is no Other segment. In larger datasets, the remainder is pooled as light-grey Other.",
     "crumbs": [
       "Synthetic practice",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
     ]
   },
   {
@@ -134,21 +190,98 @@
     "href": "examples/synthetic/01-see-the-result.html#shannon-diversity",
     "title": "2. Preview the results: Synthetic practice",
     "section": "Shannon diversity",
-    "text": "Shannon diversity\n\n\n\nShannon diversity in Synthetic practice. Each point is one sample; Shannon uses the full feature table.\n\n\nThe supplied table has median Shannon values of about 2.428 in Group A and 2.560 in Group B. All samples have 15 observed features, so this difference reflects evenness in their feature proportions.",
+    "text": "Shannon diversity\n\n\n\nShannon diversity: Synthetic practice.\n\n\nThe supplied run gives median Shannon 2.428093 in Group A and 2.560208 in Group B. All samples contain 15 observed features, so the difference reflects their relative abundance distribution. These are fictional groups, not evidence about health.",
     "crumbs": [
       "Synthetic practice",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
     ]
   },
   {
-    "objectID": "examples/synthetic/01-see-the-result.html#count-totals-and-diversity",
-    "href": "examples/synthetic/01-see-the-result.html#count-totals-and-diversity",
+    "objectID": "examples/synthetic/01-see-the-result.html#observed-and-depth-standardised-richness",
+    "href": "examples/synthetic/01-see-the-result.html#observed-and-depth-standardised-richness",
     "title": "2. Preview the results: Synthetic practice",
-    "section": "Count totals and diversity",
-    "text": "Count totals and diversity\n\n\n\nCount totals and diversity in Synthetic practice. Each point relates one sample’s feature-table count total to its Shannon diversity.\n\n\nCompare count ranges within and between groups. Samples with similar totals can have different feature proportions and Shannon values.\n\n\n\n\n\n\nNote\n\n\n\nThese are descriptive plots. Composition bars sum to 100%; they do not show count totals. Visual differences alone do not establish statistical significance or causation.\n\n\nNext: Meet the inputs",
+    "section": "Observed and depth-standardised richness",
+    "text": "Observed and depth-standardised richness\n\n\n\nObserved and depth-standardised richness: Synthetic practice.\n\n\nCompare detected features with expected richness at the shared read depth.",
     "crumbs": [
       "Synthetic practice",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/01-see-the-result.html#read-totals-and-diversity",
+    "href": "examples/synthetic/01-see-the-result.html#read-totals-and-diversity",
+    "title": "2. Preview the results: Synthetic practice",
+    "section": "Read totals and diversity",
+    "text": "Read totals and diversity\n\n\n\nRead totals and diversity: Synthetic practice.\n\n\nLocate unusual samples; read total is not microbial biomass.",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/01-see-the-result.html#rarefaction-curves",
+    "href": "examples/synthetic/01-see-the-result.html#rarefaction-curves",
+    "title": "2. Preview the results: Synthetic practice",
+    "section": "Rarefaction curves",
+    "text": "Rarefaction curves\n\n\n\nRarefaction curves: Synthetic practice.\n\n\nCheck how detected-feature richness depends on subsample size within the supplied table.",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/01-see-the-result.html#community-similarity",
+    "href": "examples/synthetic/01-see-the-result.html#community-similarity",
+    "title": "2. Preview the results: Synthetic practice",
+    "section": "Community similarity",
+    "text": "Community similarity\n\n\n\nCommunity similarity: Synthetic practice.\n\n\nNearby samples have more similar profiles under the specified distance; a gap is not a significance test.",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/01-see-the-result.html#depth-sensitivity",
+    "href": "examples/synthetic/01-see-the-result.html#depth-sensitivity",
+    "title": "2. Preview the results: Synthetic practice",
+    "section": "Depth sensitivity",
+    "text": "Depth sensitivity\n\n\n\nDepth sensitivity: Synthetic practice.\n\n\nCompare the group pattern with repeated equal-depth subsampling.",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/01-see-the-result.html#feature-abundance-heatmap",
+    "href": "examples/synthetic/01-see-the-result.html#feature-abundance-heatmap",
+    "title": "2. Preview the results: Synthetic practice",
+    "section": "Feature abundance heatmap",
+    "text": "Feature abundance heatmap\n\n\n\nFeature abundance heatmap: Synthetic practice.\n\n\nRead the log-colour scale. Darker or brighter colours are not differential-abundance results.",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/01-see-the-result.html#feature-prevalence",
+    "href": "examples/synthetic/01-see-the-result.html#feature-prevalence",
+    "title": "2. Preview the results: Synthetic practice",
+    "section": "Feature prevalence",
+    "text": "Feature prevalence\n\n\n\nFeature prevalence: Synthetic practice.\n\n\nSeparate how often a feature is detected from its average relative abundance.",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/01-see-the-result.html#statistical-plots-come-after-inference",
+    "href": "examples/synthetic/01-see-the-result.html#statistical-plots-come-after-inference",
+    "title": "2. Preview the results: Synthetic practice",
+    "section": "Statistical plots come after inference",
+    "text": "Statistical plots come after inference\nInference creates a dispersion plot. For Zackular it also creates an ANCOM-BC2 volcano and effect-interval plot. Those results are introduced on Run and Verify; do not infer discoveries from an exploration preview.\nNext: Meet",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2. Preview the results: Synthetic practice</span>"
     ]
   },
   {
@@ -156,43 +289,21 @@
     "href": "examples/synthetic/02-meet-the-data.html",
     "title": "3. Meet the inputs: Synthetic practice",
     "section": "",
-    "text": "Your task\nLocate the three TSV files in data/example/.",
+    "text": "Locate the three files\nPick one sample and find it in counts and metadata. Pick one feature and find it in counts and taxonomy. Row order is not evidence of a match; IDs are.\nAll 15 feature labels are fictional. The full count table is retained for exploration. A01 has total 6,006, 15 detected features and Shannon 2.423797. You will independently verify those summaries later.\nThe original synthetic generating process is not reconstructed by this update. Treat it as an existing teaching input, not a validated differential-abundance benchmark. The default synthetic inference runs community tests only.\nYour task: record assay, sample unit, group definition and one missing piece of information that matters for interpretation.\nNext: Check",
     "crumbs": [
       "Synthetic practice",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>3. Meet the inputs: Synthetic practice</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>3. Meet the inputs: Synthetic practice</span>"
     ]
   },
   {
-    "objectID": "examples/synthetic/02-meet-the-data.html#the-three-files",
-    "href": "examples/synthetic/02-meet-the-data.html#the-three-files",
+    "objectID": "examples/synthetic/02-meet-the-data.html#locate-the-three-files",
+    "href": "examples/synthetic/02-meet-the-data.html#locate-the-three-files",
     "title": "3. Meet the inputs: Synthetic practice",
-    "section": "The three files",
-    "text": "The three files\n\n\n\n\n\n\n\nFile\nRequired structure\n\n\n\n\nfeature-counts.tsv\nfeature_id, followed by sample columns of nonnegative integer counts\n\n\nsample-metadata.tsv\nsample_id and group, with one row per sample\n\n\ntaxonomy.tsv\nfeature_id and taxon, with one row per feature",
+    "section": "",
+    "text": "File in data/synthetic/\nWhat to inspect\n\n\n\n\nfeature-counts.tsv\nFeature IDs in rows; sample IDs in columns; integer read counts\n\n\nsample-metadata.tsv\nOne row per sample, with sample ID, group and available covariates\n\n\ntaxonomy.tsv\nEach feature ID and its supplied lineage or display label",
     "crumbs": [
       "Synthetic practice",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>3. Meet the inputs: Synthetic practice</span>"
-    ]
-  },
-  {
-    "objectID": "examples/synthetic/02-meet-the-data.html#dataset-details",
-    "href": "examples/synthetic/02-meet-the-data.html#dataset-details",
-    "title": "3. Meet the inputs: Synthetic practice",
-    "section": "Dataset details",
-    "text": "Dataset details\nAll features are fictional. A label identifies a teaching feature, not a real organism.",
-    "crumbs": [
-      "Synthetic practice",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>3. Meet the inputs: Synthetic practice</span>"
-    ]
-  },
-  {
-    "objectID": "examples/synthetic/02-meet-the-data.html#before-continuing",
-    "href": "examples/synthetic/02-meet-the-data.html#before-continuing",
-    "title": "3. Meet the inputs: Synthetic practice",
-    "section": "Before continuing",
-    "text": "Before continuing\nChoose one sample ID and locate it in both counts and metadata. Choose one feature ID and locate it in both counts and taxonomy. These identifiers connect the files.\nNext: Check the inputs",
-    "crumbs": [
-      "Synthetic practice",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>3. Meet the inputs: Synthetic practice</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>3. Meet the inputs: Synthetic practice</span>"
     ]
   },
   {
@@ -200,43 +311,32 @@
     "href": "examples/synthetic/03-check-the-inputs.html",
     "title": "4. Check the inputs: Synthetic practice",
     "section": "",
-    "text": "Your task\nReview the input tables before starting the analysis. You will run the analysis on the next page; its first action is to check the files automatically.",
+    "text": "Check files and study design\nThe exploration script checks IDs, table alignment, nonnegative integer counts and positive totals. You must review biological suitability.",
     "crumbs": [
       "Synthetic practice",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>4. Check the inputs: Synthetic practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>4. Check the inputs: Synthetic practice</span>"
     ]
   },
   {
-    "objectID": "examples/synthetic/03-check-the-inputs.html#check-the-structure",
-    "href": "examples/synthetic/03-check-the-inputs.html#check-the-structure",
+    "objectID": "examples/synthetic/03-check-the-inputs.html#check-files-and-study-design",
+    "href": "examples/synthetic/03-check-the-inputs.html#check-files-and-study-design",
     "title": "4. Check the inputs: Synthetic practice",
-    "section": "Check the structure",
-    "text": "Check the structure\n\nAll three files exist and use tab-separated columns.\nSample IDs are unique and match exactly between counts and metadata.\nFeature IDs are unique and match between counts and taxonomy.\nCounts are finite, nonnegative integers; every sample has a positive total.\nGroup labels are present and represent the intended comparison.",
+    "section": "",
+    "text": "Are group labels correct and sample units independent?\nAre there unusually small totals, missing covariates or processing issues?\nDoes an apparent group difference coincide with a site, batch or other variable?\nDo your feature labels match the level at which you intend to make claims?",
     "crumbs": [
       "Synthetic practice",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>4. Check the inputs: Synthetic practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>4. Check the inputs: Synthetic practice</span>"
     ]
   },
   {
-    "objectID": "examples/synthetic/03-check-the-inputs.html#check-the-dataset",
-    "href": "examples/synthetic/03-check-the-inputs.html#check-the-dataset",
+    "objectID": "examples/synthetic/03-check-the-inputs.html#read-the-settings",
+    "href": "examples/synthetic/03-check-the-inputs.html#read-the-settings",
     "title": "4. Check the inputs: Synthetic practice",
-    "section": "Check the dataset",
-    "text": "Check the dataset\nConfirm there are 12 samples in each group and 15 feature rows. All 24 samples should remain in the initial run.",
+    "section": "Read the settings",
+    "text": "Read the settings\nOpen config/synthetic.tsv. Parameters and values occupy separate TSV columns. Record reference, comparison, top_n, depth, repeats, seed, permutations, prevalence, alpha and covariates before running.\nExpected labels: Group A (reference) and Group B (comparison), with 12 samples each. Covariates are none; run_da is FALSE. Depth 0 uses the smallest sample total for the teaching sensitivity comparison. All features are fictional, and all groups are simulated.\nYour task: write your planned comparison and settings, then name one check the script cannot make for you.\nNext: Run",
     "crumbs": [
       "Synthetic practice",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>4. Check the inputs: Synthetic practice</span>"
-    ]
-  },
-  {
-    "objectID": "examples/synthetic/03-check-the-inputs.html#before-continuing",
-    "href": "examples/synthetic/03-check-the-inputs.html#before-continuing",
-    "title": "4. Check the inputs: Synthetic practice",
-    "section": "Before continuing",
-    "text": "Before continuing\nRecord the sample count, feature count, and group sizes you expect. The script checks file structure; you decide whether the selected samples support your question.\nNext: Run the analysis",
-    "crumbs": [
-      "Synthetic practice",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>4. Check the inputs: Synthetic practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>4. Check the inputs: Synthetic practice</span>"
     ]
   },
   {
@@ -244,54 +344,32 @@
     "href": "examples/synthetic/04-run-the-analysis.html",
     "title": "5. Run the analysis: Synthetic practice",
     "section": "",
-    "text": "Your task\nOpen a terminal in your project folder, where _quarto.yml is located. Run:\nThe script checks the inputs first, then writes figures and tables to results/example/.",
+    "text": "Stage 1: exploration\nFrom the main project folder:\nConfirm exploration-status.txt says COMPLETE. Open all nine figures and match each to its table using the output map. Shannon uses all features; grey Other affects composition display only.\nPCoA uses Bray–Curtis on proportions with a Lingoes correction. The depth sensitivity uses 20 equal-depth random subsamples and mean distances. These are different distance definitions, not interchangeable results.",
     "crumbs": [
       "Synthetic practice",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>5. Run the analysis: Synthetic practice</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>5. Run the analysis: Synthetic practice</span>"
     ]
   },
   {
-    "objectID": "examples/synthetic/04-run-the-analysis.html#your-task",
-    "href": "examples/synthetic/04-run-the-analysis.html#your-task",
+    "objectID": "examples/synthetic/04-run-the-analysis.html#stage-1-exploration",
+    "href": "examples/synthetic/04-run-the-analysis.html#stage-1-exploration",
     "title": "5. Run the analysis: Synthetic practice",
     "section": "",
-    "text": "Rscript scripts/R/02-analyse-example.R data/example results/example",
+    "text": "Rscript scripts/R/run_workflow.R data/synthetic results/synthetic config/synthetic.tsv",
     "crumbs": [
       "Synthetic practice",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>5. Run the analysis: Synthetic practice</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>5. Run the analysis: Synthetic practice</span>"
     ]
   },
   {
-    "objectID": "examples/synthetic/04-run-the-analysis.html#confirm-the-run",
-    "href": "examples/synthetic/04-run-the-analysis.html#confirm-the-run",
+    "objectID": "examples/synthetic/04-run-the-analysis.html#stage-2-inference",
+    "href": "examples/synthetic/04-run-the-analysis.html#stage-2-inference",
     "title": "5. Run the analysis: Synthetic practice",
-    "section": "Confirm the run",
-    "text": "Confirm the run\nThe main script calls 01-check-inputs.R before calculating results. It also compares its Shannon calculation with vegan for every sample. If an error occurs, resolve it before interpreting outputs from this or an earlier run.\nConfirm the input folder is data/example/ and the output folder is results/example/.",
+    "section": "Stage 2: inference",
+    "text": "Stage 2: inference\nRscript scripts/R/run_inference.R data/synthetic results/synthetic config/synthetic.tsv\nThe script requires unchanged inputs/settings and a complete exploration. It runs marginal PERMANOVA and dispersion checks for both distance definitions. Read the group term’s R-squared and p-value alongside dispersion and sample structure. These tests do not turn an observational comparison into causation.\nSynthetic inference stops after community tests because DA is disabled. Use this to learn how test output relates to distances. Continue to Zackular for the OTU differential-abundance example; do not treat 15 fictional features as validation of ANCOM-BC2.\nIf any command fails, stop. An incomplete folder can contain files from an earlier run. Preserve the error; do not write conclusions from partial results.\nNext: Verify and explain",
     "crumbs": [
       "Synthetic practice",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>5. Run the analysis: Synthetic practice</span>"
-    ]
-  },
-  {
-    "objectID": "examples/synthetic/04-run-the-analysis.html#inspect-the-outputs",
-    "href": "examples/synthetic/04-run-the-analysis.html#inspect-the-outputs",
-    "title": "5. Run the analysis: Synthetic practice",
-    "section": "Inspect the outputs",
-    "text": "Inspect the outputs\n\n\n\n\n\n\n\nFile inside results/example/\nCheck\n\n\n\n\ntables/alpha-diversity.tsv\nOne row per sample; count total, observed features, Shannon\n\n\ntables/relative-abundance.tsv\nFeature proportions for every sample\n\n\ntables/composition-display.tsv\nTop eight features and pooled Other\n\n\ntables/group-summary.tsv\nGroup summaries\n\n\nfigures/\nAll three PNG figures\n\n\nsession-info.txt\nR and package versions",
-    "crumbs": [
-      "Synthetic practice",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>5. Run the analysis: Synthetic practice</span>"
-    ]
-  },
-  {
-    "objectID": "examples/synthetic/04-run-the-analysis.html#before-continuing",
-    "href": "examples/synthetic/04-run-the-analysis.html#before-continuing",
-    "title": "5. Run the analysis: Synthetic practice",
-    "section": "Before continuing",
-    "text": "Before continuing\nCheck that the sample count and group labels agree with your metadata. Open all three figures. Keep the full feature table for diversity calculations; Other is a plotting convenience.\nNext: Verify and explain",
-    "crumbs": [
-      "Synthetic practice",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>5. Run the analysis: Synthetic practice</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>5. Run the analysis: Synthetic practice</span>"
     ]
   },
   {
@@ -299,43 +377,43 @@
     "href": "examples/synthetic/05-verify-and-explain.html",
     "title": "6. Verify and explain: Synthetic practice",
     "section": "",
-    "text": "Your task\nWrite one observation per figure and check each against the saved tables. Separate observations from possible explanations.",
+    "text": "Verify one sample\nRun from the main folder; use the supplied worked sample:\nAll three rows should show TRUE. The verifier checks current input bytes, count total, observed features and Shannon. Agreement checks arithmetic; it does not validate sequencing quality, sample identity or every model estimate.",
     "crumbs": [
       "Synthetic practice",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>6. Verify and explain: Synthetic practice</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>6. Verify and explain: Synthetic practice</span>"
     ]
   },
   {
-    "objectID": "examples/synthetic/05-verify-and-explain.html#check-the-evidence",
-    "href": "examples/synthetic/05-verify-and-explain.html#check-the-evidence",
+    "objectID": "examples/synthetic/05-verify-and-explain.html#verify-one-sample",
+    "href": "examples/synthetic/05-verify-and-explain.html#verify-one-sample",
     "title": "6. Verify and explain: Synthetic practice",
-    "section": "Check the evidence",
-    "text": "Check the evidence\n\n\n\n\n\n\n\nFigure\nNumerical check\n\n\n\n\nComposition\nCompare the relevant feature proportions within samples, then summarise by group\n\n\nShannon diversity\nCompare medians, ranges, and observed feature counts\n\n\nCount totals and diversity\nIdentify the smallest and largest totals and inspect unusual samples\n\n\n\nThe data are synthetic, so the patterns illustrate the workflow and do not support biological conclusions.",
+    "section": "",
+    "text": "Rscript scripts/R/verify_sample.R data/synthetic results/synthetic config/synthetic.tsv A01",
     "crumbs": [
       "Synthetic practice",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>6. Verify and explain: Synthetic practice</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>6. Verify and explain: Synthetic practice</span>"
     ]
   },
   {
-    "objectID": "examples/synthetic/05-verify-and-explain.html#optional-verify-one-sample",
-    "href": "examples/synthetic/05-verify-and-explain.html#optional-verify-one-sample",
+    "objectID": "examples/synthetic/05-verify-and-explain.html#explain-the-exploration",
+    "href": "examples/synthetic/05-verify-and-explain.html#explain-the-exploration",
     "title": "6. Verify and explain: Synthetic practice",
-    "section": "Optional: verify one sample",
-    "text": "Optional: verify one sample\nFrom a terminal in the project root, run this optional check:\nRscript scripts/R/05-verify-sample.R data/example results/example A01\nAll three rows should show TRUE under agrees. To check another sample below, replace only the final sample ID.\n\n\n\nSample\nGroup\nCount total\nObserved features\nShannon\n\n\n\n\nA01\nGroup A\n6,006\n15\n2.423797\n\n\n\nCompare the reference values with your saved outputs. Investigate any disagreement before using the result.\n\n\n\n\n\n\nNote\n\n\n\nThe independent sample calculation is optional. Checking your descriptions against the output tables remains part of the workflow. Agreement confirms a calculation; it does not establish sample quality or a biological cause.",
+    "section": "Explain the exploration",
+    "text": "Explain the exploration\nWrite one sentence per figure. For composition, compare named OTUs and acknowledge the pooled remainder. For Shannon and richness, check sample values and group summaries. For PCoA, name the distance and axis percentages; check whether the pattern persists in the depth sensitivity. For the heatmap and prevalence plot, distinguish high abundance from frequent detection.",
     "crumbs": [
       "Synthetic practice",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>6. Verify and explain: Synthetic practice</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>6. Verify and explain: Synthetic practice</span>"
     ]
   },
   {
-    "objectID": "examples/synthetic/05-verify-and-explain.html#before-continuing",
-    "href": "examples/synthetic/05-verify-and-explain.html#before-continuing",
+    "objectID": "examples/synthetic/05-verify-and-explain.html#explain-the-tests",
+    "href": "examples/synthetic/05-verify-and-explain.html#explain-the-tests",
     "title": "6. Verify and explain: Synthetic practice",
-    "section": "Before continuing",
-    "text": "Before continuing\nWrite a short answer to your question, name the evidence supporting it, and state one limitation. If AI helps with the draft, check every number, label, and claim against your outputs.\nNext: Write the report",
+    "section": "Explain the tests",
+    "text": "Explain the tests\nRecord the group term’s R-squared and p-value in permanova.tsv, the covariates in model-matrix.tsv, and dispersion results. Compare the two distance definitions without choosing a favourite p-value. Dispersion is not adjusted for the covariates in the PERMANOVA model.\nHuman → AI → Human task: write your result paragraph first. Give AI the relevant figures, exact table rows, model and contrast. Ask it to identify unsupported numbers, reversed effects and causal wording. Accept changes only after checking them yourself. Finish with one limitation and a useful next scientific question.\nNext: Write",
     "crumbs": [
       "Synthetic practice",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>6. Verify and explain: Synthetic practice</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>6. Verify and explain: Synthetic practice</span>"
     ]
   },
   {
@@ -343,714 +421,406 @@
     "href": "examples/synthetic/06-export-the-report.html",
     "title": "7. Write the report: Synthetic practice",
     "section": "",
-    "text": "Create your report file\nIn VS Code or RStudio, create a new plain-text file named synthetic-report.qmd. Save it in the main project folder. Use a different filename if you want to preserve an earlier report.\nCopy the outline below into that file. Copy only the contents of the code block, beginning with ---; the outer code-block fences are not part of your report.",
+    "text": "Create your report\nFrom the main project folder:\nThis creates reports/synthetic-report.qmd if it does not already exist. Existing writing is kept. The draft includes exploration figures, with inference plots included only when the corresponding completed outputs exist at creation.",
     "crumbs": [
       "Synthetic practice",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>7. Write the report: Synthetic practice</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>7. Write the report: Synthetic practice</span>"
     ]
   },
   {
-    "objectID": "examples/synthetic/06-export-the-report.html#copy-this-outline",
-    "href": "examples/synthetic/06-export-the-report.html#copy-this-outline",
+    "objectID": "examples/synthetic/06-export-the-report.html#create-your-report",
+    "href": "examples/synthetic/06-export-the-report.html#create-your-report",
     "title": "7. Write the report: Synthetic practice",
-    "section": "Copy this outline",
-    "text": "Copy this outline\n---\ntitle: \"Synthetic practice: microbiome analysis\"\nformat: html\nexecute:\n  eval: false\n---\n\n## Question and dataset\n\nReplace this paragraph with your question, group labels, sample and feature counts, and what each sample represents. Record any unavailable study information.\n\n## Inputs and decisions\n\nInputs: `data/example/`. Outputs: `results/example/`.\n\nDescribe the selected samples, feature labels, and any exclusions or changes. State that the workflow produces descriptive summaries.\n\n## Composition\n\n![Feature composition by sample.](results/example/figures/composition.png)\n\nDescribe one pattern and support it with feature proportions from the saved table. Explain what is pooled as Other.\n\n## Shannon diversity\n\n![Shannon diversity by group.](results/example/figures/shannon-diversity.png)\n\nReport group medians and describe spread and overlap. Check observed feature counts before explaining the pattern.\n\n## Count totals and diversity\n\n![Count totals and Shannon diversity.](results/example/figures/depth-diversity.png)\n\nDescribe count ranges and unusual samples. Check the corresponding sample rows in the diversity table.\n\n## Checks\n\nName the table values you checked. If you performed the optional sample verification, report the sample ID, total, observed features, Shannon, and agreement.\n\n## Conclusion and limitations\n\nAnswer the question within the scope of these samples. State one limitation and a next question. Visual differences alone do not establish significance or causation.\n\n## Reproducibility and AI assistance\n\nRecord the analysis command, input/output folders, decisions, and location of `session-info.txt`. State how AI was used and checked, or state that it was not used.",
-    "crumbs": [
-      "Synthetic practice",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>7. Write the report: Synthetic practice</span>"
-    ]
-  },
-  {
-    "objectID": "examples/synthetic/06-export-the-report.html#write-your-explanation",
-    "href": "examples/synthetic/06-export-the-report.html#write-your-explanation",
-    "title": "7. Write the report: Synthetic practice",
-    "section": "Write your explanation",
-    "text": "Write your explanation\nReplace the prompts with your own observations and checked numbers. Keep the figure paths as supplied for this dataset. These are fictional features in synthetic samples. Interpret the patterns as a teaching demonstration.\nIf AI helps draft the explanation, supply the actual figures and table values, then check every number, group label, and claim. Share only data you are permitted to share.",
-    "crumbs": [
-      "Synthetic practice",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>7. Write the report: Synthetic practice</span>"
-    ]
-  },
-  {
-    "objectID": "examples/synthetic/06-export-the-report.html#render-the-report",
-    "href": "examples/synthetic/06-export-the-report.html#render-the-report",
-    "title": "7. Write the report: Synthetic practice",
-    "section": "Render the report",
-    "text": "Render the report\nSave the file. From a terminal in the project root, run:\nquarto render synthetic-report.qmd --to html\nOpen the HTML file at the output location printed by Quarto. Rendering uses existing figures and tables; it does not run the analysis again.",
-    "crumbs": [
-      "Synthetic practice",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>7. Write the report: Synthetic practice</span>"
-    ]
-  },
-  {
-    "objectID": "examples/synthetic/06-export-the-report.html#check-the-finished-report",
-    "href": "examples/synthetic/06-export-the-report.html#check-the-finished-report",
-    "title": "7. Write the report: Synthetic practice",
-    "section": "Check the finished report",
-    "text": "Check the finished report\nConfirm that all three images load, captions match the dataset, and every numerical statement agrees with its table. Keep the inputs, decisions, and results/example/session-info.txt with your report materials.\nNext: DietSwap",
-    "crumbs": [
-      "Synthetic practice",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>7. Write the report: Synthetic practice</span>"
-    ]
-  },
-  {
-    "objectID": "examples/dietswap/00-start-here.html",
-    "href": "examples/dietswap/00-start-here.html",
-    "title": "1. Define the question: DietSwap",
     "section": "",
-    "text": "Your question\nDietSwap is a gut microbiome dataset. The supplied selection contains one sample from each of 38 participants, labelled AAM (African American) and AFR (African). This exercise compares the selected cohorts at the supplied sampling stage; it does not analyse changes over the full study.",
+    "text": "Rscript scripts/R/create_report.R synthetic",
     "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>1. Define the question: DietSwap</span>"
+      "Synthetic practice",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>7. Write the report: Synthetic practice</span>"
     ]
   },
   {
-    "objectID": "examples/dietswap/00-start-here.html#your-question",
-    "href": "examples/dietswap/00-start-here.html#your-question",
-    "title": "1. Define the question: DietSwap",
+    "objectID": "examples/synthetic/06-export-the-report.html#replace-prompts-with-evidence",
+    "href": "examples/synthetic/06-export-the-report.html#replace-prompts-with-evidence",
+    "title": "7. Write the report: Synthetic practice",
+    "section": "Replace prompts with evidence",
+    "text": "Replace prompts with evidence\nUse your notes from the preceding steps. State the question, sample unit, input source, group sizes, reference/comparison, settings and exclusions. Choose the most informative figures for the main result and retain the rest as supporting evidence. For tests, record model and uncertainty, not only which p-values passed a threshold.\nRead Write a report you can defend. Do not leave template instructions in the submitted report. State how AI helped and which checks you performed.",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>7. Write the report: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/synthetic/06-export-the-report.html#render-and-inspect",
+    "href": "examples/synthetic/06-export-the-report.html#render-and-inspect",
+    "title": "7. Write the report: Synthetic practice",
+    "section": "Render and inspect",
+    "text": "Render and inspect\ncd reports\nquarto render synthetic-report.qmd --to html\ncd ..\nOpen the HTML file printed by Quarto. Confirm images load and every number, contrast and limitation matches your current complete run. Rendering uses existing results; it does not rerun analysis.\nYour report stays in ignored reports/, separate from the published guide.\nNext: Human stool study",
+    "crumbs": [
+      "Synthetic practice",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>7. Write the report: Synthetic practice</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/00-start-here.html",
+    "href": "examples/zackular/00-start-here.html",
+    "title": "1. Define the question: Human stool study",
     "section": "",
-    "text": "Note\n\n\n\nHow do community composition, Shannon diversity, and count totals differ between AAM and AFR in the selected DietSwap samples?",
+    "text": "Your question\nThis cross-sectional selection contains 60 human stools, 30 Healthy and 30 Carcinoma, with 2,078 OTUs from 16S V4 sequencing. Each selected study record contributes one stool. It compares different people, not change after treatment.",
     "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>1. Define the question: DietSwap</span>"
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>1. Define the question: Human stool study</span>"
     ]
   },
   {
-    "objectID": "examples/dietswap/00-start-here.html#your-dataset",
-    "href": "examples/dietswap/00-start-here.html#your-dataset",
-    "title": "1. Define the question: DietSwap",
-    "section": "Your dataset",
-    "text": "Your dataset\nUse 38 samples, 119 features, and the supplied groups AAM (21) and AFR (17).\n\n\n\nLocation\nFolder\n\n\n\n\nInputs\ndata/dietswap/\n\n\nOutputs\nresults/dietswap/",
-    "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>1. Define the question: DietSwap</span>"
-    ]
-  },
-  {
-    "objectID": "examples/dietswap/00-start-here.html#your-task",
-    "href": "examples/dietswap/00-start-here.html#your-task",
-    "title": "1. Define the question: DietSwap",
-    "section": "Your task",
-    "text": "Your task\nFollow the seven steps in order: define the question, preview results, meet the inputs, check them, run the analysis, explain the evidence, and write the report. Complete workspace setup before starting.\nNext: Preview the results",
-    "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>1. Define the question: DietSwap</span>"
-    ]
-  },
-  {
-    "objectID": "examples/dietswap/01-see-the-result.html",
-    "href": "examples/dietswap/01-see-the-result.html",
-    "title": "2. Preview the results: DietSwap",
+    "objectID": "examples/zackular/00-start-here.html#your-question",
+    "href": "examples/zackular/00-start-here.html#your-question",
+    "title": "1. Define the question: Human stool study",
     "section": "",
-    "text": "Your task\nPreview the supplied figures before running the workflow. Write one initial observation for each figure; you will check it against your own outputs after the run.",
+    "text": "Note\n\n\n\nHow do community composition, diversity and OTU abundances differ between healthy and carcinoma samples?\n\n\n\n\n\n\nLocation\nFolder\n\n\n\n\nInputs\ndata/zackular/\n\n\nOutputs\nresults/zackular/\n\n\nSettings\nconfig/zackular.tsv",
     "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>2. Preview the results: DietSwap</span>"
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>1. Define the question: Human stool study</span>"
     ]
   },
   {
-    "objectID": "examples/dietswap/01-see-the-result.html#composition",
-    "href": "examples/dietswap/01-see-the-result.html#composition",
-    "title": "2. Preview the results: DietSwap",
+    "objectID": "examples/zackular/00-start-here.html#decide-before-running",
+    "href": "examples/zackular/00-start-here.html#decide-before-running",
+    "title": "1. Define the question: Human stool study",
+    "section": "Decide before running",
+    "text": "Decide before running\nName the sample unit, reference group and comparison group. Explain whether you want a description, a community-level association or a feature-level association. Keep those questions distinct.\nThe same seven steps carry you from question to report. Complete setup first. Save one short note at each step; use these notes in your report.\nYour task: write your question in one sentence and one conclusion this design cannot establish. Ask AI to check whether the question matches the available sample units; you decide whether its proposed wording is justified. Next: Preview",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>1. Define the question: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/01-see-the-result.html",
+    "href": "examples/zackular/01-see-the-result.html",
+    "title": "2. Preview the results: Human stool study",
+    "section": "",
+    "text": "Preview the questions before running\nWrite your own first observation before reading an AI explanation. The supplied exploration figures are previews; rerun them and compare your own outputs.\nThe supplied counts give median Shannon 3.790451 in Healthy and 3.570848 in Carcinoma, with broad overlap. Confirm these values in your run; they are descriptive summaries.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>2. Preview the results: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/01-see-the-result.html#composition",
+    "href": "examples/zackular/01-see-the-result.html#composition",
+    "title": "2. Preview the results: Human stool study",
     "section": "Composition",
-    "text": "Composition\n\n\n\nComposition in DietSwap. Each bar shows relative feature proportions for one sample; remaining features are pooled as Other.\n\n\nCompare individual displayed features across AAM and AFR. Check the underlying proportions before naming a feature that appears different.\nOpen the composition image at full size to read its labels.",
+    "text": "Composition\n\n\n\nComposition: Human stool study.\n\n\nWhich features contribute to each sample? Other is light grey; only display selection is reduced.",
     "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>2. Preview the results: DietSwap</span>"
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>2. Preview the results: Human stool study</span>"
     ]
   },
   {
-    "objectID": "examples/dietswap/01-see-the-result.html#shannon-diversity",
-    "href": "examples/dietswap/01-see-the-result.html#shannon-diversity",
-    "title": "2. Preview the results: DietSwap",
+    "objectID": "examples/zackular/01-see-the-result.html#shannon-diversity",
+    "href": "examples/zackular/01-see-the-result.html#shannon-diversity",
+    "title": "2. Preview the results: Human stool study",
     "section": "Shannon diversity",
-    "text": "Shannon diversity\n\n\n\nShannon diversity in DietSwap. Each point is one sample; Shannon uses the full feature table.\n\n\nRead the group medians, spread, and overlap from your generated figure, then check them in the tables. For scale, the supplied reference checks give Shannon = 3.167035 for AAM sample Sample-32 and 2.028307 for AFR sample Sample-214. Both have 103 observed features, so their difference reflects the distribution of feature proportions. These two samples do not establish the direction of a group-wide difference.",
+    "text": "Shannon diversity\n\n\n\nShannon diversity: Human stool study.\n\n\nCompare medians, spread and overlap. A high value does not by itself mean better health.",
     "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>2. Preview the results: DietSwap</span>"
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>2. Preview the results: Human stool study</span>"
     ]
   },
   {
-    "objectID": "examples/dietswap/01-see-the-result.html#count-totals-and-diversity",
-    "href": "examples/dietswap/01-see-the-result.html#count-totals-and-diversity",
-    "title": "2. Preview the results: DietSwap",
-    "section": "Count totals and diversity",
-    "text": "Count totals and diversity\n\n\n\nCount totals and diversity in DietSwap. Each point relates one sample’s feature-table count total to its Shannon diversity.\n\n\nCompare count ranges within each cohort and identify unusual samples. Check whether samples with similar count totals have different Shannon values.\n\n\n\n\n\n\nNote\n\n\n\nThese are descriptive plots. Composition bars sum to 100%; they do not show count totals. Visual differences alone do not establish statistical significance or causation.\n\n\nNext: Meet the inputs",
+    "objectID": "examples/zackular/01-see-the-result.html#observed-and-depth-standardised-richness",
+    "href": "examples/zackular/01-see-the-result.html#observed-and-depth-standardised-richness",
+    "title": "2. Preview the results: Human stool study",
+    "section": "Observed and depth-standardised richness",
+    "text": "Observed and depth-standardised richness\n\n\n\nObserved and depth-standardised richness: Human stool study.\n\n\nMedian observed richness is 586.5 OTUs in Healthy and 546.5 in Carcinoma. At 15,000 reads, median expected richness is approximately 388.8 and 355.7, respectively. These are conditional processed-table summaries, not estimates of all species in the gut.",
     "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>2. Preview the results: DietSwap</span>"
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>2. Preview the results: Human stool study</span>"
     ]
   },
   {
-    "objectID": "examples/dietswap/02-meet-the-data.html",
-    "href": "examples/dietswap/02-meet-the-data.html",
-    "title": "3. Meet the inputs: DietSwap",
+    "objectID": "examples/zackular/01-see-the-result.html#read-totals-and-diversity",
+    "href": "examples/zackular/01-see-the-result.html#read-totals-and-diversity",
+    "title": "2. Preview the results: Human stool study",
+    "section": "Read totals and diversity",
+    "text": "Read totals and diversity\n\n\n\nRead totals and diversity: Human stool study.\n\n\nHealthy16-3251 has Shannon 2.291800 despite 60,335 retained reads. More reads do not guarantee greater evenness. Retained read total is not microbial biomass.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>2. Preview the results: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/01-see-the-result.html#rarefaction-curves",
+    "href": "examples/zackular/01-see-the-result.html#rarefaction-curves",
+    "title": "2. Preview the results: Human stool study",
+    "section": "Rarefaction curves",
+    "text": "Rarefaction curves\n\n\n\nRarefaction curves: Human stool study.\n\n\nCheck how detected-feature richness depends on subsample size within the supplied table.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>2. Preview the results: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/01-see-the-result.html#community-similarity",
+    "href": "examples/zackular/01-see-the-result.html#community-similarity",
+    "title": "2. Preview the results: Human stool study",
+    "section": "Community similarity",
+    "text": "Community similarity\n\n\n\nCommunity similarity: Human stool study.\n\n\nHealthy and carcinoma samples overlap in this two-axis view. The supplied run shows PCoA1 10.4% and PCoA2 7.2% of the corrected variation; most variation is outside these two axes. Check the full-distance test rather than treating overlap as proof of no association.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>2. Preview the results: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/01-see-the-result.html#depth-sensitivity",
+    "href": "examples/zackular/01-see-the-result.html#depth-sensitivity",
+    "title": "2. Preview the results: Human stool study",
+    "section": "Depth sensitivity",
+    "text": "Depth sensitivity\n\n\n\nDepth sensitivity: Human stool study.\n\n\nCompare the group pattern with repeated equal-depth subsampling.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>2. Preview the results: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/01-see-the-result.html#feature-abundance-heatmap",
+    "href": "examples/zackular/01-see-the-result.html#feature-abundance-heatmap",
+    "title": "2. Preview the results: Human stool study",
+    "section": "Feature abundance heatmap",
+    "text": "Feature abundance heatmap\n\n\n\nFeature abundance heatmap: Human stool study.\n\n\nRead the log-colour scale. Darker or brighter colours are not differential-abundance results.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>2. Preview the results: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/01-see-the-result.html#feature-prevalence",
+    "href": "examples/zackular/01-see-the-result.html#feature-prevalence",
+    "title": "2. Preview the results: Human stool study",
+    "section": "Feature prevalence",
+    "text": "Feature prevalence\n\n\n\nFeature prevalence: Human stool study.\n\n\nSeparate how often a feature is detected from its average relative abundance.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>2. Preview the results: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/01-see-the-result.html#statistical-plots-come-after-inference",
+    "href": "examples/zackular/01-see-the-result.html#statistical-plots-come-after-inference",
+    "title": "2. Preview the results: Human stool study",
+    "section": "Statistical plots come after inference",
+    "text": "Statistical plots come after inference\nInference creates a dispersion plot. For Zackular it also creates an ANCOM-BC2 volcano and effect-interval plot. Those results are introduced on Run and Verify; do not infer discoveries from an exploration preview.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>2. Preview the results: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/01-see-the-result.html#dispersion-and-differential-abundance",
+    "href": "examples/zackular/01-see-the-result.html#dispersion-and-differential-abundance",
+    "title": "2. Preview the results: Human stool study",
+    "section": "Dispersion and differential abundance",
+    "text": "Dispersion and differential abundance\n\n\n\nWithin-group dispersion in both distance definitions.\n\n\nThis checks variability around each group’s spatial median, separately from the adjusted community test. It does not adjust for age, sex or location.\n\n\n\nOTU differential-abundance volcano.\n\n\nThe supplied reference run has no sensitivity-supported discoveries. A point above the adjusted-p threshold is not highlighted unless it also passes the pseudo-count check. Missing model estimates are excluded from the plot.\n\n\n\nOTU effects with pointwise intervals.\n\n\nThese are up to 20 features ranked by adjusted p-value, not 20 validated biomarkers. Positive natural-log effects mean Carcinoma versus Healthy. Intervals are pointwise and do not replace multiple-testing correction.\nNext: Meet",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>2. Preview the results: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/02-meet-the-data.html",
+    "href": "examples/zackular/02-meet-the-data.html",
+    "title": "3. Meet the inputs: Human stool study",
     "section": "",
-    "text": "Your task\nLocate the three TSV files in data/dietswap/.",
+    "text": "Locate the three files\nPick one sample and find it in counts and metadata. Pick one feature and find it in counts and taxonomy. Row order is not evidence of a match; IDs are.\nRead the study and provenance notes. The input was exported from a packaged count object; the original human study had 90 samples in three groups. Our comparison retains all available healthy and carcinoma samples. Two absent adenoma records do not affect this selection.\nMetadata preserve age, sex, collection location and original labels. Sex whitespace was removed and f/m expanded; a location typo was harmonised before modelling. The participant-ID field in the original spreadsheet is empty; do not claim a separately verified participant crosswalk.\nTaxonomy identifies OTU annotations, sometimes only at family level. Several OTUs can share a genus name. Do not collapse them by copying legend labels.\nYour task: record assay, sample unit, group definition and one missing piece of information that matters for interpretation.\nNext: Check",
     "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>3. Meet the inputs: DietSwap</span>"
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>3. Meet the inputs: Human stool study</span>"
     ]
   },
   {
-    "objectID": "examples/dietswap/02-meet-the-data.html#the-three-files",
-    "href": "examples/dietswap/02-meet-the-data.html#the-three-files",
-    "title": "3. Meet the inputs: DietSwap",
-    "section": "The three files",
-    "text": "The three files\n\n\n\n\n\n\n\nFile\nRequired structure\n\n\n\n\nfeature-counts.tsv\nfeature_id, followed by sample columns of nonnegative integer counts\n\n\nsample-metadata.tsv\nsample_id and group, with one row per sample\n\n\ntaxonomy.tsv\nfeature_id and taxon, with one row per feature",
-    "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>3. Meet the inputs: DietSwap</span>"
-    ]
-  },
-  {
-    "objectID": "examples/dietswap/02-meet-the-data.html#dataset-details",
-    "href": "examples/dietswap/02-meet-the-data.html#dataset-details",
-    "title": "3. Meet the inputs: DietSwap",
-    "section": "Dataset details",
-    "text": "Dataset details\nThe metadata retain participant, nationality, and sampling information. All selected records have timepoint = 1, timepoint.within.group = 1, and study_group = ED. Use these labels when describing the selection; calling it baseline requires supporting study documentation. Review the supplied annotation before naming a particular taxonomic rank.",
-    "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>3. Meet the inputs: DietSwap</span>"
-    ]
-  },
-  {
-    "objectID": "examples/dietswap/02-meet-the-data.html#before-continuing",
-    "href": "examples/dietswap/02-meet-the-data.html#before-continuing",
-    "title": "3. Meet the inputs: DietSwap",
-    "section": "Before continuing",
-    "text": "Before continuing\nChoose one sample ID and locate it in both counts and metadata. Choose one feature ID and locate it in both counts and taxonomy. These identifiers connect the files.\nNext: Check the inputs",
-    "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>3. Meet the inputs: DietSwap</span>"
-    ]
-  },
-  {
-    "objectID": "examples/dietswap/03-check-the-inputs.html",
-    "href": "examples/dietswap/03-check-the-inputs.html",
-    "title": "4. Check the inputs: DietSwap",
+    "objectID": "examples/zackular/02-meet-the-data.html#locate-the-three-files",
+    "href": "examples/zackular/02-meet-the-data.html#locate-the-three-files",
+    "title": "3. Meet the inputs: Human stool study",
     "section": "",
-    "text": "Your task\nReview the input tables before starting the analysis. You will run the analysis on the next page; its first action is to check the files automatically.",
+    "text": "File in data/zackular/\nWhat to inspect\n\n\n\n\nfeature-counts.tsv\nFeature IDs in rows; sample IDs in columns; integer read counts\n\n\nsample-metadata.tsv\nOne row per sample, with sample ID, group and available covariates\n\n\ntaxonomy.tsv\nEach feature ID and its supplied lineage or display label",
     "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>4. Check the inputs: DietSwap</span>"
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>3. Meet the inputs: Human stool study</span>"
     ]
   },
   {
-    "objectID": "examples/dietswap/03-check-the-inputs.html#check-the-structure",
-    "href": "examples/dietswap/03-check-the-inputs.html#check-the-structure",
-    "title": "4. Check the inputs: DietSwap",
-    "section": "Check the structure",
-    "text": "Check the structure\n\nAll three files exist and use tab-separated columns.\nSample IDs are unique and match exactly between counts and metadata.\nFeature IDs are unique and match between counts and taxonomy.\nCounts are finite, nonnegative integers; every sample has a positive total.\nGroup labels are present and represent the intended comparison.",
-    "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>4. Check the inputs: DietSwap</span>"
-    ]
-  },
-  {
-    "objectID": "examples/dietswap/03-check-the-inputs.html#check-the-dataset",
-    "href": "examples/dietswap/03-check-the-inputs.html#check-the-dataset",
-    "title": "4. Check the inputs: DietSwap",
-    "section": "Check the dataset",
-    "text": "Check the dataset\nConfirm 38 distinct participant IDs, with one selected sample per participant. Confirm the shared sampling labels and the intended AAM versus AFR comparison.",
-    "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>4. Check the inputs: DietSwap</span>"
-    ]
-  },
-  {
-    "objectID": "examples/dietswap/03-check-the-inputs.html#before-continuing",
-    "href": "examples/dietswap/03-check-the-inputs.html#before-continuing",
-    "title": "4. Check the inputs: DietSwap",
-    "section": "Before continuing",
-    "text": "Before continuing\nRecord the sample count, feature count, and group sizes you expect. The script checks file structure; you decide whether the selected samples support your question.\nNext: Run the analysis",
-    "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>4. Check the inputs: DietSwap</span>"
-    ]
-  },
-  {
-    "objectID": "examples/dietswap/04-run-the-analysis.html",
-    "href": "examples/dietswap/04-run-the-analysis.html",
-    "title": "5. Run the analysis: DietSwap",
+    "objectID": "examples/zackular/03-check-the-inputs.html",
+    "href": "examples/zackular/03-check-the-inputs.html",
+    "title": "4. Check the inputs: Human stool study",
     "section": "",
-    "text": "Your task\nOpen a terminal in your project folder, where _quarto.yml is located. Run:\nThe script checks the inputs first, then writes figures and tables to results/dietswap/.",
+    "text": "Check files and study design\nThe exploration script checks IDs, table alignment, nonnegative integer counts and positive totals. You must review biological suitability.",
     "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>5. Run the analysis: DietSwap</span>"
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>4. Check the inputs: Human stool study</span>"
     ]
   },
   {
-    "objectID": "examples/dietswap/04-run-the-analysis.html#your-task",
-    "href": "examples/dietswap/04-run-the-analysis.html#your-task",
-    "title": "5. Run the analysis: DietSwap",
+    "objectID": "examples/zackular/03-check-the-inputs.html#check-files-and-study-design",
+    "href": "examples/zackular/03-check-the-inputs.html#check-files-and-study-design",
+    "title": "4. Check the inputs: Human stool study",
     "section": "",
-    "text": "Rscript scripts/R/02-analyse-example.R data/dietswap results/dietswap",
+    "text": "Are group labels correct and sample units independent?\nAre there unusually small totals, missing covariates or processing issues?\nDoes an apparent group difference coincide with a site, batch or other variable?\nDo your feature labels match the level at which you intend to make claims?",
     "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>5. Run the analysis: DietSwap</span>"
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>4. Check the inputs: Human stool study</span>"
     ]
   },
   {
-    "objectID": "examples/dietswap/04-run-the-analysis.html#confirm-the-run",
-    "href": "examples/dietswap/04-run-the-analysis.html#confirm-the-run",
-    "title": "5. Run the analysis: DietSwap",
-    "section": "Confirm the run",
-    "text": "Confirm the run\nThe main script calls 01-check-inputs.R before calculating results. It also compares its Shannon calculation with vegan for every sample. If an error occurs, resolve it before interpreting outputs from this or an earlier run.\nConfirm the input folder is data/dietswap/ and the output folder is results/dietswap/.",
+    "objectID": "examples/zackular/03-check-the-inputs.html#read-the-settings",
+    "href": "examples/zackular/03-check-the-inputs.html#read-the-settings",
+    "title": "4. Check the inputs: Human stool study",
+    "section": "Read the settings",
+    "text": "Read the settings\nOpen config/zackular.tsv. Parameters and values occupy separate TSV columns. Record reference, comparison, top_n, depth, repeats, seed, permutations, prevalence, alpha and covariates before running.\nExpected labels: Healthy (reference) and Carcinoma (comparison). The model includes age, sex and collection_location. This is a teaching adjustment, not a guarantee against confounding. Review the group-by-sex and group-by-location counts before fitting; age must be numeric. The supplied 15,000-read sensitivity depth retains all 60 samples.\nThe DA filter is 10% prevalence across all samples. It does not select only the top 15 plotted OTUs. Pseudo-count sensitivity is enabled in the model.\nYour task: write your planned comparison and settings, then name one check the script cannot make for you.\nNext: Run",
     "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>5. Run the analysis: DietSwap</span>"
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>4. Check the inputs: Human stool study</span>"
     ]
   },
   {
-    "objectID": "examples/dietswap/04-run-the-analysis.html#inspect-the-outputs",
-    "href": "examples/dietswap/04-run-the-analysis.html#inspect-the-outputs",
-    "title": "5. Run the analysis: DietSwap",
-    "section": "Inspect the outputs",
-    "text": "Inspect the outputs\n\n\n\n\n\n\n\nFile inside results/dietswap/\nCheck\n\n\n\n\ntables/alpha-diversity.tsv\nOne row per sample; count total, observed features, Shannon\n\n\ntables/relative-abundance.tsv\nFeature proportions for every sample\n\n\ntables/composition-display.tsv\nTop eight features and pooled Other\n\n\ntables/group-summary.tsv\nGroup summaries\n\n\nfigures/\nAll three PNG figures\n\n\nsession-info.txt\nR and package versions",
-    "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>5. Run the analysis: DietSwap</span>"
-    ]
-  },
-  {
-    "objectID": "examples/dietswap/04-run-the-analysis.html#before-continuing",
-    "href": "examples/dietswap/04-run-the-analysis.html#before-continuing",
-    "title": "5. Run the analysis: DietSwap",
-    "section": "Before continuing",
-    "text": "Before continuing\nCheck that the sample count and group labels agree with your metadata. Open all three figures. Keep the full feature table for diversity calculations; Other is a plotting convenience.\nNext: Verify and explain",
-    "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>5. Run the analysis: DietSwap</span>"
-    ]
-  },
-  {
-    "objectID": "examples/dietswap/05-verify-and-explain.html",
-    "href": "examples/dietswap/05-verify-and-explain.html",
-    "title": "6. Verify and explain: DietSwap",
+    "objectID": "examples/zackular/04-run-the-analysis.html",
+    "href": "examples/zackular/04-run-the-analysis.html",
+    "title": "5. Run the analysis: Human stool study",
     "section": "",
-    "text": "Your task\nWrite one observation per figure and check each against the saved tables. Separate observations from possible explanations.",
+    "text": "Stage 1: exploration\nFrom the main project folder:\nConfirm exploration-status.txt says COMPLETE. Open all nine figures and match each to its table using the output map. Shannon uses all features; grey Other affects composition display only.\nPCoA uses Bray–Curtis on proportions with a Lingoes correction. The depth sensitivity uses 20 equal-depth random subsamples and mean distances. These are different distance definitions, not interchangeable results.",
     "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>6. Verify and explain: DietSwap</span>"
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>5. Run the analysis: Human stool study</span>"
     ]
   },
   {
-    "objectID": "examples/dietswap/05-verify-and-explain.html#check-the-evidence",
-    "href": "examples/dietswap/05-verify-and-explain.html#check-the-evidence",
-    "title": "6. Verify and explain: DietSwap",
-    "section": "Check the evidence",
-    "text": "Check the evidence\n\n\n\n\n\n\n\nFigure\nNumerical check\n\n\n\n\nComposition\nCompare the relevant feature proportions within samples, then summarise by group\n\n\nShannon diversity\nCompare medians, ranges, and observed feature counts\n\n\nCount totals and diversity\nIdentify the smallest and largest totals and inspect unusual samples\n\n\n\nThis selected sampling-stage comparison does not estimate change after a diet swap. Cohort differences may reflect variables beyond the supplied grouping.",
-    "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>6. Verify and explain: DietSwap</span>"
-    ]
-  },
-  {
-    "objectID": "examples/dietswap/05-verify-and-explain.html#optional-verify-one-sample",
-    "href": "examples/dietswap/05-verify-and-explain.html#optional-verify-one-sample",
-    "title": "6. Verify and explain: DietSwap",
-    "section": "Optional: verify one sample",
-    "text": "Optional: verify one sample\nFrom a terminal in the project root, run this optional check:\nRscript scripts/R/05-verify-sample.R data/dietswap results/dietswap Sample-32\nAll three rows should show TRUE under agrees. To check another sample below, replace only the final sample ID.\n\n\n\nSample\nGroup\nCount total\nObserved features\nShannon\n\n\n\n\nSample-32\nAAM\n10,585\n103\n3.167035\n\n\nSample-181\nAAM\n17,784\n100\n2.352228\n\n\nSample-71\nAAM\n10,521\n102\n2.470335\n\n\nSample-214\nAFR\n19,040\n103\n2.028307\n\n\n\nCompare the reference values with your saved outputs. Investigate any disagreement before using the result.\n\n\n\n\n\n\nNote\n\n\n\nThe independent sample calculation is optional. Checking your descriptions against the output tables remains part of the workflow. Agreement confirms a calculation; it does not establish sample quality or a biological cause.",
-    "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>6. Verify and explain: DietSwap</span>"
-    ]
-  },
-  {
-    "objectID": "examples/dietswap/05-verify-and-explain.html#before-continuing",
-    "href": "examples/dietswap/05-verify-and-explain.html#before-continuing",
-    "title": "6. Verify and explain: DietSwap",
-    "section": "Before continuing",
-    "text": "Before continuing\nWrite a short answer to your question, name the evidence supporting it, and state one limitation. If AI helps with the draft, check every number, label, and claim against your outputs.\nNext: Write the report",
-    "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>6. Verify and explain: DietSwap</span>"
-    ]
-  },
-  {
-    "objectID": "examples/dietswap/06-export-the-report.html",
-    "href": "examples/dietswap/06-export-the-report.html",
-    "title": "7. Write the report: DietSwap",
+    "objectID": "examples/zackular/04-run-the-analysis.html#stage-1-exploration",
+    "href": "examples/zackular/04-run-the-analysis.html#stage-1-exploration",
+    "title": "5. Run the analysis: Human stool study",
     "section": "",
-    "text": "Create your report file\nIn VS Code or RStudio, create a new plain-text file named dietswap-report.qmd. Save it in the main project folder. Use a different filename if you want to preserve an earlier report.\nCopy the outline below into that file. Copy only the contents of the code block, beginning with ---; the outer code-block fences are not part of your report.",
+    "text": "Rscript scripts/R/run_workflow.R data/zackular results/zackular config/zackular.tsv",
     "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>7. Write the report: DietSwap</span>"
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>5. Run the analysis: Human stool study</span>"
     ]
   },
   {
-    "objectID": "examples/dietswap/06-export-the-report.html#copy-this-outline",
-    "href": "examples/dietswap/06-export-the-report.html#copy-this-outline",
-    "title": "7. Write the report: DietSwap",
-    "section": "Copy this outline",
-    "text": "Copy this outline\n---\ntitle: \"DietSwap: microbiome analysis\"\nformat: html\nexecute:\n  eval: false\n---\n\n## Question and dataset\n\nReplace this paragraph with your question, group labels, sample and feature counts, and what each sample represents. Record any unavailable study information.\n\n## Inputs and decisions\n\nInputs: `data/dietswap/`. Outputs: `results/dietswap/`.\n\nDescribe the selected samples, feature labels, and any exclusions or changes. State that the workflow produces descriptive summaries.\n\n## Composition\n\n![Feature composition by sample.](results/dietswap/figures/composition.png)\n\nDescribe one pattern and support it with feature proportions from the saved table. Explain what is pooled as Other.\n\n## Shannon diversity\n\n![Shannon diversity by group.](results/dietswap/figures/shannon-diversity.png)\n\nReport group medians and describe spread and overlap. Check observed feature counts before explaining the pattern.\n\n## Count totals and diversity\n\n![Count totals and Shannon diversity.](results/dietswap/figures/depth-diversity.png)\n\nDescribe count ranges and unusual samples. Check the corresponding sample rows in the diversity table.\n\n## Checks\n\nName the table values you checked. If you performed the optional sample verification, report the sample ID, total, observed features, Shannon, and agreement.\n\n## Conclusion and limitations\n\nAnswer the question within the scope of these samples. State one limitation and a next question. Visual differences alone do not establish significance or causation.\n\n## Reproducibility and AI assistance\n\nRecord the analysis command, input/output folders, decisions, and location of `session-info.txt`. State how AI was used and checked, or state that it was not used.",
+    "objectID": "examples/zackular/04-run-the-analysis.html#stage-2-inference",
+    "href": "examples/zackular/04-run-the-analysis.html#stage-2-inference",
+    "title": "5. Run the analysis: Human stool study",
+    "section": "Stage 2: inference",
+    "text": "Stage 2: inference\nRscript scripts/R/run_inference.R data/zackular results/zackular config/zackular.tsv\nThe script requires unchanged inputs/settings and a complete exploration. It runs marginal PERMANOVA and dispersion checks for both distance definitions. Read the group term’s R-squared and p-value alongside dispersion and sample structure. These tests do not turn an observational comparison into causation.\nANCOM-BC2 then models unrarefied counts with age + sex + collection_location + group, after 10% prevalence filtering. Positive natural-log group effects mean higher estimated abundance in Carcinoma versus Healthy. BH-adjusted p &lt; 0.05 and pseudo-count sensitivity jointly define highlighted discoveries. Structural-zero calling is disabled; unavailable results are not discoveries.\nOpen da-volcano.png and da-effects.png only after inference-status.txt says COMPLETE. Up to 20 features appear in the effect plot even if none is significant. These intervals are pointwise, not multiple-testing-adjusted.\nIf any command fails, stop. An incomplete folder can contain files from an earlier run. Preserve the error; do not write conclusions from partial results.\nNext: Verify and explain",
     "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>7. Write the report: DietSwap</span>"
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>5. Run the analysis: Human stool study</span>"
     ]
   },
   {
-    "objectID": "examples/dietswap/06-export-the-report.html#write-your-explanation",
-    "href": "examples/dietswap/06-export-the-report.html#write-your-explanation",
-    "title": "7. Write the report: DietSwap",
-    "section": "Write your explanation",
-    "text": "Write your explanation\nReplace the prompts with your own observations and checked numbers. Keep the figure paths as supplied for this dataset. This selected comparison has one sample per participant and describes a single supplied sampling stage. It does not estimate a response to a diet swap.\nIf AI helps draft the explanation, supply the actual figures and table values, then check every number, group label, and claim. Share only data you are permitted to share.",
-    "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>7. Write the report: DietSwap</span>"
-    ]
-  },
-  {
-    "objectID": "examples/dietswap/06-export-the-report.html#render-the-report",
-    "href": "examples/dietswap/06-export-the-report.html#render-the-report",
-    "title": "7. Write the report: DietSwap",
-    "section": "Render the report",
-    "text": "Render the report\nSave the file. From a terminal in the project root, run:\nquarto render dietswap-report.qmd --to html\nOpen the HTML file at the output location printed by Quarto. Rendering uses existing figures and tables; it does not run the analysis again.",
-    "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>7. Write the report: DietSwap</span>"
-    ]
-  },
-  {
-    "objectID": "examples/dietswap/06-export-the-report.html#check-the-finished-report",
-    "href": "examples/dietswap/06-export-the-report.html#check-the-finished-report",
-    "title": "7. Write the report: DietSwap",
-    "section": "Check the finished report",
-    "text": "Check the finished report\nConfirm that all three images load, captions match the dataset, and every numerical statement agrees with its table. Keep the inputs, decisions, and results/dietswap/session-info.txt with your report materials.\nNext: Mouse59",
-    "crumbs": [
-      "DietSwap",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>7. Write the report: DietSwap</span>"
-    ]
-  },
-  {
-    "objectID": "examples/mouse59/00-start-here.html",
-    "href": "examples/mouse59/00-start-here.html",
-    "title": "1. Define the question: Mouse59",
+    "objectID": "examples/zackular/05-verify-and-explain.html",
+    "href": "examples/zackular/05-verify-and-explain.html",
+    "title": "6. Verify and explain: Human stool study",
     "section": "",
-    "text": "Your question\nMouse59 is a supplied mouse gut OTU count table with two sample categories. This workflow demonstration uses the original HighFat20 and HighFatCa group labels and OTU identifiers. Detailed study context and biological taxonomic assignments are unavailable.",
+    "text": "Verify one sample\nRun from the main folder; use the supplied worked sample:\nAll three rows should show TRUE. The verifier checks current input bytes, count total, observed features and Shannon. Agreement checks arithmetic; it does not validate sequencing quality, sample identity or every model estimate.",
     "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>1. Define the question: Mouse59</span>"
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>6. Verify and explain: Human stool study</span>"
     ]
   },
   {
-    "objectID": "examples/mouse59/00-start-here.html#your-question",
-    "href": "examples/mouse59/00-start-here.html#your-question",
-    "title": "1. Define the question: Mouse59",
+    "objectID": "examples/zackular/05-verify-and-explain.html#verify-one-sample",
+    "href": "examples/zackular/05-verify-and-explain.html#verify-one-sample",
+    "title": "6. Verify and explain: Human stool study",
     "section": "",
-    "text": "Note\n\n\n\nHow do OTU composition, Shannon diversity, and count totals differ between HighFat20 and HighFatCa?",
+    "text": "Rscript scripts/R/verify_sample.R data/zackular results/zackular config/zackular.tsv Healthy1-2027",
     "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>1. Define the question: Mouse59</span>"
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>6. Verify and explain: Human stool study</span>"
     ]
   },
   {
-    "objectID": "examples/mouse59/00-start-here.html#your-dataset",
-    "href": "examples/mouse59/00-start-here.html#your-dataset",
-    "title": "1. Define the question: Mouse59",
-    "section": "Your dataset",
-    "text": "Your dataset\nUse 59 samples, 2,027 features, and the supplied groups HighFat20 (29) and HighFatCa (30).\n\n\n\nLocation\nFolder\n\n\n\n\nInputs\ndata/mouse59/\n\n\nOutputs\nresults/mouse59/",
+    "objectID": "examples/zackular/05-verify-and-explain.html#reference-samples",
+    "href": "examples/zackular/05-verify-and-explain.html#reference-samples",
+    "title": "6. Verify and explain: Human stool study",
+    "section": "Reference samples",
+    "text": "Reference samples\n\n\n\nSample\nTable read total\nDetected OTUs\nShannon\n\n\n\n\nHealthy1-2027\n64,011\n509\n3.652471\n\n\nCancer1-2355\n54,233\n743\n3.909218\n\n\nHealthy16-3251\n60,335\n420\n2.291800\n\n\n\nCheck these against your own complete run. A carcinoma sample can have higher Shannon than a healthy sample even when its group’s median is lower.",
     "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>1. Define the question: Mouse59</span>"
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>6. Verify and explain: Human stool study</span>"
     ]
   },
   {
-    "objectID": "examples/mouse59/00-start-here.html#your-task",
-    "href": "examples/mouse59/00-start-here.html#your-task",
-    "title": "1. Define the question: Mouse59",
-    "section": "Your task",
-    "text": "Your task\nFollow the seven steps in order: define the question, preview results, meet the inputs, check them, run the analysis, explain the evidence, and write the report. Complete workspace setup before starting.\nNext: Preview the results",
+    "objectID": "examples/zackular/05-verify-and-explain.html#explain-the-exploration",
+    "href": "examples/zackular/05-verify-and-explain.html#explain-the-exploration",
+    "title": "6. Verify and explain: Human stool study",
+    "section": "Explain the exploration",
+    "text": "Explain the exploration\nWrite one sentence per figure. For composition, compare named OTUs and acknowledge the pooled remainder. For Shannon and richness, check sample values and group summaries. For PCoA, name the distance and axis percentages; check whether the pattern persists in the depth sensitivity. For the heatmap and prevalence plot, distinguish high abundance from frequent detection.",
     "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>1. Define the question: Mouse59</span>"
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>6. Verify and explain: Human stool study</span>"
     ]
   },
   {
-    "objectID": "examples/mouse59/01-see-the-result.html",
-    "href": "examples/mouse59/01-see-the-result.html",
-    "title": "2. Preview the results: Mouse59",
+    "objectID": "examples/zackular/05-verify-and-explain.html#explain-the-tests",
+    "href": "examples/zackular/05-verify-and-explain.html#explain-the-tests",
+    "title": "6. Verify and explain: Human stool study",
+    "section": "Explain the tests",
+    "text": "Explain the tests\nRecord the group term’s R-squared and p-value in permanova.tsv, the covariates in model-matrix.tsv, and dispersion results. Compare the two distance definitions without choosing a favourite p-value. Dispersion is not adjusted for the covariates in the PERMANOVA model.\nIf differential abundance was run, select an OTU in differential-abundance.tsv. Check its full ID, contrast direction, natural-log effect, standard error, adjusted p-value and sensitivity flag. Recalculate exp(effect) for its model-estimated fold change. Locate it in the full relative-abundance table to understand the unadjusted display; the two values answer different questions.\nAn empty discoveries table is a valid outcome. Explain insufficient evidence under the model, rather than claiming identical communities or changing the threshold to obtain hits.\nHuman → AI → Human task: write your result paragraph first. Give AI the relevant figures, exact table rows, model and contrast. Ask it to identify unsupported numbers, reversed effects and causal wording. Accept changes only after checking them yourself. Finish with one limitation and a useful next scientific question.",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>6. Verify and explain: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/05-verify-and-explain.html#read-the-supplied-reference-run-critically",
+    "href": "examples/zackular/05-verify-and-explain.html#read-the-supplied-reference-run-critically",
+    "title": "6. Verify and explain: Human stool study",
+    "section": "Read the supplied reference run critically",
+    "text": "Read the supplied reference run critically\nWith 999 permutations and the configured age, sex and location adjustment, the group term explained about 1.99% of corrected distance variation: p = 0.165 for proportions and p = 0.172 for equal-depth sensitivity. The corresponding unadjusted dispersion p-values were 0.420 and 0.428. These results do not establish a group-wide community association at 0.05; they also do not prove that profiles are identical or dispersion equal.\nThe 10% prevalence filter retained 1,915 OTUs. In the supplied ANCOM-BC2 run, no OTU passed both adjusted-p and conservative pseudo-count sensitivity criteria. Several OTUs have small adjusted p-values but fail the sensitivity check. Do not describe those as robust biomarkers. The package warns during t-distribution p-value calculation. 100 OTUs lack finite group effects or standard errors; their positive-count subsets are rank deficient for the full model. Check feature-model-support.tsv and the raw coefficient table. The learner-facing summary leaves their p-values missing, rather than calling them evidence for no difference. This is a worked review example, not a validated screening test.\nNext: Write",
+    "crumbs": [
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>6. Verify and explain: Human stool study</span>"
+    ]
+  },
+  {
+    "objectID": "examples/zackular/06-export-the-report.html",
+    "href": "examples/zackular/06-export-the-report.html",
+    "title": "7. Write the report: Human stool study",
     "section": "",
-    "text": "Your task\nPreview the supplied figures before running the workflow. Write one initial observation for each figure; you will check it against your own outputs after the run.",
+    "text": "Create your report\nFrom the main project folder:\nThis creates reports/zackular-report.qmd if it does not already exist. Existing writing is kept. The draft includes exploration figures, with inference plots included only when the corresponding completed outputs exist at creation.",
     "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>2. Preview the results: Mouse59</span>"
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>7. Write the report: Human stool study</span>"
     ]
   },
   {
-    "objectID": "examples/mouse59/01-see-the-result.html#composition",
-    "href": "examples/mouse59/01-see-the-result.html#composition",
-    "title": "2. Preview the results: Mouse59",
-    "section": "Composition",
-    "text": "Composition\n\n\n\nComposition in Mouse59. Each bar shows relative feature proportions for one sample; remaining features are pooled as Other.\n\n\nOTU0440 generally occupies a larger proportion in HighFat20. Many HighFatCa samples have a larger pooled Other fraction. Other contains many OTUs, so it does not identify one organism.\nOpen the composition image at full size to read its labels.",
-    "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>2. Preview the results: Mouse59</span>"
-    ]
-  },
-  {
-    "objectID": "examples/mouse59/01-see-the-result.html#shannon-diversity",
-    "href": "examples/mouse59/01-see-the-result.html#shannon-diversity",
-    "title": "2. Preview the results: Mouse59",
-    "section": "Shannon diversity",
-    "text": "Shannon diversity\n\n\n\nShannon diversity in Mouse59. Each point is one sample; Shannon uses the full feature table.\n\n\nThe supplied table has median Shannon values of 3.595117 in HighFatCa and 2.811773 in HighFat20, with overlapping values. Higher Shannon does not by itself indicate a healthier community.",
-    "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>2. Preview the results: Mouse59</span>"
-    ]
-  },
-  {
-    "objectID": "examples/mouse59/01-see-the-result.html#count-totals-and-diversity",
-    "href": "examples/mouse59/01-see-the-result.html#count-totals-and-diversity",
-    "title": "2. Preview the results: Mouse59",
-    "section": "Count totals and diversity",
-    "text": "Count totals and diversity\n\n\n\nCount totals and diversity in Mouse59. Each point relates one sample’s feature-table count total to its Shannon diversity.\n\n\nTwo samples have especially small totals, 99 and 182. The lowest Shannon value occurs at a much larger count total. The scatterplot alone does not establish that count depth has no influence.\n\n\n\n\n\n\nNote\n\n\n\nThese are descriptive plots. Composition bars sum to 100%; they do not show count totals. Visual differences alone do not establish statistical significance or causation.\n\n\nNext: Meet the inputs",
-    "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>2. Preview the results: Mouse59</span>"
-    ]
-  },
-  {
-    "objectID": "examples/mouse59/02-meet-the-data.html",
-    "href": "examples/mouse59/02-meet-the-data.html",
-    "title": "3. Meet the inputs: Mouse59",
+    "objectID": "examples/zackular/06-export-the-report.html#create-your-report",
+    "href": "examples/zackular/06-export-the-report.html#create-your-report",
+    "title": "7. Write the report: Human stool study",
     "section": "",
-    "text": "Your task\nLocate the three TSV files in data/mouse59/.",
+    "text": "Rscript scripts/R/create_report.R zackular",
     "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>3. Meet the inputs: Mouse59</span>"
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>7. Write the report: Human stool study</span>"
     ]
   },
   {
-    "objectID": "examples/mouse59/02-meet-the-data.html#the-three-files",
-    "href": "examples/mouse59/02-meet-the-data.html#the-three-files",
-    "title": "3. Meet the inputs: Mouse59",
-    "section": "The three files",
-    "text": "The three files\n\n\n\n\n\n\n\nFile\nRequired structure\n\n\n\n\nfeature-counts.tsv\nfeature_id, followed by sample columns of nonnegative integer counts\n\n\nsample-metadata.tsv\nsample_id and group, with one row per sample\n\n\ntaxonomy.tsv\nfeature_id and taxon, with one row per feature",
+    "objectID": "examples/zackular/06-export-the-report.html#replace-prompts-with-evidence",
+    "href": "examples/zackular/06-export-the-report.html#replace-prompts-with-evidence",
+    "title": "7. Write the report: Human stool study",
+    "section": "Replace prompts with evidence",
+    "text": "Replace prompts with evidence\nUse your notes from the preceding steps. State the question, sample unit, input source, group sizes, reference/comparison, settings and exclusions. Choose the most informative figures for the main result and retain the rest as supporting evidence. For tests, record model and uncertainty, not only which p-values passed a threshold.\nRead Write a report you can defend. Do not leave template instructions in the submitted report. State how AI helped and which checks you performed.",
     "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>3. Meet the inputs: Mouse59</span>"
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>7. Write the report: Human stool study</span>"
     ]
   },
   {
-    "objectID": "examples/mouse59/02-meet-the-data.html#dataset-details",
-    "href": "examples/mouse59/02-meet-the-data.html#dataset-details",
-    "title": "3. Meet the inputs: Mouse59",
-    "section": "Dataset details",
-    "text": "Dataset details\nThe original Mouse59GutOTUs.csv had samples in rows and OTUs in columns. Preparation transposed the original counts and renamed Class to group. The taxonomy file repeats OTU IDs as display labels. An OTU is an operational taxonomic unit, a sequence-based feature; its ID does not identify a named species. No filtering, normalization, or rarefaction was applied during preparation.",
+    "objectID": "examples/zackular/06-export-the-report.html#render-and-inspect",
+    "href": "examples/zackular/06-export-the-report.html#render-and-inspect",
+    "title": "7. Write the report: Human stool study",
+    "section": "Render and inspect",
+    "text": "Render and inspect\ncd reports\nquarto render zackular-report.qmd --to html\ncd ..\nOpen the HTML file printed by Quarto. Confirm images load and every number, contrast and limitation matches your current complete run. Rendering uses existing results; it does not rerun analysis.\nYour report stays in ignored reports/, separate from the published guide.\nNext: Your own study",
     "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>3. Meet the inputs: Mouse59</span>"
-    ]
-  },
-  {
-    "objectID": "examples/mouse59/02-meet-the-data.html#before-continuing",
-    "href": "examples/mouse59/02-meet-the-data.html#before-continuing",
-    "title": "3. Meet the inputs: Mouse59",
-    "section": "Before continuing",
-    "text": "Before continuing\nChoose one sample ID and locate it in both counts and metadata. Choose one feature ID and locate it in both counts and taxonomy. These identifiers connect the files.\nNext: Check the inputs",
-    "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>3. Meet the inputs: Mouse59</span>"
-    ]
-  },
-  {
-    "objectID": "examples/mouse59/03-check-the-inputs.html",
-    "href": "examples/mouse59/03-check-the-inputs.html",
-    "title": "4. Check the inputs: Mouse59",
-    "section": "",
-    "text": "Your task\nReview the input tables before starting the analysis. You will run the analysis on the next page; its first action is to check the files automatically.",
-    "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>4. Check the inputs: Mouse59</span>"
-    ]
-  },
-  {
-    "objectID": "examples/mouse59/03-check-the-inputs.html#check-the-structure",
-    "href": "examples/mouse59/03-check-the-inputs.html#check-the-structure",
-    "title": "4. Check the inputs: Mouse59",
-    "section": "Check the structure",
-    "text": "Check the structure\n\nAll three files exist and use tab-separated columns.\nSample IDs are unique and match exactly between counts and metadata.\nFeature IDs are unique and match between counts and taxonomy.\nCounts are finite, nonnegative integers; every sample has a positive total.\nGroup labels are present and represent the intended comparison.",
-    "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>4. Check the inputs: Mouse59</span>"
-    ]
-  },
-  {
-    "objectID": "examples/mouse59/03-check-the-inputs.html#check-the-dataset",
-    "href": "examples/mouse59/03-check-the-inputs.html#check-the-dataset",
-    "title": "4. Check the inputs: Mouse59",
-    "section": "Check the dataset",
-    "text": "Check the dataset\nRecord SRR4125132 (99 counts) and SRR4125107 (182 counts). They pass the positive-total check but need investigation. Keep all 59 samples in the initial demonstration; document any later sensitivity analysis separately.",
-    "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>4. Check the inputs: Mouse59</span>"
-    ]
-  },
-  {
-    "objectID": "examples/mouse59/03-check-the-inputs.html#before-continuing",
-    "href": "examples/mouse59/03-check-the-inputs.html#before-continuing",
-    "title": "4. Check the inputs: Mouse59",
-    "section": "Before continuing",
-    "text": "Before continuing\nRecord the sample count, feature count, and group sizes you expect. The script checks file structure; you decide whether the selected samples support your question.\nNext: Run the analysis",
-    "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>4. Check the inputs: Mouse59</span>"
-    ]
-  },
-  {
-    "objectID": "examples/mouse59/04-run-the-analysis.html",
-    "href": "examples/mouse59/04-run-the-analysis.html",
-    "title": "5. Run the analysis: Mouse59",
-    "section": "",
-    "text": "Your task\nOpen a terminal in your project folder, where _quarto.yml is located. Run:\nThe script checks the inputs first, then writes figures and tables to results/mouse59/.",
-    "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>5. Run the analysis: Mouse59</span>"
-    ]
-  },
-  {
-    "objectID": "examples/mouse59/04-run-the-analysis.html#your-task",
-    "href": "examples/mouse59/04-run-the-analysis.html#your-task",
-    "title": "5. Run the analysis: Mouse59",
-    "section": "",
-    "text": "Rscript scripts/R/02-analyse-example.R data/mouse59 results/mouse59",
-    "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>5. Run the analysis: Mouse59</span>"
-    ]
-  },
-  {
-    "objectID": "examples/mouse59/04-run-the-analysis.html#confirm-the-run",
-    "href": "examples/mouse59/04-run-the-analysis.html#confirm-the-run",
-    "title": "5. Run the analysis: Mouse59",
-    "section": "Confirm the run",
-    "text": "Confirm the run\nThe main script calls 01-check-inputs.R before calculating results. It also compares its Shannon calculation with vegan for every sample. If an error occurs, resolve it before interpreting outputs from this or an earlier run.\nConfirm the input folder is data/mouse59/ and the output folder is results/mouse59/.",
-    "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>5. Run the analysis: Mouse59</span>"
-    ]
-  },
-  {
-    "objectID": "examples/mouse59/04-run-the-analysis.html#inspect-the-outputs",
-    "href": "examples/mouse59/04-run-the-analysis.html#inspect-the-outputs",
-    "title": "5. Run the analysis: Mouse59",
-    "section": "Inspect the outputs",
-    "text": "Inspect the outputs\n\n\n\n\n\n\n\nFile inside results/mouse59/\nCheck\n\n\n\n\ntables/alpha-diversity.tsv\nOne row per sample; count total, observed features, Shannon\n\n\ntables/relative-abundance.tsv\nFeature proportions for every sample\n\n\ntables/composition-display.tsv\nTop eight features and pooled Other\n\n\ntables/group-summary.tsv\nGroup summaries\n\n\nfigures/\nAll three PNG figures\n\n\nsession-info.txt\nR and package versions",
-    "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>5. Run the analysis: Mouse59</span>"
-    ]
-  },
-  {
-    "objectID": "examples/mouse59/04-run-the-analysis.html#before-continuing",
-    "href": "examples/mouse59/04-run-the-analysis.html#before-continuing",
-    "title": "5. Run the analysis: Mouse59",
-    "section": "Before continuing",
-    "text": "Before continuing\nCheck that the sample count and group labels agree with your metadata. Open all three figures. Keep the full feature table for diversity calculations; Other is a plotting convenience.\nNext: Verify and explain",
-    "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>5. Run the analysis: Mouse59</span>"
-    ]
-  },
-  {
-    "objectID": "examples/mouse59/05-verify-and-explain.html",
-    "href": "examples/mouse59/05-verify-and-explain.html",
-    "title": "6. Verify and explain: Mouse59",
-    "section": "",
-    "text": "Your task\nWrite one observation per figure and check each against the saved tables. Separate observations from possible explanations.",
-    "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>22</span>  <span class='chapter-title'>6. Verify and explain: Mouse59</span>"
-    ]
-  },
-  {
-    "objectID": "examples/mouse59/05-verify-and-explain.html#check-the-evidence",
-    "href": "examples/mouse59/05-verify-and-explain.html#check-the-evidence",
-    "title": "6. Verify and explain: Mouse59",
-    "section": "Check the evidence",
-    "text": "Check the evidence\n\n\n\n\n\n\n\nFigure\nNumerical check\n\n\n\n\nComposition\nCompare the relevant feature proportions within samples, then summarise by group\n\n\nShannon diversity\nCompare medians, ranges, and observed feature counts\n\n\nCount totals and diversity\nIdentify the smallest and largest totals and inspect unusual samples\n\n\n\nInterpret the supplied labels as sample categories. Treatment meanings, animal and cage structure, and taxonomic identities are unavailable in this demonstration.",
-    "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>22</span>  <span class='chapter-title'>6. Verify and explain: Mouse59</span>"
-    ]
-  },
-  {
-    "objectID": "examples/mouse59/05-verify-and-explain.html#optional-verify-one-sample",
-    "href": "examples/mouse59/05-verify-and-explain.html#optional-verify-one-sample",
-    "title": "6. Verify and explain: Mouse59",
-    "section": "Optional: verify one sample",
-    "text": "Optional: verify one sample\nFrom a terminal in the project root, run this optional check:\nRscript scripts/R/05-verify-sample.R data/mouse59 results/mouse59 SRR4125093\nAll three rows should show TRUE under agrees. To check another sample below, replace only the final sample ID.\n\n\n\nSample\nGroup\nCount total\nObserved features\nShannon\n\n\n\n\nSRR4125093\nHighFatCa\n26,849\n578\n4.250831\n\n\nSRR4125107\nHighFatCa\n182\n64\n3.646867\n\n\nSRR4125132\nHighFat20\n99\n44\n3.460816\n\n\n\nCompare the reference values with your saved outputs. Investigate any disagreement before using the result.\n\n\n\n\n\n\nNote\n\n\n\nThe independent sample calculation is optional. Checking your descriptions against the output tables remains part of the workflow. Agreement confirms a calculation; it does not establish sample quality or a biological cause.",
-    "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>22</span>  <span class='chapter-title'>6. Verify and explain: Mouse59</span>"
-    ]
-  },
-  {
-    "objectID": "examples/mouse59/05-verify-and-explain.html#before-continuing",
-    "href": "examples/mouse59/05-verify-and-explain.html#before-continuing",
-    "title": "6. Verify and explain: Mouse59",
-    "section": "Before continuing",
-    "text": "Before continuing\nWrite a short answer to your question, name the evidence supporting it, and state one limitation. If AI helps with the draft, check every number, label, and claim against your outputs.\nNext: Write the report",
-    "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>22</span>  <span class='chapter-title'>6. Verify and explain: Mouse59</span>"
-    ]
-  },
-  {
-    "objectID": "examples/mouse59/06-export-the-report.html",
-    "href": "examples/mouse59/06-export-the-report.html",
-    "title": "7. Write the report: Mouse59",
-    "section": "",
-    "text": "Create your report file\nIn VS Code or RStudio, create a new plain-text file named mouse59-report.qmd. Save it in the main project folder. Use a different filename if you want to preserve an earlier report.\nCopy the outline below into that file. Copy only the contents of the code block, beginning with ---; the outer code-block fences are not part of your report.",
-    "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>23</span>  <span class='chapter-title'>7. Write the report: Mouse59</span>"
-    ]
-  },
-  {
-    "objectID": "examples/mouse59/06-export-the-report.html#copy-this-outline",
-    "href": "examples/mouse59/06-export-the-report.html#copy-this-outline",
-    "title": "7. Write the report: Mouse59",
-    "section": "Copy this outline",
-    "text": "Copy this outline\n---\ntitle: \"Mouse59: microbiome analysis\"\nformat: html\nexecute:\n  eval: false\n---\n\n## Question and dataset\n\nReplace this paragraph with your question, group labels, sample and feature counts, and what each sample represents. Record any unavailable study information.\n\n## Inputs and decisions\n\nInputs: `data/mouse59/`. Outputs: `results/mouse59/`.\n\nDescribe the selected samples, feature labels, and any exclusions or changes. State that the workflow produces descriptive summaries.\n\n## Composition\n\n![Feature composition by sample.](results/mouse59/figures/composition.png)\n\nDescribe one pattern and support it with feature proportions from the saved table. Explain what is pooled as Other.\n\n## Shannon diversity\n\n![Shannon diversity by group.](results/mouse59/figures/shannon-diversity.png)\n\nReport group medians and describe spread and overlap. Check observed feature counts before explaining the pattern.\n\n## Count totals and diversity\n\n![Count totals and Shannon diversity.](results/mouse59/figures/depth-diversity.png)\n\nDescribe count ranges and unusual samples. Check the corresponding sample rows in the diversity table.\n\n## Checks\n\nName the table values you checked. If you performed the optional sample verification, report the sample ID, total, observed features, Shannon, and agreement.\n\n## Conclusion and limitations\n\nAnswer the question within the scope of these samples. State one limitation and a next question. Visual differences alone do not establish significance or causation.\n\n## Reproducibility and AI assistance\n\nRecord the analysis command, input/output folders, decisions, and location of `session-info.txt`. State how AI was used and checked, or state that it was not used.",
-    "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>23</span>  <span class='chapter-title'>7. Write the report: Mouse59</span>"
-    ]
-  },
-  {
-    "objectID": "examples/mouse59/06-export-the-report.html#write-your-explanation",
-    "href": "examples/mouse59/06-export-the-report.html#write-your-explanation",
-    "title": "7. Write the report: Mouse59",
-    "section": "Write your explanation",
-    "text": "Write your explanation\nReplace the prompts with your own observations and checked numbers. Keep the figure paths as supplied for this dataset. These OTU labels have no supplied biological assignments. Group definitions and animal/cage structure are unavailable; describe the supplied sample categories.\nIf AI helps draft the explanation, supply the actual figures and table values, then check every number, group label, and claim. Share only data you are permitted to share.",
-    "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>23</span>  <span class='chapter-title'>7. Write the report: Mouse59</span>"
-    ]
-  },
-  {
-    "objectID": "examples/mouse59/06-export-the-report.html#render-the-report",
-    "href": "examples/mouse59/06-export-the-report.html#render-the-report",
-    "title": "7. Write the report: Mouse59",
-    "section": "Render the report",
-    "text": "Render the report\nSave the file. From a terminal in the project root, run:\nquarto render mouse59-report.qmd --to html\nOpen the HTML file at the output location printed by Quarto. Rendering uses existing figures and tables; it does not run the analysis again.",
-    "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>23</span>  <span class='chapter-title'>7. Write the report: Mouse59</span>"
-    ]
-  },
-  {
-    "objectID": "examples/mouse59/06-export-the-report.html#check-the-finished-report",
-    "href": "examples/mouse59/06-export-the-report.html#check-the-finished-report",
-    "title": "7. Write the report: Mouse59",
-    "section": "Check the finished report",
-    "text": "Check the finished report\nConfirm that all three images load, captions match the dataset, and every numerical statement agrees with its table. Keep the inputs, decisions, and results/mouse59/session-info.txt with your report materials.\nNext: Your own study",
-    "crumbs": [
-      "Mouse59",
-      "<span class='chapter-number'>23</span>  <span class='chapter-title'>7. Write the report: Mouse59</span>"
+      "Human stool study: Zackular",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>7. Write the report: Human stool study</span>"
     ]
   },
   {
@@ -1058,10 +828,10 @@
     "href": "examples/my-study/00-start-here.html",
     "title": "1. Define the question: Your own study",
     "section": "",
-    "text": "Your question\nUse the same steps with your prepared study tables. Adapt the question to name a comparison supported by your metadata.",
+    "text": "Your question\nStart with prepared integer counts and a documented study design. This workflow supports an independent two-group comparison; paired, repeated or clustered samples need adaptation before inference.",
     "crumbs": [
       "Your own study",
-      "<span class='chapter-number'>24</span>  <span class='chapter-title'>1. Define the question: Your own study</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>1. Define the question: Your own study</span>"
     ]
   },
   {
@@ -1069,32 +839,21 @@
     "href": "examples/my-study/00-start-here.html#your-question",
     "title": "1. Define the question: Your own study",
     "section": "",
-    "text": "Note\n\n\n\nHow do community composition, Shannon diversity, and count totals differ between my sample groups?",
+    "text": "Note\n\n\n\nWhich differences between my two sample groups can this dataset support?\n\n\n\n\n\n\nLocation\nFolder\n\n\n\n\nInputs\ndata/my-study/\n\n\nOutputs\nresults/my-study/\n\n\nSettings\nconfig/my-study.tsv",
     "crumbs": [
       "Your own study",
-      "<span class='chapter-number'>24</span>  <span class='chapter-title'>1. Define the question: Your own study</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>1. Define the question: Your own study</span>"
     ]
   },
   {
-    "objectID": "examples/my-study/00-start-here.html#your-dataset",
-    "href": "examples/my-study/00-start-here.html#your-dataset",
+    "objectID": "examples/my-study/00-start-here.html#decide-before-running",
+    "href": "examples/my-study/00-start-here.html#decide-before-running",
     "title": "1. Define the question: Your own study",
-    "section": "Your dataset",
-    "text": "Your dataset\nPrepare your three tidy TSV files in data/my-study/. This folder is reserved for your inputs and may be empty or absent until you create it.\n\n\n\nLocation\nFolder\n\n\n\n\nInputs\ndata/my-study/\n\n\nOutputs\nresults/my-study/",
+    "section": "Decide before running",
+    "text": "Decide before running\nName the sample unit, reference group and comparison group. Explain whether you want a description, a community-level association or a feature-level association. Keep those questions distinct.\nThe same seven steps carry you from question to report. Complete setup first. Save one short note at each step; use these notes in your report.\nYour task: write your question in one sentence and one conclusion this design cannot establish. Ask AI to check whether the question matches the available sample units; you decide whether its proposed wording is justified. Next: Preview",
     "crumbs": [
       "Your own study",
-      "<span class='chapter-number'>24</span>  <span class='chapter-title'>1. Define the question: Your own study</span>"
-    ]
-  },
-  {
-    "objectID": "examples/my-study/00-start-here.html#your-task",
-    "href": "examples/my-study/00-start-here.html#your-task",
-    "title": "1. Define the question: Your own study",
-    "section": "Your task",
-    "text": "Your task\nFollow the seven steps in order: define the question, preview results, meet the inputs, check them, run the analysis, explain the evidence, and write the report. Complete workspace setup before starting.\nNext: Preview the results",
-    "crumbs": [
-      "Your own study",
-      "<span class='chapter-number'>24</span>  <span class='chapter-title'>1. Define the question: Your own study</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>1. Define the question: Your own study</span>"
     ]
   },
   {
@@ -1102,43 +861,21 @@
     "href": "examples/my-study/01-see-the-result.html",
     "title": "2. Preview the results: Your own study",
     "section": "",
-    "text": "Your task\nBefore running your study, identify the three outputs you will inspect. No figures are shown here because you have not supplied or analysed your own inputs yet.",
+    "text": "Plan what you will inspect\nThere are no preview figures for your study until you provide inputs and run it. Use the synthetic and human examples to understand the nine exploration figures. See the output map.",
     "crumbs": [
       "Your own study",
-      "<span class='chapter-number'>25</span>  <span class='chapter-title'>2. Preview the results: Your own study</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>2. Preview the results: Your own study</span>"
     ]
   },
   {
-    "objectID": "examples/my-study/01-see-the-result.html#composition",
-    "href": "examples/my-study/01-see-the-result.html#composition",
+    "objectID": "examples/my-study/01-see-the-result.html#three-questions",
+    "href": "examples/my-study/01-see-the-result.html#three-questions",
     "title": "2. Preview the results: Your own study",
-    "section": "Composition",
-    "text": "Composition\nAfter the run, open results/my-study/figures/composition.png.\nIdentify the displayed features with different proportions across samples. Check the full relative-abundance table before explaining Other.",
+    "section": "Three questions",
+    "text": "Three questions\n\nWithin samples: what do read totals, richness and Shannon reveal?\nBetween samples: do Bray–Curtis PCoA patterns persist in the depth check?\nAcross features: how do abundance and prevalence differ, and is an inferential model justified?\n\nChoose a useful depth after examining totals. Preserve uncertainty about confounding, repeated sampling and processing quality. Do not promise that your dataset will show separation or yield significant features.\nYour task: predict which metadata variable might explain variation, then name the figure and numerical check that could challenge that prediction.\nNext: Meet",
     "crumbs": [
       "Your own study",
-      "<span class='chapter-number'>25</span>  <span class='chapter-title'>2. Preview the results: Your own study</span>"
-    ]
-  },
-  {
-    "objectID": "examples/my-study/01-see-the-result.html#shannon-diversity",
-    "href": "examples/my-study/01-see-the-result.html#shannon-diversity",
-    "title": "2. Preview the results: Your own study",
-    "section": "Shannon diversity",
-    "text": "Shannon diversity\nAfter the run, open results/my-study/figures/shannon-diversity.png.\nCompare group medians, spread, and overlap. Check observed feature counts and evenness before explaining a difference.",
-    "crumbs": [
-      "Your own study",
-      "<span class='chapter-number'>25</span>  <span class='chapter-title'>2. Preview the results: Your own study</span>"
-    ]
-  },
-  {
-    "objectID": "examples/my-study/01-see-the-result.html#count-totals-and-diversity",
-    "href": "examples/my-study/01-see-the-result.html#count-totals-and-diversity",
-    "title": "2. Preview the results: Your own study",
-    "section": "Count totals and diversity",
-    "text": "Count totals and diversity\nAfter the run, open results/my-study/figures/depth-diversity.png.\nRecord count ranges and investigate unusually low totals. Consider whether the pattern changes among samples with similar totals.\n\n\n\n\n\n\nNote\n\n\n\nThese are descriptive plots. Composition bars sum to 100%; they do not show count totals. Visual differences alone do not establish statistical significance or causation.\n\n\nNext: Meet the inputs",
-    "crumbs": [
-      "Your own study",
-      "<span class='chapter-number'>25</span>  <span class='chapter-title'>2. Preview the results: Your own study</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>2. Preview the results: Your own study</span>"
     ]
   },
   {
@@ -1146,43 +883,21 @@
     "href": "examples/my-study/02-meet-the-data.html",
     "title": "3. Meet the inputs: Your own study",
     "section": "",
-    "text": "Your task\nCreate the input folder if needed and prepare the three TSV files in data/my-study/.",
+    "text": "Locate the three files\nPick one sample and find it in counts and metadata. Pick one feature and find it in counts and taxonomy. Row order is not evidence of a match; IDs are.\nCreate the folder and files if absent. Start with actual read counts; do not round proportions, microarray intensities or normalized abundance into counts. If biological taxonomy is unavailable, repeat unique feature IDs as labels and record that limitation.\nPreserve participant, visit, site, batch, medication and other design fields where available. Document source, assay, preprocessing and exclusions. Use nonidentifying IDs. A valid file format cannot establish independent samples.\nYour task: record assay, sample unit, group definition and one missing piece of information that matters for interpretation.\nNext: Check",
     "crumbs": [
       "Your own study",
-      "<span class='chapter-number'>26</span>  <span class='chapter-title'>3. Meet the inputs: Your own study</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>3. Meet the inputs: Your own study</span>"
     ]
   },
   {
-    "objectID": "examples/my-study/02-meet-the-data.html#the-three-files",
-    "href": "examples/my-study/02-meet-the-data.html#the-three-files",
+    "objectID": "examples/my-study/02-meet-the-data.html#locate-the-three-files",
+    "href": "examples/my-study/02-meet-the-data.html#locate-the-three-files",
     "title": "3. Meet the inputs: Your own study",
-    "section": "The three files",
-    "text": "The three files\n\n\n\n\n\n\n\nFile\nRequired structure\n\n\n\n\nfeature-counts.tsv\nfeature_id, followed by sample columns of nonnegative integer counts\n\n\nsample-metadata.tsv\nsample_id and group, with one row per sample\n\n\ntaxonomy.tsv\nfeature_id and taxon, with one row per feature",
+    "section": "",
+    "text": "File in data/my-study/\nWhat to inspect\n\n\n\n\nfeature-counts.tsv\nFeature IDs in rows; sample IDs in columns; integer read counts\n\n\nsample-metadata.tsv\nOne row per sample, with sample ID, group and available covariates\n\n\ntaxonomy.tsv\nEach feature ID and its supplied lineage or display label",
     "crumbs": [
       "Your own study",
-      "<span class='chapter-number'>26</span>  <span class='chapter-title'>3. Meet the inputs: Your own study</span>"
-    ]
-  },
-  {
-    "objectID": "examples/my-study/02-meet-the-data.html#dataset-details",
-    "href": "examples/my-study/02-meet-the-data.html#dataset-details",
-    "title": "3. Meet the inputs: Your own study",
-    "section": "Dataset details",
-    "text": "Dataset details\nRecord what each sample represents, how groups were defined, and any participant, visit, batch, or other relevant fields. Preserve those metadata. If taxonomy is unavailable, use unique feature IDs as display labels and record that limitation.",
-    "crumbs": [
-      "Your own study",
-      "<span class='chapter-number'>26</span>  <span class='chapter-title'>3. Meet the inputs: Your own study</span>"
-    ]
-  },
-  {
-    "objectID": "examples/my-study/02-meet-the-data.html#before-continuing",
-    "href": "examples/my-study/02-meet-the-data.html#before-continuing",
-    "title": "3. Meet the inputs: Your own study",
-    "section": "Before continuing",
-    "text": "Before continuing\nChoose one sample ID and locate it in both counts and metadata. Choose one feature ID and locate it in both counts and taxonomy. These identifiers connect the files.\nNext: Check the inputs",
-    "crumbs": [
-      "Your own study",
-      "<span class='chapter-number'>26</span>  <span class='chapter-title'>3. Meet the inputs: Your own study</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>3. Meet the inputs: Your own study</span>"
     ]
   },
   {
@@ -1190,43 +905,32 @@
     "href": "examples/my-study/03-check-the-inputs.html",
     "title": "4. Check the inputs: Your own study",
     "section": "",
-    "text": "Your task\nReview the input tables before starting the analysis. You will run the analysis on the next page; its first action is to check the files automatically.",
+    "text": "Check files and study design\nThe exploration script checks IDs, table alignment, nonnegative integer counts and positive totals. You must review biological suitability.",
     "crumbs": [
       "Your own study",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>4. Check the inputs: Your own study</span>"
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>4. Check the inputs: Your own study</span>"
     ]
   },
   {
-    "objectID": "examples/my-study/03-check-the-inputs.html#check-the-structure",
-    "href": "examples/my-study/03-check-the-inputs.html#check-the-structure",
+    "objectID": "examples/my-study/03-check-the-inputs.html#check-files-and-study-design",
+    "href": "examples/my-study/03-check-the-inputs.html#check-files-and-study-design",
     "title": "4. Check the inputs: Your own study",
-    "section": "Check the structure",
-    "text": "Check the structure\n\nAll three files exist and use tab-separated columns.\nSample IDs are unique and match exactly between counts and metadata.\nFeature IDs are unique and match between counts and taxonomy.\nCounts are finite, nonnegative integers; every sample has a positive total.\nGroup labels are present and represent the intended comparison.",
+    "section": "",
+    "text": "Are group labels correct and sample units independent?\nAre there unusually small totals, missing covariates or processing issues?\nDoes an apparent group difference coincide with a site, batch or other variable?\nDo your feature labels match the level at which you intend to make claims?",
     "crumbs": [
       "Your own study",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>4. Check the inputs: Your own study</span>"
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>4. Check the inputs: Your own study</span>"
     ]
   },
   {
-    "objectID": "examples/my-study/03-check-the-inputs.html#check-the-dataset",
-    "href": "examples/my-study/03-check-the-inputs.html#check-the-dataset",
+    "objectID": "examples/my-study/03-check-the-inputs.html#read-the-settings",
+    "href": "examples/my-study/03-check-the-inputs.html#read-the-settings",
     "title": "4. Check the inputs: Your own study",
-    "section": "Check the dataset",
-    "text": "Check the dataset\nCheck whether samples are paired, repeated, or clustered. Record missing metadata, low-count samples, and any exclusions. These descriptive summaries do not account automatically for study design or confounding.",
+    "section": "Read the settings",
+    "text": "Read the settings\nOpen config/my-study.tsv. Parameters and values occupy separate TSV columns. Record reference, comparison, top_n, depth, repeats, seed, permutations, prevalence, alpha and covariates before running.\nChange the placeholder Control/Case labels to your actual labels. Keep design_confirmed FALSE until you have justified sample independence and model suitability. Start with exploration; do not switch that flag merely to get a command to run. Use comma-separated metadata column names for covariates, or none. Missing or confounded covariates stop inference.\nEnable run_da only when a count-based OTU model and its assumptions fit the question. Shared households, cages, repeated visits or matched pairs require adaptation beyond this script. Get help with the design before testing.\nYour task: write your planned comparison and settings, then name one check the script cannot make for you.\nNext: Run",
     "crumbs": [
       "Your own study",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>4. Check the inputs: Your own study</span>"
-    ]
-  },
-  {
-    "objectID": "examples/my-study/03-check-the-inputs.html#before-continuing",
-    "href": "examples/my-study/03-check-the-inputs.html#before-continuing",
-    "title": "4. Check the inputs: Your own study",
-    "section": "Before continuing",
-    "text": "Before continuing\nRecord the sample count, feature count, and group sizes you expect. The script checks file structure; you decide whether the selected samples support your question.\nNext: Run the analysis",
-    "crumbs": [
-      "Your own study",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>4. Check the inputs: Your own study</span>"
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>4. Check the inputs: Your own study</span>"
     ]
   },
   {
@@ -1234,54 +938,32 @@
     "href": "examples/my-study/04-run-the-analysis.html",
     "title": "5. Run the analysis: Your own study",
     "section": "",
-    "text": "Your task\nOpen a terminal in your project folder, where _quarto.yml is located. Run:\nThe script checks the inputs first, then writes figures and tables to results/my-study/.",
+    "text": "Stage 1: exploration\nFrom the main project folder:\nConfirm exploration-status.txt says COMPLETE. Open all nine figures and match each to its table using the output map. Shannon uses all features; grey Other affects composition display only.\nPCoA uses Bray–Curtis on proportions with a Lingoes correction. The depth sensitivity uses 20 equal-depth random subsamples and mean distances. These are different distance definitions, not interchangeable results.",
     "crumbs": [
       "Your own study",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>5. Run the analysis: Your own study</span>"
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>5. Run the analysis: Your own study</span>"
     ]
   },
   {
-    "objectID": "examples/my-study/04-run-the-analysis.html#your-task",
-    "href": "examples/my-study/04-run-the-analysis.html#your-task",
+    "objectID": "examples/my-study/04-run-the-analysis.html#stage-1-exploration",
+    "href": "examples/my-study/04-run-the-analysis.html#stage-1-exploration",
     "title": "5. Run the analysis: Your own study",
     "section": "",
-    "text": "Rscript scripts/R/02-analyse-example.R data/my-study results/my-study",
+    "text": "Rscript scripts/R/run_workflow.R data/my-study results/my-study config/my-study.tsv",
     "crumbs": [
       "Your own study",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>5. Run the analysis: Your own study</span>"
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>5. Run the analysis: Your own study</span>"
     ]
   },
   {
-    "objectID": "examples/my-study/04-run-the-analysis.html#confirm-the-run",
-    "href": "examples/my-study/04-run-the-analysis.html#confirm-the-run",
+    "objectID": "examples/my-study/04-run-the-analysis.html#stage-2-inference",
+    "href": "examples/my-study/04-run-the-analysis.html#stage-2-inference",
     "title": "5. Run the analysis: Your own study",
-    "section": "Confirm the run",
-    "text": "Confirm the run\nThe main script calls 01-check-inputs.R before calculating results. It also compares its Shannon calculation with vegan for every sample. If an error occurs, resolve it before interpreting outputs from this or an earlier run.\nConfirm the input folder is data/my-study/ and the output folder is results/my-study/.",
+    "section": "Stage 2: inference",
+    "text": "Stage 2: inference\nOnly after the design and settings are justified, set design_confirmed TRUE. Otherwise stop at exploration.\nRscript scripts/R/run_inference.R data/my-study results/my-study config/my-study.tsv\nThe script requires unchanged inputs/settings and a complete exploration. It runs marginal PERMANOVA and dispersion checks for both distance definitions. Read the group term’s R-squared and p-value alongside dispersion and sample structure. These tests do not turn an observational comparison into causation.\nWhen enabled, ANCOM-BC2 uses original integer counts and configured covariates. Positive effects mean comparison versus reference. The first model should follow your scientific question, not whichever formula produces more discoveries. Save alternative analyses in separate output folders.\nIf any command fails, stop. An incomplete folder can contain files from an earlier run. Preserve the error; do not write conclusions from partial results.\nNext: Verify and explain",
     "crumbs": [
       "Your own study",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>5. Run the analysis: Your own study</span>"
-    ]
-  },
-  {
-    "objectID": "examples/my-study/04-run-the-analysis.html#inspect-the-outputs",
-    "href": "examples/my-study/04-run-the-analysis.html#inspect-the-outputs",
-    "title": "5. Run the analysis: Your own study",
-    "section": "Inspect the outputs",
-    "text": "Inspect the outputs\n\n\n\n\n\n\n\nFile inside results/my-study/\nCheck\n\n\n\n\ntables/alpha-diversity.tsv\nOne row per sample; count total, observed features, Shannon\n\n\ntables/relative-abundance.tsv\nFeature proportions for every sample\n\n\ntables/composition-display.tsv\nTop eight features and pooled Other\n\n\ntables/group-summary.tsv\nGroup summaries\n\n\nfigures/\nAll three PNG figures\n\n\nsession-info.txt\nR and package versions",
-    "crumbs": [
-      "Your own study",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>5. Run the analysis: Your own study</span>"
-    ]
-  },
-  {
-    "objectID": "examples/my-study/04-run-the-analysis.html#before-continuing",
-    "href": "examples/my-study/04-run-the-analysis.html#before-continuing",
-    "title": "5. Run the analysis: Your own study",
-    "section": "Before continuing",
-    "text": "Before continuing\nCheck that the sample count and group labels agree with your metadata. Open all three figures. Keep the full feature table for diversity calculations; Other is a plotting convenience.\nNext: Verify and explain",
-    "crumbs": [
-      "Your own study",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>5. Run the analysis: Your own study</span>"
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>5. Run the analysis: Your own study</span>"
     ]
   },
   {
@@ -1289,43 +971,43 @@
     "href": "examples/my-study/05-verify-and-explain.html",
     "title": "6. Verify and explain: Your own study",
     "section": "",
-    "text": "Your task\nWrite one observation per figure and check each against the saved tables. Separate observations from possible explanations.",
+    "text": "Verify one sample\nRun from the main folder; replace SAMPLE_ID with an actual ID:\nAll three rows should show TRUE. The verifier checks current input bytes, count total, observed features and Shannon. Agreement checks arithmetic; it does not validate sequencing quality, sample identity or every model estimate.",
     "crumbs": [
       "Your own study",
-      "<span class='chapter-number'>29</span>  <span class='chapter-title'>6. Verify and explain: Your own study</span>"
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>6. Verify and explain: Your own study</span>"
     ]
   },
   {
-    "objectID": "examples/my-study/05-verify-and-explain.html#check-the-evidence",
-    "href": "examples/my-study/05-verify-and-explain.html#check-the-evidence",
+    "objectID": "examples/my-study/05-verify-and-explain.html#verify-one-sample",
+    "href": "examples/my-study/05-verify-and-explain.html#verify-one-sample",
     "title": "6. Verify and explain: Your own study",
-    "section": "Check the evidence",
-    "text": "Check the evidence\n\n\n\n\n\n\n\nFigure\nNumerical check\n\n\n\n\nComposition\nCompare the relevant feature proportions within samples, then summarise by group\n\n\nShannon diversity\nCompare medians, ranges, and observed feature counts\n\n\nCount totals and diversity\nIdentify the smallest and largest totals and inspect unusual samples\n\n\n\nState the limits of your sampling, grouping, feature labels, and available metadata. Specify which further checks would help answer your question.",
+    "section": "",
+    "text": "Rscript scripts/R/verify_sample.R data/my-study results/my-study config/my-study.tsv SAMPLE_ID",
     "crumbs": [
       "Your own study",
-      "<span class='chapter-number'>29</span>  <span class='chapter-title'>6. Verify and explain: Your own study</span>"
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>6. Verify and explain: Your own study</span>"
     ]
   },
   {
-    "objectID": "examples/my-study/05-verify-and-explain.html#optional-verify-one-sample",
-    "href": "examples/my-study/05-verify-and-explain.html#optional-verify-one-sample",
+    "objectID": "examples/my-study/05-verify-and-explain.html#explain-the-exploration",
+    "href": "examples/my-study/05-verify-and-explain.html#explain-the-exploration",
     "title": "6. Verify and explain: Your own study",
-    "section": "Optional: verify one sample",
-    "text": "Optional: verify one sample\nChoose an actual sample ID from your count table. In the command below, replace SAMPLE_ID with that ID, then run it from the project root:\nRscript scripts/R/05-verify-sample.R data/my-study results/my-study SAMPLE_ID\nRecord its total, observed features, Shannon value, and agreement. All three rows should show TRUE under agrees.\n\n\n\n\n\n\nNote\n\n\n\nThe independent sample calculation is optional. Checking your descriptions against the output tables remains part of the workflow. Agreement confirms a calculation; it does not establish sample quality or a biological cause.",
+    "section": "Explain the exploration",
+    "text": "Explain the exploration\nWrite one sentence per figure. For composition, compare named OTUs and acknowledge the pooled remainder. For Shannon and richness, check sample values and group summaries. For PCoA, name the distance and axis percentages; check whether the pattern persists in the depth sensitivity. For the heatmap and prevalence plot, distinguish high abundance from frequent detection.",
     "crumbs": [
       "Your own study",
-      "<span class='chapter-number'>29</span>  <span class='chapter-title'>6. Verify and explain: Your own study</span>"
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>6. Verify and explain: Your own study</span>"
     ]
   },
   {
-    "objectID": "examples/my-study/05-verify-and-explain.html#before-continuing",
-    "href": "examples/my-study/05-verify-and-explain.html#before-continuing",
+    "objectID": "examples/my-study/05-verify-and-explain.html#explain-the-tests",
+    "href": "examples/my-study/05-verify-and-explain.html#explain-the-tests",
     "title": "6. Verify and explain: Your own study",
-    "section": "Before continuing",
-    "text": "Before continuing\nWrite a short answer to your question, name the evidence supporting it, and state one limitation. If AI helps with the draft, check every number, label, and claim against your outputs.\nNext: Write the report",
+    "section": "Explain the tests",
+    "text": "Explain the tests\nRecord the group term’s R-squared and p-value in permanova.tsv, the covariates in model-matrix.tsv, and dispersion results. Compare the two distance definitions without choosing a favourite p-value. Dispersion is not adjusted for the covariates in the PERMANOVA model.\nIf differential abundance was run, select an OTU in differential-abundance.tsv. Check its full ID, contrast direction, natural-log effect, standard error, adjusted p-value and sensitivity flag. Recalculate exp(effect) for its model-estimated fold change. Locate it in the full relative-abundance table to understand the unadjusted display; the two values answer different questions.\nAn empty discoveries table is a valid outcome. Explain insufficient evidence under the model, rather than claiming identical communities or changing the threshold to obtain hits.\nHuman → AI → Human task: write your result paragraph first. Give AI the relevant figures, exact table rows, model and contrast. Ask it to identify unsupported numbers, reversed effects and causal wording. Accept changes only after checking them yourself. Finish with one limitation and a useful next scientific question.\nNext: Write",
     "crumbs": [
       "Your own study",
-      "<span class='chapter-number'>29</span>  <span class='chapter-title'>6. Verify and explain: Your own study</span>"
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>6. Verify and explain: Your own study</span>"
     ]
   },
   {
@@ -1333,131 +1015,120 @@
     "href": "examples/my-study/06-export-the-report.html",
     "title": "7. Write the report: Your own study",
     "section": "",
-    "text": "Create your report file\nIn VS Code or RStudio, create a new plain-text file named my-study-report.qmd. Save it in the main project folder. Use a different filename if you want to preserve an earlier report.\nCopy the outline below into that file. Copy only the contents of the code block, beginning with ---; the outer code-block fences are not part of your report.",
+    "text": "Create your report\nFrom the main project folder:\nThis creates reports/my-study-report.qmd if it does not already exist. Existing writing is kept. The draft includes exploration figures, with inference plots included only when the corresponding completed outputs exist at creation.",
     "crumbs": [
       "Your own study",
-      "<span class='chapter-number'>30</span>  <span class='chapter-title'>7. Write the report: Your own study</span>"
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>7. Write the report: Your own study</span>"
     ]
   },
   {
-    "objectID": "examples/my-study/06-export-the-report.html#copy-this-outline",
-    "href": "examples/my-study/06-export-the-report.html#copy-this-outline",
+    "objectID": "examples/my-study/06-export-the-report.html#create-your-report",
+    "href": "examples/my-study/06-export-the-report.html#create-your-report",
     "title": "7. Write the report: Your own study",
-    "section": "Copy this outline",
-    "text": "Copy this outline\n---\ntitle: \"Your own study: microbiome analysis\"\nformat: html\nexecute:\n  eval: false\n---\n\n## Question and dataset\n\nReplace this paragraph with your question, group labels, sample and feature counts, and what each sample represents. Record any unavailable study information.\n\n## Inputs and decisions\n\nInputs: `data/my-study/`. Outputs: `results/my-study/`.\n\nDescribe the selected samples, feature labels, and any exclusions or changes. State that the workflow produces descriptive summaries.\n\n## Composition\n\n![Feature composition by sample.](results/my-study/figures/composition.png)\n\nDescribe one pattern and support it with feature proportions from the saved table. Explain what is pooled as Other.\n\n## Shannon diversity\n\n![Shannon diversity by group.](results/my-study/figures/shannon-diversity.png)\n\nReport group medians and describe spread and overlap. Check observed feature counts before explaining the pattern.\n\n## Count totals and diversity\n\n![Count totals and Shannon diversity.](results/my-study/figures/depth-diversity.png)\n\nDescribe count ranges and unusual samples. Check the corresponding sample rows in the diversity table.\n\n## Checks\n\nName the table values you checked. If you performed the optional sample verification, report the sample ID, total, observed features, Shannon, and agreement.\n\n## Conclusion and limitations\n\nAnswer the question within the scope of these samples. State one limitation and a next question. Visual differences alone do not establish significance or causation.\n\n## Reproducibility and AI assistance\n\nRecord the analysis command, input/output folders, decisions, and location of `session-info.txt`. State how AI was used and checked, or state that it was not used.",
+    "section": "",
+    "text": "Rscript scripts/R/create_report.R my-study",
     "crumbs": [
       "Your own study",
-      "<span class='chapter-number'>30</span>  <span class='chapter-title'>7. Write the report: Your own study</span>"
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>7. Write the report: Your own study</span>"
     ]
   },
   {
-    "objectID": "examples/my-study/06-export-the-report.html#write-your-explanation",
-    "href": "examples/my-study/06-export-the-report.html#write-your-explanation",
+    "objectID": "examples/my-study/06-export-the-report.html#replace-prompts-with-evidence",
+    "href": "examples/my-study/06-export-the-report.html#replace-prompts-with-evidence",
     "title": "7. Write the report: Your own study",
-    "section": "Write your explanation",
-    "text": "Write your explanation\nReplace the prompts with your own observations and checked numbers. Keep the figure paths as supplied for this dataset. State the limits of the sampling, grouping, feature labels, and metadata available for your own study.\nIf AI helps draft the explanation, supply the actual figures and table values, then check every number, group label, and claim. Share only data you are permitted to share.",
+    "section": "Replace prompts with evidence",
+    "text": "Replace prompts with evidence\nUse your notes from the preceding steps. State the question, sample unit, input source, group sizes, reference/comparison, settings and exclusions. Choose the most informative figures for the main result and retain the rest as supporting evidence. For tests, record model and uncertainty, not only which p-values passed a threshold.\nRead Write a report you can defend. Do not leave template instructions in the submitted report. State how AI helped and which checks you performed.",
     "crumbs": [
       "Your own study",
-      "<span class='chapter-number'>30</span>  <span class='chapter-title'>7. Write the report: Your own study</span>"
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>7. Write the report: Your own study</span>"
     ]
   },
   {
-    "objectID": "examples/my-study/06-export-the-report.html#render-the-report",
-    "href": "examples/my-study/06-export-the-report.html#render-the-report",
+    "objectID": "examples/my-study/06-export-the-report.html#render-and-inspect",
+    "href": "examples/my-study/06-export-the-report.html#render-and-inspect",
     "title": "7. Write the report: Your own study",
-    "section": "Render the report",
-    "text": "Render the report\nSave the file. From a terminal in the project root, run:\nquarto render my-study-report.qmd --to html\nOpen the HTML file at the output location printed by Quarto. Rendering uses existing figures and tables; it does not run the analysis again.",
+    "section": "Render and inspect",
+    "text": "Render and inspect\ncd reports\nquarto render my-study-report.qmd --to html\ncd ..\nOpen the HTML file printed by Quarto. Confirm images load and every number, contrast and limitation matches your current complete run. Rendering uses existing results; it does not rerun analysis.\nYour report stays in ignored reports/, separate from the published guide.",
     "crumbs": [
       "Your own study",
-      "<span class='chapter-number'>30</span>  <span class='chapter-title'>7. Write the report: Your own study</span>"
-    ]
-  },
-  {
-    "objectID": "examples/my-study/06-export-the-report.html#check-the-finished-report",
-    "href": "examples/my-study/06-export-the-report.html#check-the-finished-report",
-    "title": "7. Write the report: Your own study",
-    "section": "Check the finished report",
-    "text": "Check the finished report\nConfirm that all three images load, captions match the dataset, and every numerical statement agrees with its table. Keep the inputs, decisions, and results/my-study/session-info.txt with your report materials.\nYou have completed the descriptive workflow for your own study. Record any further analysis needed to answer your question.",
-    "crumbs": [
-      "Your own study",
-      "<span class='chapter-number'>30</span>  <span class='chapter-title'>7. Write the report: Your own study</span>"
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>7. Write the report: Your own study</span>"
     ]
   },
   {
     "objectID": "99-appendix.html",
     "href": "99-appendix.html",
-    "title": "Appendix A — Workflow reference and glossary",
+    "title": "Appendix A — Methods, decisions and references",
     "section": "",
-    "text": "The workflow\nThis reference applies to all datasets in the guide. Each dataset section contains its own commands, figures, checks, and report instructions.\nAfter completing workspace setup, follow the same seven steps for each dataset: define the question, preview the results, meet the inputs, check the inputs, run the analysis, verify and explain, and write the report.\nThe three supplied datasets have prepared inputs. For your own study, prepare the three tidy TSV files before running the analysis.",
+    "text": "Within-sample diversity\nFor counts \\(x_i\\), \\(p_i=x_i/\\sum_j x_j\\) and \\(H=-\\sum_{i:p_i&gt;0}p_i\\ln(p_i)\\). Observed richness is the number of positive counts; evenness concerns how abundance is distributed. Shannon is not a health score, and its interpretation depends on the feature definition.\nDepth affects detection. Rarefaction curves show expected detected features in smaller samples drawn from the already processed table. They cannot recover discarded features or prove complete biological sampling. The Zackular object has undergone upstream processing; interpret its curves within that limitation. The initial synthetic example has only 15 fictional features, so rapid saturation is a property of the teaching data.\nDepth 0 in settings means the smallest supplied sample total. That is a convenience, not a universal recommendation. Inspect low-depth samples first. For Zackular, 15,000 retains every sample. Choose and justify a depth before looking for a favourable group result; record excluded samples if needed.",
     "crumbs": [
       "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Workflow reference and glossary</span>"
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Methods, decisions and references</span>"
     ]
   },
   {
-    "objectID": "99-appendix.html#input-and-output-folders",
-    "href": "99-appendix.html#input-and-output-folders",
-    "title": "Appendix A — Workflow reference and glossary",
-    "section": "Input and output folders",
-    "text": "Input and output folders\n\n\n\nDataset\nInput folder\nOutput folder\n\n\n\n\nSynthetic practice\ndata/example/\nresults/example/\n\n\nDietSwap\ndata/dietswap/\nresults/dietswap/\n\n\nMouse59\ndata/mouse59/\nresults/mouse59/\n\n\nYour own study\ndata/my-study/\nresults/my-study/\n\n\n\nEach input folder needs feature-counts.tsv, sample-metadata.tsv, and taxonomy.tsv. Sample identifiers connect counts to metadata; feature identifiers connect counts to display labels. If biological taxonomy is unavailable, use unique feature IDs as labels and state that limitation.",
+    "objectID": "99-appendix.html#community-composition-pcoa-permanova-and-dispersion",
+    "href": "99-appendix.html#community-composition-pcoa-permanova-and-dispersion",
+    "title": "Appendix A — Methods, decisions and references",
+    "section": "Community composition: PCoA, PERMANOVA and dispersion",
+    "text": "Community composition: PCoA, PERMANOVA and dispersion\nBray–Curtis quantifies compositional dissimilarity. PCoA places samples in a low-dimensional representation of that distance. Axes can reverse signs between implementations without changing relationships. No phylogenetic tree is supplied, so this workflow does not calculate UniFrac.\nPCoA uses Lingoes-corrected distances. PERMANOVA and dispersion use the same correction. PERMANOVA uses marginal tests (by = \"margin\"), so the group term is conditional on configured covariates. Its R-squared reports the fraction of total distance variation attributed to the term; it is not classification accuracy. A significant dispersion result can complicate a location-based interpretation. A nonsignificant result does not prove equal dispersion. The separate dispersion test does not adjust for covariates.\nBoth proportion-based and equal-depth sensitivity results are saved. A change in conclusion is evidence to investigate, not a reason to select the smaller p-value. The sensitivity averages distances across random subsamples; it is not a pooled meta-analysis of repeated tests. Do not compare PCoA axis positions numerically between different distance matrices.\nThese scripts assume independent observations. Paired samples, repeated visits, shared cages, households and clustered recruitment can require a different model and restricted permutations. Setting design_confirmed to TRUE does not make that assumption correct.",
     "crumbs": [
       "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Workflow reference and glossary</span>"
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Methods, decisions and references</span>"
     ]
   },
   {
-    "objectID": "99-appendix.html#what-the-scripts-do",
-    "href": "99-appendix.html#what-the-scripts-do",
-    "title": "Appendix A — Workflow reference and glossary",
-    "section": "What the scripts do",
-    "text": "What the scripts do\n\n\n\n\n\n\n\nScript in scripts/R/\nPurpose\n\n\n\n\n01-check-inputs.R\nValidates input structure and identifiers; called by the analysis script\n\n\n02-analyse-example.R\nMain entry point; generates descriptive tables and three figures\n\n\n05-verify-sample.R\nOptional independent check of one sample’s total, observed features, and Shannon\n\n\n\nRun the exact commands on the dataset’s analysis and verification pages from the project root, the folder containing _quarto.yml. The analysis also compares its Shannon calculation with vegan for every sample.\n\n\n\n\n\n\nNote\n\n\n\nThe independent sample calculation is optional. Checking descriptions and numerical claims against the saved tables remains part of every analysis. A passing input check confirms structural validity, not that the study design supports every biological question.",
+    "objectID": "99-appendix.html#otu-differential-abundance",
+    "href": "99-appendix.html#otu-differential-abundance",
+    "title": "Appendix A — Methods, decisions and references",
+    "section": "OTU differential abundance",
+    "text": "OTU differential abundance\nANCOM-BC2 estimates model-based abundance associations from supplied counts while correcting sampling biases under its assumptions. It does not measure absolute bacterial load. The guide tests OTUs; a genus label is an annotation, not genus-level aggregation.\nThe Zackular model is age + sex + collection_location + group. Group is internally coded Reference then Comparison. A positive group coefficient means higher estimated abundance in Carcinoma versus Healthy, conditional on those covariates. Effects use natural logarithms, so exp(effect) is a model-estimated fold change; ln(2) is approximately a twofold association. These are not DESeq2’s log2 effects.\nFeatures detected in at least 10% of the 60 samples enter the feature model. BH correction addresses multiple feature tests for each coefficient. A highlighted discovery must have adjusted p &lt; 0.05, the package’s DA indicator and passage through pseudo-count sensitivity (conservative = TRUE). Unavailable effects or standard errors are explicitly flagged with estimate_available = FALSE; their learner-facing p-values are left missing. The package’s original coefficient table is also retained. ANCOMBC may assign p = q = 1 to an unestimable test; that is not evidence for a null effect. Unavailable results are never discoveries. Structural-zero detection is disabled in this example; no manual pseudo-count is added to model inputs. The display offset is unrelated.\nApproximate pointwise 95% intervals are effect ± 1.96 standard errors. They are not simultaneous intervals and do not replace adjusted p-values. The forest display ranks up to 20 features by adjusted p-value even when none is a discovery. Do not interpret its ranking as validation of biomarkers.\nOnly 15 features exist in synthetic practice, and their generating truth is not a validated DA benchmark. Its default inference demonstrates community tests; ANCOM-BC2 is taught with the larger human table. Your own study starts with inference blocked and DA disabled until you justify the design.",
     "crumbs": [
       "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Workflow reference and glossary</span>"
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Methods, decisions and references</span>"
     ]
   },
   {
-    "objectID": "99-appendix.html#terms-used-in-the-figures",
-    "href": "99-appendix.html#terms-used-in-the-figures",
-    "title": "Appendix A — Workflow reference and glossary",
-    "section": "Terms used in the figures",
-    "text": "Terms used in the figures\n\n\n\n\n\n\n\nTerm\nMeaning in this workflow\n\n\n\n\nFeature\nA row in the count table, such as an OTU or another supplied microbial feature\n\n\nOTU\nOperational taxonomic unit; a sequence-based feature whose identifier alone does not name a species\n\n\nCount total\nSum of all feature counts in one sample; not a measure of total microbial biomass\n\n\nRelative proportion\nFeature count divided by that sample’s count total\n\n\nObserved features\nNumber of features with a positive count in one sample\n\n\nRichness\nNumber of distinct features; observed richness counts those detected in the supplied sample\n\n\nEvenness\nHow evenly a sample’s counts are distributed among its features\n\n\nShannon diversity\nA summary reflecting richness and evenness, using natural logarithms\n\n\nOther\nAll features outside the top eight, pooled only for the composition display",
+    "objectID": "99-appendix.html#human-dataset-provenance",
+    "href": "99-appendix.html#human-dataset-provenance",
+    "title": "Appendix A — Methods, decisions and references",
+    "section": "Human dataset provenance",
+    "text": "Human dataset provenance\nZackular JP et al. (2014), The Human Gut Microbiome as a Screening Tool for Colorectal Cancer. Study. Original study: 90 stools, 30 per clinical group, 16S V4 MiSeq. Original metadata and sequences. The packaged microbiomeutilities::zackular2014 object contains 88 samples and 2,078 OTUs. All sample IDs, disease labels and ages were checked against the original spreadsheet. Two adenoma records are absent, reason unresolved. All 30 healthy and all 30 carcinoma records are retained here.\nIts package documentation cites a different 2013 mouse study; use the human citation above. Exact sources and checksums are in data/provenance/zackular/. The spreadsheet’s participant-ID field is empty. Sample-name tokens are unique and consistent with the study design, but are not a validated participant crosswalk. Do not claim a separate participant identity audit.\nThe exported sex labels were trimmed (including nonbreaking whitespace) and mapped f→Female, m→Male; Ann Arbor,. MI was harmonised to Ann Arbor, MI. Original labels are retained alongside cleaned labels in metadata. These changes were made before modelling, not chosen to improve test results. BMI, medications and other possible confounders are not included in this teaching model. Conclusions remain observational and sample-specific.",
     "crumbs": [
       "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Workflow reference and glossary</span>"
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Methods, decisions and references</span>"
     ]
   },
   {
-    "objectID": "99-appendix.html#how-shannon-is-calculated",
-    "href": "99-appendix.html#how-shannon-is-calculated",
-    "title": "Appendix A — Workflow reference and glossary",
-    "section": "How Shannon is calculated",
-    "text": "How Shannon is calculated\nFor a sample with feature counts \\(x_i\\), calculate each proportion as \\(p_i=x_i/\\sum_j x_j\\). Then:\n\\[\nH=-\\sum_{i:p_i&gt;0} p_i\\ln(p_i).\n\\]\nZero proportions contribute zero and are omitted from the logarithm calculation. Shannon uses all features in the supplied analysis table. The top-eight selection and pooled Other category are used only for composition plotting.\nIf every feature count in a sample is multiplied by the same positive factor, its proportions and Shannon value remain unchanged. In observed sequencing data, however, low counts can limit detection of features; investigate unusually low totals before interpreting diversity.",
+    "objectID": "99-appendix.html#method-documentation",
+    "href": "99-appendix.html#method-documentation",
+    "title": "Appendix A — Methods, decisions and references",
+    "section": "Method documentation",
+    "text": "Method documentation\n\nvegan rarefaction\nvegan PCoA\nvegan PERMANOVA\nvegan dispersion\nANCOM-BC2 tutorial\nANCOM-BC2 methodology",
     "crumbs": [
       "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Workflow reference and glossary</span>"
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Methods, decisions and references</span>"
     ]
   },
   {
-    "objectID": "99-appendix.html#reading-the-outputs",
-    "href": "99-appendix.html#reading-the-outputs",
-    "title": "Appendix A — Workflow reference and glossary",
-    "section": "Reading the outputs",
-    "text": "Reading the outputs\n\n\n\n\n\n\n\nOutput within the selected results folder\nUse\n\n\n\n\ntables/alpha-diversity.tsv\nCheck sample totals, observed features, and Shannon\n\n\ntables/relative-abundance.tsv\nCheck individual feature proportions\n\n\ntables/composition-display.tsv\nInspect the features selected for display and pooled Other\n\n\ntables/group-summary.tsv\nCheck group summaries\n\n\nfigures/\nView composition, Shannon diversity, and count-total plots\n\n\nsession-info.txt\nRecord R and package versions\n\n\n\nComposition bars sum to 100%. A feature’s proportion can change when other features change, so proportions alone do not measure absolute abundance. Compare variation within groups as well as differences between them.",
+    "objectID": "99-appendix.html#what-is-outside-this-practical",
+    "href": "99-appendix.html#what-is-outside-this-practical",
+    "title": "Appendix A — Methods, decisions and references",
+    "section": "What is outside this practical?",
+    "text": "What is outside this practical?\nRaw-read QC, denoising, contamination assessment, reference-based taxonomy, phylogenetic tree building, functional prediction, microbial networks and predictive-model validation each require additional evidence and workflows.",
     "crumbs": [
       "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Workflow reference and glossary</span>"
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Methods, decisions and references</span>"
     ]
   },
   {
-    "objectID": "99-appendix.html#reporting-and-interpretation",
-    "href": "99-appendix.html#reporting-and-interpretation",
-    "title": "Appendix A — Workflow reference and glossary",
-    "section": "Reporting and interpretation",
-    "text": "Reporting and interpretation\nEach dataset’s final page provides a copyable report outline, matching figure paths, a report filename, and the render command. Save the report QMD in the project root so its relative image paths resolve correctly.\nRendering uses existing analysis outputs. If inputs change, rerun the dataset’s analysis before rendering the report. After an error, resolve the problem before interpreting files that may remain from an earlier run.\nThe supplied workflow produces descriptive summaries. Visual differences alone do not establish statistical significance or causation. Paired observations, repeated visits, shared cages, confounding, and statistical inference need additional decisions and methods appropriate to the study.\nIf AI helps draft an explanation, check its numbers, group labels, and claims against the supplied outputs. Record which suggestions you accepted or revised and why.",
+    "objectID": "99-appendix.html#numerical-limitations-in-the-supplied-human-run",
+    "href": "99-appendix.html#numerical-limitations-in-the-supplied-human-run",
+    "title": "Appendix A — Methods, decisions and references",
+    "section": "Numerical limitations in the supplied human run",
+    "text": "Numerical limitations in the supplied human run\nThe ANCOMBC t-distribution calculation emitted NaNs produced. The exported summary flags 100 OTUs without finite group estimates or standard errors; all 100 have rank-deficient design matrices when restricted to samples with positive counts. feature-model-support.tsv makes that support visible. Do not interpret the package’s replacement p-values of 1 for unavailable tests as evidence of equality. Other estimable results must still pass the pseudo-count sensitivity criterion. The two-group warning about deactivating multi-group tests is expected: no global or pairwise multi-group analysis was requested. Read both warnings rather than silencing them without explanation.",
     "crumbs": [
       "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Workflow reference and glossary</span>"
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Methods, decisions and references</span>"
     ]
   }
 ]

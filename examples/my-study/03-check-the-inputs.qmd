@@ -2,24 +2,32 @@
 title: "4. Check the inputs: Your own study"
 ---
 
-## Your task
+## Check files and study design
 
-Review the input tables before starting the analysis. You will run the analysis on the next page; its first action is to check the files automatically.
+The exploration script checks IDs, table alignment, nonnegative integer counts
+and positive totals. You must review biological suitability.
 
-## Check the structure
+- Are group labels correct and sample units independent?
+- Are there unusually small totals, missing covariates or processing issues?
+- Does an apparent group difference coincide with a site, batch or other variable?
+- Do your feature labels match the level at which you intend to make claims?
 
-- All three files exist and use tab-separated columns.
-- Sample IDs are unique and match exactly between counts and metadata.
-- Feature IDs are unique and match between counts and taxonomy.
-- Counts are finite, nonnegative integers; every sample has a positive total.
-- Group labels are present and represent the intended comparison.
+## Read the settings
 
-## Check the dataset
+Open `config/my-study.tsv`. Parameters and values occupy separate TSV columns.
+Record reference, comparison, top_n, depth, repeats, seed, permutations,
+prevalence, alpha and covariates before running.
 
-Check whether samples are paired, repeated, or clustered. Record missing metadata, low-count samples, and any exclusions. These descriptive summaries do not account automatically for study design or confounding.
+Change the placeholder **Control/Case** labels to your actual labels.
+Keep `design_confirmed` FALSE until you have justified sample independence
+and model suitability. Start with exploration; do not switch that flag merely
+to get a command to run. Use comma-separated metadata column names for
+covariates, or `none`. Missing or confounded covariates stop inference.
 
-## Before continuing
+Enable `run_da` only when a count-based OTU model and its assumptions fit the
+question. Shared households, cages, repeated visits or matched pairs require
+adaptation beyond this script. Get help with the design before testing.
 
-Record the sample count, feature count, and group sizes you expect. The script checks file structure; you decide whether the selected samples support your question.
+**Your task:** write your planned comparison and settings, then name one check the script cannot make for you.
 
-[Next: Run the analysis](04-run-the-analysis.qmd)
+[Next: Run](04-run-the-analysis.qmd)

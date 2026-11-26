@@ -1,0 +1,9 @@
+Comparison: Carcinoma versus Healthy
+Model: ~age + sex + collection_location + group
+ANCOM-BC2: raw supplied integer counts; BH correction; pseudo-count sensitivity enabled.
+Structural-zero calling disabled; no manual pseudo-count added.
+Features retained: 1915
+Sensitivity-supported discoveries: 0
+Unavailable group effects or standard errors: 100
+PERMANOVA: marginal terms, Lingoes correction, independent-sample permutations.
+Dispersion is unadjusted for covariates; a nonsignificant test does not prove equal dispersion.

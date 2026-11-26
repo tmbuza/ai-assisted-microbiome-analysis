@@ -1,0 +1,2 @@
+Community tests complete. Differential abundance disabled in settings.
+Model: ~group

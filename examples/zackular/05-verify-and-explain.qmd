@@ -1,0 +1,80 @@
+---
+title: "6. Verify and explain: Human stool study"
+---
+
+## Verify one sample
+
+Run from the main folder; use the supplied worked sample:
+
+```bash
+Rscript scripts/R/verify_sample.R data/zackular results/zackular config/zackular.tsv Healthy1-2027
+```
+
+All three rows should show TRUE. The verifier checks current input bytes,
+count total, observed features and Shannon. Agreement checks arithmetic; it
+does not validate sequencing quality, sample identity or every model estimate.
+
+## Reference samples
+
+| Sample | Table read total | Detected OTUs | Shannon |
+|---|---:|---:|---:|
+| Healthy1-2027 | 64,011 | 509 | 3.652471 |
+| Cancer1-2355 | 54,233 | 743 | 3.909218 |
+| Healthy16-3251 | 60,335 | 420 | 2.291800 |
+
+Check these against your own complete run. A carcinoma sample can have higher
+Shannon than a healthy sample even when its group's median is lower.
+
+## Explain the exploration
+
+Write one sentence per figure. For composition, compare named OTUs and
+acknowledge the pooled remainder. For Shannon and richness, check sample
+values and group summaries. For PCoA, name the distance and axis percentages;
+check whether the pattern persists in the depth sensitivity. For the heatmap
+and prevalence plot, distinguish high abundance from frequent detection.
+
+## Explain the tests
+
+Record the group term's R-squared and p-value in `permanova.tsv`, the
+covariates in `model-matrix.tsv`, and dispersion results. Compare the two
+distance definitions without choosing a favourite p-value. Dispersion is not
+adjusted for the covariates in the PERMANOVA model.
+
+If differential abundance was run, select an OTU in
+`differential-abundance.tsv`. Check its full ID, contrast direction, natural-log
+effect, standard error, adjusted p-value and sensitivity flag. Recalculate
+exp(effect) for its model-estimated fold change. Locate it in the full
+relative-abundance table to understand the unadjusted display; the two values
+answer different questions.
+
+An empty discoveries table is a valid outcome. Explain insufficient evidence
+under the model, rather than claiming identical communities or changing the
+threshold to obtain hits.
+
+**Human → AI → Human task:** write your result paragraph first. Give AI the
+relevant figures, exact table rows, model and contrast. Ask it to identify
+unsupported numbers, reversed effects and causal wording. Accept changes
+only after checking them yourself. Finish with one limitation and a useful
+next scientific question.
+
+
+
+## Read the supplied reference run critically
+
+With 999 permutations and the configured age, sex and location adjustment,
+the group term explained about **1.99%** of corrected distance variation:
+**p = 0.165** for proportions and **p = 0.172** for equal-depth sensitivity.
+The corresponding unadjusted dispersion p-values were **0.420** and **0.428**.
+These results do not establish a group-wide community association at 0.05;
+they also do not prove that profiles are identical or dispersion equal.
+
+The 10% prevalence filter retained **1,915 OTUs**. In the supplied ANCOM-BC2
+run, **no OTU passed both adjusted-p and conservative pseudo-count sensitivity
+criteria**. Several OTUs have small adjusted p-values but fail the sensitivity check. Do not describe those as robust
+biomarkers. The package warns during t-distribution p-value calculation. **100 OTUs**
+lack finite group effects or standard errors; their positive-count subsets
+are rank deficient for the full model. Check `feature-model-support.tsv` and
+the raw coefficient table. The learner-facing summary leaves their p-values
+missing, rather than calling them evidence for no difference. This is a worked review example, not a validated screening test.
+
+[Next: Write](06-export-the-report.qmd)

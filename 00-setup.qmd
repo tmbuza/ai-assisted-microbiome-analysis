@@ -2,72 +2,61 @@
 title: "Set up your workspace"
 ---
 
-Complete this setup before beginning the guide. You will download the project files, open your workspace, and restore the R packages needed for all three examples.
+## Open the project
 
-Work through the sections in order. You only need to complete this setup once.
+Have R, Quarto and VS Code or RStudio installed. Use an R/Bioconductor combination that supplies **ANCOMBC 2.16.0 or newer** for the expanded inference stage. You may need to update R if your compatible Bioconductor release supplies an older ANCOMBC.
+[Download the project](https://github.com/tmbuza/ai-assisted-microbiome-analysis),
+extract it and open its main folder. Apply this update there before using the
+new commands. Open a terminal in the folder containing `_quarto.yml`.
 
-## Before you begin
+You should see `data/`, `scripts/R/`, `config/`, `examples/` and `templates/`.
+Run all analysis commands from this folder.
 
-Have R, Quarto, and an editor such as VS Code or RStudio installed on your computer.
+## Restore and extend the R environment
 
-## Get the project files
-
-[Download the project ZIP](https://github.com/tmbuza/ai-assisted-microbiome-analysis/archive/refs/heads/main.zip)
-
-1. Extract the downloaded ZIP.
-2. Open the extracted `ai-assisted-microbiome-analysis-main` folder in VS Code or RStudio.
-3. Open a terminal in that folder.
-
-::: {.callout-note}
-This is your **project folder**, also called the **repository root**. It contains `_quarto.yml`, `renv.lock`, `data/`, `scripts/`. Run the guide’s terminal commands from this folder.
-:::
-
-## Restore the R environment
-
-The project includes `renv.lock`, which records the R packages used for the supplied analyses.
-
-::: {.callout-note}
-### Where does code run?
-
-Run terminal commands such as `R`, `Rscript`, and `quarto` in your terminal. After starting R, run R expressions at the R prompt (`>`). Opening a guide page does not run its code.
-:::
-
-In the terminal, start R:
+Start R in the terminal:
 
 ```bash
 R
 ```
 
-At the R prompt (`>`), run:
+At the R prompt, restore the existing project lockfile if present, then add the
+packages needed for this expanded workflow:
 
 ```r
 options(repos = c(CRAN = "https://cloud.r-project.org"))
-
-if (!requireNamespace("renv", quietly = TRUE)) {
-  install.packages("renv")
-}
-
-renv::restore()
+if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
+if (file.exists("renv.lock")) renv::restore()
+renv::install(c("ggplot2", "vegan"))
+renv::install("bioc::ANCOMBC")
+renv::snapshot()
 renv::status()
 ```
 
-If asked to proceed, enter `Y` and wait for the `>` prompt before entering another command. Restore the supplied lockfile rather than initializing a new environment.
-
-Check that the analysis packages load, then return to the terminal:
+Follow installation prompts and resolve errors before continuing. ANCOMBC
+adds Bioconductor dependencies; installation can take longer than exploration
+packages. Use a Bioconductor release compatible with your R version. Do not
+force a development version or replace packages at random to bypass an error.
 
 ```r
-library(tidyverse)
-library(vegan)
-
+suppressPackageStartupMessages(library(ggplot2))
+suppressPackageStartupMessages(library(vegan))
+packageVersion("ANCOMBC")
+stopifnot(packageVersion("ANCOMBC") >= numeric_version("2.16.0"))
 q(save = "no")
 ```
 
-::: {.callout-note}
-**If setup fails:** copy the error message. Ask AI to explain it using your R version, operating system, and the command you ran. Check the proposed fix before applying it. Keep the supplied lockfile intact while investigating.
-:::
+Commands beginning `Rscript` or `quarto` run in the terminal. R expressions
+such as `library()` run at the R prompt. Reading a page runs no analysis.
 
-## Ready to begin?
+## Keep the work organised
 
-Your terminal should be open in the project root, `renv::status()` should report no synchronization issues, and both packages should load successfully.
+Inputs belong in `data/`; generated tables and figures in `results/`;
+learner writing in ignored `reports/`. Settings belong in `config/`.
+Reruns replace named outputs, so copy an output folder before comparing
+alternative settings. Do not reuse an incomplete run.
 
-[Next: Begin the synthetic practice](examples/synthetic/00-start-here.qmd)
+If an error occurs, record the exact command, message, R version and package
+versions. Ask AI to explain that evidence, then check the proposed remedy.
+
+[Next: Synthetic practice](examples/synthetic/00-start-here.qmd)

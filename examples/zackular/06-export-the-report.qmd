@@ -1,0 +1,43 @@
+---
+title: "7. Write the report: Human stool study"
+---
+
+## Create your report
+
+From the main project folder:
+
+```bash
+Rscript scripts/R/create_report.R zackular
+```
+
+This creates `reports/zackular-report.qmd` if it does not already exist. Existing
+writing is kept. The draft includes exploration figures, with inference plots
+included only when the corresponding completed outputs exist at creation.
+
+## Replace prompts with evidence
+
+Use your notes from the preceding steps. State the question, sample unit,
+input source, group sizes, reference/comparison, settings and exclusions.
+Choose the most informative figures for the main result and retain the rest
+as supporting evidence. For tests, record model and uncertainty, not only
+which p-values passed a threshold.
+
+Read [Write a report you can defend](../../02-write-the-report.qmd).
+Do not leave template instructions in the submitted report. State how AI
+helped and which checks you performed.
+
+## Render and inspect
+
+```bash
+cd reports
+quarto render zackular-report.qmd --to html
+cd ..
+```
+
+Open the HTML file printed by Quarto. Confirm images load and every number,
+contrast and limitation matches your current complete run. Rendering uses
+existing results; it does not rerun analysis.
+
+Your report stays in ignored `reports/`, separate from the published guide.
+
+[Next: Your own study](../my-study/00-start-here.qmd)

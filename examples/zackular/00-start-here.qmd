@@ -1,0 +1,31 @@
+---
+title: "1. Define the question: Human stool study"
+---
+
+## Your question
+
+::: {.callout-note}
+How do community composition, diversity and OTU abundances differ between healthy and carcinoma samples?
+:::
+
+This cross-sectional selection contains 60 human stools, 30 Healthy and 30 Carcinoma, with 2,078 OTUs from 16S V4 sequencing. Each selected study record contributes one stool. It compares different people, not change after treatment.
+
+| Location | Folder |
+|---|---|
+| Inputs | `data/zackular/` |
+| Outputs | `results/zackular/` |
+| Settings | `config/zackular.tsv` |
+
+## Decide before running
+
+Name the sample unit, reference group and comparison group. Explain whether
+you want a description, a community-level association or a feature-level
+association. Keep those questions distinct.
+
+The same seven steps carry you from question to report. Complete [setup](../../00-setup.qmd)
+first. Save one short note at each step; use these notes in your report.
+
+**Your task:** write your question in one sentence and one conclusion this
+design cannot establish. Ask AI to check whether the question matches the
+available sample units; you decide whether its proposed wording is justified.
+[Next: Preview](01-see-the-result.qmd)

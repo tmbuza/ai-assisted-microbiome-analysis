@@ -2,24 +2,27 @@
 title: "4. Check the inputs: Synthetic practice"
 ---
 
-## Your task
+## Check files and study design
 
-Review the input tables before starting the analysis. You will run the analysis on the next page; its first action is to check the files automatically.
+The exploration script checks IDs, table alignment, nonnegative integer counts
+and positive totals. You must review biological suitability.
 
-## Check the structure
+- Are group labels correct and sample units independent?
+- Are there unusually small totals, missing covariates or processing issues?
+- Does an apparent group difference coincide with a site, batch or other variable?
+- Do your feature labels match the level at which you intend to make claims?
 
-- All three files exist and use tab-separated columns.
-- Sample IDs are unique and match exactly between counts and metadata.
-- Feature IDs are unique and match between counts and taxonomy.
-- Counts are finite, nonnegative integers; every sample has a positive total.
-- Group labels are present and represent the intended comparison.
+## Read the settings
 
-## Check the dataset
+Open `config/synthetic.tsv`. Parameters and values occupy separate TSV columns.
+Record reference, comparison, top_n, depth, repeats, seed, permutations,
+prevalence, alpha and covariates before running.
 
-Confirm there are 12 samples in each group and 15 feature rows. All 24 samples should remain in the initial run.
+Expected labels: **Group A** (reference) and **Group B** (comparison), with
+12 samples each. Covariates are `none`; `run_da` is FALSE. Depth 0 uses the
+smallest sample total for the teaching sensitivity comparison. All features
+are fictional, and all groups are simulated.
 
-## Before continuing
+**Your task:** write your planned comparison and settings, then name one check the script cannot make for you.
 
-Record the sample count, feature count, and group sizes you expect. The script checks file structure; you decide whether the selected samples support your question.
-
-[Next: Run the analysis](04-run-the-analysis.qmd)
+[Next: Run](04-run-the-analysis.qmd)

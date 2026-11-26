@@ -1,0 +1,5 @@
+The group variable has < 3 categories 
+The multi-group comparisons (global/pairwise/dunnet/trend) will be deactivated 
+Call:  NULL 
+NaNs produced 
+Call:  pt(abs(W), df = dof, lower.tail = FALSE) 

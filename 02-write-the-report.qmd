@@ -1,0 +1,48 @@
+---
+title: "Write a report you can defend"
+---
+
+## Create a draft without overwriting your writing
+
+Run the dataset's `create_report.R` command. It creates a draft in ignored
+`reports/` and keeps an existing draft unchanged. The report is independent
+of the book; you do not add it to `_quarto.yml`.
+
+Edit the prompts into your own account of the question, inputs, decisions,
+results, checks, limitations and next scientific action. Keep your report
+short: use the most informative figures in the narrative and link the rest
+as supporting evidence.
+
+## Every claim needs a location
+
+For a diversity claim, name the metric, groups, summary and source table.
+For a community test, record the distance, transformation, model, permutations,
+R-squared, p-value and dispersion result. For an OTU association, give its ID,
+tested contrast, natural-log effect, uncertainty, BH-adjusted p-value and
+pseudo-count sensitivity result. Do not silently substitute a genus name for
+an OTU-level finding.
+
+Distinguish a descriptive difference from an adjusted association and from a
+causal claim. Adjustment addresses only the measured variables in that model.
+
+## Render separately
+
+From the project root:
+
+```bash
+cd reports
+quarto render zackular-report.qmd --to html
+cd ..
+```
+
+Use `synthetic-report.qmd` or `my-study-report.qmd` for the other examples.
+Check that images load, numerical claims match the current complete run,
+and all placeholder text has been replaced. New outputs do not update your
+written interpretations automatically.
+
+## Record AI's contribution
+
+State the tool/model if known, date, task, what you supplied, what you adopted
+and how you checked it. First write your own observation; ask AI to challenge
+it using actual tables; make the final revision yourself. Do not share
+identifying or restricted participant information.

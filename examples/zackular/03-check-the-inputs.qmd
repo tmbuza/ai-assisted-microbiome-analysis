@@ -1,0 +1,32 @@
+---
+title: "4. Check the inputs: Human stool study"
+---
+
+## Check files and study design
+
+The exploration script checks IDs, table alignment, nonnegative integer counts
+and positive totals. You must review biological suitability.
+
+- Are group labels correct and sample units independent?
+- Are there unusually small totals, missing covariates or processing issues?
+- Does an apparent group difference coincide with a site, batch or other variable?
+- Do your feature labels match the level at which you intend to make claims?
+
+## Read the settings
+
+Open `config/zackular.tsv`. Parameters and values occupy separate TSV columns.
+Record reference, comparison, top_n, depth, repeats, seed, permutations,
+prevalence, alpha and covariates before running.
+
+Expected labels: **Healthy** (reference) and **Carcinoma** (comparison).
+The model includes **age, sex and collection_location**. This is a teaching
+adjustment, not a guarantee against confounding. Review the group-by-sex and
+group-by-location counts before fitting; age must be numeric. The supplied
+15,000-read sensitivity depth retains all 60 samples.
+
+The DA filter is 10% prevalence across all samples. It does not select only
+the top 15 plotted OTUs. Pseudo-count sensitivity is enabled in the model.
+
+**Your task:** write your planned comparison and settings, then name one check the script cannot make for you.
+
+[Next: Run](04-run-the-analysis.qmd)

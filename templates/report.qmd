@@ -1,0 +1,77 @@
+---
+title: "__LABEL__"
+format: html
+execute:
+  eval: false
+---
+
+## Question and study design
+
+Replace this prompt with the question, sample unit, source, group sizes and
+what the design can establish. Distinguish participants from sample records.
+
+## Inputs, decisions and reproducibility
+
+Inputs: `data/__FOLDER__/`. Outputs: `results/__FOLDER__/`.
+Settings: `config/__DATASET__.tsv`.
+
+Record preprocessing, metadata cleaning, reference/comparison, depth,
+prevalence, covariates and exclusions. Name the completed run-status files,
+input checksums, commands and session information. Explain any warning.
+
+## Composition
+
+![Feature composition.](../results/__FOLDER__/figures/composition.png)
+
+Describe a checked pattern. Colours show individual features; Other pools
+the remainder. Multiple OTUs can share a taxonomic annotation.
+
+## Within-sample diversity and sampling effort
+
+![Shannon diversity.](../results/__FOLDER__/figures/shannon-diversity.png)
+
+![Observed and expected richness.](../results/__FOLDER__/figures/richness.png)
+
+Report checked group summaries, spread and overlap. Distinguish richness
+from evenness and processed-table read totals from microbial load.
+
+![Read totals and diversity.](../results/__FOLDER__/figures/depth-diversity.png)
+
+![Rarefaction curves.](../results/__FOLDER__/figures/rarefaction.png)
+
+Explain the depth decision and the limitations of the processed count table.
+
+## Community similarity and sensitivity
+
+![Proportion-based Bray–Curtis PCoA.](../results/__FOLDER__/figures/pcoa.png)
+
+![Equal-depth sensitivity PCoA.](../results/__FOLDER__/figures/pcoa-depth-sensitivity.png)
+
+Report axis percentages and compare group patterns. Visual separation does
+not itself test a hypothesis.
+
+## Feature patterns
+
+![Feature abundance heatmap.](../results/__FOLDER__/figures/abundance-heatmap.png)
+
+![Feature prevalence.](../results/__FOLDER__/figures/prevalence.png)
+
+Distinguish abundance from prevalence. State the heatmap transformation.
+
+__INFERENCE__
+
+## Verification
+
+Record a sample ID, independently checked total, detected features and
+Shannon value. Name the source tables behind the reported comparisons.
+Agreement checks arithmetic, not the biological explanation.
+
+## Conclusion, limitations and next question
+
+Answer within the scope of this study and fitted model. Explain confounding,
+sampling and processing limits. Propose a useful next scientific check.
+
+## AI assistance and references
+
+Record AI's task, date, what was adopted and how it was checked, or state
+that AI was not used. Cite the original study and analytical methods used.

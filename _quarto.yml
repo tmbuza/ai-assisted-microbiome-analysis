@@ -2,23 +2,19 @@ project:
   type: book
   output-dir: docs
   resources:
-  - results/example/figures/*.png
-  - results/dietswap/figures/*.png
-  - results/mouse59/figures/*.png
-  - results/my-study/figures/*.png
-  
+  - results/synthetic/figures/*.png
+  - results/zackular/figures/*.png
 book:
   title: AI-Assisted Microbiome Analysis with R
   subtitle: From microbiome data to an output you understand and can defend
   author: Teresia Mrema Buza | Complex Data Insights
-
   chapters:
   - index.qmd
-
-  - part: Required setup
+  - part: Required setup and workflow
     chapters:
     - 00-setup.qmd
-
+    - 01-run-the-workflow.qmd
+    - 02-write-the-report.qmd
   - part: Synthetic practice
     chapters:
     - examples/synthetic/00-start-here.qmd
@@ -28,27 +24,15 @@ book:
     - examples/synthetic/04-run-the-analysis.qmd
     - examples/synthetic/05-verify-and-explain.qmd
     - examples/synthetic/06-export-the-report.qmd
-
-  - part: DietSwap
+  - part: 'Human stool study: Zackular'
     chapters:
-    - examples/dietswap/00-start-here.qmd
-    - examples/dietswap/01-see-the-result.qmd
-    - examples/dietswap/02-meet-the-data.qmd
-    - examples/dietswap/03-check-the-inputs.qmd
-    - examples/dietswap/04-run-the-analysis.qmd
-    - examples/dietswap/05-verify-and-explain.qmd
-    - examples/dietswap/06-export-the-report.qmd
-
-  - part: Mouse59
-    chapters:
-    - examples/mouse59/00-start-here.qmd
-    - examples/mouse59/01-see-the-result.qmd
-    - examples/mouse59/02-meet-the-data.qmd
-    - examples/mouse59/03-check-the-inputs.qmd
-    - examples/mouse59/04-run-the-analysis.qmd
-    - examples/mouse59/05-verify-and-explain.qmd
-    - examples/mouse59/06-export-the-report.qmd
-
+    - examples/zackular/00-start-here.qmd
+    - examples/zackular/01-see-the-result.qmd
+    - examples/zackular/02-meet-the-data.qmd
+    - examples/zackular/03-check-the-inputs.qmd
+    - examples/zackular/04-run-the-analysis.qmd
+    - examples/zackular/05-verify-and-explain.qmd
+    - examples/zackular/06-export-the-report.qmd
   - part: Your own study
     chapters:
     - examples/my-study/00-start-here.qmd
@@ -58,10 +42,8 @@ book:
     - examples/my-study/04-run-the-analysis.qmd
     - examples/my-study/05-verify-and-explain.qmd
     - examples/my-study/06-export-the-report.qmd
-
   appendices:
   - 99-appendix.qmd
-
 format:
   html:
     theme: cosmo
@@ -71,14 +53,13 @@ format:
     number-depth: 2
     anchor-sections: true
     link-external-icon: true
-    css: assets/css/cdi.css
     code-fold: false
     code-summary: Show code
     code-tools: false
     smooth-scroll: true
     mermaid:
       theme: forest
-
+    css: assets/css/microbiome-guide.css
 execute:
   echo: true
   eval: false

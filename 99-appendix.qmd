@@ -1,85 +1,133 @@
 ---
-title: "Workflow reference and glossary"
+title: "Methods, decisions and references"
 ---
 
-This reference applies to all datasets in the guide. Each dataset section contains its own commands, figures, checks, and report instructions.
+## Within-sample diversity
 
-## The workflow
+For counts $x_i$, $p_i=x_i/\sum_j x_j$ and
+$H=-\sum_{i:p_i>0}p_i\ln(p_i)$. Observed richness is the number of positive
+counts; evenness concerns how abundance is distributed. Shannon is not a
+health score, and its interpretation depends on the feature definition.
 
-After completing workspace setup, follow the same seven steps for each dataset: define the question, preview the results, meet the inputs, check the inputs, run the analysis, verify and explain, and write the report.
+Depth affects detection. Rarefaction curves show expected detected features
+in smaller samples drawn from the **already processed** table. They cannot
+recover discarded features or prove complete biological sampling. The
+Zackular object has undergone upstream processing; interpret its curves
+within that limitation. The initial synthetic example has only 15 fictional
+features, so rapid saturation is a property of the teaching data.
 
-The three supplied datasets have prepared inputs. For your own study, prepare the three tidy TSV files before running the analysis.
+Depth 0 in settings means the smallest supplied sample total. That is a
+convenience, not a universal recommendation. Inspect low-depth samples first.
+For Zackular, 15,000 retains every sample. Choose and justify a depth before
+looking for a favourable group result; record excluded samples if needed.
 
-## Input and output folders
+## Community composition: PCoA, PERMANOVA and dispersion
 
-| Dataset | Input folder | Output folder |
-|---|---|---|
-| Synthetic practice | `data/example/` | `results/example/` |
-| DietSwap | `data/dietswap/` | `results/dietswap/` |
-| Mouse59 | `data/mouse59/` | `results/mouse59/` |
-| Your own study | `data/my-study/` | `results/my-study/` |
+Bray–Curtis quantifies compositional dissimilarity. PCoA places samples in a
+low-dimensional representation of that distance. Axes can reverse signs
+between implementations without changing relationships. No phylogenetic tree
+is supplied, so this workflow does not calculate UniFrac.
 
-Each input folder needs `feature-counts.tsv`, `sample-metadata.tsv`, and `taxonomy.tsv`. Sample identifiers connect counts to metadata; feature identifiers connect counts to display labels. If biological taxonomy is unavailable, use unique feature IDs as labels and state that limitation.
+PCoA uses Lingoes-corrected distances. PERMANOVA and dispersion use the same
+correction. PERMANOVA uses marginal tests (`by = "margin"`), so the group term
+is conditional on configured covariates. Its R-squared reports the fraction
+of total distance variation attributed to the term; it is not classification
+accuracy. A significant dispersion result can complicate a location-based
+interpretation. A nonsignificant result does not prove equal dispersion.
+The separate dispersion test does not adjust for covariates.
 
-## What the scripts do
+Both proportion-based and equal-depth sensitivity results are saved. A change
+in conclusion is evidence to investigate, not a reason to select the smaller
+p-value. The sensitivity averages distances across random subsamples; it is
+not a pooled meta-analysis of repeated tests. Do not compare PCoA axis
+positions numerically between different distance matrices.
 
-| Script in `scripts/R/` | Purpose |
-|---|---|
-| `01-check-inputs.R` | Validates input structure and identifiers; called by the analysis script |
-| `02-analyse-example.R` | Main entry point; generates descriptive tables and three figures |
-| `05-verify-sample.R` | Optional independent check of one sample's total, observed features, and Shannon |
+These scripts assume independent observations. Paired samples, repeated
+visits, shared cages, households and clustered recruitment can require a
+different model and restricted permutations. Setting `design_confirmed` to
+TRUE does not make that assumption correct.
 
-Run the exact commands on the dataset's analysis and verification pages from the project root, the folder containing `_quarto.yml`. The analysis also compares its Shannon calculation with `vegan` for every sample.
+## OTU differential abundance
 
-::: {.callout-note}
-The independent sample calculation is optional. Checking descriptions and numerical claims against the saved tables remains part of every analysis. A passing input check confirms structural validity, not that the study design supports every biological question.
-:::
+ANCOM-BC2 estimates model-based abundance associations from supplied counts
+while correcting sampling biases under its assumptions. It does not measure
+absolute bacterial load. The guide tests OTUs; a genus label is an annotation,
+not genus-level aggregation.
 
-## Terms used in the figures
+The Zackular model is `age + sex + collection_location + group`. Group is
+internally coded Reference then Comparison. A positive group coefficient
+means higher estimated abundance in **Carcinoma versus Healthy**, conditional
+on those covariates. Effects use **natural logarithms**, so exp(effect) is a
+model-estimated fold change; ln(2) is approximately a twofold association.
+These are not DESeq2's log2 effects.
 
-| Term | Meaning in this workflow |
-|---|---|
-| Feature | A row in the count table, such as an OTU or another supplied microbial feature |
-| OTU | Operational taxonomic unit; a sequence-based feature whose identifier alone does not name a species |
-| Count total | Sum of all feature counts in one sample; not a measure of total microbial biomass |
-| Relative proportion | Feature count divided by that sample's count total |
-| Observed features | Number of features with a positive count in one sample |
-| Richness | Number of distinct features; observed richness counts those detected in the supplied sample |
-| Evenness | How evenly a sample's counts are distributed among its features |
-| Shannon diversity | A summary reflecting richness and evenness, using natural logarithms |
-| Other | All features outside the top eight, pooled only for the composition display |
+Features detected in at least 10% of the 60 samples enter the feature model.
+BH correction addresses multiple feature tests for each coefficient. A
+highlighted discovery must have adjusted p < 0.05, the package's DA indicator
+and passage through pseudo-count sensitivity (`conservative = TRUE`). Unavailable effects or standard errors are explicitly flagged with
+`estimate_available = FALSE`; their learner-facing p-values are left missing.
+The package's original coefficient table is also retained. ANCOMBC may assign
+p = q = 1 to an unestimable test; that is not evidence for a null effect.
+Unavailable results are never discoveries. Structural-zero detection is disabled in this example; no manual
+pseudo-count is added to model inputs. The display offset is unrelated.
 
-## How Shannon is calculated
+Approximate pointwise 95% intervals are effect ± 1.96 standard errors. They
+are not simultaneous intervals and do not replace adjusted p-values. The
+forest display ranks up to 20 features by adjusted p-value even when none is
+a discovery. Do not interpret its ranking as validation of biomarkers.
 
-For a sample with feature counts $x_i$, calculate each proportion as $p_i=x_i/\sum_j x_j$. Then:
+Only 15 features exist in synthetic practice, and their generating truth is
+not a validated DA benchmark. Its default inference demonstrates community
+tests; ANCOM-BC2 is taught with the larger human table. Your own study starts
+with inference blocked and DA disabled until you justify the design.
 
-$$
-H=-\sum_{i:p_i>0} p_i\ln(p_i).
-$$
+## Human dataset provenance
 
-Zero proportions contribute zero and are omitted from the logarithm calculation. Shannon uses all features in the supplied analysis table. The top-eight selection and pooled Other category are used only for composition plotting.
+Zackular JP et al. (2014), *The Human Gut Microbiome as a Screening Tool for
+Colorectal Cancer*. [Study](https://doi.org/10.1158/1940-6207.CAPR-14-0129).
+Original study: 90 stools, 30 per clinical group, 16S V4 MiSeq.
+[Original metadata and sequences](https://mothur.org/MicrobiomeBiomarkerCRC/).
+The packaged `microbiomeutilities::zackular2014` object contains 88 samples
+and 2,078 OTUs. All sample IDs, disease labels and ages were checked against
+the original spreadsheet. Two adenoma records are absent, reason unresolved.
+All 30 healthy and all 30 carcinoma records are retained here.
 
-If every feature count in a sample is multiplied by the same positive factor, its proportions and Shannon value remain unchanged. In observed sequencing data, however, low counts can limit detection of features; investigate unusually low totals before interpreting diversity.
+Its package documentation cites a different 2013 mouse study; use the human
+citation above. Exact sources and checksums are in `data/provenance/zackular/`.
+The spreadsheet's participant-ID field is empty. Sample-name tokens are unique
+and consistent with the study design, but are not a validated participant
+crosswalk. Do not claim a separate participant identity audit.
 
-## Reading the outputs
+The exported sex labels were trimmed (including nonbreaking whitespace) and
+mapped f→Female, m→Male; `Ann Arbor,. MI` was harmonised to `Ann Arbor, MI`.
+Original labels are retained alongside cleaned labels in metadata. These
+changes were made before modelling, not chosen to improve test results.
+BMI, medications and other possible confounders are not included in this
+teaching model. Conclusions remain observational and sample-specific.
 
-| Output within the selected results folder | Use |
-|---|---|
-| `tables/alpha-diversity.tsv` | Check sample totals, observed features, and Shannon |
-| `tables/relative-abundance.tsv` | Check individual feature proportions |
-| `tables/composition-display.tsv` | Inspect the features selected for display and pooled Other |
-| `tables/group-summary.tsv` | Check group summaries |
-| `figures/` | View composition, Shannon diversity, and count-total plots |
-| `session-info.txt` | Record R and package versions |
+## Method documentation
 
-Composition bars sum to 100%. A feature's proportion can change when other features change, so proportions alone do not measure absolute abundance. Compare variation within groups as well as differences between them.
+- [vegan rarefaction](https://vegandevs.github.io/vegan/reference/rarefy.html)
+- [vegan PCoA](https://vegandevs.github.io/vegan/reference/wcmdscale.html)
+- [vegan PERMANOVA](https://vegandevs.github.io/vegan/reference/adonis.html)
+- [vegan dispersion](https://vegandevs.github.io/vegan/reference/betadisper.html)
+- [ANCOM-BC2 tutorial](https://bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC2.html)
+- [ANCOM-BC2 methodology](https://doi.org/10.1038/s41592-023-02092-7)
 
-## Reporting and interpretation
+## What is outside this practical?
 
-Each dataset's final page provides a copyable report outline, matching figure paths, a report filename, and the render command. Save the report QMD in the project root so its relative image paths resolve correctly.
+Raw-read QC, denoising, contamination assessment, reference-based taxonomy,
+phylogenetic tree building, functional prediction, microbial networks and
+predictive-model validation each require additional evidence and workflows.
 
-Rendering uses existing analysis outputs. If inputs change, rerun the dataset's analysis before rendering the report. After an error, resolve the problem before interpreting files that may remain from an earlier run.
+## Numerical limitations in the supplied human run
 
-The supplied workflow produces descriptive summaries. Visual differences alone do not establish statistical significance or causation. Paired observations, repeated visits, shared cages, confounding, and statistical inference need additional decisions and methods appropriate to the study.
-
-If AI helps draft an explanation, check its numbers, group labels, and claims against the supplied outputs. Record which suggestions you accepted or revised and why.
+The ANCOMBC t-distribution calculation emitted `NaNs produced`. The exported
+summary flags 100 OTUs without finite group estimates or standard errors;
+all 100 have rank-deficient design matrices when restricted to samples with
+positive counts. `feature-model-support.tsv` makes that support visible.
+Do not interpret the package's replacement p-values of 1 for unavailable
+tests as evidence of equality. Other estimable results must still pass the
+pseudo-count sensitivity criterion. The two-group warning about deactivating
+multi-group tests is expected: no global or pairwise multi-group analysis was
+requested. Read both warnings rather than silencing them without explanation.

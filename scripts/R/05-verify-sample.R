@@ -1,6 +1,6 @@
 # Select the input, output, and sample to check.
-input_dir <- "data/example"
-output_dir <- "results"
+input_dir <- "data/synthetic"
+output_dir <- "results/synthetic"
 sample_id <- "A01"
 
 args <- commandArgs(trailingOnly = TRUE)

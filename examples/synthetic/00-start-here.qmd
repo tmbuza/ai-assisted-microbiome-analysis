@@ -5,22 +5,27 @@ title: "1. Define the question: Synthetic practice"
 ## Your question
 
 ::: {.callout-note}
-How do community composition, Shannon diversity, and count totals differ between Group A and Group B?
+How do composition and diversity differ between Group A and Group B?
 :::
 
-This teaching dataset contains fictional features and two supplied groups. Use it to learn how the workflow behaves before interpreting study data.
-
-## Your dataset
-
-Use **24 samples**, **15 features**, and the supplied groups **Group A (12) and Group B (12)**.
+These are 24 fictional samples, 12 per group, with 15 fictional features. Learn how a count table becomes evidence; these patterns are not biological discoveries.
 
 | Location | Folder |
 |---|---|
-| Inputs | `data/example/` |
-| Outputs | `results/example/` |
+| Inputs | `data/synthetic/` |
+| Outputs | `results/synthetic/` |
+| Settings | `config/synthetic.tsv` |
 
-## Your task
+## Decide before running
 
-Follow the seven steps in order: define the question, preview results, meet the inputs, check them, run the analysis, explain the evidence, and write the report. Complete workspace setup before starting.
+Name the sample unit, reference group and comparison group. Explain whether
+you want a description, a community-level association or a feature-level
+association. Keep those questions distinct.
 
-[Next: Preview the results](01-see-the-result.qmd)
+The same seven steps carry you from question to report. Complete [setup](../../00-setup.qmd)
+first. Save one short note at each step; use these notes in your report.
+
+**Your task:** write your question in one sentence and one conclusion this
+design cannot establish. Ask AI to check whether the question matches the
+available sample units; you decide whether its proposed wording is justified.
+[Next: Preview](01-see-the-result.qmd)

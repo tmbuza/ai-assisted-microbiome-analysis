@@ -5,8 +5,8 @@
 suppressPackageStartupMessages(library(tidyverse))
 
 args <- commandArgs(trailingOnly = TRUE)
-input_dir <- if (length(args) >= 1) args[1] else "data/example"
-output_dir <- if (length(args) >= 2) args[2] else "results"
+input_dir <- if (length(args) >= 1) args[1] else "data/synthetic"
+output_dir <- if (length(args) >= 2) args[2] else "results/synthetic"
 
 # 2. Define input-checking helpers -----------------------------------------
 

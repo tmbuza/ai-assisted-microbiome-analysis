@@ -1,0 +1,31 @@
+---
+title: "3. Meet the inputs: Human stool study"
+---
+
+## Locate the three files
+
+| File in `data/zackular/` | What to inspect |
+|---|---|
+| `feature-counts.tsv` | Feature IDs in rows; sample IDs in columns; integer read counts |
+| `sample-metadata.tsv` | One row per sample, with sample ID, group and available covariates |
+| `taxonomy.tsv` | Each feature ID and its supplied lineage or display label |
+
+Pick one sample and find it in counts and metadata. Pick one feature and find
+it in counts and taxonomy. Row order is not evidence of a match; IDs are.
+
+Read [the study and provenance notes](../../99-appendix.qmd). The input was
+exported from a packaged count object; the original human study had 90 samples
+in three groups. Our comparison retains all available healthy and carcinoma
+samples. Two absent adenoma records do not affect this selection.
+
+Metadata preserve age, sex, collection location and original labels. Sex
+whitespace was removed and f/m expanded; a location typo was harmonised before
+modelling. The participant-ID field in the original spreadsheet is empty;
+do not claim a separately verified participant crosswalk.
+
+Taxonomy identifies OTU annotations, sometimes only at family level. Several
+OTUs can share a genus name. Do not collapse them by copying legend labels.
+
+**Your task:** record assay, sample unit, group definition and one missing piece of information that matters for interpretation.
+
+[Next: Check](03-check-the-inputs.qmd)

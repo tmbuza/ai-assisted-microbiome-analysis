@@ -1,40 +1,37 @@
 ---
 title: "AI-Assisted Microbiome Analysis with R"
 toc: false
-format:
-  html:
-    body-classes: front-page
 ---
 
-Learn one workflow, then repeat it with a different dataset. Start with the required workspace setup and follow the synthetic practice in order. Use the same seven steps for DietSwap, Mouse59, and your own study.
+Turn prepared microbiome counts into results you can understand and defend.
+Start with synthetic practice, apply the workflow to a human stool dataset,
+then adapt it to your own study.
 
 ::: {.callout-note icon=false}
 ## One workflow for every dataset
 
-Learn these seven steps once, then repeat them with each worked example and your own study.
-
-1. **Define the question** you want to answer.
-2. **Preview the results** you will produce.
-3. **Meet the inputs** and understand their structure.
-4. **Check the inputs** for completeness and consistency.
-5. **Run the analysis** using the supplied command.
-6. **Verify and explain** the patterns using figures and tables.
-7. **Write the report**, supporting your findings with figures and numbers and explaining what the analysis cannot establish.
+1. **Define** an answerable question and what each sample represents.
+2. **Preview** the figures and the questions they help answer.
+3. **Meet** the counts, sample metadata and feature annotations.
+4. **Check** identifiers, count values, sample quality and study design.
+5. **Run** exploration, then appropriate statistical analyses.
+6. **Verify and explain** findings using figures, numbers and limitations.
+7. **Write** a short report that another researcher can follow.
 :::
 
-## The datasets
-
-| Dataset | What you will learn |
+| Example | Your learning goal |
 |---|---|
-| Synthetic practice | Read and check results from 24 samples and 15 fictional features |
-| DietSwap | Describe a selected cohort comparison using 38 participant samples |
-| Mouse59 | Explore 59 samples and 2,027 OTUs, including low-count samples |
-| Your own study | Prepare three tidy TSV files and apply the same workflow |
+| Synthetic practice | Understand composition, diversity, community distances and numerical checks |
+| Zackular human stool study | Compare healthy and carcinoma samples; evaluate community and OTU-level associations |
+| Your own study | Define groups, choose covariates and decide whether this workflow fits your design |
 
-::: {.callout-note}
-Setup is required before running the workflow. Each dataset follows the same page structure. Its question, input/output folders, and dataset-specific details change; the analysis steps stay the same.
-:::
+You begin with prepared integer feature counts, not raw sequences. These
+pages do not perform read quality control, denoising or taxonomic assignment.
+Each coloured composition segment represents a feature, not necessarily a
+named species. All samples remain visible, including unusual observations.
 
-The guide starts from prepared feature tables and produces descriptive results. Raw sequencing processing and statistical hypothesis testing require additional workflows.
+**Human → AI → Human:** first write your question or interpretation; use AI
+for a specific explanation or review; then check its response against your
+files and make the final decision yourself.
 
-[Next: Set up your workspace](00-setup.qmd)
+[Begin: Set up your workspace](00-setup.qmd)

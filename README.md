@@ -1,38 +1,42 @@
-# AI-Assisted Microbiome Analysis
+# AI-Assisted Microbiome Analysis with R
 
-Follow a consistent descriptive workflow from three tidy TSV inputs to composition and diversity figures, checked tables, and a short report.
+Three examples follow the same seven steps: synthetic practice, the Zackular
+human stool study, and the learner's own study. Exploration and inference are
+separate commands with recorded settings and input freshness checks.
 
-## Learning path
+Start at `00-setup.qmd`. Run exploration and inference as documented on each
+example's Run page. New outputs replace named files; retain copies when
+comparing alternative settings. Never interpret an incomplete run.
 
-1. Set up the R environment: `00-setup.qmd`.
-2. Practise with synthetic data: `examples/synthetic/`.
-3. Follow the selected DietSwap samples: `examples/dietswap/`.
-4. Apply the workflow to Mouse59 OTUs: `examples/mouse59/`.
-5. Prepare your own analysis: `examples/my-study/`.
+| Example | Inputs | Outputs | Settings |
+|---|---|---|---|
+| Synthetic | data/synthetic | results/synthetic | config/synthetic.tsv |
+| Human stool | data/zackular | results/zackular | config/zackular.tsv |
+| Your study | data/my-study | results/my-study | config/my-study.tsv |
 
-Every dataset follows the same seven pages, from question to report. Your own study uses the same steps after you prepare its inputs.
+Exploration creates nine plots. Inference adds dispersion and, for the human
+example, ANCOM-BC2 differential abundance plots. Sample verification is a
+separate command. See `01-run-the-workflow.qmd` for the output map and
+`99-appendix.qmd` for assumptions, depth sensitivity, natural-log effects,
+multiple testing, provenance and references.
 
-Each dataset contains its exact analysis and optional verification commands. Its final page includes a report outline with matching figure paths and a render command.
+Reports are created by `scripts/R/create_report.R` in ignored `reports/`.
+A draft is never overwritten. Render a report from inside that folder.
 
-## Data and outputs
+This update overlays the existing project. Back it up first, then copy files
+at their matching relative paths. Navigation now lists only the three retained
+examples. Existing DietSwap/Mouse59 source or data folders are not deleted;
+remove them separately later if desired. Older scripts remain for legacy
+examples. Do not retain old generated `docs/` pages as evidence of the new book.
+Render the updated book with `quarto render` after completing the documented
+runs. Keep existing project-specific deployment settings and styling if needed.
+The update includes CDI styling adapted from the RNA-seq guide, with Quarto's cosmo theme. The stylesheet has its own name so it does not overwrite an existing cdi.css.
 
-| Dataset | Inputs | Outputs |
-|---|---|---|
-| Synthetic | `data/example/` | `results/example/` |
-| DietSwap | `data/dietswap/` | `results/dietswap/` |
-| Mouse59 | `data/mouse59/` | `results/mouse59/` |
-| Learner's study | `data/my-study/` | `results/my-study/` |
+Do not overwrite your existing .gitignore: add the patterns in
+`gitignore-additions.txt` to it. This keeps reports and learner inputs/results
+out of version control. Keep supplied example data and provenance available.
 
-Each input folder needs `feature-counts.tsv`, `sample-metadata.tsv`, and `taxonomy.tsv`. Keep learner folders empty until supplying your own inputs; create them when needed because Git does not retain empty directories.
+See `VALIDATION.md` for checks performed in the delivery environment and any
+remaining limitations. No private learner dataset is included.
 
-Mouse59 contains 59 samples and 2,027 OTUs. Its taxonomy file uses OTU IDs as display labels, and its original Class labels are preserved as groups. Counts were transposed from the supplied CSV without filtering or normalization. It is a workflow demonstration with limited study context.
-
-## Scripts
-
-The main entry point is `scripts/R/02-analyse-example.R`. It calls `01-check-inputs.R` and generates figures and tables. `05-verify-sample.R` is an optional learning exercise. Keep `renv.lock` for package restoration.
-
-This guide starts from prepared feature tables. Raw sequencing processing and statistical inference require additional workflows.
-
-## Render the guide
-
-Generate results for the three supplied datasets using their Run the analysis pages, then run `quarto render` from the repository root. The book uses existing outputs; rendering does not run the analysis. Generated pages are written to `docs/`.
+Warnings are saved in `exploration-warnings.txt` or `inference-warnings.txt` when present. Read them before accepting results; model convergence or singularity warnings stop inference. Synthetic rarefaction warnings about the lack of count-one features reflect the supplied teaching table and limit biological interpretation.
